@@ -6,31 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 화면</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="/css/reset.css">
 </head>
 <body>
-<header>
+<%@ include file="../views/header.jsp"%>
+<!-- <header>
 
 <div style="width: 66%; margin: 0 auto;">
 <div style="text-align:right;">
-<a>로그인</a>
-<a>English</a>
+<a style="font-size:0.6vw; font-weight: bold;">로그인</a>
+<a style="font-size:0.6vw; font-weight: bold;">회원가입</a>
+<a style="font-size:0.6vw; font-weight: bold;">English</a>
 </div>
-<div style="display:inline-block;">
-<img src=../img/logo.png width="15%" height="5%">
-<span style="margin-left: 10%; ">
-<a style="color: black">여행지 추천</a>
-<a>커뮤니티</a>
-<a>마이페이지</a>
-<a>고객센터</a>
-</span>
 
 
-</div>
+<a href="/"><img src=../img/logo.png width="15%" height="5%"></a>
+<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >여행지 추천</div>
+<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >커뮤니티</div>
+<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw">마이페이지</div>
+<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >고객센터</div>
+
+
+</div><br>
 
 <div style="display: inline-block ; margin-left: 100px"></div>
 </div>
-</header>
+</header> -->
 
 <img src="../img/Mainimg.png"; width="100%"; >
 
@@ -56,13 +58,11 @@
 <div style="width: 66%; margin: 0 auto; text-align:center" ><br><br>
 <h2>추천해주세요 TOP5</h2><br><hr><br>
 <div >
-<img style="display: inline-box" src=../img/notebook.png width="40%">
-<img style="display: inline-box" src=../img/notebook.png width="40%">
-</div>
-<div>
-<img style="display: inline-box" src=../img/notebook.png width="30%">
-<img style="display: inline-box" src=../img/notebook.png width="30%">
-<img style="display: inline-box" src=../img/notebook.png width="30%"> 
+<img style="display: inline-box" src=../img/notebook.png width="18%">
+<img style="display: inline-box" src=../img/notebook.png width="18%">
+<img style="display: inline-box" src=../img/notebook.png width="18%">
+<img style="display: inline-box" src=../img/notebook.png width="18%">
+<img style="display: inline-box" src=../img/notebook.png width="18%"> 
 </div>
 </div>
 

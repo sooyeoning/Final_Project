@@ -20,7 +20,7 @@
 </div>
 
 
-<a href="/"><img src=../img/logo.png width="15%" height="5%"></a>
+<a href="/"><img src=../img/logo.png width="13%" height="5%"></a>
 <div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >여행지 추천</div>
 <div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >커뮤니티</div>
 <div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw">마이페이지</div>

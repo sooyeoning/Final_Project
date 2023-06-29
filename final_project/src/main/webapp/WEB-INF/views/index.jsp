@@ -11,30 +11,9 @@
 </head>
 <body>
 <%@ include file="../views/header.jsp"%>
-<!-- <header>
-
-<div style="width: 66%; margin: 0 auto;">
-<div style="text-align:right;">
-<a style="font-size:0.6vw; font-weight: bold;">로그인</a>
-<a style="font-size:0.6vw; font-weight: bold;">회원가입</a>
-<a style="font-size:0.6vw; font-weight: bold;">English</a>
-</div>
 
 
-<a href="/"><img src=../img/logo.png width="15%" height="5%"></a>
-<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >여행지 추천</div>
-<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >커뮤니티</div>
-<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw">마이페이지</div>
-<div style="margin-left:11%; color: black; font-weight: bold; display:inline-block; font-size: 0.9vw" >고객센터</div>
-
-
-</div><br>
-
-<div style="display: inline-block ; margin-left: 100px"></div>
-</div>
-</header> -->
-
-<img src="../img/Mainimg.png"; width="100%"; >
+<img src="../img/Mainimg.png" style="width:100%;">
 
 <div style="width: 66%; margin: 0 auto; text-align:center" >
 <img style="display: inline-box" src=../img/테마_혼자.png width="24%">
@@ -67,7 +46,8 @@
 </div>
 
 <div style="position:fixed; bottom:1%; right:1%;">
-<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>
+<a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
 </div>
+<%@ include file="../views/footer.jsp"%>
 </body>
 </html>

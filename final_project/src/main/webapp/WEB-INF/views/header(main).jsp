@@ -12,8 +12,7 @@
 </head>
 <body>
 
-<header>
-<div id="shadow">
+<header> 
 <div id="body" >
 <div class="name">
 <a >로그인</a>
@@ -22,13 +21,12 @@
 </div>
 
 <a href="/"><img src=../img/logo.png class="logo"></a>
-<a href=""><div class="menu" ><a href="">여행지 추천</div></a>
-<a href=""><div class="menu" ><a href="">커뮤니티</div></a>
-<a href=""><div class="menu" ><a href="">마이페이지</div></a>
-<a href=""><div class="menu" ><a href="">고객센터</div></a>
+<a href=""><div class="menu" >여행지 추천</div></a>
+<a href=""><div class="menu" >커뮤니티</div></a>
+<a href=""><div class="menu" >마이페이지</div></a>
+<a href=""><div class="menu" >고객센터</div></a>
 <br><br>
 </div>
-</div> 
 </header>
 
 </body>

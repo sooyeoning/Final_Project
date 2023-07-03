@@ -8,19 +8,14 @@
 <title>메인 화면</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/topbutton.css">
 </head>
 
 <body>
-<!-- header -->
-<%@ include file="../views/header(main).jsp"%>
 
-<!-- body -->
-<%@ include file="../views/body.jsp"%>
+<div id="topbutton" style="">
+<a href="#"><img id="topbuttonimg"src="../img/top.png"></a>
+</div>
 
-<!-- top button -->
-<%@ include file="../views/topbutton.jsp"%>
-
-<!-- footer -->
-<%@ include file="../views/footer.jsp"%>
 </body>
 </html>

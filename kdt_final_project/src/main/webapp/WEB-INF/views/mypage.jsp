@@ -18,15 +18,15 @@
     <!-- 왼쪽 사이드 메뉴 추가 -->
     <nav class="side-menu-nav">
       <ul>
-        <li><a href="#">회원 정보 수정</a></li>
-        <li><a href="#">글쓴 내역</a></li>
-        <li><a href="#">댓글 쓴 내역</a></li>
-        <li><a href="#">최근 방문한 페이지</a></li>
-        <li><a href="#">찜한 여행지</a></li>
-        <li><a href="#">좋아요 누른 게시글</a></li>
+        <li><a href="#section1">회원 정보 수정</a></li>
+        <li><a href="#section2">글쓴 내역</a></li>
+        <li><a href="#section3">댓글 쓴 내역</a></li>
+        <li><a href="#section4">최근 방문한 페이지</a></li>
+        <li><a href="#section5">찜한 여행지</a></li>
+        <li><a href="#section6">좋아요 누른 게시글</a></li>
       </ul>
     </nav>
-<div class="side-menu-form">
+<div class="side-menu-form" id="section1">
   <h1>회원 정보 조회 및 수정</h1>
   <form action="updateUser.jsp" method="post">
   
@@ -65,6 +65,28 @@
     <input type="submit" value="회원 정보 수정">
   </form>
   </div>
+  
+  <!--   글쓴 내역  -->
+  <div class="side-menu-form" id="section2">
+  
+  </div>
+  <!-- 댓글 쓴 내역 -->
+   <div class="side-menu-form" id="section3">
+  
+  </div>
+  <!-- 최근 방문한 페이지 -->
+   <div class="side-menu-form" id="section4">
+  
+  </div>
+  <!-- 찜한 여행지 -->
+   <div class="side-menu-form" id="section5">
+  
+  </div>
+  <!-- 좋아요 누른 게시물 -->
+   <div class="side-menu-form" id="section6">
+  
+  </div>
+  
 </div>
 </div>
 <div class="footer">
@@ -94,6 +116,30 @@ function openFileSelector() {
 	    preview.src = "디폴트이미지URL";
 	  }
 	});
+	document.addEventListener('DOMContentLoaded', function () {
+		  var sideMenuItems = document.querySelectorAll('.side-menu-nav a');
+
+		  function showContent(e) {
+		    e.preventDefault();
+
+		    var currentItem = e.target;
+		    var contentId = currentItem.getAttribute('href').substring(1);
+
+		    var contentSections = document.querySelectorAll('.side-menu-form');
+		    for (var i = 0; i < contentSections.length; i++) {
+		      contentSections[i].style.display = 'none';
+		    }
+
+		    var targetContent = document.getElementById(contentId);
+		    if (targetContent) {
+		      targetContent.style.display = 'block';
+		    }
+		  }
+
+		  for (var i = 0; i < sideMenuItems.length; i++) {
+		    sideMenuItems[i].addEventListener('click', showContent);
+		  }
+		});
 
 </script>
 

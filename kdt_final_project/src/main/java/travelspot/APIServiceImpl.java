@@ -27,7 +27,7 @@ public class APIServiceImpl {
 	 
 	 public void test(int areaCode) throws Exception{
 		
-		String totalurl = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?ServiceKey=V5T49DK1YRF29Mu4k6Fkn%2BXzVJry5UAPEVgaM0XM5ZvqYo3aoOyvLFFRgxdZ0KtsLJoXAx%2BswJPxcjmoxm8JYg%3D%3D&pageNo=1&numOfRows=10&MobileOS=ETC&arrange=O&areaCode="+areaCode+"&contentTypeId=12&MobileApp=test";
+		String totalurl = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?ServiceKey=V5T49DK1YRF29Mu4k6Fkn%2BXzVJry5UAPEVgaM0XM5ZvqYo3aoOyvLFFRgxdZ0KtsLJoXAx%2BswJPxcjmoxm8JYg%3D%3D&pageNo=1&numOfRows=100&MobileOS=ETC&arrange=O&areaCode="+areaCode+"&contentTypeId=12&MobileApp=test";
 		
 		  String serviceKey = "V5T49DK1YRF29Mu4k6Fkn%2BXzVJry5UAPEVgaM0XM5ZvqYo3aoOyvLFFRgxdZ0KtsLJoXAx%2BswJPxcjmoxm8JYg%3D%3D";
 		  
@@ -35,7 +35,7 @@ public class APIServiceImpl {
 		  
 		  urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" +serviceKey); 
 		  urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); 
-		  urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); 
+		  urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); 
 		  urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") +"=" + URLEncoder.encode("ETC", "UTF-8")); 
 		  urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") +"=" + URLEncoder.encode("test", "UTF-8")); 
 		  urlBuilder.append("&" + URLEncoder.encode("arrange", "UTF-8") + "=" + URLEncoder.encode("O","UTF-8")); 
@@ -65,7 +65,6 @@ public class APIServiceImpl {
 
 		NodeList nList = doc.getElementsByTagName("item");
 
-		//List<PlaceDTO> list = new ArrayList<>();
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
@@ -85,11 +84,9 @@ public class APIServiceImpl {
 				PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode1, image1, address, mapx, mapy);
 				System.out.println(placeDTO.toString());
 				
-				//list.add(placeDTO);
-				placemapper.insertPlaces(areaCode);
+				placemapper.insertPlaces(placeDTO);
 			}
 		}
-		//return list;
 	}
 
 	private static String getValue(String tag, Element element) {

@@ -59,41 +59,22 @@
 
 <div class="container">
 
-  <div class="item">
- 	<img class="placeprofile" src="/img/gyeongnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_content" id="anban">장소명</h1>
-  </div>
+<c:forEach items="${placelist }" var="placeDTO">
  <div class="item">
- 	<img class="placeprofile" src="/img/jeonnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_title" id="anban">장소명</h1>
+ 	<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
+  	<p class="placeName font_title" id=${placeDTO.contentId}> ${placeDTO.title}</p>
+  	<h1 class="placeLocation font_content" id=${placeDTO.contentId}>${placeDTO.address}</h1>
   </div>
-  <div class="item">
- 	<img class="placeprofile" src="/img/gyeongnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_title" id="anban">장소명</h1>
-  </div>
- <div class="item">
- 	<img class="placeprofile" src="/img/jeonnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_title" id="anban">장소명</h1>
-  </div>
-   <div class="item">
- 	<img class="placeprofile" src="/img/gyeongnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_title" id="anban">장소명</h1>
-  </div>
- <div class="item">
- 	<img class="placeprofile" src="/img/jeonnam.jpg" id="anban">
-  	<p class="placeName font_title" id="anban">안반데기</p>
-  	<h1 class="placeLocation font_title" id="anban">장소명</h1>
-  </div>
+</c:forEach>
+ 
 </div>
-
+	
+ 
 <!-- 스크롤: 위치 수정 필요 -->
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
+
+
 </div>
 </body>
 </html>

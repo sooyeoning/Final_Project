@@ -1,6 +1,7 @@
 package travelspot;
 
 public class PlaceDTO {
+	int seq;
 	int contentId;
 	String title;
 	int areaCode;
@@ -9,8 +10,26 @@ public class PlaceDTO {
 	String address;
 	double mapx;
 	double mapy;
-	//String contents;
+	String contents;
+	int viewcount;
+	String writingtime;
 	
+	public PlaceDTO(int seq, int contentId, String title, int areaCode, String image1, String image2, String address,
+			double mapx, double mapy, String contents, int viewcount, String writingtime) {
+		this.seq = seq;
+		this.contentId = contentId;
+		this.title = title;
+		this.areaCode = areaCode;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.address = address;
+		this.mapx = mapx;
+		this.mapy = mapy;
+		this.contents = contents;
+		this.viewcount = viewcount;
+		this.writingtime = writingtime;
+	}
+
 	public PlaceDTO(int contentId, String title, int areaCode, String image1, String image2, String address,
 			double mapx, double mapy) {
 		this.contentId = contentId;

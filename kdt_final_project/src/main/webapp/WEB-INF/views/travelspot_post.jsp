@@ -18,7 +18,7 @@
 <jsp:include page="../views/header.jsp" />
 
 <!-- 관광명소이름 -->
-<div class="font_title margin">제주 카멜리아힐</div>
+<div class="font_title margin"> ${placedto.title} </div>
 
 <!-- 관광명소 메뉴바 -->
 <hr class="hrmargin">

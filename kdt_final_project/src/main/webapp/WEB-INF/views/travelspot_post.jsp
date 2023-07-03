@@ -9,13 +9,13 @@
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+<script src="http://localhost:8099/js/travelspot_post.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
-<script src="http://localhost:8099/js/travelspot_post.js"></script>
 
 </head>
 <body>
-<jsp:include page="../view/header.jsp" />
+<jsp:include page="../views/header.jsp" />
 
 <!-- 관광명소이름 -->
 <div class="font_title margin">제주 카멜리아힐</div>
@@ -30,18 +30,7 @@
 <hr class="hrmargin">
 
 <div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
-<!-- 
-<div id="map" style="width:500px;height:400px;"></div>
 
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new kakao.maps.Map(container, options);
-</script> -->
 	
 <!-- 개선사항 -->
 <!-- 여행지 사진 모아보기 아래 구분선만 색 변경x -->

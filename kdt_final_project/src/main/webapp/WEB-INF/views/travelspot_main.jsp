@@ -10,33 +10,35 @@
 
 <title>여행지 추천 메뉴</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
-
-<link href="/css/import.css" rel="stylesheet" type="text/css"/>
 <script src="http://localhost:8099/js/travelspot_main.js"></script>
+
+<link href="/css/import.css" rel="stylesheet"/>
 
 </head>
 <body>
-<jsp:include page="../view/header.jsp" />
+<jsp:include page="../views/header.jsp" />
+
+<!-- https://dogcowking.tistory.com/326 -->
 <div class="titlebox font_title">가고 싶은 여행지를 선택해주세요</div>
 
 <!-- 3개씩 배치 -->
 <div class="regionContainer">
  <div class="regionItem">
-  <p class="font_content regionName" id="gangwon">강원</p>
- 	<div class="box" id="gangwon">
+  <p class="font_content regionName" id="32">강원</p>
+ 	<div class="box" id="32">
    		<img class="profile" src="/img/gangwon.jpg">
   	</div>
   </div>
   <div class="regionItem">
-  <p class="font_content regionName" id="busan">부산</p>
- 	<div class="box" id="busan">
+  <p class="font_content regionName" id="6">부산</p>
+ 	<div class="box" id="6">
    		<img class="profile" src="/img/busan.jpg">
   	</div>
   </div>
   <div class="regionItem">
-  <p class="font_content regionName" id="incheon">인천</p>
- 	<div class="box" id="incheon">
-   		<img class="profile" src="/img/incheon.jpg">
+  <p class="font_content regionName" id="2">인천</p>
+ 	<div class="box" id="2">
+   		<img class="profile" src="../img/incheon.jpg">
   	</div>
   </div>
   <div class="regionItem">

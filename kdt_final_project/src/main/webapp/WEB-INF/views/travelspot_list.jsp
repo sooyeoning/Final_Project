@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행지 추천 메뉴</title>
+<title>여행지 목록</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
@@ -13,26 +13,26 @@
 
 </head>
 <body>
-<jsp:include page="../view/header.jsp" />
+<jsp:include page="../views/header.jsp" />
 
 <!-- 6개씩 배치-->
 <div class="regionContainer">
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="gangwon">강원</p>
+ 	<p class="font_content regionName" id="32">강원</p>
 		<div class="box-list">	
-   		<img class="profile" id="gangwon" src="/img/gangwon.jpg">
+   		<img class="profile" id="32" src="/img/gangwon.jpg">
   		</div>
   	</div>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="busan">부산</p>
+ 	<p class="font_content regionName" id="6">부산</p>
 		<div class="box-list">
-   		<img class="profile" id="busan" src="/img/busan.jpg">
+   		<img class="profile" id="6" src="/img/busan.jpg">
   		</div>
 	</div>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="incheon">인천</p>
+ 	<p class="font_content regionName" id="2">인천</p>
 		<div class="box-list">
-   		<img class="profile" id="incheon" src="/img/incheon.jpg">
+   		<img class="profile" id="2" src="/img/incheon.jpg">
   		</div>
 	</div>
 	<div class="regionItem-list">

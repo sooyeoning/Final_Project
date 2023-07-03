@@ -2,12 +2,12 @@ $(document).ready(function(){
 	
 	//선택된 지역명(selectedRegion) 흐림 처리 - 첫번째 말고 다른것도 흐림 처리 필요
 	let urlParams = new URL(location.href).searchParams;
-	let name = urlParams.get('selectedRegion');
-	console.log(name);
+	let areaCode = urlParams.get('areaCode');
+	//확인용 console.log(areaCode);
 	let selectedRegion= $(".profile").attr("id");
-	if(name === selectedRegion){
-		$(`img[id='${name}']`).css("opacity","0.5");
-		$(`img[id='${name}']`).css("border","2px solid #2463d3");
+	if(areaCode === selectedRegion){
+		$(`img[id='${areaCode}']`).css("opacity","0.5");
+		$(`img[id='${areaCode}']`).css("border","2px solid #2463d3");
 	}
 	
 	//지역명 클릭시 화면 이동 및 글자색상 변경

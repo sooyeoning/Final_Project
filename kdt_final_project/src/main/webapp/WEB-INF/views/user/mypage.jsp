@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<%@ include file="../views/header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <div class="container">
   <div class="side-menu">

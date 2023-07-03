@@ -12,12 +12,11 @@
 </head>
 <body>
 
-<header>
-<div id="shadow">
+<header> 
 <div id="body" >
 <div class="name">
 <a href="javascript:void(0)" id="headerLoginBtn" >로그인</a>
-<a href="/signup id="headerSignupBtn" >회원가입</a>
+<a href="/signup" id="headerSignupBtn" >회원가입</a>
 <a >English</a>
 </div>
 
@@ -28,7 +27,6 @@
 <a href=""><div class="menu" >고객센터</div></a>
 <br><br>
 </div>
-</div> 
 </header>
 
 </body>

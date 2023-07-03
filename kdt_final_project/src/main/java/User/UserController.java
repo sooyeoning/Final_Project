@@ -17,12 +17,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/main")
-	public String main() {
-	    return "main";
-	}
-
-	@GetMapping("/signup")
+	@GetMapping("signup")
 	public String signup() {
 		return "signup";
 	}
@@ -30,7 +25,7 @@ public class UserController {
 	@PostMapping("/signup")
 	public String signup(UserDTO dto) {
 		service.signup(dto);
-		return "redirect:main";
+		return "redirect:index";
 	}
 
 	@GetMapping("/login")
@@ -53,6 +48,6 @@ public class UserController {
 
 	@GetMapping("mypage")
 	public String mypage() {
-		return "mypage";
+		return "/user/mypage";
 	}
 }

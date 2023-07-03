@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="travelspot.PlaceMapper">
+
+<!-- 게시글 작성: 작성자, board_type 수정 필요
+<insert id="insertPlaces" parameterType="int">
+
+	insert into place(seq, contentId, title, areaCode, image1, address, mapx, mapy, contents, viewcount, writingtime) 
+	values(#{contentId},#{title},#{areaCode}, #{image1},0 ,#{address}, #{mapx}, #{mapy},#{contents},0,now());
+</insert>
+
+-->
+
+</mapper>
+
+
+
+
+
+

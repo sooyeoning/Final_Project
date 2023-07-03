@@ -10,6 +10,7 @@
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
+ <link rel="stylesheet" href="searchForm.css">
 <script src="http://localhost:8099/js/travelspot_list.js"></script>
 
 </head>
@@ -37,21 +38,21 @@
   		</div>
 	</div>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="jeju">제주도</p>
+ 	<p class="font_content regionName" id="5">광주</p>
 		<div class="box-list">
-   		<img class="profile" id="jeju" src="/img/jeju.jpg">
+   		<img class="profile" id="5" src="/img/jeju.jpg">
   		</div>
 	</div>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="jeonnam">전라남도</p>
+ 	<p class="font_content regionName" id="7">울산</p>
 		<div class="box-list">
-   		<img class="profile" id="jeonnam" src="/img/jeonnam.jpg">
+   		<img class="profile" id="7" src="/img/jeonnam.jpg">
   		</div>
 	</div>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="gyeongnam">경상남도</p>
+ 	<p class="font_content regionName" id="31">경기</p>
 		<div class="box-list">
-   		<img class="profile" id="gyeongnam" src="/img/gyeongnam.jpg">
+   		<img class="profile" id="31" src="/img/gyeongnam.jpg">
   		</div>
 	</div>
 </div>
@@ -69,8 +70,27 @@
 </c:forEach>
  
 </div>
-	
- 
+	<!-- 검색창 -->
+	<form action="/search" method="get" class="search-form">
+    <input type="text" id="search-input" name="q" class="search-input" placeholder="검색어를 입력하세요...">
+    <input type="submit" value="검색" class="search-button">
+  </form>
+  
+   <%
+   int areaCode = (Integer)request.getAttribute("areaCode");
+   int totalCnt = (Integer)request.getAttribute("totalCnt");
+   int totalPage = 0;
+   if(totalCnt%9==0){
+	   totalPage = totalCnt/9;
+   }else {
+	   totalPage = (totalCnt/9) +1;
+   }%>
+   <div class="pages">
+   <% for(int i=1; i<=totalPage; i++){  %>
+	   <a href="list?areaCode=<%=areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
+  <% } %>
+  </div>
+  
 <!-- 스크롤: 위치 수정 필요 -->
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>

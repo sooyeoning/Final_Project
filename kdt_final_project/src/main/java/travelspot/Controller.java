@@ -25,11 +25,15 @@ public class Controller {
 	public ModelAndView showList(@RequestParam int areaCode, @RequestParam(required=true, defaultValue="1") int page) throws Exception {
 		// 데이터 저장: apiservice.test(areaCode);
 		ModelAndView mv = new ModelAndView();
+		
 		HashMap<String, Object> param = new HashMap<>();
-		param.put("areaCode", areaCode);
-		param.put("page", page);
-		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
+		param.put("areaCode", areaCode); //지역코드
+		int pageindex = (page-1)*9;      //페이징처리 - 시작인덱스
+		param.put("page", pageindex);
+		
 		mv.addObject("placelist", placeservice.listPlaces(param));
+		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
+		mv.addObject("areaCode", areaCode);
 		mv.setViewName("travelspot_list");
 		return mv;
 	}

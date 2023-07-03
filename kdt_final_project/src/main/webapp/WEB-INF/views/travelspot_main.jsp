@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<<<<<<< HEAD
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
-=======
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
->>>>>>> refs/remotes/origin/sooyeon
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +21,7 @@
 <!-- https://dogcowking.tistory.com/326 -->
 <div class="titlebox font_title">가고 싶은 여행지를 선택해주세요</div>
 
+<!-- 인천 광주 부산 울산 강원 경기도 -->
 <!-- 3개씩 배치 -->
 <div class="regionContainer">
  <div class="regionItem">
@@ -46,20 +43,20 @@
   	</div>
   </div>
   <div class="regionItem">
-  <p class="font_content regionName" id="jeju">제주도</p>
- 	<div class="box" id="jeju">
+  <p class="font_content regionName" id="5">광주</p>
+ 	<div class="box" id="5">
    		<img class="profile" src="/img/jeju.jpg">
   	</div>
   </div>
   <div class="regionItem">
-  <p class="font_content regionName" id="jeonnam">전라남도</p>
- 	<div class="box" id="jeonnam">
+  <p class="font_content regionName" id="7">울산</p>
+ 	<div class="box" id="7">
    		<img class="profile" src="/img/jeonnam.jpg">
   	</div>
   </div>
   <div class="regionItem">
-  <p class="font_content regionName" id="gyeongnam">경상남도</p>
- 	<div class="box" id="gyeongnam">
+  <p class="font_content regionName" id="31">경기</p>
+ 	<div class="box" id="31">
    		<img class="profile" src="/img/gyeongnam.jpg">
   	</div>
   </div>

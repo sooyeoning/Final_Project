@@ -6,12 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "user")
-@ComponentScan(basePackages = {"travelspot"})
-@MapperScan(basePackages = {"travelspot"})
-@ComponentScan(basePackages = {"controller"})
-@ComponentScan(basePackages = "community")
+@ComponentScan(basePackages = {"travelspot", "user", "controller","community"})
 
+@MapperScan(basePackages = {"travelspot"})
 public class KdtFinalProjectApplication {
 
 	public static void main(String[] args) {

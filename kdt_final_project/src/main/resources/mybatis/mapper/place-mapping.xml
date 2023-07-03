@@ -25,6 +25,7 @@
 	select count(*) from place where areaCode=#{areaCode};
 </select>
 
+
 </mapper>
 
 

@@ -65,7 +65,6 @@ public class APIServiceImpl {
 
 		NodeList nList = doc.getElementsByTagName("item");
 
-		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
 
@@ -85,16 +84,15 @@ public class APIServiceImpl {
 				System.out.println(placeDTO.toString());
 				
 				placemapper.insertPlaces(placeDTO);
-			}
-		}
-	}
-
+			}//if
+		}//for
+	 }//test method
+	 
 	private static String getValue(String tag, Element element) {
 		NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodes.item(0);
 		return node.getNodeValue();
 	}
 
-	
+}//class
 
-}

@@ -69,7 +69,7 @@ $(document).ready(function() {
 				$('div[class="result"]').append('<p> 주차시설: '+'<br>');//parking
 				$('div[class="result"]').append('<p> 유모차 대여 정보: '); //chkbabycarriage	
 				$('div[class="result"]').append('<p> 애완동물 동반가능 정보: ');//chkpet
-				
+					
 				//스크롤
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
 				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);

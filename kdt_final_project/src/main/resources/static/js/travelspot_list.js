@@ -27,6 +27,7 @@ $(document).ready(function(){
 		//$(this).css("color","#2463d3"); 
 		let contentId = $(this).attr("id");
 		location.href="http://localhost:8099/travelspot/post?contentId="+contentId//이동
+		
 	})
 	
 	//선택했다가 뒤로 되돌아오면 글자 색상 원래대로, 테두리 원래대로 변경 추가

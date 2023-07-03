@@ -18,7 +18,8 @@
 <%@ include file="../views/header.jsp"%>
 <section>
 	<h1>글쓰기</h1>
-    <form action="/upload" method="POST">
+    <form action="/upload" method="POST"></form>
+    <input type=text name=title placeholder="제목"/>
       <textarea name="text" id="editor"></textarea>
     <p><input type="submit" value="전송"></p>
 </section>

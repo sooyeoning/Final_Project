@@ -3,9 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-<typeAliases>
-	<typeAlias type="travelspot.PlaceDTO" alias="placedto"/>	
-</typeAliases>
+	<!-- <settings> <setting name="logImpl" value="LOG4J"/> </settings> -->
+
+	<typeAliases>
+		<typeAlias type="User.UserDTO" alias="userdto" />
+		<typeAlias type="travelspot.PlaceDTO" alias="placedto" />
+		
+	</typeAliases>
 
 </configuration>
-

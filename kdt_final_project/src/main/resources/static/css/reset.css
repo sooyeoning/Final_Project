@@ -3,12 +3,12 @@
 	margin: 0;
 	padding: 0;
 }
+
 @font-face {
-	font-family: 'LeferiPoint-BlackA';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 a,
 a:link,
@@ -25,7 +25,15 @@ li {
 }
 body {
 	color: #333;
+	font-weight: 400;
+	font-family: 'LeferiBaseType-RegularA';
+	font-size: 0.8333vw;/* 16px */
 	background-color: #fff;
+	-ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 .main_color {
 	color: #2463d3;
@@ -36,14 +44,21 @@ body {
 .font_title {
 	font-weight: 700;
 	font-family: 'LeferiPoint-BlackA';
-	font-size: 20px;
+	font-size: 1.0417vw;/* 20px */
 }
 .font_content {
-	font-weight: 200;
-	font-family: 'LeferiPoint-BlackA';
-	font-size: 16px;
+	font-weight: 400;
+	font-family: 'LeferiBaseType-RegularA';
+	font-size:  0.8333vw;/* 16px */
 }
-.font_comment {
-	font-family: 'LeferiPoint-BlackA';
-	font-size: 14px;
+section{
+	width:100%;
+	padding: 80px 17%;
+	box-sizing: border-box;
+}
+@font-face {
+    font-family: 'LeferiPoint-SpecialItalicA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-SpecialItalicA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }

@@ -6,9 +6,9 @@
 	<!-- <settings> <setting name="logImpl" value="LOG4J"/> </settings> -->
 
 	<typeAliases>
-		<typeAlias type="User.UserDTO" alias="userdto" />
+		<typeAlias type="User.UserDTO" alias="UserDTO" />
 		<typeAlias type="travelspot.PlaceDTO" alias="placedto" />
-		
+
 	</typeAliases>
 
 </configuration>

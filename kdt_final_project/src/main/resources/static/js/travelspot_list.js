@@ -3,6 +3,9 @@ $(document).ready(function(){
 	//선택된 지역명(selectedRegion) 흐림 처리 - 첫번째 말고 다른것도 흐림 처리 필요
 	let urlParams = new URL(location.href).searchParams;
 	let areaCode = urlParams.get('areaCode');
+	
+	//선택된 지역명 변경 처리 필요
+	
 	//확인용 console.log(areaCode);
 	let selectedRegion= $(".profile").attr("id");
 	if(areaCode === selectedRegion){

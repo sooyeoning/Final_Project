@@ -3,5 +3,7 @@ package User;
 public interface UserDAO {
 
 	public void signup(UserDTO dto); // 회원가입
-	public UserDTO login(String userid,String userpw); // 로그인
+	UserDTO findByUserId(String userid);
+	UserDTO getUserById(int id);
+	void updateUser(UserDTO dto);
 }

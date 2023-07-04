@@ -14,19 +14,20 @@ $(document).ready(function(){
 	$(".placeprofile").click(function(){
 		$(this).css("color","#2463d3"); 
 		//선택된 지역명 전달
-		let selectedPlace = $(this).attr('id');
-		location.href="http://localhost:8099/travelspot/post?selectedPlace="+ selectedPlace//이동
+		let contentId = $(this).attr('id');
+		location.href="http://localhost:8099/travelspot/post?contentId="+contentId//이동
 	})
 	$(".placeName").click(function(){
 		$(this).css("color","#2463d3"); 
-		let selectedPlace = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/post?selectedPlace="+selectedPlace//이동
+		let contentId = $(this).attr("id");
+		location.href="http://localhost:8099/travelspot/post?contentId="+contentId//이동
 	})//click end
 	
 	$(".placeLocation").click(function(){
 		//$(this).css("color","#2463d3"); 
-		let selectedPlace = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/post?selectedPlace="+selectedPlace//이동
+		let contentId = $(this).attr("id");
+		location.href="http://localhost:8099/travelspot/post?contentId="+contentId//이동
+		
 	})
 	
 	//선택했다가 뒤로 되돌아오면 글자 색상 원래대로, 테두리 원래대로 변경 추가

@@ -22,7 +22,7 @@ body {
 }
 
 .container {
-	width: 80%;
+	width: 66%;
 	margin: 0 auto;
 	padding: 20px;
 }
@@ -75,11 +75,11 @@ input[type="submit"]:hover {
 	background-color: #1976d2;
 }
 .side-menu-form {
-    flex:1.8 0 0; /* 회원 정보 조회 portion을 늘림 */
-    display: flex;
+   /*  flex:1.8 0 0; */ /* 회원 정보 조회 portion을 늘림 */
+    /* display: flex; */
     flex-direction: column;
     background-color: #fff;
-    padding: 40px;
+    /* padding: 40px; */
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -19,7 +19,7 @@
         SELECT * FROM users WHERE id = #{id}
     </select>
     
-    <update id="updateUser" parameterType="User.UserDTO">
+    <update id="updateUser" parameterType="UserDTO">
         UPDATE users
         SET username = #{username},
             nickname = #{nickname},

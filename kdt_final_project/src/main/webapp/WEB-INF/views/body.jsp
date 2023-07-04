@@ -18,12 +18,8 @@
 			<img src="../img/Mainimg.png">
 		</div>
 		<div class="slide-text">
-			<p><h4 style="color: red">
-				로그인여부 = ${user}
-				</h4>
-			<!-- 당신의 경험을 공유하고 --></h4>
-			<br> 최적의 여행지를 추천받으세요
-			</p>
+			<p>당신의 경험을 공유하고<br>
+			최적의 여행지를 추천받으세요</p>
 		</div>
 	</div>
 

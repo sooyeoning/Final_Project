@@ -17,17 +17,6 @@
 
 <body>
 	<%@ include file="../header.jsp"%>
-	
-<%-- <c:if test="${not empty alertMessage}">
-    <div class="alert alert-success" role="alert">
-        ${alertMessage}
-    </div>
-</c:if>
-<c:if test="${not empty errorMessage}">
-    <div class="alert alert-danger" role="alert">
-        ${errorMessage}
-    </div>
-</c:if> --%>
 
 	<div class="container">
 		<div class="side-menu">
@@ -44,14 +33,18 @@
 			</nav>
 			<div class="side-menu-form" id="section1">
 				<h1>회원 정보 조회 및 수정</h1>
-				<form action="/mypage" method="post">
+				<form action="updateUser" method="post">
 
-					<div class="profileImgPreview">
+	<!-- 				<div class="profileImgPreview">
 						<img id="preview" class="preview-img" src="/img/profileimg.png"
 							alt="프로필 이미지">
 					</div>
 					<input type="file" name="profileImg" id="profileImg"
-						style="display: none"> <label for="username">이름</label> <input
+						style="display: none">  -->
+												<label for="id">회원번호</label> <input
+						type="text" name="id" id="id" value="${user.id}">
+						
+						<label for="username">이름</label> <input
 						type="text" name="username" id="username" value="${user.username}">
 
 					<label for="nickname">닉네임</label> <input type="text"
@@ -100,18 +93,5 @@
 	<div class="footer">
 		<p>푸터 © 2023</p>
 	</div>
- 	<script>
-		// alertMessage가 존재하면 얼럿을 띄웁니다.
-		var alertMessage = "${alertMessage}";
-		if (alertMessage) {
-			alert(alertMessage);
-		}
-
-		// errorMessage가 존재하면 얼럿을 띄웁니다.
-		var errorMessage = "${errorMessage}";
-		if (errorMessage) {
-			alert(errorMessage);
-		}
-	</script>
 </body>
 </html>

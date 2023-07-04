@@ -34,7 +34,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void updateUser(UserDTO dto) {
+		System.out.println("Before Update - DTO: " + dto.toString());
 		dao.updateUser(dto);
+		System.out.println("After Update - DTO: " + dto.toString());
 	}
 	
 	

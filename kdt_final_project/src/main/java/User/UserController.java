@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,7 +65,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃 성공");
     }
     
-	@GetMapping("/mypage")
+	@RequestMapping("/mypage")
 	public String mypage(HttpSession session,Model model) {
 		UserDTO dto = (UserDTO)session.getAttribute("user");
 		if(dto == null) {
@@ -74,23 +75,10 @@ public class UserController {
 		return "/user/mypage";
 	}
 	
-	@PostMapping("/mypage")
-	@Transactional
-	public ModelAndView updateMypage(@ModelAttribute("user")UserDTO updatedUser, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			service.updateUser(updatedUser);
-			
-			session.invalidate();
-			UserDTO updateUserInSession = service.getUserById(updatedUser.getId());
-			session.setAttribute("user", updateUserInSession);
-			
-			mv.setViewName("redirect:/mypage");
-			mv.addObject("alertMessage","회원 정보가 성공적으로 수정되었습니다.");
-		}catch (Exception e) {
-            mv.setViewName("/user/mypage"); // 실패 시 수정 폼 페이지로 다시 이동
-            mv.addObject("errorMessage", "회원 정보 수정에 실패했습니다. 다시 시도해주세요.");
-        }
-		return mv;
+	@PostMapping("/updateUser")
+	public String updateUser(@ModelAttribute UserDTO dto, Model model) {
+		service.updateUser(dto);
+		model.addAttribute("user",dto);
+		return "/user/mypage";
 	}
 }

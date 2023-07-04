@@ -26,7 +26,7 @@
         <li><a href="#section6">좋아요 누른 게시글</a></li>
       </ul>
     </nav>
-<div class="side-menu-form" id="section1">
+<div class="side-menu-form" id="section1" width="50%";>
   <h1>회원 정보 조회 및 수정</h1>
   <form action="updateUser.jsp" method="post">
   

@@ -13,5 +13,6 @@ public interface PlaceMapper {
 	 public List<PlaceDTO> listPlaces(HashMap<String, Object> param);
 	 public PlaceDTO selectPlace(int contentId);
 	 public int getTotalCnt(int areaCode);
+	 public int getSeqByContentId(int contentId);
 
 }

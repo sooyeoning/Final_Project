@@ -25,7 +25,9 @@
 	select count(*) from place where areaCode=#{areaCode};
 </select>
 
-
+<select id="getSeqByContentId" parameterType="int" resultType="int">
+	select seq from place where contentId=#{contentId};
+</select>
 </mapper>
 
 

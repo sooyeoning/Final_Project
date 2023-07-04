@@ -13,9 +13,12 @@ public class PlaceDTO {
 	String contents;
 	int viewcount;
 	String writingtime;
+	int likecnt;
+	int viewcnt;
 	
+	//모든 필드 포함한 생성자
 	public PlaceDTO(int seq, int contentId, String title, int areaCode, String image1, String image2, String address,
-			double mapx, double mapy, String contents, int viewcount, String writingtime) {
+			double mapx, double mapy, String contents, int viewcount, String writingtime, int likecnt, int viewcnt) {
 		this.seq = seq;
 		this.contentId = contentId;
 		this.title = title;
@@ -28,6 +31,8 @@ public class PlaceDTO {
 		this.contents = contents;
 		this.viewcount = viewcount;
 		this.writingtime = writingtime;
+		this.likecnt = likecnt;
+		this.viewcnt = viewcnt;
 	}
 
 	public PlaceDTO(int contentId, String title, int areaCode, String image1, String image2, String address,

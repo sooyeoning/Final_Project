@@ -27,5 +27,10 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.getTotalCnt(areaCode);
 	}
 
+	@Override
+	public int getSeqByContentId(int contentId) {
+		return placemapper.getSeqByContentId(contentId);
+	}
+
 
 }

@@ -8,7 +8,7 @@
 	<typeAliases>
 		<typeAlias type="User.UserDTO" alias="UserDTO" />
 		<typeAlias type="travelspot.PlaceDTO" alias="placedto" />
-
+		<typeAlias type="travelspot.CommentsDTO" alias="CommentsDTO" />
 	</typeAliases>
 
 </configuration>

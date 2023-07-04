@@ -1,7 +1,11 @@
 package travelspot;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +19,9 @@ public class Controller {
 	
 	@Autowired
 	PlaceServiceImpl placeservice;
+	
+	@Autowired
+	CommentsServiceImpl commentsservice;
 	
 	@RequestMapping("/travelspot/main")
 	public String showMain() {
@@ -67,8 +74,12 @@ public class Controller {
 	
 	@RequestMapping("/travelspot/post/comments")
 	@ResponseBody
-	public void showPostComments(){
+	public List<CommentsDTO> showPostComments(@RequestParam int contentId){
+ 
+		int seq = placeservice.getSeqByContentId(contentId); 
+		List<CommentsDTO> commentsList = commentsservice.getComments(seq);
 		
+		return commentsList;
 	}
 	
 	

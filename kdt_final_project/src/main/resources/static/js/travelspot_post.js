@@ -80,29 +80,26 @@ $(document).ready(function() {
 
 	$('#comments').click(function() {
 		$.ajax({
-			url: "/travelspot/post/comments",
+			url: "/travelspot/post/comments?contentId="+contentId,
 			type: 'get',
-			success: function(server) {
+			success: function(commentsList) {
 				$('#comments').css("color", "#2463d3");
 				$('div[class="result"]').html(`<div class="textarea-outerbox">
 				<p class="font_content">여행지 한줄평💭</p><br>  
-				<textarea class="textarea-innerbox font_comment" cols="110" rows="4">여행지에 대한 한줄평을 남겨주세요</textarea>
+				<textarea class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
 				<input class="savebutton" type="button" value="저장">
 				</div>`);
-				$('div[class="result"]').append(`<div class="comments-outerbox">
-				<div class="comments-innerbox">
-				<p>예전에 버스킹 정말 즐겁게 봤었어요! 얼른 코로나가 끝나고 다시 활발해졌으면 좋겠네요!</p>
-				<p>닉네임</p>
-				<p>2023/06/29</p>
-				</div></div>`);
-				$('div[class="result"]').append(`<div class="comments-outerbox">
-				<div class="comments-innerbox">
-				<p>예전에 버스킹 정말 즐겁게 봤었어요! 얼른 코로나가 끝나고 다시 활발해졌으면 좋겠네요!</p>
-				<p>닉네임</p>
-				<p>2023/06/29</p>
-				<input class="updatebutton" type="button" value="수정">
-				<input class="deletebutton" type="button" value="삭제">
-				</div></div>`);
+				
+				//https://chlee21.tistory.com/156 참고
+				$.each(commentsList, function(index, item){
+					$('div[class="result"]').append(
+					`<div class="comments-outerbox"><div class="comments-innerbox"><p>`+item.contents +'</p>'
+					+'<p>닉네임 '+item.writer+'</p><p>작성일자 '+item.writingtime+
+					`</p> <input class="updatebutton" type="button" value="수정">
+					<input class="deletebutton" type="button" value="삭제"</div></div>`);
+					
+				});
+				
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
 				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
 			},

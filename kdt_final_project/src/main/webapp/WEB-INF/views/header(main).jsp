@@ -15,12 +15,12 @@
 <!-- header(main).jsp ->홈화면에만 쓰는 헤더
 header.jsp -> 홈을 제외한 모든 헤더 -->
 
-<header>
-<div id="shadow">
+<header> 
 <div id="body" >
 <div class="name">
 <a href="/login" id="headerLoginBtn">로그인</a>
 <a href="/signin" id="headerSignupBtn">회원가입</a>
+
 <a >English</a>
 </div>
 
@@ -31,7 +31,6 @@ header.jsp -> 홈을 제외한 모든 헤더 -->
 <a href=""><div class="menu" >고객센터</div></a>
 <br><br>
 </div>
-</div> 
 </header>
 
 </body>

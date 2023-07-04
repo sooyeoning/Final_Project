@@ -75,8 +75,14 @@ input[type="submit"]:hover {
 	background-color: #1976d2;
 }
 .side-menu-form {
+<<<<<<< HEAD
    /*  flex:1.8 0 0; */ /* 회원 정보 조회 portion을 늘림 */
     /* display: flex; */
+=======
+	width: 70%;
+    flex:1.8 0 0; /* 회원 정보 조회 portion을 늘림 */
+    display: flex;
+>>>>>>> refs/remotes/sooyeon/develop
     flex-direction: column;
     background-color: #fff;
     /* padding: 40px; */

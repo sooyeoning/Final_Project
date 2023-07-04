@@ -2,10 +2,12 @@ package User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	UserDAO dao;
 
@@ -16,7 +18,26 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDTO login(String userid, String userpw) {
-		return dao.login(userid, userpw);
+		UserDTO dto = dao.findByUserId(userid);
+		if (dto != null && dto.getUserpw().equals(userpw)) {
+			return dto;
+		} else {
+			return null;
+		}
 	}
 
+	@Override
+	public UserDTO getUserById(int id) {
+		return dao.getUserById(id);
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(UserDTO dto) {
+		System.out.println("Before Update - DTO: " + dto.toString());
+		dao.updateUser(dto);
+		System.out.println("After Update - DTO: " + dto.toString());
+	}
+	
+	
 }

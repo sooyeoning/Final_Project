@@ -7,13 +7,14 @@ public class UserDTO {
 	int id;
 	String nickname, username,userpw,userid;
 	String phone, email, mbti,grade;
-	String address;
+	String address,address2;
+	String photo;
 
 	public UserDTO() {
 	}
 
 	public UserDTO(int id, String nickname, String username, String userpw, String userid, String phone, String email,
-			String mbti, String grade,String address) {
+			String mbti, String grade, String address, String address2, String photo) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -25,6 +26,8 @@ public class UserDTO {
 		this.mbti = mbti;
 		this.grade = grade;
 		this.address = address;
+		this.address2 = address2;
+		this.photo = photo;
 	}
 
 	public int getId() {
@@ -91,7 +94,6 @@ public class UserDTO {
 		this.mbti = mbti;
 	}
 
-
 	public String getGrade() {
 		return grade;
 	}
@@ -108,11 +110,28 @@ public class UserDTO {
 		this.address = address;
 	}
 
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", nickname=" + nickname + ", username=" + username + ", userpw=" + userpw
 				+ ", userid=" + userid + ", phone=" + phone + ", email=" + email + ", mbti=" + mbti + ", grade=" + grade
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", address2=" + address2 + ", photo=" + photo + "]";
 	}
+
 
 }

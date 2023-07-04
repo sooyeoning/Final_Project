@@ -7,29 +7,37 @@
 
 	<insert id="signup" parameterType="UserDTO">
 		INSERT INTO users
-		(id, username, nickname,userid,userpw,phone,email,mbti,address) values
-		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{address})
+		(id,
+		username, nickname,userid,userpw,phone,email,mbti,address) values
+		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{address},#{address2})
 	</insert>
-	
- 	<select id="findByUserId" parameterType="User.UserDTO" resultType="User.UserDTO">
+
+	<select id="findByUserId" parameterType="User.UserDTO"
+		resultType="User.UserDTO">
 		SELECT * FROM users WHERE userid = #{userid}
 	</select>
-	
+
 	<select id="getUserById" resultType="User.UserDTO">
-        SELECT * FROM users WHERE id = #{id}
-    </select>
-    
-    <update id="updateUser" parameterType="UserDTO">
-        UPDATE users
-        SET username = #{username},
-            nickname = #{nickname},
-            userid = #{userid},
-            userpw = #{userpw},
-            phone = #{phone},
-            email = #{email},
-            mbti = #{mbti},
-            address = #{address}
-        WHERE id = #{id}
-    </update>
-    
+		SELECT * FROM users WHERE id = #{id}
+	</select>
+
+	<update id="updateUser" parameterType="UserDTO">
+		UPDATE users
+		SET username = #{username},
+		nickname = #{nickname},
+		userid = #{userid},
+		userpw = #{userpw},
+		phone = #{phone},
+		email = #{email},
+		mbti = #{mbti},
+		address = #{address},
+		address2 = #{address2}
+		WHERE id = #{id}
+	</update>
+	<!-- 회원 탈퇴 -->
+	<delete id="withdrawUser" parameterType="String">
+		DELETE FROM users
+		WHERE userid = #{userid}
+	</delete>
+
 </mapper>

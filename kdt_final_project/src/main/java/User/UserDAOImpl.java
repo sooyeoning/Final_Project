@@ -37,4 +37,11 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	public void withdrawUser(String userid) {
+		sqlSession.delete("withdrawUser",userid);
+		
+	}
+	
+
 }

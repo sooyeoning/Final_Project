@@ -81,4 +81,20 @@ public class UserController {
 		model.addAttribute("user",dto);
 		return "/user/mypage";
 	}
+
+    @PostMapping("/withdrawUser")
+    public ResponseEntity<String> withdrawUser(HttpSession session) {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+
+        try {
+            service.withdrawUser(user.getUserid());
+            session.invalidate();
+            return ResponseEntity.status(HttpStatus.OK).body("탈퇴되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 탈퇴에 실패했습니다.");
+        }
+    }
 }

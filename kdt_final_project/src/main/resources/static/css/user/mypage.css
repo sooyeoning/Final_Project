@@ -75,17 +75,12 @@ input[type="submit"]:hover {
 	background-color: #1976d2;
 }
 .side-menu-form {
-<<<<<<< HEAD
-   /*  flex:1.8 0 0; */ /* 회원 정보 조회 portion을 늘림 */
-    /* display: flex; */
-=======
 	width: 70%;
     flex:1.8 0 0; /* 회원 정보 조회 portion을 늘림 */
     display: flex;
->>>>>>> refs/remotes/sooyeon/develop
     flex-direction: column;
     background-color: #fff;
-    /* padding: 40px; */
+    padding: 40px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -115,4 +110,29 @@ input[type="submit"]:hover {
 
 .side-menu-nav a:hover {
   color: #1565c0;
+}
+ .profileImgPreview {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  .profileImgPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.side-menu-form p {
+  text-align: center; /* 가운데 정렬 */
+  font-size: 16px; /* 폰트 사이즈 조정 */
+}
+
+.side-menu-form .red-text {
+  color: black; /* 일단 기본 글자색은 검정색으로 설정 */
+}
+
+.side-menu-form .red-text span {
+  color: red; /* 빨간색으로 설정 */
+  font-weight: bold;
 }

@@ -23,7 +23,8 @@ public class Controller {
 	
 	@RequestMapping("/travelspot/list")
 	public ModelAndView showList(@RequestParam int areaCode, @RequestParam(required=true, defaultValue="1") int page) throws Exception {
-		// 데이터 저장: apiservice.test(areaCode);
+		// 데이터 저장: 
+		apiservice.test(areaCode);
 		ModelAndView mv = new ModelAndView();
 		
 		HashMap<String, Object> param = new HashMap<>();

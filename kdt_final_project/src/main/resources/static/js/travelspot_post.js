@@ -5,7 +5,45 @@ $(document).ready(function() {
 	let contentId = urlParams.get('contentId');
 
 	$('#images').click(function() {
+		imageAjax();
+	});//image onclick end
+
+	$('#info').click(function() {
+		infoAjax();
+	});//image onclick end
+
+	$('#comments').click(function() {
 		$.ajax({
+			url: "/travelspot/post/comments?contentId="+contentId,
+			type: 'get',
+			success: function(commentsList) {
+				$('#comments').css("color", "#2463d3");
+				$('div[class="result"]').html(`<div class="textarea-outerbox">
+				<p class="font_content">여행지 한줄평💭</p><br>  
+				<textarea id="content" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
+				<input class="savebutton" type="submit" value="저장">
+				</div>`);
+				
+				//https://chlee21.tistory.com/156 참고
+				$.each(commentsList, function(index, item){
+					$('div[class="result"]').append(
+					`<div class="comments-outerbox"><div class="comments-innerbox"><p>`+item.contents +'</p>'
+					+'<p>닉네임 '+item.writer+'</p><p>작성일자 '+item.writingtime+
+					`</p> <input class="updatebutton" type="button" value="수정">
+					<input class="deletebutton" type="button" value="삭제"</div></div>`);
+					
+				});
+				
+				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
+				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
+			},
+			error: function() { }
+		});
+
+	});//comments onclick end
+
+function imageAjax(){
+	$.ajax({
 			url: "/travelspot/post/images?contentId="+contentId,
 			type: 'get',
 			success: function(placedto) {
@@ -16,10 +54,10 @@ $(document).ready(function() {
 			},
 			error: function() { }
 		});
-	});//image onclick end
+};
 
-	$('#info').click(function() {
-		$.ajax({
+function infoAjax(){
+	$.ajax({
 			url: "/travelspot/post/info?contentId="+contentId,
 			type: 'get',
 			success: function(placedto) {
@@ -76,37 +114,6 @@ $(document).ready(function() {
 			},
 			error: function() { }
 		});
-	});//image onclick end
-
-	$('#comments').click(function() {
-		$.ajax({
-			url: "/travelspot/post/comments?contentId="+contentId,
-			type: 'get',
-			success: function(commentsList) {
-				$('#comments').css("color", "#2463d3");
-				$('div[class="result"]').html(`<div class="textarea-outerbox">
-				<p class="font_content">여행지 한줄평💭</p><br>  
-				<textarea class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
-				<input class="savebutton" type="button" value="저장">
-				</div>`);
-				
-				//https://chlee21.tistory.com/156 참고
-				$.each(commentsList, function(index, item){
-					$('div[class="result"]').append(
-					`<div class="comments-outerbox"><div class="comments-innerbox"><p>`+item.contents +'</p>'
-					+'<p>닉네임 '+item.writer+'</p><p>작성일자 '+item.writingtime+
-					`</p> <input class="updatebutton" type="button" value="수정">
-					<input class="deletebutton" type="button" value="삭제"</div></div>`);
-					
-				});
-				
-				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
-				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
-			},
-			error: function() { }
-		});
-
-		//댓글남기기 버튼, 로그인버튼		
-	});//image onclick end
+};
 
 });//ready end

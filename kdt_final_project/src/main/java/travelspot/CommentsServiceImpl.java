@@ -16,6 +16,11 @@ public class CommentsServiceImpl implements CommentsService {
 		return commentsmapper.getComments(place_id);
 	}
 
+	/*
+	 * @Override public void insertComments(String contents, int place_id) {
+	 * commentsmapper.insertComments(contents, place_id); }
+	 */
+
 
 
 }

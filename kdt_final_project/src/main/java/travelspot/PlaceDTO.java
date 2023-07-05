@@ -1,7 +1,6 @@
 package travelspot;
 
 public class PlaceDTO {
-	int seq;
 	int contentId;
 	String title;
 	int areaCode;
@@ -15,11 +14,42 @@ public class PlaceDTO {
 	String writingtime;
 	int likecnt;
 	int viewcnt;
-	
+
+	public int getViewcount() {
+		return viewcount;
+	}
+
+	public void setViewcount(int viewcount) {
+		this.viewcount = viewcount;
+	}
+
+	public String getWritingtime() {
+		return writingtime;
+	}
+
+	public void setWritingtime(String writingtime) {
+		this.writingtime = writingtime;
+	}
+
+	public int getLikecnt() {
+		return likecnt;
+	}
+
+	public void setLikecnt(int likecnt) {
+		this.likecnt = likecnt;
+	}
+
+	public int getViewcnt() {
+		return viewcnt;
+	}
+
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+
 	//모든 필드 포함한 생성자
-	public PlaceDTO(int seq, int contentId, String title, int areaCode, String image1, String image2, String address,
+	public PlaceDTO(int contentId, String title, int areaCode, String image1, String image2, String address,
 			double mapx, double mapy, String contents, int viewcount, String writingtime, int likecnt, int viewcnt) {
-		this.seq = seq;
 		this.contentId = contentId;
 		this.title = title;
 		this.areaCode = areaCode;

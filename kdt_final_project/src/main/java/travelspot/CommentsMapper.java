@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository //객체 생성, @ComponentScan 필요
 public interface CommentsMapper {
 	 public List<CommentsDTO> getComments(int place_id);
-
+	// public void insertComments(String contents, int place_id); 
 }

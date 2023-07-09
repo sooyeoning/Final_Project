@@ -8,8 +8,8 @@
 	<insert id="signup" parameterType="UserDTO">
 		INSERT INTO users
 		(id,
-		username, nickname,userid,userpw,phone,email,mbti,address) values
-		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{address},#{address2})
+		username, nickname,userid,userpw,phone,email,mbti,postcode,address,detailAddress,extraAddress) values
+		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{postcode},#{address},#{detailAddress},#{extraAddress})
 	</insert>
 
 	<select id="findByUserId" parameterType="User.UserDTO"
@@ -18,26 +18,35 @@
 	</select>
 
 	<select id="getUserById" resultType="User.UserDTO">
-		SELECT * FROM users WHERE id = #{id}
+		SELECT * FROM users WHERE id
+		= #{id}
 	</select>
 
 	<update id="updateUser" parameterType="UserDTO">
 		UPDATE users
-		SET username = #{username},
+		SET username =
+		#{username},
 		nickname = #{nickname},
 		userid = #{userid},
-		userpw = #{userpw},
+		userpw =
+		#{userpw},
 		phone = #{phone},
 		email = #{email},
 		mbti = #{mbti},
-		address = #{address},
-		address2 = #{address2}
+		postcode=#{postcode},
+		address =
+		#{address},
+		detailAddress = #{detailAddress},
+		extraAddress = #{extraAddress},
+		photo = #{photo}
 		WHERE id = #{id}
 	</update>
+
 	<!-- 회원 탈퇴 -->
 	<delete id="withdrawUser" parameterType="String">
 		DELETE FROM users
-		WHERE userid = #{userid}
+		WHERE
+		userid = #{userid}
 	</delete>
 
 </mapper>

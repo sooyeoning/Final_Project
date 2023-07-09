@@ -7,5 +7,4 @@ public interface UserService {
 	UserDTO getUserById(int id);
 	void updateUser(UserDTO dto);
 	void withdrawUser(String userid); // 회원 탈퇴
-	
 }

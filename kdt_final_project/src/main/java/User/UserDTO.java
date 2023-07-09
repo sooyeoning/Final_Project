@@ -7,14 +7,15 @@ public class UserDTO {
 	int id;
 	String nickname, username,userpw,userid;
 	String phone, email, mbti,grade;
-	String address,address2;
+	String postcode,address,detailAddress,extraAddress;
 	String photo;
 
 	public UserDTO() {
 	}
 
 	public UserDTO(int id, String nickname, String username, String userpw, String userid, String phone, String email,
-			String mbti, String grade, String address, String address2, String photo) {
+			String mbti, String grade, String postcode, String address, String detailAddress, String extraAddress,
+			String photo) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -25,8 +26,10 @@ public class UserDTO {
 		this.email = email;
 		this.mbti = mbti;
 		this.grade = grade;
+		this.postcode = postcode;
 		this.address = address;
-		this.address2 = address2;
+		this.detailAddress = detailAddress;
+		this.extraAddress = extraAddress;
 		this.photo = photo;
 	}
 
@@ -102,6 +105,14 @@ public class UserDTO {
 		this.grade = grade;
 	}
 
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -110,12 +121,20 @@ public class UserDTO {
 		this.address = address;
 	}
 
-	public String getAddress2() {
-		return address2;
+	public String getDetailAddress() {
+		return detailAddress;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
 	}
 
 	public String getPhoto() {
@@ -130,8 +149,11 @@ public class UserDTO {
 	public String toString() {
 		return "UserDTO [id=" + id + ", nickname=" + nickname + ", username=" + username + ", userpw=" + userpw
 				+ ", userid=" + userid + ", phone=" + phone + ", email=" + email + ", mbti=" + mbti + ", grade=" + grade
-				+ ", address=" + address + ", address2=" + address2 + ", photo=" + photo + "]";
+				+ ", postcode=" + postcode + ", address=" + address + ", detailAddress=" + detailAddress
+				+ ", extraAddress=" + extraAddress + ", photo=" + photo + "]";
 	}
+
+
 
 
 }

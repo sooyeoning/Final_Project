@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,13 +26,19 @@ public class CommentsController {
 	@Autowired
 	CommentsServiceImpl commentsservice;
 
-
+	@GetMapping("/travelspot/post/comments")
+	@ResponseBody
+	public List<CommentsDTO> getComments(@RequestParam int contentId){
+ 
+		List<CommentsDTO> commentsList = commentsservice.getComments(contentId);
+		return commentsList;
+	}
 	/*
-	 * @GetMapping("/travelspot/comments/save") public void insertComments(String
-	 * contents, @RequestParam int place_id) {
-	 * //commentsservice.insertComments(contents, place_id);
+	 * @RequestMapping("/travelspot/comments/save")
 	 * 
-	 * //return "travelspot_comment"; }
+	 * @ResponseBody public String saveComments(@RequestParam int
+	 * contentId,@RequestParam String content) { //request
+	 * 
+	 * //response dto return "yes"; }
 	 */
-
 }// controller

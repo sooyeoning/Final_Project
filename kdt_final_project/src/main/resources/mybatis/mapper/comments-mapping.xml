@@ -6,7 +6,7 @@
 
 <!-- 같은 여행지내 댓글 조회-->
 <select id="getComments" parameterType="int" resultType="CommentsDTO">
-	select*from comments where place_id=#{place_id}; 
+	select*from comments where place_id=#{place_id} order by writingtime desc ; 
 </select>
 
 <!-- 댓글 저장

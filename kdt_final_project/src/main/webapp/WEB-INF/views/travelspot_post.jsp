@@ -1,3 +1,4 @@
+<%@ page import="travelspot.PlaceDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -17,6 +18,14 @@
 <body>
 <jsp:include page="../views/header.jsp" />
 
+<%-- <% //ModelAndView attribute으로 전달한 매개변수 받기
+PlaceDTO placedto = (PlaceDTO)request.getAttribute("placedto");
+double mapx = placedto.getMapx(); //위도
+double mapy = placedto.getMapy();//경도
+String title = placedto.getTitle();
+%>
+ --%>
+ 
 <!-- 관광명소이름 -->
 <div class="font_title margin"> ${placedto.title} </div>
 

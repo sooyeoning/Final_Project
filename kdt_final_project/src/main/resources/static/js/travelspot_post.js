@@ -19,9 +19,9 @@ $(document).ready(function() {
 			success: function(commentsList) {
 				$('#comments').css("color", "#2463d3");
 				$('div[class="result"]').html(`<div class="textarea-outerbox">
-				<p class="font_content">여행지 한줄평💭</p><br>  
+				<p class="font_content">여행지 한줄평💭</p><br>
 				<textarea id="content" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
-				<input class="savebutton" type="submit" value="저장">
+				<input type="button" class="savebutton" onclick="saveComment()" value="저장">
 				</div>`);
 				
 				//https://chlee21.tistory.com/156 참고
@@ -41,7 +41,23 @@ $(document).ready(function() {
 		});
 
 	});//comments onclick end
-
+	
+/*
+	function saveComment(){
+		$('.savebutton').click(function(){
+			$.ajax({
+				url: "/travelspot/comments/save?contentId="+contentId,
+				type: 'get',
+				data: {content : $('#content').val()},
+				success: function(server){
+					alert(server);
+				}
+				
+			})//ajax
+		});//savebtn
+	};
+	*/
+	
 function imageAjax(){
 	$.ajax({
 			url: "/travelspot/post/images?contentId="+contentId,
@@ -68,7 +84,8 @@ function infoAjax(){
 		
 				var mapx = placedto.mapx; //위도
 				var mapy = placedto.mapy; //경도
-
+				var title = placedto.title;
+				
 				//마커 표시
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
@@ -86,10 +103,12 @@ function infoAjax(){
 
 				// 마커가 지도 위에 표시되도록 설정합니다
 				marker.setMap(map);
-
-				var iwContent = '<div style="padding:5px;">'+ placedto.title +' <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+//https://map.kakao.com/?urlX=400206.0&urlY=-11702.0&name=Hello+World%21
+				
+				var iwContent = '<div style="padding:5px;">'+ placedto.title +' <br><a href="https://map.kakao.com/?urlX=${mapy}&urlY=<%=mapy%>&name=${title}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/{placedto.title},{mapy},{mapx}" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 					iwPosition = new kakao.maps.LatLng(mapy, mapx); //인포윈도우 표시 위치입니다
 
+				
 				// 인포윈도우를 생성합니다
 				var infowindow = new kakao.maps.InfoWindow({
 					position: iwPosition,
@@ -101,12 +120,18 @@ function infoAjax(){
 				
 				//상세정보
 				//문의 및 안내 주소 휴일 입장료 유모차, 홈페이지, 이용시간, 주차, 장애인 주차 안내, 휠체ㅓ, 접근로, 화장실, 반려동물
+				if(placedto.contents == 'null'){
+					//$('div[class="result"]').append();
+				} else {
+				$('div[class="result"]').append('<p> 관광지 설명<br>'+placedto.contents+'<br><br>');
+				} 
 				$('div[class="result"]').append('<p> 문의 및 안내: '+'<br>'); //infocenter, sponsor2tel	
 				$('div[class="result"]').append('<p> 이용시간 및 쉬는날: '); //restdate, useseason, usetime
 				$('div[class="result"]').append('<p> 이용요금: ');//usetimefestival	
 				$('div[class="result"]').append('<p> 주차시설: '+'<br>');//parking
 				$('div[class="result"]').append('<p> 유모차 대여 정보: '); //chkbabycarriage	
 				$('div[class="result"]').append('<p> 애완동물 동반가능 정보: ');//chkpet
+				
 					
 				//스크롤
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
@@ -117,3 +142,11 @@ function infoAjax(){
 };
 
 });//ready end
+
+var mapx = '${placedto.mapy}';//위도
+var mapy = '${placedto.mapx}'; //경도
+var title = '${placedto.title}'; //장소명
+
+function aClick(){
+		location.href = "https://map.kakao.com/?urlX="+mapy+"&urlY="+mapx+"&name="+title;
+				}

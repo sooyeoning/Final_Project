@@ -33,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* 복수의 행*/
-  margin: 0 17% 0 17%;
+  margin: 2% 17% 0 17%;
 }
 
 .regionItem {
@@ -65,7 +65,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* 복수의 행*/
-  margin: 0 17% 0 17%;
+  margin: 2% 17% 0 17%;
 }
 
 .item {
@@ -82,7 +82,7 @@ display: flex;
 }
 
 .margin{
-  margin: 5px 17% 5px 17%;  
+  margin: 2% 17% 5px 17%;  
 }
 
 .hrmargin{ /*상세페이지 메뉴바 구분선*/
@@ -150,3 +150,29 @@ width: 66%;
 	float: right;
 	/*오른쪽 끝 정렬*/
 }
+
+/* 테마별 장소리스트(list_theme) 페이지*/
+.themeContainer {
+  width:66%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* 복수의 행*/
+  margin: 2% 17% 0 17%;
+}
+
+.themeItem-list { /*지역명 나열*/
+  width: 14%;
+  margin: 0 auto; /*행간 간격: 100px 조정*/
+}
+
+.theme-list { /*6개 이미지 틀*/
+    border-radius: 0%;
+    height: 100%; /*동그라미*/
+/*	overflow: hidden; /*넘치는 부분은 감춘다*/
+}
+
+.themeprofile { /*이미지*/
+    width: 100%; 
+  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/    
+}
+

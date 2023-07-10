@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,8 +68,7 @@ public class UserController {
     public ResponseEntity<String> logoutPost(HttpSession session) {
     	session.invalidate();
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃 성공");
-    }
-    
+    } 
 	@RequestMapping("/mypage")
 	public String mypage(HttpSession session,Model model) {
 		UserDTO dto = (UserDTO)session.getAttribute("user");

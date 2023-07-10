@@ -8,8 +8,8 @@
 	<insert id="signup" parameterType="UserDTO">
 		INSERT INTO users
 		(id,
-		username, nickname,userid,userpw,phone,email,mbti,postcode,address,detailAddress,extraAddress) values
-		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{postcode},#{address},#{detailAddress},#{extraAddress})
+		username, nickname,userid,userpw,phone,email,mbti,address,detailAddress,postcode,extraAddress) values
+		(#{id},#{username},#{nickname},#{userid},#{userpw},#{phone},#{email},#{mbti},#{address},#{detailAddress},#{postcode},#{extraAddress})
 	</insert>
 
 	<select id="findByUserId" parameterType="User.UserDTO"

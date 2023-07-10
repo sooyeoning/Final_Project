@@ -42,10 +42,8 @@
 	<div class="container">
 		<c:forEach items="${placelist }" var="placeDTO">
 			<div class="item">
-				<img class="placeprofile" src=${placeDTO.image1
-					} id=${placeDTO.contentId}>
-				<p class="placeName font_title" id=${placeDTO.contentId}>
-					${placeDTO.title}</p>
+				<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
+				<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
 				<h1 class="placeLocation font_content" id=${placeDTO.contentId}>${placeDTO.address}</h1>
 			</div>
 		</c:forEach>

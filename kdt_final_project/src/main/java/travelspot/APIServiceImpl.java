@@ -91,7 +91,7 @@ public class APIServiceImpl {
 		
 		String[] themeList = new String[] {"friends","couple","alone","family"};
 		//String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
-		String[] numOfRowsList = new String[] {"1", "1", "1", "1"};
+		String[] numOfRowsList = new String[] {"10", "10", "10", "10"};
 		String[] cat2List = new String[] {"C0116", "C0114", "C0113", "C0112"};
 		String[] cat3List = new String[] {"C01160001", "C01140001", "C01130001", "C01120001"};
 
@@ -134,11 +134,9 @@ public class APIServiceImpl {
 		
 		getThemeInfo(contentIdList, themeList[i]); //기본 정보 DB 등록 - 장소명, 테마, id
 		
-
 		}//url for
 	}// test method
 	
-
 	//테마 장소 불러오기 -> 장소 arrayList 가져와서 상세정보 insert(for문)
 	public void getThemeInfo(ArrayList<Integer> contentIdList, String theme) throws Exception {
 
@@ -165,6 +163,7 @@ public class APIServiceImpl {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) { 
 					Element eElement = (Element)nNode;
 					
+					//null 체크
 					int contentId = Integer.valueOf(getValue("subcontentid", eElement)); 
 					String title = getValue("subname", eElement); 
 					
@@ -180,6 +179,7 @@ public class APIServiceImpl {
 				}//if 
 			}//for
 			getThemePlaceDetail(placeContentIds);
+			
 		}//contentIdList for
 
 	}// test method
@@ -209,32 +209,29 @@ public class APIServiceImpl {
 		DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
 		Document doc = dBuilder.parse(String.valueOf(urlBuilder));
 
-		NodeList nodeList = doc.getElementsByTagName("items"); //xml 태그 이름 중 <item>인 부분을 전부 가져온다(NodeList 타입)
+		NodeList nodeList = doc.getElementsByTagName("item"); //xml 태그 이름 중 <item>인 부분을 전부 가져온다(NodeList 타입)
 		Node node = nodeList.item(0); //모든 <item> 태그 중 첫번째 node
 		Element e = (Element)node; //태그 안에 있는 요소를 가져오기 위해 Element로 형변환 해야한다
 		
-		System.out.println(e.getAttribute("contentid"));
-		/*
-		int contentId = Integer.valueOf(doc.getElementsByTagName("contentid").item(0).getTextContent());
-		String homepage;
-		if(doc.getElementsByTagName("homepage").item(0).getTextContent()!=null) {
-			homepage = doc.getElementsByTagName("homepage").item(0).getTextContent();
-		} else {homepage = "null";}
-		String title = doc.getElementsByTagName("title").item(0).getTextContent();
-		int areaCode = Integer.valueOf(doc.getElementsByTagName("areacode").item(0).getTextContent());
-		String image1 = doc.getElementsByTagName("firstimage").item(0).getTextContent();
-		String address = doc.getElementsByTagName("addr1").item(0).getTextContent();
-		double mapx = Double.valueOf(doc.getElementsByTagName("mapx").item(0).getTextContent());
-		double mapy = Double.valueOf(doc.getElementsByTagName("mapy").item(0).getTextContent());
-		String contents = doc.getElementsByTagName("overview").item(0).getTextContent();
-
-		PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode, image1, address, mapx, mapy, contents, homepage);
-		System.out.println(placeDTO.toString());
-
-		if(placemapper.selectPlace(placeDTO.contentId)!=null) {
-			placemapper.updateThemePlace(placeDTO);
+		if(e != null) {
+		System.out.println(getValue("contentid", e));
+		
+		PlaceDTO placedto = new PlaceDTO();
+		
+		//null체크
+		placedto.contentId = Integer.parseInt(getValue("contentid", e));
+		placedto.title = getValue("title", e);
+		placedto.areaCode = Integer.parseInt(getValue("areacode", e));
+		placedto.image1 = getValue("firstimage", e);
+		placedto.address = getValue("addr1", e).concat(getValue("addr2",e));
+		placedto.mapx = Double.parseDouble(getValue("mapx", e));
+		placedto.mapy = Double.parseDouble(getValue("mapy", e));
+		placedto.contents = getValue("overview", e);
+		placedto.homepage = getValue("homepage", e);
+		
+		placemapper.updateThemePlace(placedto);
 		}
-			*/	
+		
 		}//바깥 for문
 	}//method
 	
@@ -263,11 +260,19 @@ public class APIServiceImpl {
 		String result = sb.toString();
 		System.out.println(result);
 	}
-	
+
 	private static String getValue(String tag, Element element) {
+		//태그 이름이 매개변수인 노드를 찾아 > 찾은 노드에서 n번째 노드에 접근 > n번째 노드 안에 정보에 접근할 수 있는 nodelist
+		String result;
 		NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodes.item(0);
-		return node.getNodeValue();
+		if(node == null) {
+			result = "null";
+		} else {
+			result = node.getNodeValue();
+		}
+		 
+		return result;
 	}
 	
 }// class

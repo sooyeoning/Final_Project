@@ -137,6 +137,7 @@ public class PlaceDTO {
 		this.contentId = contentId;
 		this.title = title; 
 		this.theme = theme;
+		this.image1 = image1;
 	}; 
 	
 	public PlaceDTO(int contentId, String title, int areaCode, String image1,String image2, String address, double mapx, double mapy) { 

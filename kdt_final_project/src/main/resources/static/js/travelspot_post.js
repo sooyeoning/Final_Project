@@ -125,6 +125,12 @@ function infoAjax(){
 				} else {
 				$('div[class="result"]').append('<p> 관광지 설명<br>'+placedto.contents+'<br><br>');
 				} 
+				if(placedto.homepage == 'null'){
+					//$('div[class="result"]').append();
+				} else {
+				$('div[class="result"]').append('<p> 관광지 대표 홈페이지<br>'+placedto.homepage+'<br><br>');
+				} 
+				
 				$('div[class="result"]').append('<p> 문의 및 안내: '+'<br>'); //infocenter, sponsor2tel	
 				$('div[class="result"]').append('<p> 이용시간 및 쉬는날: '); //restdate, useseason, usetime
 				$('div[class="result"]').append('<p> 이용요금: ');//usetimefestival	

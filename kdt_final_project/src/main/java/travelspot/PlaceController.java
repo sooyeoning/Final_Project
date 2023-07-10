@@ -80,8 +80,8 @@ public class PlaceController {
 	//모든 정보 저장: apiservice.getThemeBasicInfo(); 
 	@RequestMapping("/travelspot/list_theme")
 	public ModelAndView showThemeMain(@RequestParam String theme,
-			@RequestParam(required = true, defaultValue = "1") int page){
-		
+			@RequestParam(required = true, defaultValue = "1") int page) throws Exception{
+		//apiservice.getThemeBasicInfo(); 
 		ModelAndView mv = new ModelAndView();
 		
 		HashMap<String, Object> param = new HashMap<>();
@@ -96,27 +96,5 @@ public class PlaceController {
 		return mv;
 	}
 	
-	
-	/* ajax - 페이징 리스트 보여주기
-	@RequestMapping("/travelspot/list_theme")
-	@ResponseBody
-	public HashMap<String, Object> showThemeList(@RequestParam("theme") String theme,
-			@RequestParam("page") int page, @RequestParam int areaCode){
-		
-		HashMap<String, Object> param = new HashMap<>();
-		param.put("areaCode", areaCode); // 지역코드
-		int pageindex = (page - 1) * 9; // 페이징처리 - 시작인덱스
-		param.put("page", pageindex);
-		param.put("theme", theme);
-		
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("placelist", placeservice.listThemePlaces(param));
-		map.put("totalCnt", placeservice.getTotalThemeCnt(param));
-		map.put("areaCode", areaCode);
-
-		return map;
-	
-	}
-	*/
 	
 }// controller

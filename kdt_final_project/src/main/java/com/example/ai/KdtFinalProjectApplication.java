@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"travelspot", "user", "controller","community"})
-/* @ComponentScan(basePackages = "errors") */
+@ComponentScan(basePackages = "errors")
 @MapperScan(basePackages = {"travelspot"})
 public class KdtFinalProjectApplication {
 

@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommunityController {
 	
 	@RequestMapping("/community")
-	public String test() {
+	public String community() {
 		return "community";
+	}
+	
+	@RequestMapping("/writing")
+	public String writing() {
+		return "writing";
 	}
 }

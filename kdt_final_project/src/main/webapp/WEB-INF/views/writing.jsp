@@ -30,7 +30,7 @@
     	<option value="경기도">경기도</option>
     </select>
     <input type=text id="hashtag" name="hashtag" placeholder="#해시태그">
-    <%-- 작성자 : <input type=text name="writer" value="${nickname }" readonly><br> --%>
+    <input type=text id="writer" name="writer" value="${nickname }" readonly><br>
     <input type=text id="title" name=title placeholder="제목"/>
     <br/>
     <textarea id = "contents" name = "contents"></textarea>

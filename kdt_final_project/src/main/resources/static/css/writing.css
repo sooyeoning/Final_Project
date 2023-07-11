@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+label{
+	margin-right: 8px;
+}
 select{
 	width: 18%;
 	height: 2vw;
@@ -7,7 +9,7 @@ select{
 	text-indent: 8px;
 }
 
-#hashtag{
+#hashtag, #writer{
 	height: 1.8vw;
 	text-indent: 8px;
 }

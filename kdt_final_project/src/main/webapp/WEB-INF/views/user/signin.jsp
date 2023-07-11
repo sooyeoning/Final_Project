@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<%@ include file="../header.jsp"%>
+<%@ include file="../home/header.jsp"%>
 
     <div class="container">
         <h2 class="text-center">회원가입</h2>
@@ -137,7 +137,7 @@
   	});
     </script>
     
-<%@ include file="../footer.jsp"%>
+<%@ include file="../home/footer.jsp"%>
 
 </body>
 </html>

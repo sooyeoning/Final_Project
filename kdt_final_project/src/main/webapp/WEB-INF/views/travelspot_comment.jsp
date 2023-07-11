@@ -1,4 +1,3 @@
-<%@ page import="travelspot.PlaceDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -18,16 +17,9 @@
 <body>
 <%@ include file="../views/home/header.jsp"%>
 
-<%-- <% //ModelAndView attribute으로 전달한 매개변수 받기
-PlaceDTO placedto = (PlaceDTO)request.getAttribute("placedto");
-double mapx = placedto.getMapx(); //위도
-double mapy = placedto.getMapy();//경도
-String title = placedto.getTitle();
-%>
- --%>
- 
 <!-- 관광명소이름 -->
 <div class="font_title margin"> ${placedto.title} </div>
+<p>${placedto.seq}</p>
 
 <!-- 관광명소 메뉴바 -->
 <hr class="hrmargin">
@@ -38,11 +30,29 @@ String title = placedto.getTitle();
 </div>
 <hr class="hrmargin">
 
-<div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
+<div class="textarea-outerbox">
+<p class="font_content">여행지 한줄평💭</p><br>  
+<textarea id="contents" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea><br>
+<input class="savebutton" type="submit" value="저장">
+</form>
+</div>
+				
+<!-- 댓글 노출 https://chlee21.tistory.com/156 참고-->
+<c:forEach items="${commentsList }" var="comments">
+<div class="comments-outerbox"><div class="comments-innerbox">
+<p>${comments.contents }</p>
+<p>닉네임 ${comments.writer }</p>
+<p>작성일자 ${comments.writingtime}</p> 
+<!-- 작성자에게만 보이는 버튼 -->
+<input class="deletebutton" type="button" value="삭제">
+<input class="updatebutton" type="button" value="수정">
 
+</div></div>
+</c:forEach>
 
 <div style="position:fixed; bottom:3%; right:-10%;">
 <a href="#"><img src="../img/top.png" width="5%" height="5%"></a></div>
+
 <!-- 개선사항 -->
 <!-- 여행지 사진 모아보기 아래 구분선만 색 변경x -->
 <!-- 댓글 작성하는 textarea 글씨(not bod)로 변경-->

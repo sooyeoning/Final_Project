@@ -14,47 +14,25 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
+
+<% 
+int[] ids = new int[]{32, 6, 2, 5, 7, 31};
+String[] titles = new String[]{"강원", "부산", "인천", "광주", "울산", "경기"};
+String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsan", "gyeonggi"};
+%>
 
 <!-- 6개씩 배치-->
 <div class="regionContainer">
+<% for(int i=0; i<ids.length; i++){%>
 	<div class="regionItem-list">
- 	<p class="font_content regionName" id="32">강원</p>
+ 	<p class="font_content regionName" id=<%=ids[i]%>><%=titles[i] %></p>
 		<div class="box-list">	
-   		<img class="profile" id="32" src="/img/gangwon.jpg">
+   		<a href="list?areaCode=<%=ids[i] %>&page=1"><img class="profile" id=<%=ids[i]%> src="/img/<%=engtitles[i] %>.jpg"></a>
   		</div>
   	</div>
-	<div class="regionItem-list">
- 	<p class="font_content regionName" id="6">부산</p>
-		<div class="box-list">
-   		<img class="profile" id="6" src="/img/busan.jpg">
-  		</div>
-	</div>
-	<div class="regionItem-list">
- 	<p class="font_content regionName" id="2">인천</p>
-		<div class="box-list">
-   		<img class="profile" id="2" src="/img/incheon.jpg">
-  		</div>
-	</div>
-	<div class="regionItem-list">
- 	<p class="font_content regionName" id="5">광주</p>
-		<div class="box-list">
-   		<img class="profile" id="5" src="/img/jeju.jpg">
-  		</div>
-	</div>
-	<div class="regionItem-list">
- 	<p class="font_content regionName" id="7">울산</p>
-		<div class="box-list">
-   		<img class="profile" id="7" src="/img/jeonnam.jpg">
-  		</div>
-	</div>
-	<div class="regionItem-list">
- 	<p class="font_content regionName" id="31">경기</p>
-		<div class="box-list">
-   		<img class="profile" id="31" src="/img/gyeongnam.jpg">
-  		</div>
-	</div>
-</div>
+<%} %>
+</div>  	
 <br>
 <hr class="hrmargin">
 

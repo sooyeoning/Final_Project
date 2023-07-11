@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<%@ include file="../header.jsp"%>
+<%@ include file="../home/header.jsp"%>
 	
 	<div class="container">
 		<div class="side-menu">

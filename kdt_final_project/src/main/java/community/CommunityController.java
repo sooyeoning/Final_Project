@@ -24,7 +24,10 @@ public class CommunityController {
 	@RequestMapping("/writing")
 	public String writingForm(HttpServletRequest request, Model model) {
 		UserDTO user = (UserDTO) request.getSession().getAttribute("user");
-	    if (user != null) {
+	    if (user == null) {
+	        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+	        return "redirect:/login";
+	    }else if (user != null) {
 	        model.addAttribute("nickname", user.getNickname());
 	    }
 		return "writing";
@@ -50,4 +53,6 @@ public class CommunityController {
         // 게시글 저장 후 어떤 페이지로 이동할지 결정하여 반환
         return "redirect:/"; // 예시: 메인 페이지로 이동
 	}
+	
+	
 }

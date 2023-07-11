@@ -10,4 +10,8 @@ public class IndexController {
 	public String Index() {
 		return "index"; 
 	}
+	@RequestMapping("/index(Eng)")
+	public String EngIndex() {
+		return "index(Eng)"; 
+	}
 }

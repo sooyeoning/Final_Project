@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<%@ include file="../home/header.jsp"%>
+	<%@ include file="../header.jsp"%>
 	
 	<div class="container">
 		<div class="side-menu">
@@ -138,7 +138,7 @@
 	</div>
 
 <div class="footer">
-<%@ include file="../home/footer.jsp"%>
+<%@ include file="../footer.jsp"%>
 </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

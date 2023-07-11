@@ -13,7 +13,7 @@
 
 <body>
 	<!-- body -->
-	<%@ include file="../home/slide.jsp"%>
+	<%@ include file="../slide.jsp"%>
 
 	<div id="recommend">
 		<img class="rmenu" src=../img/테마_혼자.png> <img class="rmenu"

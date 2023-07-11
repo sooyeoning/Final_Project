@@ -8,7 +8,7 @@
 <title>메인 화면</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/home/body.css">
+<link rel="stylesheet" href="/css/body.css">
 </head>
 
 <body>

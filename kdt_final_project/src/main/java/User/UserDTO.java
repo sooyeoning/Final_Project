@@ -7,13 +7,15 @@ public class UserDTO {
 	int id;
 	String nickname, username,userpw,userid;
 	String phone, email, mbti,grade;
-	String address;
+	String postcode,address,detailAddress,extraAddress;
+	String photo;
 
 	public UserDTO() {
 	}
 
 	public UserDTO(int id, String nickname, String username, String userpw, String userid, String phone, String email,
-			String mbti, String grade,String address) {
+			String mbti, String grade, String postcode, String address, String detailAddress, String extraAddress,
+			String photo) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -24,7 +26,11 @@ public class UserDTO {
 		this.email = email;
 		this.mbti = mbti;
 		this.grade = grade;
+		this.postcode = postcode;
 		this.address = address;
+		this.detailAddress = detailAddress;
+		this.extraAddress = extraAddress;
+		this.photo = photo;
 	}
 
 	public int getId() {
@@ -91,13 +97,20 @@ public class UserDTO {
 		this.mbti = mbti;
 	}
 
-
 	public String getGrade() {
 		return grade;
 	}
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
 
 	public String getAddress() {
@@ -108,11 +121,39 @@ public class UserDTO {
 		this.address = address;
 	}
 
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", nickname=" + nickname + ", username=" + username + ", userpw=" + userpw
 				+ ", userid=" + userid + ", phone=" + phone + ", email=" + email + ", mbti=" + mbti + ", grade=" + grade
-				+ ", address=" + address + "]";
+				+ ", postcode=" + postcode + ", address=" + address + ", detailAddress=" + detailAddress
+				+ ", extraAddress=" + extraAddress + ", photo=" + photo + "]";
 	}
+
+
+
 
 }

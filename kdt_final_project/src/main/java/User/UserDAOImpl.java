@@ -1,9 +1,10 @@
 package User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;;
 
 @Repository
@@ -36,5 +37,12 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("updateUser", dto);
 
 	}
+
+	@Override
+	public void withdrawUser(String userid) {
+		sqlSession.delete("withdrawUser",userid);
+		
+	}
+	
 
 }

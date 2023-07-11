@@ -41,3 +41,59 @@
 .btn-default:hover {
     background-color: #1976d2 !important;
 }
+
+#postcode {
+    width: 48%;
+    color: #555;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-right: 72px;
+}
+
+#address {
+    width: 98%;
+    color: #555;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+#detailAddress,
+#extraAddress {
+    display: inline-block;
+    width: 48%;
+    color: #555;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#extraAddress {
+    margin-right: 0;
+}
+#postcodesearch{
+	text-align:center;
+    width: 30%;
+    padding: 6px 12px;
+    background-color: #1565c0 !important;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff !important;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#postcodesearch:hover {
+    background-color: #1976d2 !important;
+}
+#kakaologin{
+	margin-top: 15px;
+	text-align: center;
+}

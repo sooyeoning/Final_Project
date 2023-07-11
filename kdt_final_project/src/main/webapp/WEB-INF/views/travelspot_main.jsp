@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<jsp:include page="../views/home/header.jsp" />
 
 <!-- https://dogcowking.tistory.com/326 -->
 <div class="titlebox font_title">가고 싶은 여행지를 선택해주세요</div>

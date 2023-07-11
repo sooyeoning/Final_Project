@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<jsp:include page="../views/home/header.jsp" />
 
 <!-- 6개씩 배치-->
 <div class="regionContainer">

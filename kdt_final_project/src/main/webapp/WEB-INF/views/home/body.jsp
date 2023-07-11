@@ -8,12 +8,12 @@
 <title>메인 화면</title>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/body.css">
+<link rel="stylesheet" href="/css/home/body.css">
 </head>
 
 <body>
 	<!-- body -->
-	<%@ include file="../slide.jsp"%>
+	<%@ include file="../home/slide.jsp"%>
 
 	<div id="recommend">
 		<img class="rmenu" src=../img/테마_혼자.png> <img class="rmenu"

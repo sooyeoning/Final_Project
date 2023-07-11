@@ -10,6 +10,18 @@
 	values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address}, #{mapx}, #{mapy},"null",0,now());
 </insert>
 
+<!-- 테마별 여행지 기본 저장 -->
+<insert id="insertThemeBasicInfo" parameterType="placeDTO">
+	insert into place(contentId, title, theme) values(#{contentId}, #{title}, #{theme});
+</insert>
+
+<!-- 테마별 여행지 저장 -->
+<update id="updateThemePlace" parameterType="placeDTO">
+	update place set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
+	address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
+	where contentId=#{contentId};
+</update>
+
 <!-- 여행지 게시글 전체 조회(페이징0)-->
 <select id="listPlaces" parameterType="hashmap" resultType="placeDTO">
 	select*from place where areaCode=#{areaCode} limit #{page},9 ; 
@@ -25,6 +37,15 @@
 	select count(*) from place where areaCode=#{areaCode};
 </select>
 
+<!-- 테마 게시글 조회 -->
+<select id="listThemePlaces" parameterType="hashmap" resultType="placeDTO">
+	select*from place where theme=#{theme} limit #{page},9 ;
+</select>
+
+<!-- 테마 게시글 수 조회 -->
+<select id="getTotalThemeCnt" parameterType="String" resultType="int">
+	select count(*) from place where theme=#{theme};
+</select>
 
 </mapper>
 

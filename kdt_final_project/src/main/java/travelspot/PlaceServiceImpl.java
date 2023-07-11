@@ -27,5 +27,26 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.getTotalCnt(areaCode);
 	}
 
+	@Override
+	public List<PlaceDTO> listThemePlaces(HashMap<String, Object> param) {
+		return placemapper.listThemePlaces(param);
+	}
+
+	@Override
+	 public int getTotalThemeCnt(String theme) {
+		return placemapper.getTotalThemeCnt(theme);
+	}
+
+	@Override
+	public void insertThemeBasicInfo(PlaceDTO placeDTO) {
+		placemapper.insertThemeBasicInfo(placeDTO);
+	}
+
+	@Override
+	public void updateThemePlace(PlaceDTO placeDTO) {
+		placemapper.updateThemePlace(placeDTO);		
+	}
+
+
 
 }

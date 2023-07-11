@@ -16,51 +16,26 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
 
 <!-- https://dogcowking.tistory.com/326 -->
 <div class="titlebox font_title">가고 싶은 여행지를 선택해주세요</div>
 
-<!-- 인천 광주 부산 울산 강원 경기도 -->
-<!-- 3개씩 배치 -->
+<% 
+int[] ids = new int[]{32, 6, 2, 5, 7, 31};
+String[] titles = new String[]{"강원", "부산", "인천", "광주", "울산", "경기"};
+String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsan", "gyeonggi"};
+%>
 <div class="regionContainer">
+<% for(int i=0; i<ids.length; i++){%>
  <div class="regionItem">
-  <p class="font_content regionName" id="32">강원</p>
- 	<div class="box" id="32">
-   		<img class="profile" src="/img/gangwon.jpg">
+  <p class="font_content regionName" id=<%=ids[i]%>><%=titles[i] %></p>
+ 	<div class="box" id=<%=ids[i]%>>
+   		<img class="profile" src="/img/<%=engtitles[i] %>.jpg">
   	</div>
   </div>
-  <div class="regionItem">
-  <p class="font_content regionName" id="6">부산</p>
- 	<div class="box" id="6">
-   		<img class="profile" src="/img/busan.jpg">
-  	</div>
-  </div>
-  <div class="regionItem">
-  <p class="font_content regionName" id="2">인천</p>
- 	<div class="box" id="2">
-   		<img class="profile" src="../img/incheon.jpg">
-  	</div>
-  </div>
-  <div class="regionItem">
-  <p class="font_content regionName" id="5">광주</p>
- 	<div class="box" id="5">
-   		<img class="profile" src="/img/jeju.jpg">
-  	</div>
-  </div>
-  <div class="regionItem">
-  <p class="font_content regionName" id="7">울산</p>
- 	<div class="box" id="7">
-   		<img class="profile" src="/img/jeonnam.jpg">
-  	</div>
-  </div>
-  <div class="regionItem">
-  <p class="font_content regionName" id="31">경기</p>
- 	<div class="box" id="31">
-   		<img class="profile" src="/img/gyeongnam.jpg">
-  	</div>
-  </div>
-</div>
+<%} %>
+ </div>
 
 
 

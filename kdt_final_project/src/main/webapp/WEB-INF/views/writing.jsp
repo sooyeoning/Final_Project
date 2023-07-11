@@ -12,7 +12,7 @@
 <script src = "ckeditor/ckeditor.js"></script>
 </head>
 <body>
-<%@ include file="../views/header.jsp"%>
+<%@ include file="../views/home/header.jsp"%>
 <section>
     <form action="boardwrite" method="POST">
     <select id="board_title" name="board_title">
@@ -40,7 +40,7 @@
     <p><input type="submit" value="글쓰기" id="submit"></p>
     </form>
 </section>
-<%@ include file="../views/footer.jsp"%>
+<%@ include file="../views/home/footer.jsp"%>
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
 </div>

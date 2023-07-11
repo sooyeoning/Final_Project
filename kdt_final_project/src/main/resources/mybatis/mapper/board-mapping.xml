@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.spring.mybatis.BoardDAO">
+
+<!-- 글작성 -->
+<insert id="insertBoard" parameterType="boarddto" >
+ insert into board(id, title, contents, writingtime, views, likecount, board_title, writer, place) 
+ values(null, #{title}, #{contents}, now(), 0, 0, #{board_title}, #{writer}, #{place})
+</insert>
+
+</mapper>

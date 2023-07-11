@@ -164,6 +164,7 @@
 			<thead>			
 				<tr>
 					<th>번호</th>
+					<th>지역</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -174,6 +175,7 @@
 			<tbody>
 				<tr>
 					<td>0</td>
+					<td>인천</td>
 					<td><a href="">임시 정보 입니다</a></td>
 					<td>akm</td>
 					<td>12</td>
@@ -182,6 +184,7 @@
 				</tr>
 				<tr>
 					<td>0</td>
+					<td>강릉</td>
 					<td><a href="">임시 정보 입니다</a></td>
 					<td>akm</td>
 					<td>12</td>
@@ -190,12 +193,24 @@
 				</tr>
 				<tr>
 					<td>0</td>
+					<td>부산</td>
 					<td><a href="">임시 정보 입니다</a></td>
 					<td>akm</td>
 					<td>12</td>
 					<td>8</td>
 					<td>2023-06-28</td>
 				</tr>
+				<c:forEach items="${boardList }" var="dto">
+				<tr>
+					<td>${dto.id }</td>
+					<td>${dto.place }</td>
+					<td><a href='boarddetail?seq=${dto.id}'>${dto.title }</a></td>
+					<td>${dto.writer }</td>
+					<td>${dto.views }</td>
+					<td>${dto.likecount }</td>
+					<td>${dto.writingtime }</td>
+				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<ol class="pageNum">

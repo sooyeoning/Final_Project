@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
 
 <!-- 관광명소이름 -->
 <div class="font_title margin"> ${placedto.title} </div>

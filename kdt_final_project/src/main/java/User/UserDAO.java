@@ -6,4 +6,5 @@ public interface UserDAO {
 	UserDTO findByUserId(String userid);
 	UserDTO getUserById(int id);
 	void updateUser(UserDTO dto);
+	void withdrawUser(String userid);
 }

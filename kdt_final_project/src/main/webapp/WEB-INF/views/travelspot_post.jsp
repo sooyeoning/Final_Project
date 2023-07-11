@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
 
 <%-- <% //ModelAndView attribute으로 전달한 매개변수 받기
 PlaceDTO placedto = (PlaceDTO)request.getAttribute("placedto");

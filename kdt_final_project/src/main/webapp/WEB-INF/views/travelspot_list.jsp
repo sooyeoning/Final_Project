@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
 
 <% 
 int[] ids = new int[]{32, 6, 2, 5, 7, 31};

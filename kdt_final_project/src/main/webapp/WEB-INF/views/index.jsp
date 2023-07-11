@@ -12,15 +12,17 @@
 
 <body>
 <!-- header -->
-<%@ include file="../views/header(main).jsp"%>
+<%@ include file="../views/home/header.jsp"%>
 
 <!-- body -->
-<%@ include file="../views/body.jsp"%>
+<%@ include file="../views/home/body.jsp"%>
 
 <!-- top button -->
-<%@ include file="../views/topbutton.jsp"%>
+<%@ include file="../views/home/topbutton.jsp"%>
 
 <!-- footer -->
-<%@ include file="../views/footer.jsp"%>
+<%@ include file="../views/home/footer.jsp"%>
+
+
 </body>
 </html>

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<jsp:include page="../views/header.jsp" />
+<%@ include file="../views/home/header.jsp"%>
 
 	<%
 	String[] themes = new String[] { "alone", "couple", "friends", "family" };

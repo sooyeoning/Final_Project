@@ -33,7 +33,7 @@
     <input type="hidden" id="writer" name="writer" value="${nickname }" readonly><br>
     <input type=text id="title" name=title placeholder="제목"/>
     <br/>
-    <textarea id = "contents" name = "contents"></textarea>
+    <textarea id = "contents" name = "contents" ></textarea>
 	<script>
 		CKEDITOR.replace('contents',{filebrowserUploadUrl:'/mine/imageUpload.do'});
 	</script>

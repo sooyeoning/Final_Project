@@ -73,10 +73,9 @@ public class PlaceController {
 	
 	@GetMapping("/travelspot/post/info")
 	@ResponseBody
-	public PlaceDTO showPostInfo(@RequestParam int contentId) {
-		PlaceDTO placedto = placeservice.selectPlace(contentId);
-		//PlaceContentsDTO contentsdto = placeservice.getThemeDetail(contentId);
-		return placedto;
+	public PlaceContentsDTO showPostInfo(@RequestParam int contentId) {
+		PlaceContentsDTO placeContentsDTO = placeservice.getThemeDetail(contentId);
+		return placeContentsDTO;
 	}
 	
 	@RequestMapping("/travelspot/list_theme")

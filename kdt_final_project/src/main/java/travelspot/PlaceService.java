@@ -9,14 +9,14 @@ public interface PlaceService {
 	 public PlaceDTO selectPlace(int contentId);
 	 public int selectPlaceId(int contentId);
 	 public int getTotalCnt(int areaCode);
-	 public List<PlaceDTO> listThemePlaces(HashMap<String, Object> param);
+	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param);
 	 public int getTotalThemeCnt(String theme);
 	 public void insertThemeBasicInfo(PlaceDTO placeDTO);
 	 public void updateThemePlace(PlaceDTO placeDTO);
-	 public void insertTheme12Detail(PlaceContentsDTO placecontentsDTO);
-	 public void insertTheme39Detail(PlaceContentsDTO placecontentsDTO);
-	 public void insertTheme14Detail(PlaceContentsDTO placecontentsDTO);
-	 public void insertTheme28Detail(PlaceContentsDTO placecontentsDTO);
+	 public void insertTheme12Detail(ContentsDTO contentsDTO);
+	 public void insertTheme39Detail(ContentsDTO contentsDTO);
+	 public void insertTheme14Detail(ContentsDTO contentsDTO);
+	 public void insertTheme28Detail(ContentsDTO contentsDTO);
 	 public PlaceContentsDTO getThemeDetail(int contentId);
 
 }

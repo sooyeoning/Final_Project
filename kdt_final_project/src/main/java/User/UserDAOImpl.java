@@ -1,6 +1,7 @@
 package User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -40,9 +41,35 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void withdrawUser(String userid) {
-		sqlSession.delete("withdrawUser",userid);
-		
+		sqlSession.delete("withdrawUser", userid);
+
 	}
-	
+
+	@Override
+	public UserDTO selectfindid(String email, String phone) {
+		Map<String, String> params = new HashMap<>();
+		params.put("email", email);
+		params.put("phone", phone);
+		return sqlSession.selectOne("selectfindid", params);
+	}
+
+	@Override
+	public UserDTO selectfindpw(String userid, String email) {
+		Map<String, String> params = new HashMap<>();
+		params.put("userid", userid);
+		params.put("email", email);
+		return sqlSession.selectOne("selectfindpw", params);
+	}
+
+	@Override
+	public void updatePassword(UserDTO dto) {
+		sqlSession.update("updatePassword", dto);
+
+	}
+
+	@Override
+	public List<String> getRecentPages(int userId) {
+		return sqlSession.selectList("getRecentPages",userId);
+	}
 
 }

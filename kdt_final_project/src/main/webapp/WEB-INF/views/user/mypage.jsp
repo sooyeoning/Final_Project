@@ -1,7 +1,6 @@
-<%@page import="org.apache.catalina.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.sql.*"%>
 <%@ page import="User.UserDAO"%>
 <%@ page import="User.UserDAOImpl"%>
@@ -109,7 +108,14 @@
 			
 			<!-- 최근 방문한 페이지 -->
 			<div class="side-menu-form" id="section4" style="display: none;">
-			<h1> 최근 방문한 페이지 </h1>
+			<div id="visitedpages">
+			<h2> 최근 방문한 페이지 </h2>
+			<ul id="page-list">
+			<c:forEach var="page" items="${recentPages}">
+					<li>${page}</li>
+				</c:forEach>
+			</ul>
+			</div>
 			</div>
 			
 			<!-- 찜한 여행지 -->

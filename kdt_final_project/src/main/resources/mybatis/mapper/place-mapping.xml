@@ -6,7 +6,7 @@
 
 <!-- 여행지 저장 -->
 <insert id="insertPlaces" parameterType="placeDTO">
-	insert into place(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcount, writingtime) 
+	insert into place(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcnt, writingtime) 
 	values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address}, #{mapx}, #{mapy},"null",0,now());
 </insert>
 

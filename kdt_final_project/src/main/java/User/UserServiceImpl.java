@@ -1,11 +1,11 @@
 package User;
 
-import java.net.PasswordAuthentication;
-import java.util.Properties;
+import java.util.List;
+import java.util.Random;
 
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.rsocket.server.RSocketServer.Transport;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;;
 
@@ -49,5 +49,46 @@ public class UserServiceImpl implements UserService {
 	public void withdrawUser(String userid) {
 		dao.withdrawUser(userid);
 	}
+
+	@Override
+	public UserDTO findUserId(String email, String phone) {
+		return dao.selectfindid(email, phone);
+	}
+
+	@Override
+	public UserDTO findUserPw(String userid, String email) {
+	    UserDTO dto = dao.selectfindpw(userid, email);
+	    return dto;
+	}
+
+
+	@Override
+	@Transactional
+	public void resetPassword(String userid, String email,String temporaryPassword) {
+		UserDTO dto = dao.selectfindpw(userid, email);
+		if (dto != null) {
+			dto.setUserpw(temporaryPassword);
+			dao.updatePassword(dto);
+		}
+	}
+
+	@Override
+	public String generateTemporaryPassword() {
+		// 임시 비밀번호 생성 로직
+		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 6; i++) {
+			int index = random.nextInt(characters.length());
+			sb.append(characters.charAt(index));
+		}
+		return sb.toString();
+	}
+
+	@Override
+	public List<String> getRecentPages(int userId) {
+		return dao.getRecentPages(userId);
+	}
+
 
 }

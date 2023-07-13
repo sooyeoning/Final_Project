@@ -2,6 +2,7 @@ package travelspot;
 
 public class PlaceDTO {
 	int contentId;
+	int contentTypeId; //관광타입 id
 	String title;
 	int areaCode;
 	String image1;
@@ -137,7 +138,8 @@ public class PlaceDTO {
 		this.contentId = contentId;
 		this.title = title; 
 		this.theme = theme;
-		this.image1 = image1;
+		//this.contentTypeId = contentTypeId; 추천코스 아이디인 25 넘어옴
+		//this.image1 = image1;
 	}; 
 	
 	public PlaceDTO(int contentId, String title, int areaCode, String image1,String image2, String address, double mapx, double mapy) { 

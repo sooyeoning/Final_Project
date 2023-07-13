@@ -74,7 +74,7 @@
         <tr>
             <td>${board.id}</td>
             <td>${board.place}</td>
-            <td><a href="boarddetail?seq=${board.id}">${board.title}</a></td>
+            <td><a href="${pageContext.request.contextPath}/detail?boardId=${board.id}">${board.title}</a></td>
             <td>${board.writer}</td>
             <td>${board.views}</td>
             <td>${board.likecount}</td>

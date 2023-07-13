@@ -27,5 +27,10 @@ public class BoardDAOImpl implements BoardDAO {
 	    return sqlSession.selectList("getTop10Boards"); // SQL 매핑된 쿼리를 실행하여 Top 10 Board 목록을 가져옴
 	}
 
+	@Override
+    public BoardDTO getBoardById(int boardId) {
+        return sqlSession.selectOne("getBoardById", boardId);
+    }
+
 
 }

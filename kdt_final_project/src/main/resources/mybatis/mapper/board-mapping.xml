@@ -22,4 +22,9 @@
     LIMIT 10
 </select>
 
+<!-- getBoardById 쿼리 매핑 -->
+  <select id="getBoardById" parameterType="int" resultType="community.BoardDTO">
+    SELECT * FROM board WHERE id = #{boardId}
+  </select>
+
 </mapper>

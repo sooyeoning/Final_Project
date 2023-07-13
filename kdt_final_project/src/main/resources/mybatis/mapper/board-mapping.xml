@@ -10,4 +10,16 @@
  values(null, #{title}, #{contents}, now(), 0, 0, #{board_title}, #{writer}, #{place})
 </insert>
 
+<!-- 모든 Board 목록 가져오기 -->
+<select id="getAllBoards" resultType="boarddto">
+	SELECT * FROM board
+</select>
+
+<!-- Top 10 Board 목록 가져오기 -->
+<select id="getTop10Boards" resultType="boarddto">
+    SELECT * FROM board
+    ORDER BY likecount DESC
+    LIMIT 10
+</select>
+
 </mapper>

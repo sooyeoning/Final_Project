@@ -26,6 +26,7 @@ public class APIServiceImpl {
 	// (경민님) String serviceKey ="A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
 	// 상세정보 가져오기
 	String serviceKey = "V5T49DK1YRF29Mu4k6Fkn%2BXzVJry5UAPEVgaM0XM5ZvqYo3aoOyvLFFRgxdZ0KtsLJoXAx%2BswJPxcjmoxm8JYg%3D%3D";
+
 	StringBuilder urlBuilder;
 
 	@Autowired

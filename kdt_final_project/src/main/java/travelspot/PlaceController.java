@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -60,9 +61,9 @@ public class PlaceController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelspot_post");
 		mv.addObject("placedto", placedto);
-		return mv;
+		return mv;		
 	}
-
+	
 	@GetMapping("/travelspot/post/images")
 	@ResponseBody
 	public PlaceDTO showPostImages(@RequestParam int contentId) {
@@ -74,14 +75,14 @@ public class PlaceController {
 	@ResponseBody
 	public PlaceDTO showPostInfo(@RequestParam int contentId) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
+		//PlaceContentsDTO contentsdto = placeservice.getThemeDetail(contentId);
 		return placedto;
 	}
 	
-	//모든 정보 저장: apiservice.getThemeBasicInfo(); 
 	@RequestMapping("/travelspot/list_theme")
 	public ModelAndView showThemeMain(@RequestParam String theme,
 			@RequestParam(required = true, defaultValue = "1") int page) throws Exception{
-		//apiservice.getThemeBasicInfo(); 
+		//정보 저장: apiservice.getThemeBasicInfo(); 
 		ModelAndView mv = new ModelAndView();
 		
 		HashMap<String, Object> param = new HashMap<>();

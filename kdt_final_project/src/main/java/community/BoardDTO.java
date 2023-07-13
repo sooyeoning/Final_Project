@@ -1,5 +1,6 @@
 package community;
 
+
 public class BoardDTO {
 	int id;
 	String title, contents, writingtime;

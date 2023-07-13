@@ -27,138 +27,33 @@
     	<input type="submit" value="검색" class="search-button">
     </form>
     
+    <form action="">
+    	<select id="printtype" name="printtype">
+    		<option></option>
+    	</select>
+    </form>
+    
+    
+    
 	<article id="record" class="on">
 		<ol class="topTen">
-			<li id="top1">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top2">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top3">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top4">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top5">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top6">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top7">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top8">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top9">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top10">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
+			<c:forEach items="${top10List}" var="board">
+				<c:if test="${board.board_title == '여행기록' }">
+					<li id="top${board.id}">
+						<div class="thumbnail">썸네일 입니다</div>
+						<h5 class="title">${board.title}</h5>
+						<div class="writerinfo">
+							<span class="profile"></span>
+							<span class="writer">${board.writer}</span>
+						</div>
+						<div class="info">
+							<span class="views">views ${board.views}</span>
+							<span class="likeCount">like ${board.likecount}</span>
+							<span class="wirteTime">${board.writingtime}</span>
+						</div>
+					</li>
+				</c:if>
+			</c:forEach>
 		</ol>
 		<table>
 			<thead>			
@@ -173,44 +68,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>0</td>
-					<td>인천</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td>강릉</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td>부산</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<c:forEach items="${boardList }" var="dto">
-				<tr>
-					<td>${dto.id }</td>
-					<td>${dto.place }</td>
-					<td><a href='boarddetail?seq=${dto.id}'>${dto.title }</a></td>
-					<td>${dto.writer }</td>
-					<td>${dto.views }</td>
-					<td>${dto.likecount }</td>
-					<td>${dto.writingtime }</td>
-				</tr>
-				</c:forEach>
+				<c:forEach items="${boardList}" var="board" varStatus="loop">
+    <c:if test="${board.board_title == '여행기록' && !top10Ids.contains(board.id) && loop.index >= 10}">
+        <tr>
+            <td>${board.id}</td>
+            <td>${board.place}</td>
+            <td><a href="boarddetail?seq=${board.id}">${board.title}</a></td>
+            <td>${board.writer}</td>
+            <td>${board.views}</td>
+            <td>${board.likecount}</td>
+            <td>${board.writingtime}</td>
+        </tr>
+    </c:if>
+</c:forEach>
+
 			</tbody>
 		</table>
 		<ol class="pageNum">
@@ -234,30 +105,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
+				<c:forEach items="${boardList }" var="board">
+					<c:if test="${board.board_title == '추천해주세요' }">
+						<tr>
+							<td>${board.id }</td>
+							<td>${board.place }</td>
+							<td><a href="boarddetail?seq=${board.id }">${board.title }</a></td>
+							<td>${board.writer }</td>
+							<td>${board.views }</td>
+							<td>${board.likecount }</td>
+							<td>${board.writingtime }</td>
+						</tr>
+					</c:if>
+				</c:forEach>
 			</tbody>
 		</table>
 		<ol class="pageNum">

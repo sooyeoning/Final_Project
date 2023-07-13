@@ -6,19 +6,20 @@
 
 <!-- 여행지 저장 -->
 <insert id="insertPlaces" parameterType="placeDTO">
-	insert into place(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcount, writingtime) 
+	insert into place(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcnt, writingtime) 
 	values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address}, #{mapx}, #{mapy},"null",0,now());
 </insert>
 
-<!-- 테마별 여행지 기본 저장 -->
+<!-- 테마별 여행지 기본 저장: 중복저장 확인 > 수정 -->
 <insert id="insertThemeBasicInfo" parameterType="placeDTO">
-	insert into place(contentId, title, theme) values(#{contentId}, #{title}, #{theme});
+	<!-- 중복저장 확인 > 수정 -->
+	insert into place(contentId, title, theme) values(#{contentId},#{title},#{theme});
 </insert>
 
 <!-- 테마별 여행지 저장 -->
 <update id="updateThemePlace" parameterType="placeDTO">
 	update place set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
-	address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
+	contenttypeid=#{contentTypeId}, address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
 	where contentId=#{contentId};
 </update>
 
@@ -30,6 +31,11 @@
 <!-- 여행지 게시글 한개 조회-->
 <select id="selectPlace" parameterType="int" resultType="placeDTO">
 	select*from place where contentId=#{contentId}; 
+</select>
+
+<!-- 여행지 게시글 아이디 있는지 조희-->
+<select id="selectPlaceId" parameterType="int" resultType="int">
+	select ifnull(max(contentId),0) contentId from place where contentId=#{contentId};
 </select>
 
 <!-- 게시글 수 조회 -->
@@ -47,6 +53,33 @@
 	select count(*) from place where theme=#{theme};
 </select>
 
+<!-- 테마별 여행지 정보 저장(관광지) -->
+<insert id="insertTheme12Detail" parameterType="PlaceContentsDTO">
+	insert into contents(id, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) ;
+</insert>
+
+<!-- 테마별 여행지 정보 저장(식당) -->
+<insert id="insertTheme39Detail" parameterType="PlaceContentsDTO">
+	insert into contents(id, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) 
+	values(#{contentId}, #{infocenterfood}, #{kidsfacility}, #{chkcreditcardfood}, #{restdatefood}, #{opentimefood}, #{discountinfofood}, #{firstmenu}, #{reservationfood}, #{packing}, #{parkingfood}) ;
+</insert>
+
+<!-- 테마별 여행지 정보 저장(문화시설) -->
+<insert id="insertTheme14Detail" parameterType="PlaceContentsDTO">
+	insert into contents(id, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) 
+	values(#{contentId}, #{infocenterculture}, #{chkbabycarriageculture}, #{chkcreditcardculture}, #{chkpetculture}, #{restdateculture}, #{usetimeculture}, #{accomcountculture}, #{parkingculture}, #{parkingfee}, #{usefee}, #{discountinfo}) ;
+</insert>
+
+<!-- 테마별 여행지 정보 저장(레포츠) -->
+<insert id="insertTheme28Detail" parameterType="PlaceContentsDTO">
+	insert into contents(id, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, openperiod, usefee, parking, parkingfee, reservationinfo) 
+	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{openperiod}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) ;
+</insert>
+
+<!-- 게시글 상세 정보 조회 -->
+<select id="getThemeDetail" parameterType="int" resultType="PlaceContentsDTO">
+	select*from contents where id=#{id};
+</select>
 </mapper>
 
 

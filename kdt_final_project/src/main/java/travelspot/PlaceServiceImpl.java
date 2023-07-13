@@ -47,6 +47,35 @@ public class PlaceServiceImpl implements PlaceService {
 		placemapper.updateThemePlace(placeDTO);		
 	}
 
+	@Override
+	public void insertTheme12Detail(PlaceContentsDTO placecontentsDTO) {
+		placemapper.insertTheme12Detail(placecontentsDTO);
+	}
 
+	@Override
+	public void insertTheme14Detail(PlaceContentsDTO placecontentsDTO) {
+		placemapper.insertTheme14Detail(placecontentsDTO);
+	}
+	
+	@Override
+	public void insertTheme39Detail(PlaceContentsDTO placecontentsDTO) {
+		placemapper.insertTheme39Detail(placecontentsDTO);
+	}
+
+	@Override
+	public void insertTheme28Detail(PlaceContentsDTO placecontentsDTO) {
+		placemapper.insertTheme28Detail(placecontentsDTO);
+		
+	}
+
+	@Override
+	public int selectPlaceId(int contentId) {
+		return placemapper.selectPlaceId(contentId);
+	}
+
+	@Override
+	public PlaceContentsDTO getThemeDetail(int contentId) {
+		return placemapper.getThemeDetail(contentId);
+	}
 
 }

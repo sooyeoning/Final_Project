@@ -16,9 +16,10 @@
 	<%@ include file="../home/slide.jsp"%>
 
 	<div id="recommend">
-		<img class="rmenu" src=../img/테마_혼자.png> <img class="rmenu"
-			src=../img/테마_연인.png> <img class="rmenu" src=../img/테마_친구.png>
-		<img class="rmenu" src=../img/테마_가족.png>
+		<a href="/travelspot/list_theme?theme=alone"><img class="rmenu" src=../img/테마_혼자.png> </a>
+		<a href="/travelspot/list_theme?theme=couple"><img class="rmenu" src=../img/테마_연인.png>  </a>
+		<a href="/travelspot/list_theme?theme=friends"><img class="rmenu" src=../img/테마_친구.png></a>
+		<a href="/travelspot/list_theme?theme=family"><img class="rmenu" src=../img/테마_가족.png></a>
 	</div>
 
 	<div id="top5">
@@ -33,7 +34,6 @@
 			<div style="display:inline-block; position: absolute;top:50%;left:30%;"></div>
 			<img class="tmenu"src=../img/notebook.png>
 		</div>
-		
 		
 		<div class="recommendbottom">
 			<img src=../img/notebook.png width="30%">

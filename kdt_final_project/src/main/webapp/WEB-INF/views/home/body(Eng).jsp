@@ -16,10 +16,10 @@
 	<%@ include file="../home/slide(Eng).jsp"%>
 
 	<div id="recommend">
-		<img class="rmenu" src=../img/테마_혼자(Eng).png> 
-		<img class="rmenu"src=../img/테마_연인(Eng).png> 
-		<img class="rmenu" src=../img/테마_친구(Eng).png>
-		<img class="rmenu" src=../img/테마_가족(Eng).png>
+		<a href="/travelspot/list_theme?theme=alone"><img class="rmenu" src=../img/테마_혼자.png> </a>
+		<a href="/travelspot/list_theme?theme=couple"><img class="rmenu" src=../img/테마_연인.png>  </a>
+		<a href="/travelspot/list_theme?theme=friends"><img class="rmenu" src=../img/테마_친구.png></a>
+		<a href="/travelspot/list_theme?theme=family"><img class="rmenu" src=../img/테마_가족.png></a>
 	</div>
 
 	<div id="top5">

@@ -12,9 +12,9 @@ public interface PlaceMapper {
 	 public void insertPlaces(PlaceDTO placeDTO);
 	 public List<PlaceDTO> listPlaces(HashMap<String, Object> param);
 	 public PlaceDTO selectPlace(int contentId);
+	 public void plusViewCount(int contentId); //조회수 증가
 	 public int selectPlaceId(int contentId);
 	 public int getTotalCnt(int areaCode);
-	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param);
 	 public int getTotalThemeCnt(String theme);
 	 public void insertThemeBasicInfo(PlaceDTO placeDTO);
 	 public void updateThemePlace(PlaceDTO placeDTO);
@@ -22,5 +22,7 @@ public interface PlaceMapper {
 	 public void insertTheme39Detail(ContentsDTO contentsDTO);
 	 public void insertTheme14Detail(ContentsDTO contentsDTO);
 	 public void insertTheme28Detail(ContentsDTO contentsDTO);
-	 public PlaceContentsDTO getThemeDetail(int contentId);
+	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param);
+	 public PlaceContentsDTO getPlaceContentThemeDetail(int contentId);
+	 public PlaceDTO getPlaceThemeDetail(int id);
 }

@@ -11,11 +11,10 @@ $(document).ready(function() {
 			url: "/travelspot/post/comments?contentId="+contentId,
 			type: 'get',
 			success: function(map) {
-				$('#comments').css("color", "#2463d3");
 				$('div[class="result"]').html(
 				`<div class="textarea-outerbox">
 				<p class="font_content">여행지 한줄평💭</p><br>
-				<textarea id="content" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>`+
+				<textarea id="content" class="textarea-innerbox font_comment" style="width: 60vw" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>`+
 				(map.userdto != "null"? '<input type="button" class="savebutton" value="저장">': '')
 				+`</div></div>`);
 				$('div[class="result"]').append('<div class="comments"></div>');

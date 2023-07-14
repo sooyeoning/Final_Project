@@ -6,30 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행지 목록</title>
+<title>위트</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css" />
 <!--<link rel="stylesheet" href="searchForm.css">-->
-<script src="http://localhost:8099/js/travelspot_list.js"></script>
+<script src="http://localhost:8099/js/travelspot_list_theme.js"></script>
 
 </head>
 <body>
 <%@ include file="../views/home/header.jsp"%>
 
-	<%
-	String[] themes = new String[] { "alone", "couple", "friends", "family" };
-	%>
+	<% String[] themes = new String[] { "alone", "couple", "friends", "family" }; %>
 
 	<!-- 6개씩 배치-->
 	<div class="themeContainer">
-		<%
-		for (int i = 0; i < themes.length; i++) {
-		%>
+		<% for (int i = 0; i < themes.length; i++) { %>
 		<div class="themeItem-list">
 			<p class="font_content regionName" id=<%=themes[i]%>><%=themes[i]%></p>
-			<div class="box-list">
-				<a href="list_theme?theme=<%=themes[i]%>&page=1"><img class="themeprofile" id=<%=themes[i]%> src="/img/<%=themes[i]%>.png"></a>
+			<div class="theme-list">
+				<a href="list_theme?theme=<%=themes[i]%>&page=1"><img class="themeprofile" style="width:100px; height:100px;"id=<%=themes[i]%> src="/img/<%=themes[i]%>.png"></a>
 			</div>
 		</div>
 		<%
@@ -70,11 +66,8 @@
 			for (int i = 1; i <= totalPage; i++) {
 				//10페이지 처리
 			%>
-			<a href="list_theme?theme=<%=theme %>&page=<%=i%>"><font
-				size="3px"><%=i%></font> &nbsp;&nbsp;</a>
-			<%
-			}
-			%>
+			<a href="list_theme?theme=<%=theme %>&page=<%=i%>"><font size="3px"><%=i%></font> &nbsp;&nbsp;</a>
+			<%}%>
 			<font size="3px"> ▶ </font>
 			
 		</div>

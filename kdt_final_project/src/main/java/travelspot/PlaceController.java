@@ -30,14 +30,12 @@ public class PlaceController {
 	@Autowired
 	CommentsServiceImpl commentsservice;
 
-	@GetMapping("/travelspot/main")
-	public String showMain() {
-		return "travelspot_main";
-	}
-	
+	//기본 관광지
 	@RequestMapping("/travelspot/list")
-	public ModelAndView showList(@RequestParam int areaCode,
-			@RequestParam(required = true, defaultValue = "1") int page) throws Exception {
+	public ModelAndView showList(
+			@RequestParam(required = true, defaultValue = "32") int areaCode,
+			@RequestParam(required = true, defaultValue = "1") int page,
+			HttpSession session) throws Exception {
 		//데이터 저장: apiservice.getBasicInfo(areaCode);
 		//테마별 info 저장: apiservice.getThemeInfo();
 		
@@ -48,6 +46,9 @@ public class PlaceController {
 		int pageindex = (page - 1) * 9; // 페이징처리 - 시작인덱스
 		param.put("page", pageindex);
 
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		
+		mv.addObject("userdto", userdto);
 		mv.addObject("placelist", placeservice.listPlaces(param));
 		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
 		mv.addObject("areaCode", areaCode);
@@ -58,6 +59,8 @@ public class PlaceController {
 	@RequestMapping("/travelspot/post")
 	public ModelAndView showPost(@RequestParam int contentId) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
+		//조회수 증가
+		placeservice.plusViewCount(contentId);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelspot_post");
 		mv.addObject("placedto", placedto);
@@ -70,14 +73,14 @@ public class PlaceController {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
 		return placedto;
 	}
-	
 	@GetMapping("/travelspot/post/info")
 	@ResponseBody
-	public PlaceContentsDTO showPostInfo(@RequestParam int contentId) {
-		PlaceContentsDTO placeContentsDTO = placeservice.getThemeDetail(contentId);
-		return placeContentsDTO;
+	public PlaceDTO showPostInfo(@RequestParam int contentId) {
+		PlaceDTO placeDTO = placeservice.getPlaceThemeDetail(contentId);
+		return placeDTO;
 	}
 	
+	// 테마 관광지 
 	@RequestMapping("/travelspot/list_theme")
 	public ModelAndView showThemeMain(@RequestParam String theme,
 			@RequestParam(required = true, defaultValue = "1") int page) throws Exception{
@@ -89,11 +92,34 @@ public class PlaceController {
 		int pageindex = (page - 1) * 9; // 페이징처리 - 시작인덱스
 		param.put("page", pageindex);
 
-		mv.addObject("placelist", placeservice.listThemePlaces(param));
+		mv.addObject("placelist", placeservice.listThemePlaces(param)); //PlaceContentsDTO
 		mv.addObject("totalCnt", placeservice.getTotalThemeCnt(theme));
 		mv.addObject("theme", theme);
 		mv.setViewName("travelspot_list_theme");
 		return mv;
+	}
+	
+	@RequestMapping("/travelspot/themepost")
+	public ModelAndView showThemePost(@RequestParam int contentId) {
+		PlaceDTO placedto = placeservice.selectPlace(contentId);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("travelspot_post_theme");
+		mv.addObject("placedto", placedto);
+		return mv;		
+	}
+	
+	@GetMapping("/travelspot/post/themeimages")
+	@ResponseBody
+	public PlaceDTO showPostThemeImages(@RequestParam int contentId) {
+		PlaceDTO placedto = placeservice.selectPlace(contentId);
+		return placedto;
+	}
+	
+	@GetMapping("/travelspot/post/themeinfo")
+	@ResponseBody
+	public PlaceContentsDTO showPostThemeInfo(@RequestParam int contentId) {
+		PlaceContentsDTO placeContentsDTO = placeservice.getPlaceContentThemeDetail(contentId);
+		return placeContentsDTO;
 	}
 	
 	

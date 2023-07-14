@@ -76,11 +76,16 @@
 	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) ;
 </insert>
 
-<!-- 게시글 상세 정보 조회 
-<select id="getThemeDetail" parameterType="int" resultType="ContentsDTO">
-	select*from contents where id=#{id};
+<!-- 게시글 상세 정보 조회(PlaceDTO)  -->
+<select id="getPlaceThemeDetail" parameterType="int" resultType="PlaceDTO">
+	select*from place where contentId=#{contentId};
 </select>
- -->
+
+<!-- 게시글 조회수 증가 -->
+<update id="plusViewCount" parameterType="int">
+	update place set viewcnt=viewcnt+1 where contentId=#{contentId};
+</update>
+
 <!-- place테이블 + contents 테이블 -->
 <resultMap type="PlaceContentsDTO" id="placecontentsmap">
  <id property="contentId" column="contentId"/>
@@ -149,10 +154,10 @@
 select *
 from place p join contents c
 on p.contentId = c.contentId
-where theme=#{theme} limit #{page},9 ;
+where theme=#{theme} and image1 != "null" limit #{page},9 ;
 </select>
 
-<select id="getThemeDetail" parameterType="int" resultMap="placecontentsmap">
+<select id="getPlaceContentThemeDetail" parameterType="int" resultMap="placecontentsmap">
 select *
 from place p join contents c
 on p.contentId = c.contentId 

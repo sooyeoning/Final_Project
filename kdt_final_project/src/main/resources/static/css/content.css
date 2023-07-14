@@ -70,8 +70,9 @@
 
 .item {
   width: 28%; /* 3칸을 만들고 싶으면.. 26 ~ 33%로..*/
-  height: 245.76px;
-  margin: 10px 0 50px 0; /*행간 간격: 100px 조정*/
+  height: 40vh;
+  padding-top: 5px;
+  margin: 0 0 50px 0; /*행간 간격: 100px 조정*/
 }
 
 /* 관광명소 상세페이지 */
@@ -157,7 +158,7 @@ width: 100%;
 
 /* 테마별 장소리스트(list_theme) 페이지*/
 .themeContainer {
-  width:66%;
+  width:66vw;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* 복수의 행*/
@@ -165,18 +166,19 @@ width: 100%;
 }
 
 .themeItem-list { /*지역명 나열*/
-  width: 14%;
+  width: 14vw;
   margin: 0 auto; /*행간 간격: 100px 조정*/
 }
 
 .theme-list { /*6개 이미지 틀*/
-    border-radius: 0%;
-    height: 100%; /*동그라미*/
-/*	overflow: hidden; /*넘치는 부분은 감춘다*/
+text-align: center;
 }
 
 .themeprofile { /*이미지*/
     width: 100%; 
-  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/    
+  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/ 
 }
 
+.pages{
+	text-align: center;
+}

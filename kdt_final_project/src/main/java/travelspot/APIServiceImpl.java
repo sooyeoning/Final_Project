@@ -101,7 +101,7 @@ public class APIServiceImpl {
 
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
-		String[] numOfRowsList = new String[] { "0", "0", "0", "1" };
+		String[] numOfRowsList = new String[] { "2", "2", "2", "2" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
 		String[] cat3List = new String[] { "C01160001", "C01140001", "C01130001", "C01120001" };
 
@@ -408,6 +408,7 @@ public class APIServiceImpl {
 		Optional<String> usetimeculture = Optional.ofNullable(getValue("usetimeculture", e));
 		System.out.println("usetimeculture: " + usetimeculture.orElse("null"));
 
+		Contentsdto.contentId = contentId.orElse(0); //PK값 없으면 cannot add or update a child row 에러
 		Contentsdto.accomcountculture = accomcountculture.orElse("");
 		Contentsdto.chkbabycarriageculture = chkbabycarriageculture.orElse("");
 		Contentsdto.chkcreditcardculture = chkcreditcardculture.orElse("");

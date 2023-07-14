@@ -74,8 +74,18 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	 public PlaceContentsDTO getThemeDetail(int contentId) {
-		return placemapper.getThemeDetail(contentId);
+	public PlaceContentsDTO getPlaceContentThemeDetail(int contentId) {
+		return placemapper.getPlaceContentThemeDetail(contentId);
+	}
+
+	@Override
+	 public PlaceDTO getPlaceThemeDetail(int id) {
+		return placemapper.getPlaceThemeDetail(id);
+	}
+
+	@Override
+	public void plusViewCount(int contentId) {
+		placemapper.plusViewCount(contentId);
 	}
 
 }

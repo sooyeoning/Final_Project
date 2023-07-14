@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행지 목록</title>
+<title>위트</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
@@ -39,12 +39,15 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 <div class="container">
 
 <c:forEach items="${placelist }" var="placeDTO">
- <div class="item">
+ <div class="item" > <!-- style="border: 0.3px solid #2463d3" -->
  	<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
-  	<p class="placeName font_title" id=${placeDTO.contentId}> ${placeDTO.title}</p>
-  	<h1 class="placeLocation font_content" id=${placeDTO.contentId}>
-	${placeDTO.address}
-  	</h1>
+  	<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
+  	<h1 class="placeLocation font_content" id=${placeDTO.contentId}></h1>
+	<p>${placeDTO.address}</p><br>
+	<p style="display:inline; float: left;">조회수 ${placeDTO.viewcnt }</p>
+  	<p style="display:inline; float:right;">좋아요 ${placeDTO.likecnt }</p>
+  	<br>
+
   </div>
 </c:forEach>
  

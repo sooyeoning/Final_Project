@@ -100,10 +100,14 @@ public class CommunityController {
 	@PostMapping("/update")
 	public String updateBoard(HttpServletRequest request) {
 	    int boardId = Integer.parseInt(request.getParameter("id"));
+	    String boardTitle = request.getParameter("board_title");
+	    String place = request.getParameter("place");
 	    String title = request.getParameter("title");
 	    String contents = request.getParameter("contents");
 
 	    BoardDTO board = boardService.getBoardById(boardId);
+	    board.setBoard_title(boardTitle);
+	    board.setPlace(place);
 	    board.setTitle(title);
 	    board.setContents(contents);
 	    boardService.updateBoard(board);

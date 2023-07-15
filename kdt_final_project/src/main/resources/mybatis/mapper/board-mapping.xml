@@ -29,8 +29,9 @@
   
 <update id="updateBoard" parameterType="boarddto">
 	UPDATE board 
-	SET board_title = #{board_title}, place=#{place}, title = #{title}, contents = #{contents} 
-	WHERE id = #{id};
+	SET board_title = #{board_title}, place = #{place}, title = #{title}, contents = #{contents} 
+	WHERE id = #{id}
 </update>
+
 
 </mapper>

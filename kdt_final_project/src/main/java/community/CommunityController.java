@@ -97,4 +97,18 @@ public class CommunityController {
 	    return mv;
 	}
 	
+	@PostMapping("/update")
+	public String updateBoard(HttpServletRequest request) {
+	    int boardId = Integer.parseInt(request.getParameter("id"));
+	    String title = request.getParameter("title");
+	    String contents = request.getParameter("contents");
+
+	    BoardDTO board = boardService.getBoardById(boardId);
+	    board.setTitle(title);
+	    board.setContents(contents);
+	    boardService.updateBoard(board);
+
+	    // 수정된 글을 보여줄 detail 페이지로 리다이렉트
+	    return "redirect:/detail?boardId=" + boardId;
+	}
 }

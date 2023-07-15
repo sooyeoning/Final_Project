@@ -31,4 +31,9 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.getBoardById(boardId);
     }
 
+	@Override
+	public void updateBoard(BoardDTO board) {
+		boardDAO.updateBoard(board);
+	}
+
 }

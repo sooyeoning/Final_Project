@@ -23,8 +23,14 @@
 </select>
 
 <!-- getBoardById 쿼리 매핑 -->
-  <select id="getBoardById" parameterType="int" resultType="community.BoardDTO">
-    SELECT * FROM board WHERE id = #{boardId}
-  </select>
+<select id="getBoardById" parameterType="int" resultType="community.BoardDTO">
+	SELECT * FROM board WHERE id = #{boardId}
+</select>
+  
+<update id="updateBoard" parameterType="boarddto">
+	UPDATE board 
+	SET board_title = #{board_title}, place=#{place}, title = #{title}, contents = #{contents} 
+	WHERE id = #{id};
+</update>
 
 </mapper>

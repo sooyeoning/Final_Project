@@ -14,7 +14,7 @@
 <body>
 <%@ include file="../../views/home/header.jsp"%>
 <section>
-    <form action="boardwrite" method="POST">
+    <form action="/update" method="POST">
     <input type="hidden" name="id" value="${board.id}" />
     <select id="board_title" name="board_title">
     	<option value="none" selected disabled>===== 게시판 선택 =====</option>
@@ -38,7 +38,7 @@
 	<script>
 		CKEDITOR.replace('contents',{filebrowserUploadUrl:'/mine/imageUpload.do'});
 	</script>
-    <p><input type="submit" value="수정완료" id="submit"></p>
+    <input type="submit" value="수정완료" id="submit" />
     </form>
 </section>
 <%@ include file="../../views/home/footer.jsp"%>

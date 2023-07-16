@@ -57,14 +57,40 @@ public class PlaceController {
 	}
 
 	@RequestMapping("/travelspot/post")
-	public ModelAndView showPost(@RequestParam int contentId) {
+	public ModelAndView showPost(@RequestParam int contentId, HttpSession session) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
-		//조회수 증가
-		placeservice.plusViewCount(contentId);
+		
+		placeservice.plusViewCount(contentId);//조회수 증가
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelspot_post");
+		mv.addObject("userdto", userdto);
 		mv.addObject("placedto", placedto);
+		
 		return mv;		
+	}
+	
+	@RequestMapping("/travelspot/post/likes")
+	@ResponseBody
+	public String showPostLikes(@RequestParam int contentId, HttpSession session) {
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		map.put("user_id", userdto.getId());
+		map.put("place_id", contentId);
+		
+		String response="fail";
+		
+		if( placeservice.CheckPlaceLikes(map)== null || placeservice.CheckPlaceLikes(map) == 0 ) { //이미 찜되어있는 게시글이면
+			placeservice.likePlace(contentId); //place테이블에서 찜하기
+			placeservice.insertLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
+			response = "success";
+		}
+
+		return response;		
 	}
 	
 	@GetMapping("/travelspot/post/images")
@@ -106,6 +132,27 @@ public class PlaceController {
 		mv.setViewName("travelspot_post_theme");
 		mv.addObject("placedto", placedto);
 		return mv;		
+	}
+	
+	@RequestMapping("/travelspot/themepost/likes")
+	@ResponseBody
+	public String showThemePostLikes(@RequestParam int contentId, HttpSession session) {
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		map.put("user_id", userdto.getId());
+		map.put("place_id", contentId);
+		
+		String response="fail";
+		
+		if( placeservice.CheckPlaceLikes(map)== null || placeservice.CheckPlaceLikes(map) == 0 ) { //이미 찜되어있는 게시글이면
+			placeservice.likePlace(contentId); //place테이블에서 찜하기
+			placeservice.insertLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
+			response = "success";
+		}
+
+		return response;		
 	}
 	
 	@GetMapping("/travelspot/post/themeimages")

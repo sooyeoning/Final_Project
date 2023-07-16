@@ -25,4 +25,7 @@ public interface PlaceMapper {
 	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param);
 	 public PlaceContentsDTO getPlaceContentThemeDetail(int contentId);
 	 public PlaceDTO getPlaceThemeDetail(int id);
+	 public void likePlace(int contentId); //관광지 찜하기
+	 public Integer CheckPlaceLikes(HashMap<String, Integer> map);//관광지 찜 체크
+	 public void insertLikes(HashMap<String, Integer> map);
 }

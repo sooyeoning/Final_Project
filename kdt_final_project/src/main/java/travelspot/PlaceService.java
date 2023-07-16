@@ -20,5 +20,8 @@ public interface PlaceService {
 	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param);
 	 public PlaceContentsDTO getPlaceContentThemeDetail(int contentId);
 	 public PlaceDTO getPlaceThemeDetail(int id);
+	 public void likePlace(int contentId);
+	 public Integer CheckPlaceLikes(HashMap<String, Integer> map);
+	 public void insertLikes(HashMap<String, Integer> map);
 
 }

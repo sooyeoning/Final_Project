@@ -68,9 +68,12 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 	   totalPage = (totalCnt/9) +1;
    }%>
    <div class="pages">
+   		<p style="font-size: 20px; display: inline-block"> ◀ </p>
    <% for(int i=1; i<=totalPage; i++){  %>
 	   <a href="list?areaCode=<%=areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
   <% } %>
+  		<p style="font-size: 20px; display: inline-block;"> ▶</p>
+  
   </div>
   
 <!-- 스크롤: 위치 수정 필요 -->

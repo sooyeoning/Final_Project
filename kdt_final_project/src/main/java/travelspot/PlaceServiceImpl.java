@@ -88,4 +88,19 @@ public class PlaceServiceImpl implements PlaceService {
 		placemapper.plusViewCount(contentId);
 	}
 
+	@Override
+	public void likePlace(int contentId) {
+		placemapper.likePlace(contentId);
+	}
+
+	@Override
+	public Integer CheckPlaceLikes(HashMap<String, Integer> map) {
+		return placemapper.CheckPlaceLikes(map);
+	}
+
+	@Override
+	public void insertLikes(HashMap<String, Integer> map) {
+		placemapper.insertLikes(map);
+	}
+
 }

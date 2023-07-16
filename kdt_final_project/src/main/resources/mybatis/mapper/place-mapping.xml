@@ -25,7 +25,7 @@
 
 <!-- 여행지 게시글 전체 조회(페이징0)-->
 <select id="listPlaces" parameterType="hashmap" resultType="placeDTO">
-	select*from place where areaCode=#{areaCode} limit #{page},9 ; 
+	select*from place where areaCode=#{areaCode} and image1 != "null" limit #{page},9 ; 
 </select>
 
 <!-- 여행지 게시글 한개 조회-->
@@ -40,7 +40,22 @@
 
 <!-- 게시글 수 조회 -->
 <select id="getTotalCnt" parameterType="int" resultType="int">
-	select count(*) from place where areaCode=#{areaCode};
+	select count(*) from place where areaCode=#{areaCode} and image1 != "null" ;
+</select>
+
+<!-- 게시글 찜 -->
+<update id="likePlace" parameterType="int">
+	update place set likecnt=likecnt+1 where contentId=#{contentId};
+</update>
+
+<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
+<insert id="insertLikes" parameterType="hashmap">
+	insert into likes(like_check, user_id, place_id) values(1, #{user_id}, #{place_id});
+</insert>
+
+<!-- 해당 유저가 해당 게시물 찜 여부 확인 -->
+<select id="CheckPlaceLikes" parameterType="hashmap" resultType="integer">
+	select like_check from likes where place_id=#{place_id} and user_id=#{user_id};
 </select>
 
 <!-- 테마 게시글 조회 
@@ -50,7 +65,7 @@
 -->
 <!-- 테마 게시글 수 조회 -->
 <select id="getTotalThemeCnt" parameterType="String" resultType="int">
-	select count(*) from place where theme=#{theme};
+	select count(*) from place where theme=#{theme} and image1 != "null" ;
 </select>
 
 <!-- 테마별 여행지 정보 저장(관광지) -->

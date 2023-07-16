@@ -18,9 +18,17 @@ $(document).ready(function() {
 
 	//좋아요 클릭
 	$("#like").click(function(){
-		alert("해당 관광지에 좋아요를 누르셨습니다!");
 		$.ajax({
-			
+			url: "/travelspot/post/likes?contentId=" + contentId,
+			type: 'get',
+			success: function(response) {	
+				if($.trim(response) == "success"){
+				alert("해당 관광지에 좋아요를 누르셨습니다!");
+				} else {
+				 alert("해당 관광지에 이미 좋아요를 누르셨습니다!");
+				}
+			},
+			error: function() { }
 		});
 	});
 	

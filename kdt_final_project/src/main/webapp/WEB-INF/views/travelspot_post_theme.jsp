@@ -20,7 +20,9 @@
 <%@ include file="../views/home/header.jsp"%>
  
 <!-- 관광명소이름 -->
-<div class="font_title margin"> ${placedto.title} </div>
+<div class="font_title margin"> ${placedto.title}
+<img src="../img/heart (2).png" id="like" style="float:right">
+</div>
 
 <!-- 관광명소 메뉴바 -->
 <hr class="hrmargin">

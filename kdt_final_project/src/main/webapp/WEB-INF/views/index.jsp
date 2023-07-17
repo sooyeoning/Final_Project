@@ -23,6 +23,8 @@
 <!-- footer -->
 <%@ include file="../views/home/footer.jsp"%>
 
+<%@ include file="../views/home/weather.jsp" %>
+
 
 </body>
 </html>

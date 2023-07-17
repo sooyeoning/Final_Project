@@ -23,5 +23,8 @@ public interface PlaceService {
 	 public void likePlace(int contentId);
 	 public Integer CheckPlaceLikes(HashMap<String, Integer> map);
 	 public void insertLikes(HashMap<String, Integer> map);
-
+	 public List<PlaceDTO> searchPlace(HashMap<String, Object> map);
+	public int searchPlaceCnt(HashMap<String, Object> map);
+	 public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map);//테마검색
+	 public int searchThemePlacesCnt(HashMap<String, Object> map);
 }

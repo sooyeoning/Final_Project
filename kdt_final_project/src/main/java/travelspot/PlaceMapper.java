@@ -28,4 +28,9 @@ public interface PlaceMapper {
 	 public void likePlace(int contentId); //관광지 찜하기
 	 public Integer CheckPlaceLikes(HashMap<String, Integer> map);//관광지 찜 체크
 	 public void insertLikes(HashMap<String, Integer> map);
+	 public List<PlaceDTO> searchPlace(HashMap<String, Object> map); //검색 관광지 리스트
+	 public int searchPlaceCnt(HashMap<String, Object> map);
+	 public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map);//테마검색
+	 public int searchThemePlacesCnt(HashMap<String, Object> map);
 }
+

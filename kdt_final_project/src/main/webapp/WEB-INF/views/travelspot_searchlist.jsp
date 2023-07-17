@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
@@ -9,7 +10,6 @@
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
- <link rel="stylesheet" href="searchForm.css">
 <script src="http://localhost:8099/js/travelspot_list.js"></script>
 
 </head>
@@ -64,18 +64,28 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 </div>
   
    <%
-   int areaCode = (Integer)request.getAttribute("areaCode");
-   int totalCnt = (Integer)request.getAttribute("totalCnt");
+   HashMap<String, Object> searchmap = (HashMap)request.getAttribute("searchmap");
+   String searchitem = (String)searchmap.get("searchitem");
+   String searchword = (String)searchmap.get("colvalue");
+   int totalBoardCnt = (Integer)request.getAttribute("totalCnt");
    int totalPage = 0;
-   if(totalCnt%9==0){
-	   totalPage = totalCnt/9;
+   if(totalBoardCnt%9==0){
+	   totalPage = totalBoardCnt/9;
    }else {
-	   totalPage = (totalCnt/9) +1;
-   }%>
+	   totalPage = (totalBoardCnt/9) +1;
+   }
+   
+   %>
    <div class="pages">
    		<p style="font-size: 20px; display: inline-block"> ◀ </p>
-   <% for(int i=1; i<=totalPage; i++){  %>
-	   <a href="list?areaCode=<%= areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
+   <%  for(int i=1; i<=totalPage; i++){ 
+	   String stringi = String.valueOf(i); %>
+	 <c:url var="url" value="/travelspot/search"> 
+ 		<c:param name="item" value="<%=searchitem %>" /> 
+ 		<c:param name="searchword" value="<%=searchword %>" /> 
+		<c:param name="page" value="<%=stringi %>" /> 
+	</c:url> 
+	<a style="font-size: 20px;" href="<c:out value= "${url}" />"><%=stringi %></a>	   
   <% } %>
   		<p style="font-size: 20px; display: inline-block;"> ▶</p>
   

@@ -33,9 +33,9 @@ public class PlaceController {
 	//기본 관광지
 	@RequestMapping("/travelspot/list")
 	public ModelAndView showList(
-			@RequestParam(required = true, defaultValue = "32") int areaCode,
-			@RequestParam(required = true, defaultValue = "1") int page,
-			HttpSession session) throws Exception {
+		@RequestParam(required = true, defaultValue = "32") int areaCode,
+		@RequestParam(required = true, defaultValue = "1") int page,
+		HttpSession session) throws Exception {
 		//데이터 저장: apiservice.getBasicInfo(areaCode);
 		//테마별 info 저장: apiservice.getThemeInfo();
 		
@@ -55,6 +55,39 @@ public class PlaceController {
 		mv.setViewName("travelspot_list");
 		return mv;
 	}
+	
+	// 검색한 게시글 조회
+	@RequestMapping("/travelspot/search")
+	public ModelAndView searchPlace(
+			@RequestParam(value="item", required=false, defaultValue="주소")String item, 
+			@RequestParam(value="searchword", required=false, defaultValue="강원")String searchword, 
+			@RequestParam(value="page", required=false, defaultValue="1")int page) {
+
+			// 검색 조건으로 검색한 게시글 리스트, 게시글수
+			HashMap<String, Object> map = new HashMap<>();
+
+			if (item.equals("장소명")) {
+				map.put("colname", "title");
+			}
+			if (item.equals("주소")) {
+				map.put("colname", "address");
+			}
+			
+			map.put("searchitem", item);
+			map.put("colvalue", "%"+searchword+"%");
+			map.put("limitindex",(page-1)*9 );
+			map.put("limitcount",9);
+			
+			List<PlaceDTO> placelist = placeservice.searchPlace(map);
+			int totalCnt = placeservice.searchPlaceCnt(map);
+
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("placelist", placelist);
+			mv.addObject("searchmap", map);
+			mv.addObject("totalCnt", totalCnt);
+			mv.setViewName("travelspot_searchlist");
+			return mv;
+		}
 
 	@RequestMapping("/travelspot/post")
 	public ModelAndView showPost(@RequestParam int contentId, HttpSession session) {
@@ -124,7 +157,40 @@ public class PlaceController {
 		mv.setViewName("travelspot_list_theme");
 		return mv;
 	}
-	
+		
+	// 검색한 게시글 조회
+	@RequestMapping("/travelspot/themesearch")
+	public ModelAndView searchThemePlace(
+		@RequestParam(value="item", required=false, defaultValue="주소")String item, 
+		@RequestParam(value="searchword", required=false, defaultValue="강원")String searchword, 
+		@RequestParam(value="page", required=false, defaultValue="1")int page) {
+
+			// 검색 조건으로 검색한 게시글 리스트, 게시글수
+			HashMap<String, Object> map = new HashMap<>();
+
+			if (item.equals("장소명")) {
+				map.put("colname", "title");
+			}
+			if (item.equals("주소")) {
+				map.put("colname", "address");
+			}
+				
+			map.put("searchitem", item);
+			map.put("colvalue", "%"+searchword+"%");
+			map.put("limitindex",(page-1)*9 );
+			map.put("limitcount",9);
+				
+			List<PlaceContentsDTO> placelist = placeservice.searchThemePlaces(map);
+			int totalCnt = placeservice.searchThemePlacesCnt(map);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("placelist", placelist);
+			mv.addObject("searchmap", map);
+			mv.addObject("totalCnt", totalCnt);
+			mv.setViewName("travelspot_searchlist_theme");
+			return mv;
+		}
+		
 	@RequestMapping("/travelspot/themepost")
 	public ModelAndView showThemePost(@RequestParam int contentId) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);

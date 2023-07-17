@@ -103,4 +103,36 @@ public class PlaceServiceImpl implements PlaceService {
 		placemapper.insertLikes(map);
 	}
 
+	@Override
+	public List<PlaceDTO> searchPlace(HashMap<String, Object> map) {
+		return placemapper.searchPlace(map);
+	}
+
+	@Override
+	public int searchPlaceCnt(HashMap<String, Object> map) {
+		return placemapper.searchPlaceCnt(map);
+	}
+
+	/*
+	@Override
+	public List<PlaceContentsDTO> searchThemePlace(HashMap<String, Object> map) {
+		return placemapper.searchThemePlace(map);
+	}
+
+	@Override
+	public int searchThemePlaceCnt(HashMap<String, Object> map) {
+		return placemapper.searchThemePlaceCnt(map);
+	}
+*/
+
+	@Override
+	public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map) {
+		return placemapper.searchThemePlaces(map);
+	}
+
+	@Override
+	public int searchThemePlacesCnt(HashMap<String, Object> map) {
+		return placemapper.searchThemePlacesCnt(map);
+	}
+
 }

@@ -35,18 +35,18 @@
 <textarea id="contents" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea><br>
 <input class="savebutton" type="submit" value="저장">
 </form>
-</div>
-				
+</div>			
+
 <!-- 댓글 노출 https://chlee21.tistory.com/156 참고-->
 <c:forEach items="${commentsList }" var="comments">
 <div class="comments-outerbox"><div class="comments-innerbox">
+<p style="font-weight: bold;">${comments.writer }</p>
+<p> ${comments.writingtime}</p> 
 <p>${comments.contents }</p>
-<p>닉네임 ${comments.writer }</p>
-<p>작성일자 ${comments.writingtime}</p> 
 <!-- 작성자에게만 보이는 버튼 -->
-<input class="deletebutton" type="button" value="삭제">
-<input class="updatebutton" type="button" value="수정">
-
+<button class="deletebutton">삭제</button>
+<button class="updatebutton">수정</button>
+ 
 </div></div>
 </c:forEach>
 

@@ -76,8 +76,10 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			$('div[class="comments"]').html('');
 			for(var i in map.commentsList){
 				$('div[class="comments"]').append(
-					`<div class="comments-outerbox"><div class="comments-innerbox"><p>${map.commentsList[i].contents}</p>
-					<p>닉네임 ${map.commentsList[i].writer}</p><p>작성일자 ${map.commentsList[i].writingtime}</p>`+
+					`<div class="comments-outerbox"><div class="comments-innerbox">
+					<p style="font-weight: bold;">${map.commentsList[i].writer }</p><p> ${map.commentsList[i].writingtime}</p> 
+					<p>${map.commentsList[i].contents}</p>
+					`+
 					(map.userdto == map.commentsList[i].writer ? 
 					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}"></div></div>` : '</div></div>')
 					);

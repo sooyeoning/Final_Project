@@ -70,9 +70,8 @@
 
 .item {
   width: 28%; /* 3칸을 만들고 싶으면.. 26 ~ 33%로..*/
-  height: 40vh;
-  padding-top: 5px;
-  margin: 0 0 50px 0; /*행간 간격: 100px 조정*/
+  height: 245.76px;
+  margin: 10px 0 50px 0; /*행간 간격: 100px 조정*/
 }
 
 /* 관광명소 상세페이지 */
@@ -119,22 +118,10 @@ width: 100%;
 .textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
 	padding: 10px;
-	border-bottom: solid 1px #2463d3;
-	width: 60vw;
+	border: solid 1px #2463d3;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
 }
 
-.comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
-	resize: none;
-	padding: 10px;
-	border-bottom: solid 1px #2463d3;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	width: 60vw;
-	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
-	margin-bottom: 2%;
-}
 .savebutton{
 	width: 8%;
 	text-align: center;
@@ -149,28 +136,28 @@ width: 100%;
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 100%-40px;
 	padding: 3%;
-	border-bottom: solid 1px #2463d3;
+	border-bottom: solid  1px #2463d3;
 }
 
 .comments-innerbox{ /*작성된 댓글 보여주는 안 상자*/
 	
 }
 
-.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
+.updatebutton, .deletebutton{
 	width: 6%;
 	text-align: center;
 	background-color: #2463d3;
 	border: none;
 	color: white; /*글씨색상*/
 	padding: 0.5%;
-	margin: 0 17px 0 0;
+	margin: 0 17px 10px 0;
 	float: right;
 	/*오른쪽 끝 정렬*/
 }
 
 /* 테마별 장소리스트(list_theme) 페이지*/
 .themeContainer {
-  width:66vw;
+  width:66%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* 복수의 행*/
@@ -178,83 +165,18 @@ width: 100%;
 }
 
 .themeItem-list { /*지역명 나열*/
-  width: 14vw;
+  width: 14%;
   margin: 0 auto; /*행간 간격: 100px 조정*/
 }
 
 .theme-list { /*6개 이미지 틀*/
-text-align: center;
+    border-radius: 0%;
+    height: 100%; /*동그라미*/
+/*	overflow: hidden; /*넘치는 부분은 감춘다*/
 }
 
 .themeprofile { /*이미지*/
     width: 100%; 
-  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/ 
+  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/    
 }
 
-.pages{
-	margin: 0 auto;
-	text-align: center;
-}
-
-.search-form {
-  display: flex;
-  float: right;
-  max-width: 30em;
-  width:68%;
-  margin: 1% 17% 2% 0;
-}
-
-.search-input {
-  padding: 3px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  flex: 1;
-  box-sizing: border-box;
-  width: 15em;
-  height: 35px;
-  top: 158px;
-  background: #FFFFFF;
-  border: 1px solid #2463D3;
-}
-
-.search-button {
-  padding: 3px 8px;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  width: 5em;
-  height: 35px;
-  top: 158px;
-  background: #9FC4FF;
-  font-size: 16px;
-  margin-left: 8px;
-  cursor: pointer;
-}
-
-.search-label {
-  font-size: 40px;
-  font-weight: bold;
-  margin-right: 8px;
-}
-
-.search-item {
-  width: 15em;
-  height: 35px;
-  margin-right: 10px;
-  padding-left: 10px;
-  border-radius: 4px;
-  font-size: 16px;  
-  border: 1px solid #2463D3;
-  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 1px solid #999;
-  border-radius: 0px;
-}
-
-select::-ms-expand {
-  /* for IE 11 */
-  display: none;
-}

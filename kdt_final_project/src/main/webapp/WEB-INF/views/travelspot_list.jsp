@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>위트</title>
+<title>여행지 목록</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
@@ -36,32 +36,24 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 <br>
 <hr class="hrmargin">
 
-<!-- 검색창 -->
-	<form action="/travelspot/search" method="get" class="search-form">
-	<select name="item" class="search-item">
-      	<option>장소명</option>
-      	<option>주소</option>
-    </select>
-    <input type="text" id="search-input" name="searchword" class="search-input" placeholder="검색어를 입력하세요">
-    <input type="submit" value="검색" class="search-button">
-  </form>
-  
 <div class="container">
 
 <c:forEach items="${placelist }" var="placeDTO">
- <div class="item" > <!-- style="border: 0.3px solid #2463d3" -->
+ <div class="item">
  	<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
-  	<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
-  	<h1 class="placeLocation font_content" id=${placeDTO.contentId}></h1>
-	<p>${placeDTO.address}</p><br>
-	<p style="display:inline; float: left;">조회수 ${placeDTO.viewcnt }</p>
-  	<p style="display:inline; float:right;">좋아요 ${placeDTO.likecnt }</p>
-  	<br>
-
+  	<p class="placeName font_title" id=${placeDTO.contentId}> ${placeDTO.title}</p>
+  	<h1 class="placeLocation font_content" id=${placeDTO.contentId}>
+	${placeDTO.address}
+  	</h1>
   </div>
 </c:forEach>
  
 </div>
+	<!-- 검색창 -->
+	<form action="/search" method="get" class="search-form">
+    <input type="text" id="search-input" name="q" class="search-input" placeholder="검색어를 입력하세요...">
+    <input type="submit" value="검색" class="search-button">
+  </form>
   
    <%
    int areaCode = (Integer)request.getAttribute("areaCode");
@@ -73,12 +65,9 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 	   totalPage = (totalCnt/9) +1;
    }%>
    <div class="pages">
-   		<p style="font-size: 20px; display: inline-block"> ◀ </p>
    <% for(int i=1; i<=totalPage; i++){  %>
-	   <a href="list?areaCode=<%= areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
+	   <a href="list?areaCode=<%=areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
   <% } %>
-  		<p style="font-size: 20px; display: inline-block;"> ▶</p>
-  
   </div>
   
 <!-- 스크롤: 위치 수정 필요 -->

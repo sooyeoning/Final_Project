@@ -119,10 +119,22 @@ width: 100%;
 .textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
 	padding: 10px;
-	border: solid 1px #2463d3;
+	border-bottom: solid 1px #2463d3;
+	width: 60vw;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
 }
 
+.comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
+	resize: none;
+	padding: 10px;
+	border-bottom: solid 1px #2463d3;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	width: 60vw;
+	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
+	margin-bottom: 2%;
+}
 .savebutton{
 	width: 8%;
 	text-align: center;
@@ -137,21 +149,21 @@ width: 100%;
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 100%-40px;
 	padding: 3%;
-	border-bottom: solid  1px #2463d3;
+	border-bottom: solid 1px #2463d3;
 }
 
 .comments-innerbox{ /*작성된 댓글 보여주는 안 상자*/
 	
 }
 
-.updatebutton, .deletebutton{
+.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
 	width: 6%;
 	text-align: center;
 	background-color: #2463d3;
 	border: none;
 	color: white; /*글씨색상*/
 	padding: 0.5%;
-	margin: 0 17px 10px 0;
+	margin: 0 17px 0 0;
 	float: right;
 	/*오른쪽 끝 정렬*/
 }

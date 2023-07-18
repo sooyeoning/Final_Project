@@ -3,7 +3,7 @@ $(document).ready(function() {
 	//js url parameter 가져오기
 	let urlParams = new URL(location.href).searchParams;
 	let contentId = urlParams.get('contentId');
-
+	document.get
 	imageAjax(); //기본페이지: 사진모아보기로 설정
 
 	$('#images').click(function() {
@@ -18,7 +18,10 @@ $(document).ready(function() {
 
 	//좋아요 클릭
 	$("#like").click(function(){
-		$.ajax({
+		if(document.getElementById('like_id').value == "null"){
+			alert("찜하기 기능은 로그인 후 사용가능합니다.")
+		} else {
+			$.ajax({
 			url: "/travelspot/post/likes?contentId=" + contentId,
 			type: 'get',
 			success: function(response) {	
@@ -30,6 +33,7 @@ $(document).ready(function() {
 			},
 			error: function() { }
 		});
+		}
 	});
 	
 	function imageAjax() {

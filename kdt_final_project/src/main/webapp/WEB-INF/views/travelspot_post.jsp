@@ -21,9 +21,8 @@
  
 <!-- 관광명소이름 -->
 <div class="font_title margin"> ${placedto.title} 
-<% if(request.getAttribute("userdto")!=null){ %>
 <img src="../img/heart (2).png" id="like" style="float:right">
-<%} %>
+<input type="hidden" id="like_id" value="${userdto}"/>
 </div>
 
 <!-- 관광명소 메뉴바 -->

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,11 +96,16 @@ public class PlaceController {
 		
 		placeservice.plusViewCount(contentId);//조회수 증가
 		
-		UserDTO userdto = (UserDTO)session.getAttribute("user");
-
 		ModelAndView mv = new ModelAndView();
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		if(ObjectUtils.isEmpty(userdto)) {
+			mv.addObject("userdto", "null");
+		}else {
+			mv.addObject("userdto", userdto);
+		}
+
 		mv.setViewName("travelspot_post");
-		mv.addObject("userdto", userdto);
 		mv.addObject("placedto", placedto);
 		
 		return mv;		
@@ -198,12 +204,17 @@ public class PlaceController {
 	public ModelAndView showThemePost(@RequestParam int contentId, HttpSession session) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
 		
-		UserDTO userdto = (UserDTO)session.getAttribute("user");
-		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("travelspot_post_theme");
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		if(ObjectUtils.isEmpty(userdto)) {
+			mv.addObject("userdto", "null");
+		}else {
+			mv.addObject("userdto", userdto);
+		}
+		
 		mv.addObject("placedto", placedto);
-		mv.addObject("userdto", userdto);
+		mv.setViewName("travelspot_post_theme");
 		return mv;		
 	}
 	

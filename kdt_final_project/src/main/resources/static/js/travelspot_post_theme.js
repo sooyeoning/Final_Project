@@ -16,6 +16,9 @@ $(document).ready(function() {
 
 	//좋아요 클릭
 	$("#like").click(function(){
+		if(document.getElementById('like_id').value == "null"){
+			alert("찜하기 기능은 로그인 후 사용가능합니다.")
+		} else{
 		$.ajax({
 			url: "/travelspot/themepost/likes?contentId=" + contentId,
 			type: 'get',
@@ -28,6 +31,7 @@ $(document).ready(function() {
 			},
 			error: function() { }
 		});
+		}
 	});
 	
 	function imageAjax() {

@@ -33,5 +33,9 @@
 	WHERE id = #{id}
 </update>
 
+<delete id="deleteBoard" parameterType="boarddto">
+	DELETE FROM board WHERE id = #{id};
+</delete>
+
 
 </mapper>

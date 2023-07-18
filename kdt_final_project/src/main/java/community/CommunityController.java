@@ -97,6 +97,7 @@ public class CommunityController {
 	    return mv;
 	}
 	
+	//수정 완료 눌렀을 때
 	@PostMapping("/update")
 	public String updateBoard(HttpServletRequest request) {
 	    int boardId = Integer.parseInt(request.getParameter("id"));
@@ -115,4 +116,25 @@ public class CommunityController {
 	    // 수정된 글을 보여줄 detail 페이지로 리다이렉트
 	    return "redirect:/detail?boardId=" + boardId;
 	}
+	
+	// 삭제버튼 눌렀을 때 게시글 삭제
+	@GetMapping("/delete")
+	public String deleteBoard(HttpServletRequest request, Model model) {
+	    int boardId = Integer.parseInt(request.getParameter("boardId"));
+	    BoardDTO board = boardService.getBoardById(boardId);
+	    boardService.deleteBoard(board);
+
+	    model.addAttribute("boardId", boardId);
+	    return "board/delete"; // delete.jsp로 이동
+	}
+
+	
+	@RequestMapping("/delete")
+	public String showDeletePage(HttpServletRequest request) {
+	    return "board/delete";
+	}
+
+	
+
+
 }

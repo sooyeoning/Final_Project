@@ -28,7 +28,7 @@
     	<c:choose>
         	<c:when test="${board.writer eq nickname}">
             	<a href="/update?boardId=${board.id }">수정</a>
-            	<button>삭제</button>
+            	<a href="/delete?boardId=${board.id }">삭제</a>
             </c:when>
             <c:otherwise>
                 <button>신고</button>

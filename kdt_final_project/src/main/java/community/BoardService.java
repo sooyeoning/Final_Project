@@ -8,4 +8,5 @@ public interface BoardService {
 	List<BoardDTO> getTop10Boards(); // Top 10 Board 목록을 가져오는 메서드
 	BoardDTO getBoardById(int boardId);
 	void updateBoard(BoardDTO board);
+	void deleteBoard(BoardDTO board);
 }

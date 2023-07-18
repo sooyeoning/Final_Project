@@ -14,4 +14,5 @@ public class IndexController {
 	public String EngIndex() {
 		return "index(Eng)"; 
 	}
+	
 }

@@ -77,7 +77,7 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			for(var i in map.commentsList){
 				$('div[class="comments"]').append(
 					`<div class="comments-outerbox"><div class="comments-innerbox">
-					<p style="font-weight: bold;">${map.commentsList[i].writer }</p><p> ${map.commentsList[i].writingtime}</p> 
+					<p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> 
 					<p>${map.commentsList[i].contents}</p>
 					`+
 					(map.userdto == map.commentsList[i].writer ? 

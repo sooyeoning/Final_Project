@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>위트</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" href="img/favicon.png">
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/writing.css" />
 <script src = "ckeditor/ckeditor.js"></script>

@@ -70,19 +70,18 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${boardList}" var="board" varStatus="loop">
-    <c:if test="${board.board_title == '여행기록' && !top10Ids.contains(board.id) && loop.index >= 10}">
-        <tr>
-            <td>${board.id}</td>
-            <td>${board.place}</td>
-            <td><a href="boarddetail?seq=${board.id}">${board.title}</a></td>
-            <td>${board.writer}</td>
-            <td>${board.views}</td>
-            <td>${board.likecount}</td>
-            <td>${board.writingtime}</td>
-        </tr>
-    </c:if>
-</c:forEach>
-
+    				<c:if test="${board.board_title == '여행기록' && !top10Ids.contains(board.id) && loop.index >= 10}">
+        				<tr>
+            				<td>${board.id}</td>
+            				<td>${board.place}</td>
+            				<td><a href="${pageContext.request.contextPath}/detail?boardId=${board.id}">${board.title}</a></td>
+            				<td>${board.writer}</td>
+            				<td>${board.views}</td>
+            				<td>${board.likecount}</td>
+            				<td>${board.writingtime}</td>
+        				</tr>
+    				</c:if>
+				</c:forEach>
 			</tbody>
 		</table>
 		<ol class="pageNum">
@@ -111,7 +110,7 @@
 						<tr>
 							<td>${board.id }</td>
 							<td>${board.place }</td>
-							<td><a href="boarddetail?seq=${board.id }">${board.title }</a></td>
+							<td><a href="${pageContext.request.contextPath}/detail?boardId=${board.id}">${board.title}</a></td>
 							<td>${board.writer }</td>
 							<td>${board.views }</td>
 							<td>${board.likecount }</td>

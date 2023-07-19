@@ -1,3 +1,4 @@
+<%@ page import="travelspot.PlaceDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -9,17 +10,21 @@
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
-<script src="http://localhost:8099/js/travelspot_post.js"></script>
+<script src="http://localhost:8099/js/travelspot_post_theme.js"></script>
+<script src="http://localhost:8099/js/travelspot_comment.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
 <%@ include file="../views/home/header.jsp"%>
-
+ 
 <!-- 관광명소이름 -->
-<div class="font_title margin"> ${placedto.title} </div>
-<p>${placedto.seq}</p>
+<div class="font_title margin"> ${placedto.title}
+<img src="../img/heart (2).png" id="like" style="float:right">
+<input type="hidden" id="like_id" value="${userdto}"/>
+
+</div>
 
 <!-- 관광명소 메뉴바 -->
 <hr class="hrmargin">
@@ -30,29 +35,10 @@
 </div>
 <hr class="hrmargin">
 
-<div class="textarea-outerbox">
-<p class="font_content">여행지 한줄평💭</p><br>  
-<textarea id="contents" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea><br>
-<input class="savebutton" type="submit" value="저장">
-</form>
-</div>			
-
-<!-- 댓글 노출 https://chlee21.tistory.com/156 참고-->
-<c:forEach items="${commentsList }" var="comments">
-<div class="comments-outerbox"><div class="comments-innerbox">
-<p style="font-weight: bold;">${comments.writer }</p>
-<p> ${comments.writingtime}</p> 
-<!-- 작성자에게만 보이는 버튼 -->
-<button class="deletebutton">삭제</button>
-<button class="updatebutton">수정</button>
-<p>${comments.contents }</p>
- 
-</div></div>
-</c:forEach>
+<div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
 
 <div style="position:fixed; bottom:3%; right:-10%;">
 <a href="#"><img src="../img/top.png" width="5%" height="5%"></a></div>
-
 <!-- 개선사항 -->
 <!-- 여행지 사진 모아보기 아래 구분선만 색 변경x -->
 <!-- 댓글 작성하는 textarea 글씨(not bod)로 변경-->

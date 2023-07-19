@@ -206,4 +206,3 @@ function modifyComment(){ //댓글 수정 기능
 
 
 });//ready end
-

@@ -5,9 +5,10 @@
 <head>
   <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>고객센터</title>
 
-    <link rel="stylesheet" type = "text/css" href="css/main2.css">
+    <link rel="stylesheet" type = "text/css" href="css/FAQ/main2.css">
 
 </head>
 <body>
@@ -18,7 +19,7 @@
   <main>
 	  <div class="section-container">
 		  
-    <section class="left-section">
+    <div class="left-section">
       <!-- 왼쪽 섹션 -->
       <h2>문의 분류</h2>
       <br>
@@ -29,9 +30,9 @@
   <li><a href="/FAQ04">프로필 관련</a></li>
   <li><a href="FAQ">이용 문의</a></li>
 </ul>
-    </section>
+    </div>
     
-    <section class="right-section">
+    <div class="right-section">
       <!-- 오른쪽 섹션 -->
             <h2>일반</h2>
   
@@ -39,7 +40,7 @@
   <div class="post-number">1</div>
   <div class="post-title">다른 기기로 로그인했을 때 로그아웃 기능을 제공하나요?</div>
 <div class="expand-button">
-  <img class="dropdown" src="img/dropdown.png" onclick="toggleContent(1)">
+  <img class="dropdown" src="css/FAQ/dropdown.png" onclick="toggleContent(1)">
 </div>
 </div>
   <div id="content-1" class="expanded-content">
@@ -52,7 +53,7 @@
   <div class="post-number">2</div>
   <div class="post-title">위치정보 이용에 동의하지 않으면 어떻게 되나요?</div>
 <div class="expand-button">
-  <img class="dropdown" src="img/dropdown.png" onclick="toggleContent(2)">
+  <img class="dropdown" src="css/FAQ/dropdown.png" onclick="toggleContent(2)">
 </div>
   </div>
   <div id="content-2" class="expanded-content">
@@ -84,7 +85,7 @@
   <div class="post-number">3</div>
   <div class="post-title">최근 검색 기능에 표시된 내용을 삭제하고 더이상 사용하고 싶지 않아요. 어떻게 하나요?</div>
 <div class="expand-button">
-  <img class="dropdown" src="img/dropdown.png" onclick="toggleContent(3)">
+  <img class="dropdown" src="css/FAQ/dropdown.png" onclick="toggleContent(3)">
 </div>
   </div>
   <div id="content-3" class="expanded-content">
@@ -105,7 +106,7 @@
   <div class="post-number">4</div>
   <div class="post-title">커뮤니티 탭과 여행지 추천 탭의 검색결과가 왜 다른가요?</div>
 <div class="expand-button">
-  <img class="dropdown" src="img/dropdown.png" onclick="toggleContent(4)">
+  <img class="dropdown" src="css/FAQ/dropdown.png" onclick="toggleContent(4)">
 </div>
   </div>
   <div id="content-4" class="expanded-content">
@@ -120,7 +121,7 @@
   <div class="post-number">5</div>
   <div class="post-title"><태블릿>모바일과 다른 언어로 보여요.</div>
 <div class="expand-button">
-  <img class="dropdown" src="img/dropdown.png" onclick="toggleContent(5)">
+  <img class="dropdown" src="css/FAQ/dropdown.png" onclick="toggleContent(5)">
 </div>
   </div>
   <div id="content-5" class="expanded-content">
@@ -128,7 +129,7 @@
 	  휴대폰과 안드로이드 태블릿의 언어가 다르게 설정되어 있는 경우 각각 다르게 표시되는 것이 정상입니다.</p>
 </div>
 
-    </section>
+    </div>
     </div>
   <script>
   function toggleContent(postNumber) {

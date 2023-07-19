@@ -9,4 +9,7 @@ public interface BoardService {
 	BoardDTO getBoardById(int boardId);
 	void updateBoard(BoardDTO board);
 	void deleteBoard(BoardDTO board);
+	
+	// 게시글 조회수 증가 메서드 추가
+    void increaseViewCount(int boardId);
 }

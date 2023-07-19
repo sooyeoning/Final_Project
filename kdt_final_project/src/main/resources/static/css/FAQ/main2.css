@@ -23,7 +23,7 @@ li{
 		format('woff');
 	font-weight: 100;
 	font-style: normal;
-	font-size:14px;
+	font-size:16px;
 
 }
 
@@ -84,29 +84,23 @@ section{
 }
     .section-container {
       display: flex;
-      width: 100%;
     }
     
     .left-section {
-	  margin-left:17%;
-	  margin-top:2%;
+		margin-left:10em;
       flex: 1;
       /* 추가 스타일링 */
       box-sizing: border-box;
       border-right: solid;
-      padding: 12px 40px;
 
     }
 
 
     
-     .right-section {
-      flex: 7;
-      width:100%;
-	  margin-top:2%;
-      margin-right:17%;
+    .right-section {
+	margin-right:10em;
+      flex: 3;
       /* 추가 스타일링 */
-      padding: 12px 40px;
     }
     
      .left-section::before {

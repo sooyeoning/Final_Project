@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +17,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import jakarta.servlet.http.HttpServletRequest;
+import community.BoardDTO;
+import community.BoardService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import travelspot.CommentsDTO;
 
 @Controller
 public class UserController {
 
 	@Autowired
 	UserService service;
+	@Autowired
+	BoardService boardservice;
 
 	@GetMapping("signin")
 	public String signup() {
@@ -126,15 +132,67 @@ public class UserController {
 		return "/user/mypage";
 	}
 	
-	@GetMapping("getRecentVisitedPages")
-	public String recentPages(Model model, HttpSession session) {
+	@GetMapping(value = "/getWrittenPosts", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<?> getWrittenPosts(HttpSession session) {
+	    UserDTO dto = (UserDTO) session.getAttribute("user");
+	    if (dto == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+	                .body("Unauthorized");
+	    }
+
+	    String nickname = dto.getNickname();
+
+	    List<BoardDTO> boardList = service.getBoardListByWriter(nickname);
+	    if (boardList.isEmpty()) {
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    return ResponseEntity.ok(boardList);
+	}
+	
+	@GetMapping(value = "/getCommentListByWriter", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<?> getCommentList(HttpSession session) {
+	    UserDTO dto = (UserDTO) session.getAttribute("user");
+	    if (dto == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+	                .body("Unauthorized");
+	    }
+
+	    String nickname = dto.getNickname();
+
+	    List<CommentsDTO> commentsList = service.getCommentListByWriter(nickname);
+	    if (commentsList.isEmpty()) {
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    return ResponseEntity.ok(commentsList);
+	}
+	
+
+	@GetMapping("/visitedPage")
+	public ResponseEntity<String> visitedPage(@RequestParam("pageUrl") String pageurl, HttpSession session) {
 	    UserDTO user = (UserDTO) session.getAttribute("user");
 	    if (user != null) {
-	        List<String> recentPages = service.getRecentPages(user.getId());
-	        model.addAttribute("recentPages", recentPages);
+	        String user_id = user.getUserid();
+	        service.addVisitedPage(user_id, pageurl);
+	        return ResponseEntity.ok("Visited page added successfully");
 	    }
-	    return "/user/mypage";
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
 	}
+
+
+	@GetMapping("/getRecentVisitedPages")
+	public String getRecentVisitedPages(Model model, HttpSession session) {
+	    UserDTO user = (UserDTO) session.getAttribute("user");
+	    if (user != null) {
+	        List<VisitedDTO> recentVisitedPages = service.getRecentVisitedPages(user.getUserid(), 10);
+	        model.addAttribute("recentVisitedPages", recentVisitedPages);
+	    }
+	    return "user/mypage";
+	}
+
 
 
 
@@ -199,4 +257,4 @@ public class UserController {
 	        return ResponseEntity.ok(resultMap);
 	    }
 	}
-}  
+}

@@ -38,7 +38,7 @@ if (login==null){%>
 </div>
 <%};%>
 <a href="/"><img src=../img/logo.png class="logo"></a>
-<a href="/travelspot/main"><div class="menu" >Recommendation</div></a>
+<a href="/travelspot/list"><div class="menu" >Recommendation</div></a>
 <a href="/community"><div class="menu" >Community</div></a>
 <a href="/mypage"><div class="menu" >MyPage</div></a>
 <a href=""><div class="menu" >Customer service</div></a>

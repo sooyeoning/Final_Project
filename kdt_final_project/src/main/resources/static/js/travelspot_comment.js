@@ -11,14 +11,13 @@ $(document).ready(function() {
 			url: "/travelspot/post/comments?contentId="+contentId,
 			type: 'get',
 			success: function(map) {
-				$('#comments').css("color", "#2463d3");
 				$('div[class="result"]').html(
 				`<div class="textarea-outerbox">
 				<p class="font_content">여행지 한줄평💭</p><br>
-				<textarea id="content" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>`+
-				(map.userdto != "null"? '<input type="button" class="savebutton" value="저장">': '')
-				+`</div></div>`);
+				<textarea id="content" class="textarea-innerbox font_comment" style="width: 60vw" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
+				<input type="button" class="savebutton" value="저장"></div></div>`);
 				$('div[class="result"]').append('<div class="comments"></div>');
+				//(map.userdto != "null"? '<input type="button" class="savebutton" value="저장">': '')
 				
 				getCommentList(); //저장된 댓글 불러오기
 				
@@ -27,7 +26,13 @@ $(document).ready(function() {
 				
 				$('.savebutton').click(function() {
                 	var content = $('#content').val();
-                	//댓글 내용이 빈칸일 경우 체크 필요
+                	if(map.userdto == "null"){ //로그인 체크
+						alert("로그인 후 사용가능합니다.")
+					} else{ //로그인한 회원
+                		if (content === '') { //댓글 내용이 빈칸일 경우 체크
+          					  alert('댓글 내용을 입력해 주세요.');
+          					  return;
+      				 	} else{
               			  $.ajax({
                			     url: "/travelspot/post/comments/save",
                   			 type: 'get',
@@ -38,7 +43,10 @@ $(document).ready(function() {
                  		     },
                     	 	error: function() { }
                			 }); //ajax end
+               		   };//else end 로그인한 회원 + 댓글내용 빈칸x
+               		};//else end
            		 });//savebutton end
+           		 
 			},
 			error: function() { }
 		});
@@ -68,10 +76,11 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			$('div[class="comments"]').html('');
 			for(var i in map.commentsList){
 				$('div[class="comments"]').append(
-					`<div class="comments-outerbox"><div class="comments-innerbox"><p>`+map.commentsList[i].contents +'</p>'+
-					'<p>닉네임 '+map.commentsList[i].writer+'</p><p>작성일자 '+map.commentsList[i].writingtime+
-					(map.userdto == map.commentsList[i].writer ? '</p><input class="deletebutton" type="button" value="삭제" id="'+map.commentsList[i].id+'"><input class="modifybutton" type="button" value="수정"  id="'+map.commentsList[i].id+'">' : '')
-					+`</div></div>`);
+					`<div class="comments-outerbox"><div class="comments-innerbox"><p>${map.commentsList[i].contents}</p>
+					<p>닉네임 ${map.commentsList[i].writer}</p><p>작성일자 ${map.commentsList[i].writingtime}</p>`+
+					(map.userdto == map.commentsList[i].writer ? 
+					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}"></div></div>` : '</div></div>')
+					);
 			}//for 
 			
 			deleteComment();
@@ -82,6 +91,7 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 
 function deleteComment(){ //댓글 삭제 기능
 	$('.deletebutton').click(function(){
+		if(confirm("댓글을 삭제하시겠습니까?")){
 		$.ajax({
 			url: "/travelspot/post/comments/delete?id="+$(this).attr('id'),
 			type: 'get',
@@ -89,7 +99,7 @@ function deleteComment(){ //댓글 삭제 기능
 			  getCommentList(); //댓글 등록 후 새로운 댓글 포함된 댓글리스트 가져와서 출력	
 			}
 		});//ajax end
-	
+	}
 	});//deletebtn end
 }//deleteComment end
 
@@ -102,7 +112,7 @@ function modifyComment(){ //댓글 수정 기능
 			  //수정할 댓글 부분 textarea 생성 > 버튼 2개(취소, 저장)
 			  	$('div[class="comments"]').html('');
 				$('div[class="comments"]').append(
-					`<div class="comments-outerbox"><div class="comments-innerbox"><input type="textarea" id="content_modify" class="textarea-innerbox font_comment" cols="110" rows="4" placeholder="`+commentsdto.contents +`">		
+					`<div class="comments-outerbox"><div class="comments-innerbox"><input type="textarea" id="content_modify" class="comment-textarea-innerbox font_comment" placeholder="`+commentsdto.contents +`">		
 					<p>닉네임 `+commentsdto.writer+`</p><p>작성일자 `+commentsdto.writingtime+
 					`</p><input class="modify_savebtn" type="button" value="저장" id="`+commentsdto.id+`"><input class="modify_cancelbtn" type="button" value="취소" id="`+commentsdto.id
 					+`"></div></div>`);
@@ -110,8 +120,12 @@ function modifyComment(){ //댓글 수정 기능
 				//저장버튼 클릭시 이벤트
 				$('.modify_savebtn').click(function(){
 					var content = $('#content_modify').val();
-					console.log(content);
-					$.ajax({
+					if (content === '') { //댓글 내용이 빈칸일 경우 체크
+          				alert('댓글 내용을 입력해 주세요.');
+          				return;
+          			} else{
+					//console.log(content);
+					 $.ajax({
 						url: "/travelspot/post/comments/modify_save?id="+$(this).attr('id'),
 						data: {'contentId': contentId, 'contents': content},
 						type: "get",
@@ -119,7 +133,8 @@ function modifyComment(){ //댓글 수정 기능
 					 	  getCommentList(); //댓글 등록 후 새로운 댓글 포함된 댓글리스트 가져와서 출력	
 						}
 						
-					})//ajax	
+					 })//ajax	
+					}
 				})//modify_savebtn
 				
 				//취소버튼 클릭시 이벤트

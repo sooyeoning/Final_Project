@@ -6,7 +6,11 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;;
+import org.springframework.stereotype.Repository;
+
+import community.BoardDTO;
+import travelspot.CommentsDTO;
+import travelspot.PlaceDTO;;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -68,8 +72,38 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<String> getRecentPages(int userId) {
-		return sqlSession.selectList("getRecentPages",userId);
+	public void addVisitedPage(VisitedDTO dto) {
+		sqlSession.insert("addVisitedPage", dto);
+
 	}
 
+	@Override
+	public List<VisitedDTO> getRecentVisitedPages(String user_id, int limit) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("user_id", user_id);
+		params.put("limit", limit);
+		return sqlSession.selectList("getRecentVisitedPages", params);
+	}
+
+	@Override
+	public List<BoardDTO> getBoardListByWriter(String writer) {
+		return sqlSession.selectList("getBoardListByWriter", writer);
+	}
+
+	@Override
+	public List<CommentsDTO> getCommentListByWriter(String writer) {
+		return sqlSession.selectList("getCommentListByWriter", writer);
+	}
+
+	@Override
+	public List<LikesDTO> getLikesByUserId(int user_id) {
+		return sqlSession.selectList("getLikesByUserId",user_id);
+	}
+
+	@Override
+	public List<PlaceDTO> getPlacesByContentIds(List<Integer> content_id) {
+		return sqlSession.selectList("getPlaceByContentIds",content_id);
+	}
+
+	
 }

@@ -37,6 +37,13 @@
     </div>
     </div>
     <div id="contents">${board.contents}</div>
+    <a class="likebtn">like button</a>
+    <script>
+    	const likebtn = document.querySelector(".likebtn");
+    	likebtn.addEventListener('click',function(){
+    		this.classList.toggle("likeon");
+    	});
+    </script>
 </section>
 <%@ include file="../../views/home/footer.jsp"%>
 <div style="position:fixed; bottom:1%; right:1%;">

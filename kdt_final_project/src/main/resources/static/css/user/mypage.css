@@ -180,3 +180,45 @@ input[type="submit"]:hover {
 #postcodesearch:hover {
 	background-color: #1976d2 !important;
 }
+/* 글쓴 내역 */
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-table th{
+	font-weight: bold;
+    font-size: 1.2vw;
+}
+.board-table td{
+	font-size: 0.9vw;
+}
+
+.board-table th,
+.board-table td {
+  padding: 5px;
+  text-align: center;
+}
+
+/* 댓글쓴 내역 */
+.comments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.comments-table th{
+	font-weight: bold;
+	font-size: 1.3vw;
+}
+.comments-table td{
+	font-size: 0.9vw;
+}
+
+.comments-table th,
+.comments-table td {
+  padding: 5px;
+  text-align: center;
+}
+.comments-table th{
+	font-weight: bold;
+}
+
+

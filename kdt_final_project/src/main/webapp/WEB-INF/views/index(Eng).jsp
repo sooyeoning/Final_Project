@@ -13,16 +13,16 @@
 <body>
 <!-- header -->
 <%@ include file="../views/home/header(Eng).jsp"%>
-
 <!-- body -->
 <%@ include file="../views/home/body(Eng).jsp"%>
+<!-- weather -->
+<%@ include file="../views/home/weather.jsp" %>
 
 <!-- top button -->
 <%@ include file="../views/home/topbutton.jsp"%>
 
 <!-- footer -->
 <%@ include file="../views/home/footer(Eng).jsp"%>
-
 
 </body>
 </html>

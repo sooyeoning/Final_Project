@@ -1,5 +1,8 @@
 package travelspot;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PlaceDTO {
 	int contentId;
 	int contentTypeId; //관광타입 id

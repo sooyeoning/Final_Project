@@ -110,7 +110,6 @@ width: 100%;
 }
 
 .textarea-outerbox{ /*댓글창 바깥 상자*/
-	background-color: #E5EFFF;
 	width: 100%-40px;
 	padding: 3% 3% 6% 3%;
 	border: solid 1px #2463d3;
@@ -119,13 +118,14 @@ width: 100%;
 .textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
 	padding: 10px;
-	border-bottom: solid 1px #2463d3;
+	border: solid 1px #2463d3;
 	width: 60vw;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
 }
 
 .comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
+	overflow: scroll;
 	padding: 10px;
 	border-bottom: solid 1px #2463d3;
 	border-top: none;
@@ -135,35 +135,67 @@ width: 100%;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
 	margin-bottom: 2%;
 }
-.savebutton{
-	width: 8%;
-	text-align: center;
-	background-color: #2463d3;
-	border: none;
-	color: white; /*글씨색상*/
-	padding: 1%;
-	margin: 10px 17px 0 0;
-	float: right;/*오른쪽 끝 정렬*/
-}
 
+#contents{
+	margin-top: 1.7vh;
+}
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 100%-40px;
+	height: fit-content;
+	padding: 3%;
+	border-bottom: solid 1px #2463d3;
+}
+
+.replywriting-outerbox{ /*대댓글 작성시 보이는 상자*/
+	width: 100%-40px;
+	height: fit-content;
+	padding: 3%;
+	border: none;
+}
+
+.reply-outerbox{ /*대댓글 보여주는 바깥 상자*/
+	width: 100%-50px;
+	float:right;
+	height: fit-content;
 	padding: 3%;
 	border-bottom: solid 1px #2463d3;
 }
 
 .comments-innerbox{ /*작성된 댓글 보여주는 안 상자*/
-	
+	height: fit-content;
 }
 
-.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
-	width: 6%;
+.savebutton, .replybutton{
+	width: 8%;
 	text-align: center;
 	background-color: #2463d3;
+	border-radius: 4px;
+	border: none;
+	color: white; /*글씨색상*/
+	padding: 1%;
+	margin: 10px 0 0 0;
+	float: right;/*오른쪽 끝 정렬*/
+}
+
+.replybutton{
+	width: 8vw;
+	text-align: center;
+	background-color: #2463d3;
+	border-radius: 4px;
 	border: none;
 	color: white; /*글씨색상*/
 	padding: 0.5%;
-	margin: 0 17px 0 0;
+	margin: 5px 0 0 0;
+	float: left;/*오른쪽 끝 정렬*/
+}
+
+.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
+	color: black; /*글씨색상*/
+	background-color: white;
+    border: none;
+	width: 6%;
+	text-align: center;
+	padding: 0.5%;
 	float: right;
 	/*오른쪽 끝 정렬*/
 }

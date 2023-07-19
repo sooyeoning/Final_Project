@@ -36,6 +36,11 @@ public class CommentsServiceImpl implements CommentsService {
 		commentsmapper.updateComments(CommentsDTO);
 	}
 
+	@Override
+	public void insertReply(CommentsDTO CommentsDTO) {
+		commentsmapper.insertReply(CommentsDTO);
+	}
+
 	
 
 

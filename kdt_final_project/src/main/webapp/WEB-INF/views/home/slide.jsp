@@ -22,7 +22,7 @@
 					<div class="textbox">
 						<p class="desc">여행의 즐거움을 더욱 완벽하게,<br>
 						당신의 행복한 여정을 함께합니다.<p>
-						<h3><a href="/community">여행지 추천 바로가기</a></h3>
+						<h3><a href="/travelspot/list">여행지 추천 바로가기</a></h3>
 					</div>
 					<img src="../img/Mainimg.png"></a>
 					<label for="slide02" class="right"></label>

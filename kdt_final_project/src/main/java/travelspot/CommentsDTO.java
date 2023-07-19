@@ -6,8 +6,8 @@ public class CommentsDTO {
 	String writingtime; //댓글 등록시간
 	String writer;		//댓글 작성자
 	String target_id;	//게시글 작성자
-	int ref_group;		//댓글 그룹번호
-	int comment_group;	//원글에 달린 댓글 내에서의 그룹번호
+	int ref_group;		//게시글 고유 번호
+	int comment_group;	//대댓글 작성시 댓글의 아이디
 	int content_id;		//커뮤니티 게시글 고유 번호
 	int place_id;		//여행지 게시글 고유 번호
 	

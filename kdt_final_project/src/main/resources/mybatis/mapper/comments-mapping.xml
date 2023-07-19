@@ -28,6 +28,12 @@
 <select id="getOneContent" parameterType="int" resultType="CommentsDTO">
 	select*from comments where id=#{id} ; 
 </select>
+
+<!-- 대댓글 저장 -->
+<insert id="insertReply" parameterType="CommentsDTO">
+	insert into comments(contents,place_id, writer, comment_group) values(#{contents},#{place_id},#{writer}, #{comment_group});
+</insert>
+
 </mapper>
 
 

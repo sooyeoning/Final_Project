@@ -9,5 +9,6 @@ public interface CommentsService {
 	public void deleteComments(int id);
 	 public CommentsDTO getOneContent(int id);
 	 public void updateComments(CommentsDTO CommentsDTO);
+	 public void insertReply(CommentsDTO CommentsDTO);
 
 }

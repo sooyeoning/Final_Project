@@ -42,10 +42,10 @@
 <div class="comments-outerbox"><div class="comments-innerbox">
 <p style="font-weight: bold;">${comments.writer }</p>
 <p> ${comments.writingtime}</p> 
-<p>${comments.contents }</p>
 <!-- 작성자에게만 보이는 버튼 -->
 <button class="deletebutton">삭제</button>
 <button class="updatebutton">수정</button>
+<p>${comments.contents }</p>
  
 </div></div>
 </c:forEach>

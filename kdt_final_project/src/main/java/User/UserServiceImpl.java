@@ -2,12 +2,15 @@ package User;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;;
+import org.springframework.transaction.annotation.Transactional;
+
+import community.BoardDTO;
+import travelspot.CommentsDTO;
+import travelspot.PlaceDTO;;
 
 @Service
 
@@ -57,14 +60,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO findUserPw(String userid, String email) {
-	    UserDTO dto = dao.selectfindpw(userid, email);
-	    return dto;
+		UserDTO dto = dao.selectfindpw(userid, email);
+		return dto;
 	}
-
 
 	@Override
 	@Transactional
-	public void resetPassword(String userid, String email,String temporaryPassword) {
+	public void resetPassword(String userid, String email, String temporaryPassword) {
 		UserDTO dto = dao.selectfindpw(userid, email);
 		if (dto != null) {
 			dto.setUserpw(temporaryPassword);
@@ -86,9 +88,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<String> getRecentPages(int userId) {
-		return dao.getRecentPages(userId);
+	public void addVisitedPage(String user_id, String pageurl) {
+		VisitedDTO dto = new VisitedDTO(user_id, pageurl);
+		dao.addVisitedPage(dto);
 	}
 
+	@Override
+	public List<VisitedDTO> getRecentVisitedPages(String user_id, int limit) {
+		return dao.getRecentVisitedPages(user_id, limit);
+	}
 
+	@Override
+	public List<BoardDTO> getBoardListByWriter(String writer) {
+		return dao.getBoardListByWriter(writer);
+	}
+
+	@Override
+	public List<CommentsDTO> getCommentListByWriter(String writer) {
+		return dao.getCommentListByWriter(writer);
+	}
 }

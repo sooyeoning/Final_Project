@@ -3,54 +3,54 @@ package User;
 import java.sql.Timestamp;
 
 public class VisitedDTO {
-    private int id;
-    private int userId;
-    private String pageUrl;
-    private Timestamp visited;
+	public int id;
+	public String user_id;
+	public String pageurl;
+	public Timestamp visited;
 
-    public VisitedDTO() {
-    }
+	public VisitedDTO() {
+	}
 
-    public VisitedDTO(int userId, String pageUrl) {
-        this.userId = userId;
-        this.pageUrl = pageUrl;
-    }
+	public VisitedDTO(String user_id, String pageurl) {
+		this.user_id = user_id;
+		this.pageurl = pageurl;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public String getUser_id() {
+		return user_id;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 
-    public String getPageUrl() {
-        return pageUrl;
-    }
+	public String getPageurl() {
+		return pageurl;
+	}
 
-    public void setPageUrl(String pageUrl) {
-        this.pageUrl = pageUrl;
-    }
+	public void setPageurl(String pageurl) {
+		this.pageurl = pageurl;
+	}
 
-    public Timestamp getVisited() {
-        return visited;
-    }
+	public Timestamp getVisited() {
+		return visited;
+	}
 
-    public void setVisited(Timestamp visited) {
-        this.visited = visited;
-    }
+	public void setVisited(Timestamp visited) {
+		this.visited = visited;
+	}
 
 	@Override
 	public String toString() {
-		return "VisitedDTO [id=" + id + ", userId=" + userId + ", pageUrl=" + pageUrl + ", visited=" + visited + "]";
+		return "VisitedDTO [id=" + id + ", user_id=" + user_id + ", pageurl=" + pageurl + ", visited=" + visited + "]";
 	}
-    
+
 }

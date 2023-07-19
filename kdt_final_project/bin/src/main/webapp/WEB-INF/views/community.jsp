@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -9,155 +9,58 @@
 <link rel="icon" href="img/favicon.png">
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/community.css" />
+<link rel="stylesheet" type="text/css" href="css/searchForm.css" />
 <script defer="defer" src="js/jquery-3.6.4.min.js"></script>
 <script defer="defer" src="js/community.js"></script>
 </head>
 <body>
-<%@ include file="../views/header.jsp"%>
+<%@ include file="../views/home/header.jsp"%>
 <div></div>
 <section>
 	<ul>
 		<li id="recordTap" class="on font_title"><a href="">여행기록</a></li>
 		<li id="recommendTap" class="font_title"><a href="">추천해주세요</a></li>
 	</ul>
-	<!-- 검색탭 들어갈 부분 -->
+	
+	<form action="/search" method="get" class="search-form">
+    	<input type="text" id="search-input" name="q" class="search-input" placeholder="검색어를 입력하세요...">
+    	<input type="submit" value="검색" class="search-button">
+    </form>
+    
+    <form action="">
+    	<select id="printtype" name="printtype">
+    		<option value="like">인기순</option>
+    		<option value="newest">최신순</option>
+    	</select>
+    </form>
+    
+    
+    
 	<article id="record" class="on">
 		<ol class="topTen">
-			<li id="top1">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top2">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top3">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top4">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top5">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top6">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top7">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top8">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top9">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
-			<li id="top10">
-				<div class="thumbnail">썸네일 입니다</div>
-				<h5 class="title">임시제목입니다</h5>
-				<div class="writerinfo">
-					<span class="profile"></span>
-					<span class="writer">작성자</span>
-				</div>
-				<div class="info">
-					<span class="views">views 120</span>
-					<span class="likeCount">like 84</span>
-					<span class="wirteTime">2023-06-29</span>
-				</div>
-			</li>
+			<c:forEach items="${top10List}" var="board">
+				<c:if test="${board.board_title == '여행기록' }">
+					<li id="top${board.id}">
+						<div class="thumbnail">썸네일 입니다</div>
+						<h5 class="title">${board.title}</h5>
+						<div class="writerinfo">
+							<span class="profile"></span>
+							<span class="writer">${board.writer}</span>
+						</div>
+						<div class="info">
+							<span class="views">views ${board.views}</span>
+							<span class="likeCount">like ${board.likecount}</span>
+							<span class="wirteTime">${board.writingtime}</span>
+						</div>
+					</li>
+				</c:if>
+			</c:forEach>
 		</ol>
 		<table>
 			<thead>			
 				<tr>
 					<th>번호</th>
+					<th>지역</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -166,30 +69,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
+				<c:forEach items="${boardList}" var="board" varStatus="loop">
+    				<c:if test="${board.board_title == '여행기록' && !top10Ids.contains(board.id) && loop.index >= 10}">
+        				<tr>
+            				<td>${board.id}</td>
+            				<td>${board.place}</td>
+            				<td><a href="${pageContext.request.contextPath}/detail?boardId=${board.id}">${board.title}</a></td>
+            				<td>${board.writer}</td>
+            				<td>${board.views}</td>
+            				<td>${board.likecount}</td>
+            				<td>${board.writingtime}</td>
+        				</tr>
+    				</c:if>
+				</c:forEach>
 			</tbody>
 		</table>
 		<ol class="pageNum">
@@ -213,30 +105,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td><a href="">임시 정보 입니다</a></td>
-					<td>akm</td>
-					<td>12</td>
-					<td>8</td>
-					<td>2023-06-28</td>
-				</tr>
+				<c:forEach items="${boardList }" var="board">
+					<c:if test="${board.board_title == '추천해주세요' }">
+						<tr>
+							<td>${board.id }</td>
+							<td>${board.place }</td>
+							<td><a href="${pageContext.request.contextPath}/detail?boardId=${board.id}">${board.title}</a></td>
+							<td>${board.writer }</td>
+							<td>${board.views }</td>
+							<td>${board.likecount }</td>
+							<td>${board.writingtime }</td>
+						</tr>
+					</c:if>
+				</c:forEach>
 			</tbody>
 		</table>
 		<ol class="pageNum">
@@ -251,7 +132,7 @@
 </section>
 
 <!-- footer -->
-<%@ include file="../views/footer.jsp"%>
+<%@ include file="../views/home/footer.jsp"%>
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
 </div>

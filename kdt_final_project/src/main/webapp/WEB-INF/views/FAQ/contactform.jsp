@@ -29,15 +29,15 @@
 </ul>
     </div>
     
-    <section class="right-section">
+    <div class="right-section">
       <!-- 오른쪽 섹션 -->
       <h2>문의글 작성 양식</h2>
       <br>
       
-      <form>
+      <form action="/FAQ/submit" method="post" enctype="multipart/form-data">
 		  <div class = "form-group">
         <label for="email">이메일 주소</label>
-       <input type="email" id="email" class="form-control" placeholder="이메일 주소를 입력하세요">
+       <input type="email" id="email" name="email" class="form-control" placeholder="이메일 주소를 입력하세요" required>
 		  </div>
             		  
 
@@ -52,29 +52,37 @@
         </select>
 
         <div class= "wrap_phone"> 
-        <input type="text" class = "form-control-phone" id="phone" placeholder="전화번호를 입력하세요">
+        <input type="text" class = "form-control-phone" id="phone" name="phone" placeholder="전화번호를 입력하세요" required>
         </div>
       </div>
         
         <div class = "form-group">
-        <label for="category">문의 분류</label>
-        <select id="category" class = "form-control-category">
+        <label for="categories">문의 분류</label>
+        <select id="categories" class = "form-control-category" name="categories">
              <option value="일반">일반</option>
   <option value="가입 변경/탈퇴">가입 변경/탈퇴</option>
   <option value="신고/이용제한">신고/이용제한</option>
   <option value="프로필 관련">프로필 관련</option>
+  <option value="기타">기타</option>
         </select>
         </div>
         
         <div class = "form-group">
-        <label for="content-textarea">문의 내용</label>
-        <textarea class = "form-control-textarea" id="content-textarea" name="content"></textarea>
+        <label for="title">제목</label>
+        <textarea class = "form-control" id="title" name="title" placeholder="제목을 입력하세요" required></textarea>
+        </div>
+        
+        <div class = "form-group">
+        <label for="title">문의 내용</label>
+        <textarea class = "form-control-textarea" id="content-textarea" name="content" required></textarea>
         </div>
         
         <div>파일 첨부</div>
-       <label for="attachment-input" class="custom-file-button">첨부할 파일을 선택하세요
-  <input type="file" class="form-control-attachment" id="attachment-input" name="attachment">
+       <label for="attachment-input" class="custom-file-button" id="file-name-display">첨부할 파일을 선택하세요
+  <input type="file" class="form-control-attachment" id="attachment-input" name="imageFileName" accept='image/*'>
 </label>
+<!-- <span id="file-cancel-button" class="file-cancel-button" style="display: none;">파일 선택 취소</span>
+ -->
         
   
         <div class="privacy-policy">
@@ -101,7 +109,7 @@
 <h5>더 자세한 내용에 대해서는 위트 개인정보처리방침을 참고하시기 바랍니다.</h5>
 <br>      
     <div class="checkbox-container">
-  <input type="checkbox" id="agree-checkbox" name="agree">
+  <input type="checkbox" id="agree-checkbox" name="agree_yn" required>
   <label for="agree-checkbox">위 내용에 동의합니다.</label>
 </div>
         </div>
@@ -120,6 +128,27 @@
     phoneNumberInput.value = selectedCountryCode;
   });
 </script>
+    
+<script>
+const fileInput = document.getElementById("attachment-input");
+const fileNameDisplay = document.getElementById("file-name-display");
+
+fileInput.addEventListener("change", function() {
+  const fileName = fileInput.files[0].name;
+  fileNameDisplay.textContent = fileName;
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
     
   </main>
 

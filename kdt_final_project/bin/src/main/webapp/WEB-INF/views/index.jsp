@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +12,19 @@
 
 <body>
 <!-- header -->
-<%@ include file="../views/header(main).jsp"%>
-
+<%@ include file="../views/home/header.jsp"%>
 <!-- body -->
-<%@ include file="../views/body.jsp"%>
+<%@ include file="../views/home/body.jsp"%>
+<!-- weather -->
+<%@ include file="../views/home/weather.jsp" %>
 
 <!-- top button -->
-<%@ include file="../views/topbutton.jsp"%>
+<%@ include file="../views/home/topbutton.jsp"%>
 
 <!-- footer -->
-<%@ include file="../views/footer.jsp"%>
+<%@ include file="../views/home/footer.jsp"%>
+
+
+
 </body>
 </html>

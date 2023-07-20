@@ -9,4 +9,5 @@ public interface BoardDAO {
 	BoardDTO getBoardById(int boardId);
 	void updateBoard(BoardDTO board);
 	void deleteBoard(BoardDTO board);
+	void increaseViewCount(int boardId);
 }

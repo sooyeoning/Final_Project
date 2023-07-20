@@ -37,5 +37,11 @@
 	DELETE FROM board WHERE id = #{id};
 </delete>
 
+<!-- 조회수 증가 -->
+<update id="increaseViewCount" parameterType="int">
+	UPDATE board
+	SET views = views + 1
+	WHERE id = #{boardId}
+</update>
 
 </mapper>

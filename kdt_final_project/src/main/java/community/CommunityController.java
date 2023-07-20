@@ -74,6 +74,10 @@ public class CommunityController {
 	public ModelAndView showBoardDetail(HttpServletRequest request) {
 	    ModelAndView mv = new ModelAndView();
 	    int boardId = Integer.parseInt(request.getParameter("boardId"));
+	    
+	    // 게시글 조회수 증가
+	    boardService.increaseViewCount(boardId);
+	    
 	    BoardDTO board = boardService.getBoardById(boardId);
 	    mv.addObject("board", board);
 

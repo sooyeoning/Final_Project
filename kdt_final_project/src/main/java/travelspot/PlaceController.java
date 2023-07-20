@@ -127,9 +127,33 @@ public class PlaceController {
 			placeservice.likePlace(contentId); //place테이블에서 찜하기
 			placeservice.insertLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
 			response = "success";
-		}
+		}else if(placeservice.CheckPlaceLikes(map)!= null && placeservice.CheckPlaceLikes(map) == 1 ) { //이미 찜되어있는 게시글이면
+			response = "alreadyliked";
+		} 
 
 		return response;		
+	}
+	
+	@RequestMapping("/travelspot/post/cancelLikes")
+	@ResponseBody
+	public String cancelPostLikes(@RequestParam int contentId, HttpSession session) {
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		map.put("user_id", userdto.getId());
+		map.put("place_id", contentId);
+		
+		String response="fail";
+		
+		if(placeservice.CheckPlaceLikes(map)!= null && placeservice.CheckPlaceLikes(map) == 1 ) { //이미 찜되어있는 게시글이면
+			placeservice.cancelPlaceLike(contentId); //place테이블에서 찜취소
+			placeservice.cancelLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
+			response = "success";
+		} 
+		
+		return response;		
+		
 	}
 	
 	@GetMapping("/travelspot/post/images")
@@ -234,9 +258,34 @@ public class PlaceController {
 			placeservice.likePlace(contentId); //place테이블에서 찜하기
 			placeservice.insertLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
 			response = "success";
-		}
+		} else if(placeservice.CheckPlaceLikes(map)!= null && placeservice.CheckPlaceLikes(map) == 1 ) { //이미 찜되어있는 게시글이면
+			response = "alreadyliked";
+		} 
 
 		return response;		
+		
+	}
+	
+	@RequestMapping("/travelspot/themepost/cancelLikes")
+	@ResponseBody
+	public String cancelThemePostLikes(@RequestParam int contentId, HttpSession session) {
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		map.put("user_id", userdto.getId());
+		map.put("place_id", contentId);
+		
+		String response="fail";
+		
+		if(placeservice.CheckPlaceLikes(map)!= null && placeservice.CheckPlaceLikes(map) == 1 ) { //이미 찜되어있는 게시글이면
+			placeservice.cancelPlaceLike(contentId); //place테이블에서 찜취소
+			placeservice.cancelLikes(map); //likes테이블에 정보(회원아이디,게시글아이디,찜여부) 저장	
+			response = "success";
+		} 
+		
+		return response;		
+		
 	}
 	
 	@GetMapping("/travelspot/post/themeimages")

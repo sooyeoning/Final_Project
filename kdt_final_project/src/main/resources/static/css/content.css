@@ -98,6 +98,7 @@ margin: 5px 17% 5px 17%;
 width: 66%;
 }
 
+
 .comments{ /*결과물 출력의 부모 요소*/ 
 width: 100%;
 }
@@ -110,23 +111,21 @@ width: 100%;
 }
 
 .textarea-outerbox{ /*댓글창 바깥 상자*/
-	width: 100%-40px;
-	padding: 3% 3% 6% 3%;
+	padding: 4vh 1.5vw 10vh 1.5vw;
 	border: solid 1px #2463d3;
 }
 
 .textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
-	padding: 10px;
+	padding: 1vw;
 	border: solid 1px #2463d3;
-	width: 60vw;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
 }
 
 .comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
 	resize: none;
 	overflow: scroll;
-	padding: 10px;
+	padding: 1vw;
 	border-bottom: solid 1px #2463d3;
 	border-top: none;
 	border-left: none;
@@ -137,27 +136,12 @@ width: 100%;
 }
 
 #contents{
-	margin-top: 1.7vh;
+	margin-top: 2vh;
 }
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
-	width: 100%-40px;
+	width: 64vw;
 	height: fit-content;
-	padding: 3%;
-	border-bottom: solid 1px #2463d3;
-}
-
-.replywriting-outerbox{ /*대댓글 작성시 보이는 상자*/
-	width: 100%-40px;
-	height: fit-content;
-	padding: 3%;
-	border: none;
-}
-
-.reply-outerbox{ /*대댓글 보여주는 바깥 상자*/
-	width: 100%-50px;
-	float:right;
-	height: fit-content;
-	padding: 3%;
+	padding: 1vw;
 	border-bottom: solid 1px #2463d3;
 }
 
@@ -165,37 +149,32 @@ width: 100%;
 	height: fit-content;
 }
 
-.savebutton, .replybutton{
-	width: 8%;
-	text-align: center;
-	background-color: #2463d3;
-	border-radius: 4px;
-	border: none;
-	color: white; /*글씨색상*/
-	padding: 1%;
-	margin: 10px 0 0 0;
-	float: right;/*오른쪽 끝 정렬*/
+.comments-modify-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
+	width: 64vw;
+	height: fit-content;
+	padding: 1vw;
+	border-bottom: solid 1px #2463d3;
 }
 
-.replybutton{
+.savebutton{
 	width: 8vw;
 	text-align: center;
 	background-color: #2463d3;
 	border-radius: 4px;
 	border: none;
 	color: white; /*글씨색상*/
-	padding: 0.5%;
-	margin: 5px 0 0 0;
-	float: left;/*오른쪽 끝 정렬*/
+	padding: 1%;
+	margin: 2vh 0 0 0;
+	float: right;/*오른쪽 끝 정렬*/
 }
 
 .deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
 	color: black; /*글씨색상*/
 	background-color: white;
     border: none;
-	width: 6%;
+	width: 3vw;
 	text-align: center;
-	padding: 0.5%;
+	padding: 0 0.5vw 0 0.5vw;
 	float: right;
 	/*오른쪽 끝 정렬*/
 }
@@ -206,21 +185,13 @@ width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* 복수의 행*/
-  margin: 2% 17% 0 17%;
+  margin: 5vh 17vw 0 17vw;
 }
 
 .themeItem-list { /*지역명 나열*/
-  width: 14vw;
+  width: 15vw;
   margin: 0 auto; /*행간 간격: 100px 조정*/
-}
-
-.theme-list { /*6개 이미지 틀*/
-text-align: center;
-}
-
-.themeprofile { /*이미지*/
-    width: 100%; 
-  	object-fit: cover; /*비율 그대로 유지한채 이미지 가공*/ 
+  height: 5vh;
 }
 
 .pages{
@@ -289,4 +260,13 @@ text-align: center;
 select::-ms-expand {
   /* for IE 11 */
   display: none;
+}
+
+.themeName{
+	display: flex;
+	justify-content: center;
+	vertical-align: center;
+	height: 5vh;
+	color: #2463D3;
+	border-bottom: 1px solid #2463D3;
 }

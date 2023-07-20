@@ -101,7 +101,7 @@ public class APIServiceImpl {
 
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
-		String[] numOfRowsList = new String[] { "15", "0", "0", "0" };
+		String[] numOfRowsList = new String[] { "1", "0", "0", "0" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
 		String[] cat3List = new String[] { "C01160001", "C01140001", "C01130001", "C01120001" };
 
@@ -144,7 +144,7 @@ public class APIServiceImpl {
 					// System.out.println(contentIdList.get(i));
 			} // for
 				// arraylist 잘 들어갔는지 확인용: System.out.println(contentIdList.size());
-
+			System.out.println("게시글 id 저장 성공");
 			getThemeInfo(contentIdList, contentTypeIdList, themeList[i]); // 기본 정보 DB 등록 - 장소명, 테마, id
 
 		} // url for
@@ -188,10 +188,12 @@ public class APIServiceImpl {
 						placemapper.insertThemeBasicInfo(placeDTO); // contentId, title, contentTypeId만 저장		
 						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					} 					
-					
+					System.out.println("기존데이터o");
+					getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 			} // if
 			}// for
-			//getThemePlaceDetailIntro(placeContentIds, placeContentTypeIds); // 장소별 상세정보
+			//int placeContentId, int placeContentTypeId
+		
 		} // contentIdList for
 
 	}// test method
@@ -268,14 +270,14 @@ public class APIServiceImpl {
 
 				placedto.contentId = contentId.orElse(0);
 				placedto.contentTypeId = contenttypeid.orElse(0);
-				placedto.title = title.orElse("null");
+				placedto.title = title.orElse("");
 				placedto.areaCode = areaCode.orElse(0);
-				placedto.image1 = image1.orElse("null");
-				placedto.address = addr1.orElse(" ").concat(addr2.orElse(" "));
+				placedto.image1 = image1.orElse("");
+				placedto.address = addr1.orElse("").concat(addr2.orElse(""));
 				placedto.mapx = mapx.orElse(0.0);
 				placedto.mapy = mapy.orElse(0.0);
-				placedto.contents = contents.orElse("null");
-				placedto.homepage = homepage.orElse("null");
+				placedto.contents = contents.orElse("");
+				placedto.homepage = homepage.orElse("");
 
 				placemapper.updateThemePlace(placedto);
 				getThemePlaceDetailIntro(placedto.contentId, placedto.contentTypeId);

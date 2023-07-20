@@ -106,11 +106,5 @@ public class CommentsController {
 		
 	 }
 	 
-	 /*
-	 @GetMapping(value="/travelspot/post/reply/save", produces = {"application/json; charset=utf-8"} )
-	 @ResponseBody 
-	 public void saveReply(int contentId) {
-		//원래 댓글의 아이디 저장
-	 }
-	 */
+
 }// controller

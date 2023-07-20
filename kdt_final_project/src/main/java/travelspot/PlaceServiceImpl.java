@@ -135,4 +135,15 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.searchThemePlacesCnt(map);
 	}
 
+	@Override
+	public void cancelLikes(HashMap<String, Integer> map) {
+		placemapper.cancelLikes(map);
+	}
+
+	@Override
+	public Integer cancelPlaceLike(int contentId) {
+		return placemapper.cancelPlaceLike(contentId);
+	}
+
+	
 }

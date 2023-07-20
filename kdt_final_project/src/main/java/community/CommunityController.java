@@ -25,19 +25,29 @@ public class CommunityController {
 	
 	// 커뮤니티 페이지 매핑
 	@RequestMapping("/community")
-	public String community(Model model) {
-	    List<BoardDTO> boardList = boardService.getAllBoards();
-	    
-	    // 좋아요 수에 따라 정렬
-	    Collections.sort(boardList, Comparator.comparingInt(BoardDTO::getLikecount).reversed());
+	public String community(HttpServletRequest request, Model model) {
+	    String order = request.getParameter("order");
+	    if (order == null) {
+	        order = "like";
+	    }
 
-	    model.addAttribute("boardList", boardList);
-	    
+	    List<BoardDTO> boardList;
+	    if (order.equals("like")) {
+	        boardList = boardService.getAllBoardsOrderedByLike();
+	    } else if (order.equals("newest")) {
+	        boardList = boardService.getAllBoardsOrderedByNewest(); // 최신순으로 정렬
+	    } else {
+	        // order 값이 'like' 또는 'newest'가 아닌 경우 기본적으로 'like'로 처리
+	        boardList = boardService.getAllBoardsOrderedByLike();
+	    }
+
 	    List<BoardDTO> top10List = boardService.getTop10Boards();
 	    model.addAttribute("top10List", top10List);
+	    model.addAttribute("boardList", boardList);
 
 	    return "community";
 	}
+
 
 	// 새글쓰기 화면 writing.jsp 매핑
 	@RequestMapping("/writing")
@@ -60,6 +70,8 @@ public class CommunityController {
 	    board.setWriter(request.getParameter("writer"));
 	    board.setTitle(request.getParameter("title"));
 	    board.setContents(request.getParameter("contents"));
+	    
+	    //System.out.println("contents = "+request.getParameter("contents"));
 
 	    boardService.createBoard(board);
 

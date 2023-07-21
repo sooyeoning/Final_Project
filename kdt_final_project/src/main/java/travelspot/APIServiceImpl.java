@@ -101,7 +101,7 @@ public class APIServiceImpl {
 
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
-		String[] numOfRowsList = new String[] { "1", "0", "0", "0" };
+		String[] numOfRowsList = new String[] { "5", "0", "0", "0" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
 		String[] cat3List = new String[] { "C01160001", "C01140001", "C01130001", "C01120001" };
 
@@ -188,8 +188,10 @@ public class APIServiceImpl {
 						placemapper.insertThemeBasicInfo(placeDTO); // contentId, title, contentTypeId만 저장		
 						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					} 					
-					System.out.println("기존데이터o");
-					getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
+					System.out.println("기존 place 데이터o");
+					if(placemapper.selectContentId(contentId) == 0  ) { //contents테이블 정보 없는 경우
+						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
+					}
 			} // if
 			}// for
 			//int placeContentId, int placeContentTypeId

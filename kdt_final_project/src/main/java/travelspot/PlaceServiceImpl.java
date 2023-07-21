@@ -145,5 +145,10 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.cancelPlaceLike(contentId);
 	}
 
+	@Override
+	public int selectContentId(int contentId) {
+		return placemapper.selectContentId(contentId);
+	}
+
 	
 }

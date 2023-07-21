@@ -14,6 +14,7 @@ public interface PlaceMapper {
 	 public PlaceDTO selectPlace(int contentId);
 	 public void plusViewCount(int contentId); //조회수 증가
 	 public int selectPlaceId(int contentId);
+	 public int selectContentId(int contentId);//contents 테이블 정보 유무 조회
 	 public int getTotalCnt(int areaCode);
 	 public int getTotalThemeCnt(String theme);
 	 public void insertThemeBasicInfo(PlaceDTO placeDTO);

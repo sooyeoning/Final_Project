@@ -22,6 +22,12 @@
     LIMIT 10
 </select>
 
+<!-- 최신순으로 게시글 가져오기 -->
+<select id="getNewestBoards" resultType="boarddto">
+    SELECT * FROM board
+    ORDER BY writingtime DESC
+</select>
+
 <!-- getBoardById 쿼리 매핑 -->
 <select id="getBoardById" parameterType="int" resultType="community.BoardDTO">
 	SELECT * FROM board WHERE id = #{boardId}

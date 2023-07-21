@@ -33,6 +33,15 @@ ul>li.on>a{
 	border:none;
 	background-color: #2463d3;
 }
+
+#printtype{
+	display:block;
+	width: 6vw;
+	height: 2vw;
+	margin-bottom: 40px;
+	text-indent:0.5vw;
+}
+
 /* 커뮤니티 아티클 */
 article{
 	display:none;

@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import User.UserDTO;
@@ -25,14 +23,21 @@ public class CommunityController {
 	
 	// 커뮤니티 페이지 매핑
 	@RequestMapping("/community")
-	public String community(Model model) {
-	    List<BoardDTO> boardList = boardService.getAllBoards();
-	    
-	    // 좋아요 수에 따라 정렬
-	    Collections.sort(boardList, Comparator.comparingInt(BoardDTO::getLikecount).reversed());
+	public String community(HttpServletRequest request, Model model) {
+	    String order = request.getParameter("order");
+
+	    List<BoardDTO> boardList;
+	    if ("newest".equals(order)) {
+	        // 최신순으로 게시글 가져오기
+	        boardList = boardService.getNewestBoards();
+	    } else {
+	        // 기본은 좋아요 수에 따라 정렬하여 게시글 가져오기
+	        boardList = boardService.getAllBoards();
+	        Collections.sort(boardList, Comparator.comparing(BoardDTO::getLikecount).reversed());
+	    }
 
 	    model.addAttribute("boardList", boardList);
-	    
+
 	    List<BoardDTO> top10List = boardService.getTop10Boards();
 	    model.addAttribute("top10List", top10List);
 

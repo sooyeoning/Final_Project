@@ -2,7 +2,6 @@ package User;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDAO dao;
+	
+	@Autowired
+	PlaceDAO placedao;
 
 	@Override
 	public void signup(UserDTO dto) {
@@ -107,4 +109,16 @@ public class UserServiceImpl implements UserService {
 	public List<CommentsDTO> getCommentListByWriter(String writer) {
 		return dao.getCommentListByWriter(writer);
 	}
+    @Override
+    public List<LikesDTO> getLikesByUserId(int user_id) {
+        List<LikesDTO> likesList = dao.getLikesByUserId(user_id);
+
+        // 각 LikesDTO에 해당하는 PlaceDTO를 가져와서 설정
+        for (LikesDTO likes : likesList) {
+            int place_id = likes.getPlace_id();
+            PlaceDTO place = placedao.getPlaceById(place_id);
+            likes.setPlaceDTO(place);
+        }
+        return likesList;
+    }
 }

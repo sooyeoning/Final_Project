@@ -101,6 +101,7 @@ function getWrittenPosts() {
       throw new Error('Error: ' + response.status);
     })
     .then(data => {
+		console.log(data);
       const tableBody = document.getElementById('boardTableBody');
       tableBody.innerHTML = ''; // 기존의 내용을 초기화
 
@@ -122,6 +123,12 @@ function getWrittenPosts() {
           const writerCell = document.createElement('td');
           writerCell.classList.add('board-writer');
           writerCell.textContent = item.writer;
+          const viewsCell = document.createElement('td');
+          viewsCell.classList.add('board-views');
+          viewsCell.textContent = item.views;
+          const likecountCell = document.createElement('td');
+          likecountCell.classList.add('board-likecount');
+          likecountCell.textContent = item.likecount;
           const writingtimeCell = document.createElement('td');
           writingtimeCell.classList.add('board-writingtime');
           writingtimeCell.textContent = item.writingtime;
@@ -131,6 +138,8 @@ function getWrittenPosts() {
           row.appendChild(boardTitleCell);
           row.appendChild(placeCell);
           row.appendChild(writerCell);
+          row.appendChild(viewsCell);
+          row.appendChild(likecountCell);
           row.appendChild(writingtimeCell);
 
           tableBody.appendChild(row);
@@ -154,8 +163,6 @@ const writtenPostsLink = document.querySelector('.side-menu-nav a[href="#section
 writtenPostsLink.addEventListener('click', function(event) {
   event.preventDefault();
   getWrittenPosts(); // 글쓴 내역 가져오는 함수 호출
-});
-
 });
 
 // 댓글 쓴 내역을 AJAX로 가져오는 함수
@@ -211,10 +218,13 @@ commentsLink.addEventListener('click', function(event) {
   event.preventDefault();
   getCommentListByWriter(); // 댓글 쓴 내역 가져오는 함수 호출
 });
+});
 
-// 찜한 여행지를 AJAX로 가져오는 함수
-function getFavoritePlaces() {
-  fetch('/getFavoritePlaces')
+
+
+// 찜한 여행지 내역을 AJAX로 가져오는 함수
+function getLikesByUserId() {
+  fetch('/getLikesByUserId')
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -222,28 +232,36 @@ function getFavoritePlaces() {
       throw new Error('Error: ' + response.status);
     })
     .then(data => {
-      const listContainer = document.getElementById('favoritePlacesList');
-      listContainer.innerHTML = ''; // 기존의 내용을 초기화
+      const tableBody = document.getElementById('likesTableBody');
+      tableBody.innerHTML = ''; // 기존의 내용을 초기화
 
       if (data && Array.isArray(data)) {
         data.forEach(item => {
-          const listItem = document.createElement('li');
-          const placeNameElement = document.createElement('span');
-          placeNameElement.classList.add('place-name');
-          placeNameElement.textContent = item.placeName;
-          const locationElement = document.createElement('span');
-          locationElement.classList.add('location');
-          locationElement.textContent = item.location;
+          const row = document.createElement('tr');
+          const titleCell = document.createElement('td');
+          titleCell.textContent = item.title;
+          const addressCell = document.createElement('td');
+          addressCell.textContent = item.address;
+          const viewcntCell = document.createElement('td');
+          viewcntCell.textContent = item.viewcnt;
+          const likecntCell = document.createElement('td');
+          likecntCell.textContent = item.likecnt;
 
-          listItem.appendChild(placeNameElement);
-          listItem.appendChild(locationElement);
+          row.appendChild(titleCell);
+          row.appendChild(addressCell);
+          row.appendChild(viewcntCell);
+          row.appendChild(likecntCell);
 
-          listContainer.appendChild(listItem);
+          tableBody.appendChild(row);
         });
       } else {
-        const listItem = document.createElement('li');
-        listItem.textContent = '찜한 여행지가 없습니다.';
-        listContainer.appendChild(listItem);
+        const row = document.createElement('tr');
+        const noDataCell = document.createElement('td');
+        noDataCell.colSpan = 4;
+        noDataCell.textContent = '찜한 여행지 내역이 없습니다.';
+
+        row.appendChild(noDataCell);
+        tableBody.appendChild(row);
       }
     })
     .catch(error => {
@@ -251,11 +269,13 @@ function getFavoritePlaces() {
     });
 }
 
-// 찜한 여행지 섹션 링크 클릭 시 이벤트 핸들러
-const favoritePlacesLink = document.querySelector('.side-menu-nav a[href="#section4"]');
-favoritePlacesLink.addEventListener('click', function(event) {
+// 찜한 여행지 내역 섹션 링크 클릭 시 이벤트 핸들러
+const likesLink = document.querySelector('.side-menu-nav a[href="#section5"]');
+likesLink.addEventListener('click', function(event) {
   event.preventDefault();
-  getFavoritePlaces(); // 찜한 여행지 가져오는 함수 호출
+  getLikesByUserId(); // 찜한 여행지 내역 가져오는 함수 호출
 });
+
+
 
 

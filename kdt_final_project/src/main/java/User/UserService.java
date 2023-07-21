@@ -34,4 +34,6 @@ public interface UserService {
 
 	List<CommentsDTO> getCommentListByWriter(String writer);
 
+	List<LikesDTO> getLikesByUserId(int user_id);
+
 }

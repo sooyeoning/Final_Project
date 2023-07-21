@@ -4,7 +4,6 @@ import java.util.List;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
 
 public interface UserDAO {
 
@@ -33,7 +32,5 @@ public interface UserDAO {
 	List<CommentsDTO> getCommentListByWriter(String writer);
 
 	List<LikesDTO> getLikesByUserId(int user_id);
-
-	List<PlaceDTO> getPlacesByContentIds(List<Integer> content_id);
 
 }

@@ -33,7 +33,8 @@
     <input type="hidden" id="writer" name="writer" value="${nickname }" readonly><br>
     <input type=text id="title" name=title placeholder="제목"/>
     <br/>
-    <textarea id = "contents" name = "contents" ></textarea>
+    <textarea id="contents" name="contents"></textarea>
+
 	<script>
 		CKEDITOR.replace('contents',{filebrowserUploadUrl:'/mine/imageUpload.do'});
 	</script>
@@ -44,5 +45,38 @@
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
 </div>
+
+<script>
+const submit = document.getElementById("submit");
+const board_title = document.getElementById("board_title");
+const place = document.getElementById("place");
+const title = document.getElementById("title");
+const contents = document.querySelector('#contents');
+
+document.querySelector('form[action="boardwrite"]').addEventListener('submit', function(evt) {
+	
+    const board_title_value = board_title.value;
+    const place_value = place.value;
+    const title_value = title.value;
+    //const contents_value = contents.value;
+    const contents_value = CKEDITOR.instances.contents.getData();
+    
+    console.log(`contents_value = ${contents_value}`);
+    
+    if (board_title_value === "none") {
+        alert("게시판을 선택해주세요");
+        evt.preventDefault();
+    } else if (place_value === "none") {
+        alert("여행장소를 선택해주세요");
+        evt.preventDefault();
+    } else if (title_value === "" || title_value === "제목") {
+        alert("제목을 작성해주세요");
+        evt.preventDefault();
+    } else if (contents_value === "" || contents_value === null) {
+        alert("내용을 작성해주세요");
+        evt.preventDefault();
+    }
+});
+</script>
 </body>
 </html>

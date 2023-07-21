@@ -241,4 +241,3 @@ where ${colname} like #{colvalue} and image1 != "null"
 
 
 
-

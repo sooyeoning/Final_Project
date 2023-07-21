@@ -47,6 +47,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public void increaseViewCount(int boardId) {
 		sqlSession.update("increaseViewCount", boardId);
 	}
+	
+	@Override
+    public List<BoardDTO> getNewestBoards() {
+        return sqlSession.selectList("getNewestBoards");
+    }
 
 
 }

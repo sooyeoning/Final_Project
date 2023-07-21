@@ -47,5 +47,10 @@ public class BoardServiceImpl implements BoardService {
     public void increaseViewCount(int boardId) {
         boardDAO.increaseViewCount(boardId);
     }
+	
+	@Override
+    public List<BoardDTO> getNewestBoards() {
+        return boardDAO.getNewestBoards();
+    }
 
 }

@@ -12,4 +12,7 @@ public interface BoardService {
 	
 	// 게시글 조회수 증가 메서드 추가
     void increaseViewCount(int boardId);
+    
+ // 최신순으로 게시글 가져오기
+    List<BoardDTO> getNewestBoards();
 }

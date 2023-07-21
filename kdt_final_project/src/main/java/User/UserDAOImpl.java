@@ -17,6 +17,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	public SqlSession sqlSession;
+	
+	@Autowired
+	public PlaceDAO placeDAO;
 
 	@Override
 	public void signup(UserDTO dto) {
@@ -97,12 +100,16 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<LikesDTO> getLikesByUserId(int user_id) {
-		return sqlSession.selectList("getLikesByUserId",user_id);
-	}
-
-	@Override
-	public List<PlaceDTO> getPlacesByContentIds(List<Integer> content_id) {
-		return sqlSession.selectList("getPlaceByContentIds",content_id);
+	    List<LikesDTO> likesList = sqlSession.selectList("getLikesByUserId", user_id);
+	    
+	    // 각 LikesDTO에 해당하는 PlaceDTO를 가져와서 설정
+	    for (LikesDTO likes : likesList) {
+	        int place_id = likes.getPlace_id();
+	        PlaceDTO place = placeDAO.getPlaceById(place_id);
+	        likes.setPlaceDTO(place);
+	    }
+	    
+	    return likesList;
 	}
 
 	

@@ -221,4 +221,25 @@ input[type="submit"]:hover {
 	font-weight: bold;
 }
 
+/* 찜한 여행지 */
+.likes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.likes-table th{
+	font-weight: bold;
+	font-size: 1.3vw;
+}
+.likes-table td{
+	font-size: 0.9vw;
+}
+
+.likes-table th,
+.likes-table td {
+  padding: 5px;
+  text-align: center;
+}
+.likes-table th{
+	font-weight: bold;
+}
 

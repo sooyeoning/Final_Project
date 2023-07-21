@@ -104,17 +104,23 @@
 							<th>게시판</th>
 							<th>장소</th>
 							<th>작성자</th>
+							<th>조회수</th>
+							<th>좋아요</th>
 							<th>작성 시간</th>
 						</tr>
 					</thead>
 					<tbody id="boardTableBody">
 						<c:forEach var="board" items="${boardList}">
 							<tr>
-								<td>${board.title}</td>
+								<td>
+								<a href="/board/detail.jsp?id=${board.title}">${board.title}</a>
+								</td>
 								<td>${board.contents}</td>
 								<td>${board.board_title}</td>
 								<td>${board.place}</td>
 								<td>${board.writer}</td>
+								<td>${board.views}</td>
+								<td>${board.likecount}</td>
 								<td>${board.writingtime}</td>
 							</tr>
 						</c:forEach>
@@ -172,28 +178,28 @@
 			<!-- 찜한 여행지 -->
 			<div class="side-menu-form" id="section5" style="display: none;">
 				<h1>찜한 여행지</h1>
-<%-- 				<table class="likes-table" border="1">
+				<table class="likes-table" border="1">
 					<thead>
 						<tr>
 							<th>제목</th>
-							<th>내용</th>
-							<th>장소</th>
+							<th>주소</th>
+							<th>조회수</th>
+							<th>총 찜</th>
 						</tr>
 					</thead>
 					<tbody id="likesTableBody">
-						<c:forEach var="likes" items="${}">
+						<c:forEach var="likes" items="${likesList}">
 							<tr>
-								<td>${board.title}</td>
-								<td>${board.contents}</td>
-								<td>${board.board_title}</td>
-								<td>${board.place}</td>
-								<td>${board.writer}</td>
-								<td>${board.writingtime}</td>
+								<td><a href=''>${likes.placeDTO.title}</a></td>
+								<td>${likes.placeDTO.address}</td>
+								<td>${likes.placeDTO.viewcnt}</td>
+								<td>${likes.placeDTO.likecnt}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-				</table> --%>
+				</table>
 			</div>
+
 
 			<!-- 좋아요 누른 게시물 -->
 			<div class="side-menu-form" id="section6" style="display: none;">

@@ -2,6 +2,7 @@ package User;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import community.BoardService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import travelspot.CommentsDTO;
+import travelspot.PlaceDTO;
 
 @Controller
 public class UserController {
@@ -34,6 +36,8 @@ public class UserController {
 	UserService service;
 	@Autowired
 	BoardService boardservice;
+	@Autowired
+	PlaceDAO placedao;
 
 	@GetMapping("signin")
 	public String signup() {
@@ -147,7 +151,7 @@ public class UserController {
 	    if (boardList.isEmpty()) {
 	        return ResponseEntity.noContent().build();
 	    }
-
+	    
 	    return ResponseEntity.ok(boardList);
 	}
 	
@@ -170,6 +174,37 @@ public class UserController {
 	    return ResponseEntity.ok(commentsList);
 	}
 	
+	// 사용자가 찜한 여행지 목록 조회
+	@GetMapping(value = "/getLikesByUserId", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getUserLikes(HttpSession session) {
+	    try {
+	        UserDTO dto = (UserDTO) session.getAttribute("user");
+	        if (dto == null) {         
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+	        }
+	        int user_id = dto.getId();
+
+	        List<LikesDTO> likesList = service.getLikesByUserId(user_id);
+	        if(likesList.isEmpty()) {
+	            return ResponseEntity.noContent().build();
+	        }
+
+	        // LikesDTO 목록을 PlaceDTO 목록으로 변환
+	        List<PlaceDTO> placeList = new ArrayList<>();
+	        for (LikesDTO likes : likesList) {
+	            PlaceDTO place = placedao.getPlaceById(likes.getPlace_id()); // PlaceDTO의 정보를 가져오는 메소드 호출
+	            placeList.add(place);
+	        }
+	          
+	        return ResponseEntity.ok(placeList);
+	    } catch (Exception e) {
+	        // 예외 발생 시 서버 측 로그를 출력
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+	    }
+	}
+
+
 
 	@GetMapping("/visitedPage")
 	public ResponseEntity<String> visitedPage(@RequestParam("pageUrl") String pageurl, HttpSession session) {
@@ -179,6 +214,7 @@ public class UserController {
 	        service.addVisitedPage(user_id, pageurl);
 	        return ResponseEntity.ok("Visited page added successfully");
 	    }
+	    
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
 	}
 

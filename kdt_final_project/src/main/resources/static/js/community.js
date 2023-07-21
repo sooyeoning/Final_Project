@@ -24,3 +24,29 @@ recommendTap.addEventListener("click", function(e){
 	record.style.display = "none";
 	recommend.style.display = "block";
 });
+
+//URL에 따른 셀렉트 태그 선택
+document.addEventListener("DOMContentLoaded", function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const order = urlParams.get("order");
+
+  if (order === "newest") {
+    document.getElementById("printtype").value = "newest";
+  } else {
+    document.getElementById("printtype").value = "like";
+  }
+});
+
+// 게시글 정렬
+function handleOrderChange() {
+  const selectedValue = document.getElementById("printtype").value;
+  window.location.href = '/community?order=' + selectedValue;
+}
+
+// 셀렉트 태그 선택
+const printTypeSelect = document.getElementById("printtype");
+
+// 셀렉트 태그의 옵션 값이 변경될 때 실행되는 이벤트 리스너 추가
+printTypeSelect.addEventListener("change", function () {
+  handleOrderChange();
+});

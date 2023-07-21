@@ -10,4 +10,6 @@ public interface BoardDAO {
 	void updateBoard(BoardDTO board);
 	void deleteBoard(BoardDTO board);
 	void increaseViewCount(int boardId);
+	// 최신순으로 게시글 가져오기
+    List<BoardDTO> getNewestBoards();
 }

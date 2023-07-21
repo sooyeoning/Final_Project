@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import User.UserDTO;
@@ -27,27 +25,24 @@ public class CommunityController {
 	@RequestMapping("/community")
 	public String community(HttpServletRequest request, Model model) {
 	    String order = request.getParameter("order");
-	    if (order == null) {
-	        order = "like";
-	    }
 
 	    List<BoardDTO> boardList;
-	    if (order.equals("like")) {
-	        boardList = boardService.getAllBoardsOrderedByLike();
-	    } else if (order.equals("newest")) {
-	        boardList = boardService.getAllBoardsOrderedByNewest(); // 최신순으로 정렬
+	    if ("newest".equals(order)) {
+	        // 최신순으로 게시글 가져오기
+	        boardList = boardService.getNewestBoards();
 	    } else {
-	        // order 값이 'like' 또는 'newest'가 아닌 경우 기본적으로 'like'로 처리
-	        boardList = boardService.getAllBoardsOrderedByLike();
+	        // 기본은 좋아요 수에 따라 정렬하여 게시글 가져오기
+	        boardList = boardService.getAllBoards();
+	        Collections.sort(boardList, Comparator.comparing(BoardDTO::getLikecount).reversed());
 	    }
+
+	    model.addAttribute("boardList", boardList);
 
 	    List<BoardDTO> top10List = boardService.getTop10Boards();
 	    model.addAttribute("top10List", top10List);
-	    model.addAttribute("boardList", boardList);
 
 	    return "community";
 	}
-
 
 	// 새글쓰기 화면 writing.jsp 매핑
 	@RequestMapping("/writing")
@@ -70,8 +65,6 @@ public class CommunityController {
 	    board.setWriter(request.getParameter("writer"));
 	    board.setTitle(request.getParameter("title"));
 	    board.setContents(request.getParameter("contents"));
-	    
-	    //System.out.println("contents = "+request.getParameter("contents"));
 
 	    boardService.createBoard(board);
 

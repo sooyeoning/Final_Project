@@ -76,11 +76,10 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			for(var i in map.commentsList){
 				$('div[class="comments"]').append(
 					`<div class="comments-outerbox"><div class="comments-innerbox">
-					<p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
+					<p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }&nbsp;</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
 					(map.userdto == map.commentsList[i].writer ? 
 					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}">` : '')
-					+`<p id="contents">${map.commentsList[i].contents}</p>
-					<input class="replybutton" type="button" value="답글달기💬" id="${map.commentsList[i].id}"></div></div>`);
+					+`<p id="contents">${map.commentsList[i].contents}</p>`);
 			}//for 
 			
 			deleteComment();
@@ -89,51 +88,6 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 		}//success
 	}); //ajax end
 }//getCommentList end
-
-function replyComment(map){ //대댓글기능
-	$('.replybutton').click(function(){
-		$('div[class="comments"]').html('');
-		for(var i in map.commentsList){
-			$('div[class="comments"]').append(
-			`<div class="comments-outerbox"><div class="comments-innerbox">
-			<p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
-			(map.userdto == map.commentsList[i].writer ? 
-			`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}">` : '')
-			+`<p id="contents">${map.commentsList[i].contents}</p>
-			<input class="replybutton" type="button" value="답글달기💬" id="${map.commentsList[i].id}"></div></div>`);
-			
-			if($(this).attr('id') == map.commentsList[i].id){
-					$('div[class="comments"]').append(
-					`<div class="replywriting-outerbox"><div class="comments-innerbox">
-					 <p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }</p>
-					 <textarea name="contents" class="textarea-innerbox font_comment" style="width: 60vw" rows="4"></textarea>
-					 </p><input class="reply_savebtn" type="button" value="저장" id="${map.commentsList[i].id}">
-					 <input class="reply_cancelbtn" type="button" value="취소" id="${map.commentsList[i].id}"></div></div>`
-					);
-			}//if	
-		}//for 
-		
-		/*
-		$('.reply_savebtn').click(function(){
-			var content = $("textarea[name=contents]").val();
-			
-			$.ajax({
-			url: "/travelspot/post/reply/save?contentId="+contentId,
-			type: 'get',
-			data: {'contentId': contentId, 'contents': content},
-			success: function(){
-				//저장 - 댓글의 번호, 대댓글 고유 번호
-				
-				}
-			
-                  			 success: function() {
-								   $('#content').val(''); //댓글 등록시 댓글 등록창 초기화
-								   getCommentList(); //댓글 등록 후 새로운 댓글 포함된 댓글리스트 가져와서 출력
-			});//ajax end	
-			
-		})	*/
-	});//deletebtn end
-};//deleteComment end
 
 function deleteComment(){ //댓글 삭제 기능
 	$('.deletebutton').click(function(){
@@ -160,11 +114,12 @@ function modifyComment(){ //댓글 수정 기능
 				$('div[class="comments"]').append(
 					/*`<div class="comments-outerbox"><div class="comments-innerbox"><input type="textarea" id="content_modify" class="comment-textarea-innerbox font_comment" placeholder="`+commentsdto.contents +`">		
 					<p>닉네임 `+commentsdto.writer+`</p><p>작성일자 `+commentsdto.writingtime+*/
-					`<div class="comments-outerbox"><div class="comments-innerbox">
-					 <p style="font-weight: bold; display: inline;">${commentsdto.writer }</p><p style="display: inline;">${commentsdto.writingtime}</p>
+					`<div class="comments-modify-outerbox"><div class="comments-innerbox">
+					 <p style="font-weight: bold; display: inline;">${commentsdto.writer }&nbsp;</p><p style="display: inline;">${commentsdto.writingtime}</p>
+					 <br>
 					 <textarea name="contents" class="textarea-innerbox font_comment" style="width: 60vw" rows="4">${commentsdto.contents}</textarea>
-					</p><input class="modify_savebtn" type="button" value="저장" id="`+commentsdto.id+`"><input class="modify_cancelbtn" type="button" value="취소" id="`+commentsdto.id
-					+`"></div></div>`);
+					 <input class="modify_cancelbtn" type="button" value="취소" id="`+commentsdto.id+
+					 `"</p><input class="modify_savebtn" type="button" value="저장" id="`+commentsdto.id+`"></div></div>`);
 				
 				//저장버튼 클릭시 이벤트
 				$('.modify_savebtn').click(function(){

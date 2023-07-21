@@ -32,5 +32,7 @@ public interface PlaceMapper {
 	 public int searchPlaceCnt(HashMap<String, Object> map);
 	 public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map);//테마검색
 	 public int searchThemePlacesCnt(HashMap<String, Object> map);
+	 public void cancelLikes(HashMap<String, Integer> map);
+	 public Integer cancelPlaceLike(int contentId);
 }
 

@@ -25,7 +25,8 @@
 
 <!-- 여행지 게시글 전체 조회(페이징0)-->
 <select id="listPlaces" parameterType="hashmap" resultType="placeDTO">
-	select*from place where areaCode=#{areaCode} and image1 != "null" limit #{page},9 ; 
+	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, 
+	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid from place where areaCode=#{areaCode} and image1 != "null" limit #{page},9 ; 
 </select>
 
 <!-- 게시글 수 조회 -->
@@ -35,7 +36,8 @@
 
 <!-- 여행지 게시글 한개 조회-->
 <select id="selectPlace" parameterType="int" resultType="placeDTO">
-	select*from place where contentId=#{contentId}; 
+	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, replace(contents, "null", "없음"), theme, writingtime, likecnt, viewcnt, ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+	from place where contentId=#{contentId}; 
 </select>
 
 <!-- 여행지 게시글 아이디 있는지 조희-->
@@ -48,10 +50,20 @@
 	update place set likecnt=likecnt+1 where contentId=#{contentId};
 </update>
 
+<!-- 게시글 찜취소 -->
+<update id="cancelPlaceLike" parameterType="int">
+	update place set likecnt=likecnt-1 where contentId=#{contentId};
+</update>
+
 <!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
 <insert id="insertLikes" parameterType="hashmap">
 	insert into likes(like_check, user_id, place_id) values(1, #{user_id}, #{place_id});
 </insert>
+
+<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
+<update id="cancelLikes" parameterType="hashmap">
+	update likes set like_check='0', user_id=#{user_id} where place_id=#{place_id};
+</update>
 
 <!-- 해당 유저가 해당 게시물 찜 여부 확인 -->
 <select id="CheckPlaceLikes" parameterType="hashmap" resultType="integer">
@@ -83,7 +95,10 @@
 
 <!-- 게시글 상세 정보 조회(PlaceDTO)  -->
 <select id="getPlaceThemeDetail" parameterType="int" resultType="PlaceDTO">
-	select*from place where contentId=#{contentId};
+	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, 
+	replace(contents,"null","제공정보 없음") as contents, theme, writingtime, likecnt, viewcnt, 
+	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+	from place where contentId=#{contentId};
 </select>
 
 <!-- 게시글 조회수 증가 -->
@@ -93,7 +108,9 @@
 
 <!-- 게시글 검색 -->
 <select id="searchPlace" parameterType="hashmap" resultType="PlaceDTO">
-	select*from place where ${colname} like #{colvalue} and image1 != "null"
+	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, 
+	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+	from place where ${colname} like #{colvalue} and image1 != "null"
 	limit #{limitindex},#{limitcount}
 </select>
 
@@ -172,19 +189,37 @@
 </select>
 
 <select id="listThemePlaces" parameterType="hashmap" resultMap="placecontentsmap">
-select * from place p join contents c
+select c.contentId, replace(address,"null", '') as address, title, image1, likecnt, viewcnt
+from place p join contents c
 on p.contentId = c.contentId
 where theme=#{theme} and image1 != "null" limit #{page},9 ;
 </select>
 
 <select id="getPlaceContentThemeDetail" parameterType="int" resultMap="placecontentsmap">
-select*from place p join contents c
+select c.contentId, replace(infocenter, "null", "제공정보 없음") as infocenter, 
+ifnull(homepage,"제공정보 없음") as homepage,
+replace(contents, "null", "제공정보 없음") as contents,
+replace(chkbabycarriage,"null","제공정보 없음") as chkbabycarriage,
+replace(chkcreditcard,"null","제공정보 없음") as chkcreditcard,
+replace(chkpet,"null","제공정보 없음") as chkpet,
+replace(kidsfacility,"null","제공정보 없음") as kidsfacility,
+replace(restdate, "null", "제공정보 없음") as restdate,
+replace(usetime, "null", "제공정보 없음") as usetime,
+replace(discountinfo,"null","제공정보 없음") as discountinfo,
+replace(firstmenu,"null","제공정보 없음") as firstmenu,
+replace(reservationinfo, "null", "제공정보 없음") as reservationinfo,
+replace(takeout, "null", "제공정보 없음") as takeout,
+replace(parking,"null","제공정보 없음") as parking,
+replace(parkingfee,"null","제공정보 없음") as parkingfee,
+replace(accomcount, "null", "제공정보 없음") as accomcount,
+replace(usefee, "null", "제공정보 없음") as usefee
+from place p join contents c
 on p.contentId = c.contentId 
 where p.contentId=#{c_contentId};
 </select>
 
 <select id="searchThemePlaces" parameterType="hashmap" resultMap="placecontentsmap">
-select * from place p join contents c on p.contentId = c.contentId
+select c.contentId, replace(address,"null", '') as address, title, image1 from place p join contents c on p.contentId = c.contentId
 where ${colname} like #{colvalue} and image1 != "null" limit #{limitindex},#{limitcount}
 </select>
 

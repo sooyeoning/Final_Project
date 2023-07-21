@@ -18,44 +18,34 @@
 
 	<%
 	String[] themes = new String[] { "alone", "couple", "friends", "family" };
+	String[] themeName = new String[]{"#혼자여행", "#힐링여행", "#캠핑여행", "#가족여행"};
 	%>
 
 	<!-- 6개씩 배치-->
 	<div class="themeContainer">
-		<%
-		for (int i = 0; i < themes.length; i++) {
-		%>
+		<%for (int i = 0; i < themes.length; i++) {%>
 		<div class="themeItem-list">
-			<p class="font_content regionName" id=<%=themes[i]%>><%=themes[i]%></p>
-			<div class="theme-list">
-				<a href="list_theme?theme=<%=themes[i]%>&page=1"><img
-					class="themeprofile" style="width: 100px; height: 100px;"
-					id=<%=themes[i]%> src="/img/<%=themes[i]%>.png"></a>
-			</div>
+			<a href="list_theme?theme=<%=themes[i]%>&page=1" class="font_title themeName" id=<%=themes[i]%>><%=themeName[i]%></a>
 		</div>
-		<%
-		}
-		%>
+		<%}%>
 	</div>
 	<br>
-	<hr class="hrmargin">
 	
 	<!-- 검색창 -->
 	<form action="/travelspot/themesearch" method="get" class="search-form">
 		<select name="item" class="search-item">
 			<option>장소명</option>
 			<option>주소</option>
-		</select> <input type="text" id="search-input" name="searchword"
-			class="search-input" placeholder="검색어를 입력하세요"> <input
-			type="submit" value="검색" class="search-button">
+		</select> 
+		<input type="text" id="search-input" name="searchword" class="search-input" placeholder="검색어를 입력하세요"> 
+		<input type="submit" value="검색" class="search-button">
 	</form>
 	
 	<div class="container">
 		<c:forEach items="${placelist }" var="placeDTO">
 			<div class="item">
 				<!-- style="border: 0.3px solid #2463d3" -->
-				<img class="placeprofile" src=${placeDTO.image1
-} id=${placeDTO.contentId}>
+				<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
 				<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
 				<h1 class="placeLocation font_content" id=${placeDTO.contentId}></h1>
 				<p>${placeDTO.address}</p>

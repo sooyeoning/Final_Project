@@ -9,7 +9,6 @@
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/import.css" rel="stylesheet" type="text/css"/>
- <link rel="stylesheet" href="searchForm.css">
 <script src="http://localhost:8099/js/travelspot_list.js"></script>
 
 </head>

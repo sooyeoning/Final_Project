@@ -19,27 +19,18 @@
 
 	<%
 	String[] themes = new String[] { "alone", "couple", "friends", "family" };
+	String[] themeName = new String[]{"#혼자여행", "#힐링여행", "#캠핑여행", "#가족여행"};
 	%>
 
 	<!-- 6개씩 배치-->
 	<div class="themeContainer">
-		<%
-		for (int i = 0; i < themes.length; i++) {
-		%>
+		<%for (int i = 0; i < themes.length; i++) {%>
 		<div class="themeItem-list">
-			<p class="font_content regionName" id=<%=themes[i]%>><%=themes[i]%></p>
-			<div class="theme-list">
-				<a href="list_theme?theme=<%=themes[i]%>&page=1">
-				<img class="themeprofile" style="width: 100px; height: 100px;"
-					id=<%=themes[i]%> src="/img/<%=themes[i]%>.png"></a>
-			</div>
+			<a href="list_theme?theme=<%=themes[i]%>&page=1" class="font_title themeName" id=<%=themes[i]%>><%=themeName[i]%></a>
 		</div>
-		<%
-		}
-		%>
+		<%}%>
 	</div>
 	<br>
-	<hr class="hrmargin">
 
 <!-- 검색창 -->
 	<form action="/travelspot/themesearch" method="get" class="search-form">

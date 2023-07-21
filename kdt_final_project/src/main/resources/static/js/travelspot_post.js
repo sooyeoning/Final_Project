@@ -17,25 +17,37 @@ $(document).ready(function() {
 	//image onclick end
 
 	//좋아요 클릭
-	$("#like").click(function(){
-		if(document.getElementById('like_id').value == "null"){
+	$("#like").click(function() {
+		if (document.getElementById('like_id').value == "null") {
 			alert("찜하기 기능은 로그인 후 사용가능합니다.")
 		} else {
 			$.ajax({
-			url: "/travelspot/post/likes?contentId=" + contentId,
-			type: 'get',
-			success: function(response) {	
-				if($.trim(response) == "success"){
-				alert("해당 관광지에 좋아요를 누르셨습니다!");
-				} else {
-				 alert("해당 관광지에 이미 좋아요를 누르셨습니다!");
-				}
-			},
-			error: function() { }
-		});
+				url: "/travelspot/post/likes?contentId=" + contentId,
+				type: 'get',
+				success: function(response) {
+					if ($.trim(response) == "success") {	
+						alert("해당 관광지에 좋아요를 누르셨습니다.");
+					} else if($.trim(response) == "alreadyliked"){
+						//취소
+						if(confirm("좋아요를 취소하시겠습니까?")){
+							$.ajax({
+								url: "/travelspot/post/cancelLikes?contentId="+contentId,
+								type: 'get',
+								success: function(response){
+									if($.trim(response) == "success"){
+										alert("정상적으로 취소되었습니다.");
+									}
+								}
+							})
+						}
+					} 		
+					
+				},//success
+				error: function() { }
+
+			})//ajax
 		}
 	});
-	
 	function imageAjax() {
 		$.ajax({
 			url: "/travelspot/post/images?contentId=" + contentId,

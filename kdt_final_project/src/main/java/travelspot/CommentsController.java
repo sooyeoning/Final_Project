@@ -45,7 +45,8 @@ public class CommentsController {
 	public Map<String, Object> getComments(@RequestParam int contentId, HttpSession session){
 		Map<String, Object> map = new HashMap<>();
 		
-		List<CommentsDTO> commentsList = commentsservice.getComments(contentId);
+		//List<CommentsDTO> commentsList = commentsservice.getComments(contentId);
+		List<CommentsUserDTO> commentsList = commentsservice.getCommentsProfile(contentId);
 		map.put("commentsList", commentsList);
 		
 		UserDTO userdto = (UserDTO)session.getAttribute("user");

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import User.UserDTO;
 
 @Component
-public class CommentsDTO {
+public class CommentsUserDTO {
 	int id; 			//댓글 고유 번호
 	String contents; 	//댓글 내용
 	String writingtime; //댓글 등록시간
@@ -17,8 +17,17 @@ public class CommentsDTO {
 	int comment_group;	//대댓글 작성시 댓글의 아이디
 	int content_id;		//커뮤니티 게시글 고유 번호
 	int place_id;		//여행지 게시글 고유 번호
-	
-	public CommentsDTO(int id, String contents, String writingtime, String target_id, int ref_group, int comment_group,
+	User.UserDTO UserDTO;
+
+	public User.UserDTO getUserDTO() {
+		return UserDTO;
+	}
+
+	public void setUserDTO(User.UserDTO userDTO) {
+		this.UserDTO = userDTO;
+	}
+
+	public CommentsUserDTO(int id, String contents, String writingtime, String target_id, int ref_group, int comment_group,
 			int content_id, String writer, int place_id) {
 		this.id = id;
 		this.contents = contents;
@@ -31,7 +40,7 @@ public class CommentsDTO {
 		this.place_id = place_id;
 	}
 	
-	public CommentsDTO() { //기본 생성자
+	public CommentsUserDTO() { //기본 생성자
 	}
 
 	public int getId() {

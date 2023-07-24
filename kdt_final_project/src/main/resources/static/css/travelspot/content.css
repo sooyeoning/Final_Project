@@ -142,7 +142,7 @@ width: 100%;
 }
 
 #contents{
-	margin-top: 2vh;
+	margin-top: 5vh; /*다른 버전: 3vh;*/
 }
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 64vw;
@@ -162,6 +162,13 @@ width: 100%;
 	border-bottom: solid 1px #2463d3;
 }
 
+.comments-userinfo{
+	height: 40px;
+	display: flex;
+	align-items: center;
+	/*margin-bottom: 1.5vh; 프로필 아래 작성자 이름 버전*/
+}
+
 .savebutton{
 	width: 8vw;
 	text-align: center;
@@ -174,8 +181,21 @@ width: 100%;
 	float: right;/*오른쪽 끝 정렬*/
 }
 
-.deletebutton, .modifybutton, .modify_savebtn{
+.deletebutton, .modifybutton{
 	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+	float: right;
+	/*오른쪽 끝 정렬*/
+}
+
+.modify_savebtn{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
 	background-color: white;
     border: none;
 	width: 3vw;
@@ -292,3 +312,11 @@ select::-ms-expand {
 	border-bottom: 1px solid #2463D3;
 }
 
+.comments-profile { /*6개 이미지 틀*/
+    border-radius: 70%;
+    height: 100%; /*동그라미*/
+	overflow: hidden; /*넘치는 부분은 감춘다*/
+	width:40px;
+	height:40px;
+	float: left;
+}

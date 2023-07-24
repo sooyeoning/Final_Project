@@ -41,6 +41,12 @@ public class CommentsServiceImpl implements CommentsService {
 		commentsmapper.insertReply(CommentsDTO);
 	}
 
+	@Override
+	public List<CommentsUserDTO> getCommentsProfile(int place_id){
+		return commentsmapper.getCommentsProfile(place_id) ;
+	}
+	
+
 	
 
 

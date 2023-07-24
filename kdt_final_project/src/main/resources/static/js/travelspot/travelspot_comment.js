@@ -58,7 +58,6 @@ function imageAjax(){
 			url: "/travelspot/post/images?contentId="+contentId,
 			type: 'get',
 			success: function(placedto) {
-				$('#images').css("color", "#2463d3");
 				$('div[class="result"]').html('<img class="images" src='+placedto.image1+'>');	
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
 				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
@@ -73,10 +72,20 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 		type: 'get',
 		success: function(map){
 			$('div[class="comments"]').html('');
-			for(var i in map.commentsList){
+			for(var i in map.commentsList){ //map.commentsList[i]= CommentsDTO > map.commentsList[i].userDTO = UserDTO > map.commentsList[i].userDTO.photo = UserDTO의 photo
+				/* 프로필 사진 옆 이름, 날짜 버전
 				$('div[class="comments"]').append(
 					`<div class="comments-outerbox"><div class="comments-innerbox">
-					<p style="font-weight: bold; display: inline;">${map.commentsList[i].writer }&nbsp;</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
+					<div class="comments-userinfo">
+					<img src="${map.commentsList[i].userDTO.photo}" class="comments-profile">
+					<p style="font-weight: bold; display: inline;">&nbsp;${map.commentsList[i].writer}&nbsp;</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
+					(map.userdto == map.commentsList[i].writer ? 
+					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}"></div>` : '</div>')
+					+`<p id="contents">${map.commentsList[i].contents}</p>`);*/
+				$('div[class="comments"]').append( 
+					`<div class="comments-outerbox"><div class="comments-innerbox">
+					<div class="comments-userinfo"><img src="${map.commentsList[i].userDTO.photo}" class="comments-profile"></div>
+					<p style="font-weight: bold; display: inline;">&nbsp;${map.commentsList[i].writer}&nbsp;</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
 					(map.userdto == map.commentsList[i].writer ? 
 					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}">` : '')
 					+`<p id="contents">${map.commentsList[i].contents}</p>`);

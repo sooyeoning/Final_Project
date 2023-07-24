@@ -14,4 +14,6 @@ public interface CommentsMapper {
 	 public CommentsDTO getOneContent(int id);
 	 public void updateComments(CommentsDTO CommentsDTO);
 	 public void insertReply(CommentsDTO CommentsDTO);
+	 public List<CommentsUserDTO> getCommentsProfile(int place_id);
+
 }

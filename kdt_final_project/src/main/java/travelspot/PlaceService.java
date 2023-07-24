@@ -8,6 +8,7 @@ public interface PlaceService {
 	 public List<PlaceDTO> listPlaces(HashMap<String, Object> param);
 	 public PlaceDTO selectPlace(int contentId);
 	 public int selectPlaceId(int contentId);
+	 public int selectContentId(int contentId);//contents 테이블 정보 유무 조회
 	 public void plusViewCount(int contentId); //조회수 증가
 	 public int getTotalCnt(int areaCode);
 	 public int getTotalThemeCnt(String theme);

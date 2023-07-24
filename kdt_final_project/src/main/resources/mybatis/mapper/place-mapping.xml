@@ -45,6 +45,11 @@
 	select ifnull(max(contentId),0) contentId from place where contentId=#{contentId};
 </select>
 
+<!-- 여행지 게시글 아이디 있는지 조희-->
+<select id="selectContentId" parameterType="int" resultType="int">
+	select ifnull(max(contentId),0) contentId from contents where contentId=#{contentId};
+</select>
+
 <!-- 게시글 찜 -->
 <update id="likePlace" parameterType="int">
 	update place set likecnt=likecnt+1 where contentId=#{contentId};
@@ -69,6 +74,8 @@
 <select id="CheckPlaceLikes" parameterType="hashmap" resultType="integer">
 	select like_check from likes where place_id=#{place_id} and user_id=#{user_id};
 </select>
+
+
 
 <!-- 테마별 여행지 정보 저장(관광지) -->
 <insert id="insertTheme12Detail" parameterType="ContentsDTO">

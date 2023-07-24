@@ -42,5 +42,7 @@
 <!-- 여행지 사진 모아보기 아래 구분선만 색 변경x -->
 <!-- 댓글 작성하는 textarea 글씨(not bod)로 변경-->
 <!-- 버튼: 좋아요 (신고버튼) -->
+<%@ include file="../home/footer.jsp"%>
+
 </body>
 </html>

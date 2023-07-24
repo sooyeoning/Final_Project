@@ -3,7 +3,6 @@ $(document).ready(function() {
 	//js url parameter 가져오기
 	let urlParams = new URL(location.href).searchParams;
 	let contentId = urlParams.get('contentId');
-	document.get
 	imageAjax(); //기본페이지: 사진모아보기로 설정
 
 	$('#images').click(function() {
@@ -12,7 +11,6 @@ $(document).ready(function() {
 
 	$('#info').click(function() {
 		infoAjax();
-	//	$(this).css("color","#2463d3"); 
 	});
 	//image onclick end
 
@@ -107,10 +105,10 @@ $(document).ready(function() {
 
 				// 기본상세정보
 				if (placeDTO.contents != 'null') {
-					$('div[class="result"]').append('<p>관광지 설명<br>' + placeDTO.contents + '<br><br>');
+					$('div[class="result"]').append('<p class="pstyle">관광지 설명<br><hr class="hrdetail"><br>' + placeDTO.contents + '<br><br>');
 				}
 				if (placeDTO.homepage != 'null') {
-					$('div[class="result"]').append('<p>관광지 대표 홈페이지<br>' + placeDTO.homepage + '<br><br>');
+					$('div[class="result"]').append('<p class="pstyle">관광지 대표 홈페이지<br><hr class="hrdetail"><br>' + placeDTO.homepage + '<br><br>');
 				}
 			
 				//스크롤
@@ -120,5 +118,33 @@ $(document).ready(function() {
 			error: function() { }
 		});
 	};
+	
+	//메뉴 클릭시 색상 변경
+ 	var font_content = document.getElementsByClassName("font_content");
 
+    function handleClick(event) {
+        console.log(event.target);
+        // console.log(this);
+        // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+        console.log(event.target.classList);
+
+        if (event.target.classList[1] === "clicked") {
+          event.target.classList.remove("clicked");
+        } else {
+          for (var i = 0; i < font_content.length; i++) {
+            font_content[i].classList.remove("clicked");
+          }
+
+          event.target.classList.add("clicked");
+        }
+      }
+
+      function init() {
+        for (var i = 0; i < font_content.length; i++) {
+          font_content[i].addEventListener("click", handleClick);
+        }
+      }
+
+      init();
 });//ready end

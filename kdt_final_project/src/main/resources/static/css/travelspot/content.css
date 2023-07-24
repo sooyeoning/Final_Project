@@ -88,9 +88,7 @@ display: flex;
 
 .hrmargin{ /*상세페이지 메뉴바 구분선*/
   margin: 1% 17% 1% 17%; 
-  /*hr 색상 변경*/
-  background: #2463d3;
-  height: 0.5px;
+  border-top: 0.5px solid #2463d3;
 }
 
 .hrdetail{ /*여행지 상세정보 구분선*/
@@ -127,6 +125,7 @@ width: 100%;
 	padding: 1vw;
 	border: solid 1px #2463d3;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
+	margin-top: 0.2vh;
 }
 
 .comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
@@ -171,11 +170,11 @@ width: 100%;
 	border: none;
 	color: white; /*글씨색상*/
 	padding: 1%;
-	margin: 2vh 0 0 0;
+	margin: 2vh 0.7vw 0 0;
 	float: right;/*오른쪽 끝 정렬*/
 }
 
-.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
+.deletebutton, .modifybutton, .modify_savebtn{
 	color: black; /*글씨색상*/
 	background-color: white;
     border: none;
@@ -184,6 +183,21 @@ width: 100%;
 	padding: 0 0.5vw 0 0.5vw;
 	float: right;
 	/*오른쪽 끝 정렬*/
+}
+
+.modify_cancelbtn{
+	color: black; /*글씨색상*/
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	margin: 0 1vw 0 0;
+	float: right;
+	/*오른쪽 끝 정렬*/
+}
+
+.clicked{
+	color:  #2463d3;
 }
 
 /* 테마별 장소리스트(list_theme) 페이지*/
@@ -277,3 +291,4 @@ select::-ms-expand {
 	color: #2463D3;
 	border-bottom: 1px solid #2463D3;
 }
+

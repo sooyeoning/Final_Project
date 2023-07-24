@@ -52,7 +52,6 @@ $(document).ready(function() {
 			url: "/travelspot/post/images?contentId=" + contentId,
 			type: 'get',
 			success: function(placedto) {
-				$('#images').css("color", "#2463d3");
 				$('div[class="result"]').html('<img class="images" src=' + placedto.image1 + '>');
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
 				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
@@ -66,8 +65,6 @@ $(document).ready(function() {
 			url: "/travelspot/post/themeinfo?contentId=" + contentId,
 			type: 'get',
 			success: function(placeContentsDTO) {
-				$('#info').css("color", "#2463d3");
-
 				//지도 
 				$('div[class="result"]').html('<div id="map" style="width:100%; height:400px;"></div><br>');
 
@@ -222,4 +219,32 @@ $(document).ready(function() {
 		});
 	};
 
+	//메뉴 클릭시 색상 변경
+ 	var font_content = document.getElementsByClassName("font_content");
+
+    function handleClick(event) {
+        console.log(event.target);
+        // console.log(this);
+        // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+        console.log(event.target.classList);
+
+        if (event.target.classList[1] === "clicked") {
+          event.target.classList.remove("clicked");
+        } else {
+          for (var i = 0; i < font_content.length; i++) {
+            font_content[i].classList.remove("clicked");
+          }
+
+          event.target.classList.add("clicked");
+        }
+      }
+
+      function init() {
+        for (var i = 0; i < font_content.length; i++) {
+          font_content[i].addEventListener("click", handleClick);
+        }
+      }
+
+      init();
 });//ready end

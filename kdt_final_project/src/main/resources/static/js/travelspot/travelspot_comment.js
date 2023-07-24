@@ -13,7 +13,7 @@ $(document).ready(function() {
 			success: function(map) {
 				$('div[class="result"]').html(
 				`<div class="textarea-outerbox">
-				<p class="font_content">여행지 한줄평</p><br>
+				<p class="pstyle">여행지 한줄평</p><br>
 				<textarea id="content" class="textarea-innerbox font_comment" style="width: 60vw" rows="4" placeholder="여행지에 대한 한줄평을 남겨주세요"> </textarea>
 				<input type="button" class="savebutton" value="저장"></div></div>`);
 				$('div[class="result"]').append('<div class="comments"></div>');
@@ -84,7 +84,6 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			
 			deleteComment();
 			modifyComment();
-			replyComment(map);
 		}//success
 	}); //ajax end
 }//getCommentList end
@@ -112,14 +111,12 @@ function modifyComment(){ //댓글 수정 기능
 			  //수정할 댓글 부분 textarea 생성 > 버튼 2개(취소, 저장)
 			  	$('div[class="comments"]').html('');
 				$('div[class="comments"]').append(
-					/*`<div class="comments-outerbox"><div class="comments-innerbox"><input type="textarea" id="content_modify" class="comment-textarea-innerbox font_comment" placeholder="`+commentsdto.contents +`">		
-					<p>닉네임 `+commentsdto.writer+`</p><p>작성일자 `+commentsdto.writingtime+*/
 					`<div class="comments-modify-outerbox"><div class="comments-innerbox">
 					 <p style="font-weight: bold; display: inline;">${commentsdto.writer }&nbsp;</p><p style="display: inline;">${commentsdto.writingtime}</p>
-					 <br>
-					 <textarea name="contents" class="textarea-innerbox font_comment" style="width: 60vw" rows="4">${commentsdto.contents}</textarea>
 					 <input class="modify_cancelbtn" type="button" value="취소" id="`+commentsdto.id+
-					 `"</p><input class="modify_savebtn" type="button" value="저장" id="`+commentsdto.id+`"></div></div>`);
+					 `"</p><input class="modify_savebtn" type="button" value="저장" id="`+commentsdto.id+`"><br><br>
+					 <textarea name="contents" class="textarea-innerbox font_comment" style="width: 60.5vw" rows="4">${commentsdto.contents}</textarea>
+					 </div></div>`);
 				
 				//저장버튼 클릭시 이벤트
 				$('.modify_savebtn').click(function(){

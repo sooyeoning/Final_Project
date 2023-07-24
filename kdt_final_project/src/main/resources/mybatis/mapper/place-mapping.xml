@@ -75,8 +75,6 @@
 	select like_check from likes where place_id=#{place_id} and user_id=#{user_id};
 </select>
 
-
-
 <!-- 테마별 여행지 정보 저장(관광지) -->
 <insert id="insertTheme12Detail" parameterType="ContentsDTO">
 	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) ;
@@ -203,7 +201,8 @@ where theme=#{theme} and image1 != "null" limit #{page},9 ;
 </select>
 
 <select id="getPlaceContentThemeDetail" parameterType="int" resultMap="placecontentsmap">
-select c.contentId, replace(infocenter, "null", "제공정보 없음") as infocenter, 
+select c.contentId, mapx, mapy, contents, title, contenttypeid,
+replace(infocenter, "null", "제공정보 없음") as infocenter, 
 ifnull(homepage,"제공정보 없음") as homepage,
 replace(contents, "null", "제공정보 없음") as contents,
 replace(chkbabycarriage,"null","제공정보 없음") as chkbabycarriage,

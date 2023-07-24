@@ -9,12 +9,12 @@
 <title>위트</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
-<link href="/css/import.css" rel="stylesheet" type="text/css"/>
-<script src="http://localhost:8099/js/travelspot_list.js"></script>
+<link href="/css/travelspot/import.css" rel="stylesheet" type="text/css"/>
+<script src="http://localhost:8099/js/travelspot/travelspot_list.js"></script>
 
 </head>
 <body>
-<%@ include file="../views/home/header.jsp"%>
+<%@ include file="../home/header.jsp"%>
 
 <% 
 int[] ids = new int[]{32, 6, 2, 5, 7, 31};

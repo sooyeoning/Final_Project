@@ -9,12 +9,12 @@
 <title>위트</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
 
-<link href="/css/import.css" rel="stylesheet" type="text/css" />
-<script src="http://localhost:8099/js/travelspot_list_theme.js"></script>
+<link href="/css/travelspot/import.css" rel="stylesheet" type="text/css" />
+<script src="http://localhost:8099/js/travelspot/travelspot_list_theme.js"></script>
 
 </head>
 <body>
-	<%@ include file="../views/home/header.jsp"%>
+<%@ include file="../home/header.jsp"%>
 
 	<%
 	String[] themes = new String[] { "alone", "couple", "friends", "family" };

@@ -53,7 +53,7 @@ public class PlaceController {
 		mv.addObject("placelist", placeservice.listPlaces(param));
 		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
 		mv.addObject("areaCode", areaCode);
-		mv.setViewName("travelspot_list");
+		mv.setViewName("/travelspot/travelspot_list");
 		return mv;
 	}
 	
@@ -86,7 +86,7 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
-			mv.setViewName("travelspot_searchlist");
+			mv.setViewName("/travelspot/travelspot_searchlist");
 			return mv;
 		}
 
@@ -105,7 +105,7 @@ public class PlaceController {
 			mv.addObject("userdto", userdto);
 		}
 
-		mv.setViewName("travelspot_post");
+		mv.setViewName("/travelspot/travelspot_post");
 		mv.addObject("placedto", placedto);
 		
 		return mv;		
@@ -162,6 +162,7 @@ public class PlaceController {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
 		return placedto;
 	}
+	
 	@GetMapping("/travelspot/post/info")
 	@ResponseBody
 	public PlaceDTO showPostInfo(@RequestParam int contentId) {
@@ -182,12 +183,13 @@ public class PlaceController {
 		param.put("page", pageindex);
 
 		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		mv.addObject("currentPage", pageindex);
 		mv.addObject("placelist", placeservice.listThemePlaces(param)); //PlaceContentsDTO
 		mv.addObject("totalCnt", placeservice.getTotalThemeCnt(theme));
 		mv.addObject("userdto", userdto);
 
 		mv.addObject("theme", theme);
-		mv.setViewName("travelspot_list_theme");
+		mv.setViewName("/travelspot/travelspot_list_theme");
 		return mv;
 	}
 		
@@ -220,7 +222,7 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
-			mv.setViewName("travelspot_searchlist_theme");
+			mv.setViewName("/travelspot/travelspot_searchlist_theme");
 			return mv;
 		}
 		
@@ -238,7 +240,7 @@ public class PlaceController {
 		}
 		
 		mv.addObject("placedto", placedto);
-		mv.setViewName("travelspot_post_theme");
+		mv.setViewName("/travelspot/travelspot_post_theme");
 		return mv;		
 	}
 	

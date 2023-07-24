@@ -173,7 +173,7 @@ public class PlaceController {
 	@RequestMapping("/travelspot/list_theme")
 	public ModelAndView showThemeMain(@RequestParam String theme,
 			@RequestParam(required = true, defaultValue = "1") int page, HttpSession session) throws Exception{
-		apiservice.getThemeBasicInfo(); 
+		//apiservice.getThemeBasicInfo(); 
 		ModelAndView mv = new ModelAndView();
 		
 		HashMap<String, Object> param = new HashMap<>();

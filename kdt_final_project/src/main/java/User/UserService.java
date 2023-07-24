@@ -26,10 +26,6 @@ public interface UserService {
 
 	String generateTemporaryPassword();
 
-	List<VisitedDTO> getRecentVisitedPages(String user_id, int limit);
-
-	void addVisitedPage(String user_id, String pageurl);
-
 	List<BoardDTO> getBoardListByWriter(String writer);
 
 	List<CommentsDTO> getCommentListByWriter(String writer);

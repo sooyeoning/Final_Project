@@ -23,10 +23,6 @@ public interface UserDAO {
 
 	void updatePassword(UserDTO dto);
 
-	void addVisitedPage(VisitedDTO dto);
-
-	List<VisitedDTO> getRecentVisitedPages(String user_id, int limit);
-
 	List<BoardDTO> getBoardListByWriter(String writer);
 
 	List<CommentsDTO> getCommentListByWriter(String writer);

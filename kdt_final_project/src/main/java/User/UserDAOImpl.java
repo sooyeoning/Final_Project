@@ -75,20 +75,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void addVisitedPage(VisitedDTO dto) {
-		sqlSession.insert("addVisitedPage", dto);
-
-	}
-
-	@Override
-	public List<VisitedDTO> getRecentVisitedPages(String user_id, int limit) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("user_id", user_id);
-		params.put("limit", limit);
-		return sqlSession.selectList("getRecentVisitedPages", params);
-	}
-
-	@Override
 	public List<BoardDTO> getBoardListByWriter(String writer) {
 		return sqlSession.selectList("getBoardListByWriter", writer);
 	}

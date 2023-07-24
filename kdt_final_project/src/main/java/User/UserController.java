@@ -204,34 +204,6 @@ public class UserController {
 	    }
 	}
 
-
-
-	@GetMapping("/visitedPage")
-	public ResponseEntity<String> visitedPage(@RequestParam("pageUrl") String pageurl, HttpSession session) {
-	    UserDTO user = (UserDTO) session.getAttribute("user");
-	    if (user != null) {
-	        String user_id = user.getUserid();
-	        service.addVisitedPage(user_id, pageurl);
-	        return ResponseEntity.ok("Visited page added successfully");
-	    }
-	    
-	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
-	}
-
-
-	@GetMapping("/getRecentVisitedPages")
-	public String getRecentVisitedPages(Model model, HttpSession session) {
-	    UserDTO user = (UserDTO) session.getAttribute("user");
-	    if (user != null) {
-	        List<VisitedDTO> recentVisitedPages = service.getRecentVisitedPages(user.getUserid(), 10);
-	        model.addAttribute("recentVisitedPages", recentVisitedPages);
-	    }
-	    return "user/mypage";
-	}
-
-
-
-
 	@PostMapping("/withdrawUser")
 	public ResponseEntity<String> withdrawUser(HttpSession session) {
 		UserDTO user = (UserDTO) session.getAttribute("user");

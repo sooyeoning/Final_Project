@@ -35,6 +35,16 @@ public interface PlaceMapper {
 	 public int searchThemePlacesCnt(HashMap<String, Object> map);
 	 public void cancelLikes(HashMap<String, Integer> map);
 	 public Integer cancelPlaceLike(int contentId);
+	 
+	 //
+	 public void insertPlaces2(PlaceDTO placeDTO);
+	 public void insertThemeBasicInfo2(PlaceDTO placeDTO);
+	 public void updateThemePlace2(PlaceDTO placeDTO);
+	 public void insertTheme12Detail2(ContentsDTO contentsDTO);
+	 public void insertTheme39Detail2(ContentsDTO contentsDTO);
+	 public void insertTheme14Detail2(ContentsDTO contentsDTO);
+	 public void insertTheme28Detail2(ContentsDTO contentsDTO);
+	 public int selectPlaceId2(int contentId);
+	 public int selectContentId2(int contentId);//contents 테이블 정보 유무 조회
 }
 	
-

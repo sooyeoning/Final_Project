@@ -27,7 +27,7 @@
   <li><a href="/FAQ02">가입 변경/탈퇴</a></li>
   <li><a href="/FAQ03">신고/이용제한</a></li>
   <li><a href="/FAQ04">프로필 관련</a></li>
-  <li><a href="FAQ">이용 문의</a></li>
+  <li><a href="/selectFAQs">이용 문의</a></li>
 </ul>
     </div>
     

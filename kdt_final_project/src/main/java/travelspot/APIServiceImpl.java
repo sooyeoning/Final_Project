@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,6 +33,24 @@ public class APIServiceImpl {
 	@Autowired
 	PlaceMapper placemapper;
 
+	@Scheduled(cron = "0 14 11 * * *")
+	public void ScheduledTasksMethod() throws Exception {
+		
+		//System.out.println("확인");
+		
+		/*
+		기본 관광지
+		int[] areaCodes = {32,6,2,5,7,31};
+		for(int i=0; i<areaCodes.length; i++) {
+			getBasicInfo(areaCodes[i]);
+		}
+		*/
+		
+		//테마별관광지
+		getThemeBasicInfo();
+		
+	}
+	
 	// 전체 관광지 추천용: 테마 없는 기본 장소 불러오기(지역코드 이용)
 	public void getBasicInfo(int areaCode) throws Exception {
 
@@ -42,7 +61,7 @@ public class APIServiceImpl {
 
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + serviceKey);
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("100", "UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("5", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("test", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("arrange", "UTF-8") + "=" + URLEncoder.encode("O", "UTF-8"));
@@ -74,7 +93,8 @@ public class APIServiceImpl {
 				PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode1, image1, address, mapx, mapy);
 				System.out.println(placeDTO.toString());
 
-				placemapper.insertPlaces(placeDTO);
+				placemapper.insertPlaces2(placeDTO);
+				//placemapper.insertPlaces(placeDTO);
 			} // if
 		} // for
 	}// test method
@@ -182,7 +202,7 @@ public class APIServiceImpl {
 					PlaceDTO placeDTO = new PlaceDTO(contentId, title, theme);
 					// DB 저장 확인용: System.out.println(placeDTO.contentId +" , "+contentTypeId);
 				
-					// DB 해당 content 존재하는지 확인(문제)
+					/* DB 해당 content 존재하는지 확인(문제)
 					if (placemapper.selectPlaceId(placeDTO.contentId) == 0 ) { //기존 데이터 없는경우
 						System.out.println("기존데이터x");
 						placemapper.insertThemeBasicInfo(placeDTO); // contentId, title, contentTypeId만 저장		
@@ -190,6 +210,17 @@ public class APIServiceImpl {
 					} 					
 					System.out.println("기존 place 데이터o");
 					if(placemapper.selectContentId(contentId) == 0  ) { //contents테이블 정보 없는 경우
+						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
+					}
+					*/
+					// DB 해당 content 존재하는지 확인(문제)
+					if (placemapper.selectPlaceId2(placeDTO.contentId) == 0 ) { //기존 데이터 없는경우
+						System.out.println("기존데이터x");
+						placemapper.insertThemeBasicInfo2(placeDTO);
+						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
+					} 					
+					System.out.println("기존 place 데이터o");
+					if(placemapper.selectContentId2(contentId) == 0  ) { //contents테이블 정보 없는 경우
 						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
 			} // if
@@ -281,7 +312,8 @@ public class APIServiceImpl {
 				placedto.contents = contents.orElse("");
 				placedto.homepage = homepage.orElse("");
 
-				placemapper.updateThemePlace(placedto);
+				//placemapper.updateThemePlace(placedto);
+				placemapper.updateThemePlace2(placedto);
 				getThemePlaceDetailIntro(placedto.contentId, placedto.contentTypeId);
 			}//if
 			}
@@ -319,22 +351,26 @@ public class APIServiceImpl {
 
 					if (placeContentTypeId == 12) {
 						ContentsDTO contentsdto = getContentType_12(e);
-						placemapper.insertTheme12Detail(contentsdto);
+						//placemapper.insertTheme12Detail(contentsdto);
+						placemapper.insertTheme12Detail2(contentsdto);
 						System.out.println("12성공");
 					}
 					if (placeContentTypeId == 39) {
 						ContentsDTO contentsdto = getContentType_39(e);
-						placemapper.insertTheme39Detail(contentsdto);
+						//placemapper.insertTheme39Detail(contentsdto);
+						placemapper.insertTheme39Detail2(contentsdto);
 						System.out.println("39성공");
 					}
 					if (placeContentTypeId == 14) {
 						ContentsDTO contentsdto = getContentType_14(e);
-						placemapper.insertTheme14Detail(contentsdto);
+						//placemapper.insertTheme14Detail(contentsdto);
+						placemapper.insertTheme14Detail2(contentsdto);
 						System.out.println("14성공");
 					}
 					if (placeContentTypeId == 28) {
 						ContentsDTO contentsdto = getContentType_28(e);
-						placemapper.insertTheme28Detail(contentsdto);
+						//placemapper.insertTheme28Detail(contentsdto);
+						placemapper.insertTheme28Detail2(contentsdto);
 						System.out.println("28성공");
 					}
 					else {

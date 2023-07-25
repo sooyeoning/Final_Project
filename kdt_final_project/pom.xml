@@ -72,7 +72,9 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-	
+	<!-- spring quartz를 사용하기 위한 라이브러리 -->	  
+
+
 	</dependencies>
 
 	<build>

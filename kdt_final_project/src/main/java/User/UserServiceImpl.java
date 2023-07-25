@@ -90,17 +90,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addVisitedPage(String user_id, String pageurl) {
-		VisitedDTO dto = new VisitedDTO(user_id, pageurl);
-		dao.addVisitedPage(dto);
-	}
-
-	@Override
-	public List<VisitedDTO> getRecentVisitedPages(String user_id, int limit) {
-		return dao.getRecentVisitedPages(user_id, limit);
-	}
-
-	@Override
 	public List<BoardDTO> getBoardListByWriter(String writer) {
 		return dao.getBoardListByWriter(writer);
 	}

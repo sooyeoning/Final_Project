@@ -108,6 +108,11 @@ width: 66%;
 width: 100%;
 }
 
+.myresult{ /*결과물 출력의 부모 요소*/
+margin: 5px 17% 5px 17%;  
+width: 66%;
+}
+
 .images{ /*결과물 출력의 자식 요소*/
 	display: block; /**/
 	width: 100%; /*부모 요소 너비의 100%*/

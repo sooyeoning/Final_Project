@@ -58,30 +58,30 @@
       </div> -->
 
 					<div class="form-group">
-						<label for="categories">문의 분류</label> <select id="categories"
-							class="form-control-category" name="categories">
+					   <form action="/updateFAQ" method="post">
+					   <input type="hidden" name="id" value="${faq.id}" />
+					   
+						<label for="categories">문의 분류</label> 
+						<select id="categories" class="form-control-category" name="categories" value="${faq.categories}">
 							<option value="일반">일반</option>
 							<option value="가입 변경/탈퇴">가입 변경/탈퇴</option>
 							<option value="신고/이용제한">신고/이용제한</option>
 							<option value="프로필 관련">프로필 관련</option>
 							<option value="기타">기타</option>
 						</select>
-					</div>
+					
 
-					<input type="hidden" id="writer" name="writer" value="${nickname }"
-						readonly><br>
-
-					<div class="form-group">
+					
 						<label for="title">제목</label>
-						<textarea class="form-control" id="title" name="title"
-							placeholder="제목을 입력하세요" required></textarea>
-					</div>
+						<input class="form-control" type="text" id="title" name="title"
+							placeholder="제목을 입력하세요" value="${faq.title}" required>
+					
 
-					<div class="form-group">
+					
 						<label for="title">문의 내용</label>
-						<textarea class="form-control-textarea" id="contents-textarea"
-							name="contents" required></textarea>
-					</div>
+						<input class="form-control-textarea" type="text" id="contents"
+							name="contents" value="${faq.contents}" required>
+					
 
 					<div>파일 첨부</div>
 					<label for="attachment-input" class="custom-file-button"
@@ -128,19 +128,12 @@
 						</div>
 					</div>
 					<br>
-					<button type="submit">문의접수</button>
+					<input type="button" value="문의접수" onclick="updateFAQ()">
 				</form>
 
 			</div>
 		</div>
 		<script>
-			/*     const countryCodeSelect = document.getElementById("country-code");
-			 const phoneNumberInput = document.getElementById("phone");
-
-			 countryCodeSelect.addEventListener("change", function () {
-			 const selectedCountryCode = countryCodeSelect.value;
-			 phoneNumberInput.value = selectedCountryCode;
-			 }); */
 
 			/*     파일첨부기능 */
 			function displayFileName(input) {
@@ -158,7 +151,43 @@
 				}
 
 			}
-		</script>
+
+			function updateFAQ() {
+			    // 폼 요소의 값들을 JavaScript 변수에 저장합니다.
+			    var categories = document.getElementById("categories").value;
+			    var title = document.getElementById("title").value;
+			    var contents = document.getElementById("contents").value;
+			    var id = "${faq.id}"; // JSP 코드로부터 FAQ의 ID를 가져옵니다.
+
+			    // 폼 데이터 객체를 생성합니다.
+			    var formData = new FormData();
+			    formData.append("id", id);
+			    formData.append("categories", categories);
+			    formData.append("title", title);
+			    formData.append("contents", contents);
+
+			    // JavaScript 변수의 값들을 서버로 전송하기 위해 fetch API를 사용합니다.
+			    fetch("/updateFAQ", {
+			        method: "POST",
+			        body: formData, // 폼 데이터 객체를 fetch API의 body에 전달합니다.
+			    })
+			    .then(function(response) {
+			        if (response.ok) {
+			            // 서버 응답이 성공적으로 처리된 경우, 문의글 목록 페이지로 이동합니다.
+			            alert("수정이 완료되었습니다.");
+			            window.location.href = "/selectFAQs";
+			        } else {
+			            // 서버 응답이 실패한 경우에 대한 처리를 여기에 작성합니다.
+			            alert("수정에 실패했습니다. 다시 시도해주세요.");
+			        }
+			    })
+			    .catch(function(error) {
+			        // 네트워크 오류 등 예외 처리를 여기에 작성합니다.
+			        alert("수정에 실패했습니다. 다시 시도해주세요.");
+			    });
+			}
+
+</script>
 
 
 

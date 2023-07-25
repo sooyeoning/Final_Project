@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -41,7 +41,7 @@ if (login==null){%>
 <a href="/travelspot/main"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>
 <a href="/mypage"><div class="menu" >마이페이지</div></a>
-<a href="/FAQ"><div class="menu" >고객센터</div></a>
+<a href="/FAQ01"><div class="menu" >고객센터</div></a>
 <br><br>
 </div>
 </div> 

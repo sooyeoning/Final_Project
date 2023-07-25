@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import User.UserDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class IndexController {
 	
@@ -14,9 +18,16 @@ public class IndexController {
 	HomeService service;
 	
 	@RequestMapping("/")
-	public String Index(Model model) {
-		
+	public String Index(HttpServletRequest request,Model model,HttpSession session) {
+		UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+		if (user == null) {
+			
+		} else if (user != null) {
+			model.addAttribute("username", user.getUsername());
+			session.setAttribute("username", user.getUsername());
+		}
 		 List<HomeDTO> getTop5Record = service.getTop5Record();
+		 
 		 model.addAttribute("getTop5Record",getTop5Record);
 		  
 		 List<HomeDTO> getTop5Recommend = service.getTop5Recommend();

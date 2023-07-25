@@ -18,25 +18,38 @@ String login=null;
 if((String)session.getAttribute("login")!=null){
 	login=(String)session.getAttribute("login");
 }
+String username=(String)session.getAttribute("username");
+
 %>
+
 <header>
 <div id="shadow">
 <div id="body" >
 <%
-
 if (login==null){%>
 <div class="name">
 <a href="/login" id="headerLoginBtn">로그인</a>
 <a href="/signin" id="headerSignupBtn">회원가입</a>
 <a href="/index(Eng)">English</a>
 </div>
-<%}else if (login!=null){%>
+<%}else if (login!=null && username!="admin"){%>
 <div class="name">
+<a href="/mypage"><%=username %>님</a>
 <a href="/logout" id="headerLoginBtn">로그아웃</a>
 <!-- <a href="/signin" id="headerSignupBtn">회원가입</a> -->
 <a href="/index(Eng)">English</a>
 </div>
+<%}else if(login!=null && username=="admin") {%>
+<div class="name">
+<a href="/adminpage"><%=username %>님</a>
+<a href="/logout" id="headerLoginBtn">로그아웃</a>
+<!-- <a href="/signin" id="headerSignupBtn">회원가입</a> -->
+<a href="/index(Eng)">English</a>
 <%};%>
+
+
+
+
 <a href="/"><img src=../img/logo.png class="logo"></a>
 <a href="/travelspot/list"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>

@@ -15,6 +15,7 @@
 		<typeAlias type="travelspot.PlaceContentsDTO" alias="PlaceContentsDTO" />
 		<typeAlias type="community.BoardDTO" alias="boarddto" />
 		<typeAlias type="FAQ.FAQDTO" alias="faqdto" />
+		<typeAlias type="controller.HomeDTO" alias="homeDTO"/>
 	</typeAliases>
 
 </configuration>

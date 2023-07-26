@@ -147,7 +147,7 @@ width: 66%;
 }
 
 #contents{
-	margin-top: 5vh; /*다른 버전: 3vh;*/
+	margin-top: 3vh; /*다른 버전: 5vh;*/
 }
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 64vw;
@@ -186,7 +186,7 @@ width: 66%;
 	float: right;/*오른쪽 끝 정렬*/
 }
 
-.deletebutton, .modifybutton{
+.deletebutton{
 	color: black; /*글씨색상*/
 	font-family: 'LeferiBaseType-RegularA';
 	background-color: white;
@@ -194,9 +194,19 @@ width: 66%;
 	width: 3vw;
 	text-align: center;
 	padding: 0 0.5vw 0 0.5vw;
-	float: right;
-	/*오른쪽 끝 정렬*/
+	margin-left: auto;
 }
+
+.modifybutton{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+}
+
 
 .modify_savebtn{
 	color: black; /*글씨색상*/
@@ -212,6 +222,7 @@ width: 66%;
 
 .modify_cancelbtn{
 	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
 	background-color: white;
     border: none;
 	width: 3vw;
@@ -248,7 +259,7 @@ width: 66%;
 .search-form {
   display: flex;
   float: right;
-  max-width: 30em;
+  max-width: 30vw;
   width:68%;
   margin: 1% 17% 2% 0;
 }
@@ -260,7 +271,7 @@ width: 66%;
   font-size: 16px;
   flex: 1;
   box-sizing: border-box;
-  width: 15em;
+  width: 15vw;
   height: 35px;
   top: 158px;
   background: #FFFFFF;
@@ -272,7 +283,7 @@ width: 66%;
   color: white;
   border: none;
   border-radius: 4px;
-  width: 5em;
+  width: 5vw;
   height: 35px;
   top: 158px;
   background: #9FC4FF;
@@ -288,19 +299,17 @@ width: 66%;
 }
 
 .search-item {
-  width: 15em;
+  width: 10vw;
   height: 35px;
   margin-right: 10px;
   padding-left: 10px;
-  border-radius: 4px;
+  border-radius: 4px; 
   font-size: 16px;  
   border: 1px solid #2463D3;
-  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+  background: url(/img/arrow.png) no-repeat 95% 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid #999;
-  border-radius: 0px;
 }
 
 select::-ms-expand {
@@ -324,4 +333,6 @@ select::-ms-expand {
 	width:40px;
 	height:40px;
 	float: left;
+	border: 0.5px solid gray;
+	margin-right: 0.5vw;
 }

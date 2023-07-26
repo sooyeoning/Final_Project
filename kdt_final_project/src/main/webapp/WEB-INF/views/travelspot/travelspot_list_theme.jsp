@@ -34,6 +34,7 @@
 	<!-- 검색창 -->
 	<form action="/travelspot/themesearch" method="get" class="search-form">
 		<select name="item" class="search-item">
+			<option selected="selected">검색카테고리</option>
 			<option>장소명</option>
 			<option>주소</option>
 		</select> 

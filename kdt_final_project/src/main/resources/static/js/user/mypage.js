@@ -159,7 +159,7 @@ function getCommentListByWriter() {
           const contentsCell = document.createElement('td');
           const contentsLink = document.createElement('a');
           contentsLink.textContent = item.contents;
-          contentsLink.href = '/travelspot/post/mycomments?contentId=' + item.place_id; // 댓글 상세 페이지 URL로 설정
+          contentsLink.href = '/travelspot/post?contentId=' + item.place_id; // 댓글 상세 페이지 URL로 설정
           contentsCell.classList.add('comments-contents');
           contentsCell.appendChild(contentsLink);
           

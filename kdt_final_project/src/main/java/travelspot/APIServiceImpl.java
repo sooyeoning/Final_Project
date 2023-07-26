@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,21 +34,32 @@ public class APIServiceImpl {
 	@Autowired
 	PlaceMapper placemapper;
 
-	@Scheduled(cron = "0 14 11 * * *")
+	@Scheduled(cron = "0 30 23 * * *")
 	public void ScheduledTasksMethod() throws Exception {
 		
 		//System.out.println("확인");
 		
+		//기본 관광지
 		/*
-		기본 관광지
 		int[] areaCodes = {32,6,2,5,7,31};
 		for(int i=0; i<areaCodes.length; i++) {
 			getBasicInfo(areaCodes[i]);
 		}
 		*/
-		
 		//테마별관광지
 		getThemeBasicInfo();
+		
+		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
+		List<PlaceDTO> placelist = placemapper.selectAllPlace();
+		for(PlaceDTO one :placelist) {
+			placemapper.copyTablePlace2(one);
+		}
+		
+		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
+		List<ContentsDTO> contentlist = placemapper.selectAllContents();
+		for(ContentsDTO one :contentlist) {
+			placemapper.copyTableContent2(one);
+		}
 		
 	}
 	
@@ -93,8 +105,12 @@ public class APIServiceImpl {
 				PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode1, image1, address, mapx, mapy);
 				System.out.println(placeDTO.toString());
 
-				placemapper.insertPlaces2(placeDTO);
-				//placemapper.insertPlaces(placeDTO);
+				if(placemapper.selectPlaceId2(contentId)=="null") {
+					placemapper.insertPlaces2(placeDTO);
+				} else {
+					placemapper.updateThemePlace2(placeDTO);
+				}
+				//원본테이블: placemapper.insertPlaces(placeDTO);
 			} // if
 		} // for
 	}// test method
@@ -214,13 +230,13 @@ public class APIServiceImpl {
 					}
 					*/
 					// DB 해당 content 존재하는지 확인(문제)
-					if (placemapper.selectPlaceId2(placeDTO.contentId) == 0 ) { //기존 데이터 없는경우
+					if (placemapper.selectPlaceId2(placeDTO.contentId)=="null") { //기존 데이터 없는경우
 						System.out.println("기존데이터x");
 						placemapper.insertThemeBasicInfo2(placeDTO);
 						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					} 					
 					System.out.println("기존 place 데이터o");
-					if(placemapper.selectContentId2(contentId) == 0  ) { //contents테이블 정보 없는 경우
+					if(placemapper.selectContentId2(contentId)=="null" ) { //contents테이블 정보 없는 경우
 						getThemePlaceDetail(contentId); //기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
 			} // if

@@ -48,6 +48,13 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 	where contentId=#{contentId};
 </update>
 
+<!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
+<update id="updatePlace2" parameterType="placeDTO">
+	update place2 set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode1}, image1=#{image1}, image2=0,
+	address=#{address}, mapx=#{mapx}, mapy=#{mapy}
+	where contentId=#{contentId};
+</update>
+
 <!-- 여행지 게시글 전체 조회(페이징0)-->
 <select id="listPlaces" parameterType="hashmap" resultType="placeDTO">
 	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, 
@@ -71,8 +78,8 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 </select>
 
 <!-- 2 여행지 게시글 아이디 있는지 조희-->
-<select id="selectPlaceId2" parameterType="int" resultType="int">
-	select ifnull(max(contentId),0) contentId from place2 where contentId=#{contentId};
+<select id="selectPlaceId2" parameterType="int" resultType="String">
+	select ifnull(contentId,"null") from place2 where contentId=#{contentId};
 </select>
 
 <!-- 여행지 게시글 아이디 있는지 조희-->
@@ -81,8 +88,8 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 </select>
 
 <!-- 2 여행지 게시글 아이디 있는지 조희-->
-<select id="selectContentId2" parameterType="int" resultType="int">
-	select ifnull(max(contentId),0) contentId from contents2 where contentId=#{contentId};
+<select id="selectContentId2" parameterType="int" resultType="String">
+	select ifnull(contentId,"null") from contents2 where contentId=#{contentId};
 </select>
 
 <!-- 게시글 찜 -->
@@ -182,6 +189,29 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 	select count(*) from place where ${colname} like #{colvalue} and image1 != "null"
 </select>
 
+<insert id="copyTablePlace2" parameterType="PlaceDTO">
+INSERT INTO place (address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, homepage, contentTypeId) 
+VALUES (#{address},#{contentId},#{title},#{areaCode},#{image1},#{mapx},#{mapy},#{contents},#{theme},#{writingtime},#{likecnt},#{viewcnt},#{homepage},#{contenttypeid}) 
+ON DUPLICATE KEY UPDATE address = #{address}, title = #{title},areaCode = #{areaCode}, image1 = #{image1},homepage = #{homepage}, mapx = #{mapx}, mapy = #{mapy}, contents = #{contents}, writingtime=now();
+</insert>
+
+<insert id="copyTableContent2" parameterType="ContentsDTO">
+INSERT INTO contents (contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking, parkingfee, accomcount, usefee, checkintime, checkouttime, chkcooking, pickup) 
+VALUES (#{contentId}, #{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo}, #{firstmenu}, #{reservationinfo}, #{takeout}, #{parking}, #{parkingfee}, #{accomcount}, #{usefee}, #{checkintime}, #{checkouttime}, #{chkcooking}, #{pickup}) 
+ON DUPLICATE KEY UPDATE infocenter = #{infocenter}, chkbabycarriage = #{chkbabycarriage}, chkcreditcard = #{chkcreditcard}, 
+chkpet = #{chkpet},kidsfacility = #{kidsfacility}, restdate = #{restdate},usetime = #{usetime}, discountinfo = #{discountinfo},firstmenu = #{firstmenu}, reservationinfo = #{reservationinfo},;
+takeout = #{takeout},parking = #{parking}, parkingfee = #{parkingfee},accomcount = #{accomcount}, usefee = #{usefee}
+</insert>
+
+<!-- 여행지 게시글 전체 조회(페이징0)-->
+<select id="selectAllPlace" resultType="placeDTO">
+	select*from place2; 
+</select>
+
+<select id="selectAllContents" resultType="ContentsDTO">
+	select*from contents2; 
+</select>
+
 <!-- place테이블 + contents 테이블 -->
 <resultMap type="PlaceContentsDTO" id="placecontentsmap">
  <id property="contentId" column="contentId"/>
@@ -246,9 +276,12 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
  <result property="reservation" column="reservationinfo"/>
 </resultMap>
 
-<!-- 테마 게시글 수 조회 -->
+<!-- 테마 게시글 수 조회 (변경함)-->
 <select id="getTotalThemeCnt" parameterType="String" resultType="int">
-	select count(*) from place where theme=#{theme} and image1 != "null" ;
+	select count(*) 
+	from place p join contents c
+	on p.contentId = c.contentId
+	where theme=#{theme} and image1 != "null" ;
 </select>
 
 <select id="listThemePlaces" parameterType="hashmap" resultMap="placecontentsmap">
@@ -293,8 +326,3 @@ where ${colname} like #{colvalue} and image1 != "null"
 </select>
 
 </mapper>
-
-
-
-
-

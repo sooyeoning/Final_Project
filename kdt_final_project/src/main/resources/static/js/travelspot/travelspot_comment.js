@@ -4,9 +4,7 @@ $(document).ready(function() {
 	let urlParams = new URL(location.href).searchParams;
 	let contentId = urlParams.get('contentId');
 	
-	imageAjax(); //기본페이지: 사진모아보기로 설정
-
-	$('#comments').click(function() {
+	$('#comments').bind("click",function() {
 		$.ajax({
 			url: "/travelspot/post/comments?contentId="+contentId,
 			type: 'get',
@@ -165,5 +163,13 @@ function modifyComment(){ //댓글 수정 기능
 	});//modifybutton end
 }//modifyComment end
 
+	//마이페이지 댓글창 이동
+	var referrer = document.referrer;
+	console.log("이전 페이지 URL: "+referrer);
+	if(referrer == "http://localhost:8099/travelspot/list" || referrer == "http://localhost:8099/travelspot/list_theme"){//기본페이지: 사진모아보기로 설정
+		imageAjax(); 
+	} else if(referrer == "http://localhost:8099/mypage") {	//이전페이지가 마이페이지이면 댓글버튼 클릭이벤트 강제 실행
+		$("#comments").trigger("click");
+	}
 
 });//ready end

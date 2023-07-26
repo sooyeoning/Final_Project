@@ -230,4 +230,12 @@ public class PlaceDTO {
 		this.mapy = mapy;
 	}
 
+	public int getContentTypeId() {
+		return contentTypeId;
+	}
+
+	public void setContentTypeId(int contentTypeId) {
+		this.contentTypeId = contentTypeId;
+	}
+
 }

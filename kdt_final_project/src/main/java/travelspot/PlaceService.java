@@ -38,6 +38,12 @@ public interface PlaceService {
 	 public void insertTheme39Detail2(ContentsDTO contentsDTO);
 	 public void insertTheme14Detail2(ContentsDTO contentsDTO);
 	 public void insertTheme28Detail2(ContentsDTO contentsDTO);
-	 public int selectPlaceId2(int contentId);
-	 public int selectContentId2(int contentId);//contents 테이블 정보 유무 조회
+	 public String selectPlaceId2(int contentId);
+	 public String selectContentId2(int contentId);//contents 테이블 정보 유무 조회
+	 public void copyTablePlace2(PlaceDTO placeDTO);
+	 public List<PlaceDTO> selectAllPlace();
+	 public void copyTableContent2(ContentsDTO contentsDTO);
+	 public List<ContentsDTO> selectAllContents();
+	 public void updatePlace2(PlaceDTO placeDTO);
+
 }

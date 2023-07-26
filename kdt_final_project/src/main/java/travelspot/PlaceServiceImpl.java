@@ -186,13 +186,38 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public int selectPlaceId2(int contentId) {
+	public String selectPlaceId2(int contentId) {
 		return placemapper.selectPlaceId2(contentId);
 	}
 
 	@Override
-	public int selectContentId2(int contentId) {
+	public String selectContentId2(int contentId) {
 		return placemapper.selectContentId2(contentId);
+	}
+
+	@Override
+	public void copyTablePlace2(PlaceDTO placeDTO) {
+		placemapper.copyTablePlace2(placeDTO);
+	}
+
+	@Override
+	public List<PlaceDTO> selectAllPlace() {
+		return placemapper.selectAllPlace();
+	}
+
+	@Override
+	public void copyTableContent2(ContentsDTO contentsDTO) {
+		placemapper.copyTableContent2(contentsDTO);
+	}
+
+	@Override
+	public List<ContentsDTO> selectAllContents() {
+		return placemapper.selectAllContents();
+	}
+
+	@Override
+	public void updatePlace2(PlaceDTO placeDTO) {
+		placemapper.updatePlace2(placeDTO);
 	}
 
 	

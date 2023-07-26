@@ -16,7 +16,7 @@ KDT Final_Project
 1. 여행자들의 여행 만족도와 품질을 높일 수 있음. 자신의 취향과 성향에 맞는 여행지를 찾고, 다른 여행자들의 감성적인 경험을 참고할 수 있기 때문.
 2. 여행자들의 여행 참여도와 활동성을 증진시킬 수 있음. 자신의 여행 경험을 글이나 사진으로 기록하고, 다른 여행자들과 소통하고 공감할 수 있기 때문.
 
-
+ 
 -front
 https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0
  

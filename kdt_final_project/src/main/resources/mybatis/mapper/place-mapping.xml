@@ -190,17 +190,44 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 </select>
 
 <insert id="copyTablePlace2" parameterType="PlaceDTO">
-INSERT INTO place (address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, homepage, contentTypeId) 
-VALUES (#{address},#{contentId},#{title},#{areaCode},#{image1},#{mapx},#{mapy},#{contents},#{theme},#{writingtime},#{likecnt},#{viewcnt},#{homepage},#{contenttypeid}) 
+INSERT INTO place (address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, homepage, contenttypeid) 
+VALUES (#{address},#{contentId},#{title},#{areaCode},#{image1},#{mapx},#{mapy},#{contents},#{theme},#{writingtime},#{likecnt},#{viewcnt},#{homepage},#{contentTypeId}) 
 ON DUPLICATE KEY UPDATE address = #{address}, title = #{title},areaCode = #{areaCode}, image1 = #{image1},homepage = #{homepage}, mapx = #{mapx}, mapy = #{mapy}, contents = #{contents}, writingtime=now();
 </insert>
 
-<insert id="copyTableContent2" parameterType="ContentsDTO">
-INSERT INTO contents (contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking, parkingfee, accomcount, usefee, checkintime, checkouttime, chkcooking, pickup) 
-VALUES (#{contentId}, #{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo}, #{firstmenu}, #{reservationinfo}, #{takeout}, #{parking}, #{parkingfee}, #{accomcount}, #{usefee}, #{checkintime}, #{checkouttime}, #{chkcooking}, #{pickup}) 
-ON DUPLICATE KEY UPDATE infocenter = #{infocenter}, chkbabycarriage = #{chkbabycarriage}, chkcreditcard = #{chkcreditcard}, 
-chkpet = #{chkpet},kidsfacility = #{kidsfacility}, restdate = #{restdate},usetime = #{usetime}, discountinfo = #{discountinfo},firstmenu = #{firstmenu}, reservationinfo = #{reservationinfo},;
-takeout = #{takeout},parking = #{parking}, parkingfee = #{parkingfee},accomcount = #{accomcount}, usefee = #{usefee}
+<select id="getContentTypeId" parameterType="int" resultType="int">
+select contenttypeid from place where contentId=#{contentId};
+</select>
+<!-- 2 테마별 여행지 정보 저장(관광지) -->
+<insert id="CopyTheme12Detail" parameterType="ContentsDTO">
+	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) 
+	values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) 
+	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenter}, chkbabycarriage=#{chkbabycarriage}, 
+	chkcreditcard=#{chkcreditcard},chkpet=#{chkpet}, restdate=#{restdate}, usetime=#{usetime} ;
+</insert>
+
+<!-- 2 테마별 여행지 정보 저장(식당) -->
+<insert id="CopyTheme39Detail" parameterType="ContentsDTO">
+	insert into contents(contentId, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) 
+	values(#{contentId}, #{infocenterfood}, #{kidsfacility}, #{chkcreditcardfood}, #{restdatefood}, #{opentimefood}, #{discountinfofood}, #{firstmenu}, #{reservationfood}, #{packing}, #{parkingfood})
+	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterfood}, kidsfacility=#{kidsfacility}, chkcreditcard=#{chkcreditcardfood},restdate=#{restdatefood}, usetime=#{opentimefood}, discountinfo=#{discountinfofood},
+	firstmenu=#{firstmenu}, reservationinfo=#{reservationfood}, takeout=#{packing}, parking=#{parkingfood};
+</insert>
+
+<!-- 2 테마별 여행지 정보 저장(문화시설) -->
+<insert id="CopyTheme14Detail" parameterType="ContentsDTO">
+	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) 
+	values(#{contentId}, #{infocenterculture}, #{chkbabycarriageculture}, #{chkcreditcardculture}, #{chkpetculture}, #{restdateculture}, #{usetimeculture}, #{accomcountculture}, #{parkingculture}, #{parkingfee}, #{usefee}, #{discountinfo}) 
+	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterculture}, chkbabycarriage=#{chkbabycarriageculture}, chkcreditcard=#{chkcreditcardculture},chkpet=#{chkpetculture}, restdate=#{restdateculture}, usetime=#{usetimeculture},
+	accomcount=#{accomcountculture}, parking=#{parkingculture}, parkingfee=#{parkingfee}, usefee=#{usefee},discountinfo=#{discountinfo} ;
+</insert>
+
+<!-- 2 테마별 여행지 정보 저장(레포츠) -->
+<insert id="CopyTheme28Detail" parameterType="ContentsDTO">
+	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, usefee, parking, parkingfee, reservationinfo) 
+	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) 
+	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterleports}, chkbabycarriage=#{chkbabycarriageleports}, chkcreditcard=#{chkcreditcardleports},chkpet=#{chkpetleports}, restdate=#{restdateleports}, usetime=#{usetimeleports},
+	accomcount=#{accomcountleports}, parking=#{parkingleports}, parkingfee=#{parkingfeeleports}, usefee=#{usefeeleports},reservationinfo=#{reservation} ;
 </insert>
 
 <!-- 여행지 게시글 전체 조회(페이징0)-->

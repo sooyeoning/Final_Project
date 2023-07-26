@@ -48,8 +48,12 @@ public interface PlaceMapper {
 	 public String selectContentId2(int contentId);//contents 테이블 정보 유무 조회
 	 public void copyTablePlace2(PlaceDTO placeDTO);
 	 public List<PlaceDTO> selectAllPlace();
-	 public void copyTableContent2(ContentsDTO contentsDTO);
 	 public List<ContentsDTO> selectAllContents();
 	 public void updatePlace2(PlaceDTO placeDTO);
+	 public void CopyTheme12Detail(ContentsDTO contentsDTO);
+	 public void CopyTheme39Detail(ContentsDTO contentsDTO);
+	 public void CopyTheme14Detail(ContentsDTO contentsDTO);
+	 public void CopyTheme28Detail(ContentsDTO contentsDTO);
+	 public int getContentTypeId(int contentId);
 }
 	

@@ -28,12 +28,12 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param){
+	public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param) {
 		return placemapper.listThemePlaces(param);
 	}
 
 	@Override
-	 public int getTotalThemeCnt(String theme) {
+	public int getTotalThemeCnt(String theme) {
 		return placemapper.getTotalThemeCnt(theme);
 	}
 
@@ -44,7 +44,7 @@ public class PlaceServiceImpl implements PlaceService {
 
 	@Override
 	public void updateThemePlace(PlaceDTO placeDTO) {
-		placemapper.updateThemePlace(placeDTO);		
+		placemapper.updateThemePlace(placeDTO);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class PlaceServiceImpl implements PlaceService {
 	public void insertTheme14Detail(ContentsDTO contentsDTO) {
 		placemapper.insertTheme14Detail(contentsDTO);
 	}
-	
+
 	@Override
 	public void insertTheme39Detail(ContentsDTO contentsDTO) {
 		placemapper.insertTheme39Detail(contentsDTO);
@@ -65,7 +65,7 @@ public class PlaceServiceImpl implements PlaceService {
 	@Override
 	public void insertTheme28Detail(ContentsDTO contentsDTO) {
 		placemapper.insertTheme28Detail(contentsDTO);
-		
+
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	 public PlaceDTO getPlaceThemeDetail(int id) {
+	public PlaceDTO getPlaceThemeDetail(int id) {
 		return placemapper.getPlaceThemeDetail(id);
 	}
 
@@ -114,16 +114,12 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	/*
-	@Override
-	public List<PlaceContentsDTO> searchThemePlace(HashMap<String, Object> map) {
-		return placemapper.searchThemePlace(map);
-	}
-
-	@Override
-	public int searchThemePlaceCnt(HashMap<String, Object> map) {
-		return placemapper.searchThemePlaceCnt(map);
-	}
-*/
+	 * @Override public List<PlaceContentsDTO> searchThemePlace(HashMap<String,
+	 * Object> map) { return placemapper.searchThemePlace(map); }
+	 * 
+	 * @Override public int searchThemePlaceCnt(HashMap<String, Object> map) {
+	 * return placemapper.searchThemePlaceCnt(map); }
+	 */
 
 	@Override
 	public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map) {
@@ -172,7 +168,7 @@ public class PlaceServiceImpl implements PlaceService {
 
 	@Override
 	public void insertTheme39Detail2(ContentsDTO contentsDTO) {
-		placemapper.insertTheme39Detail2(contentsDTO);		
+		placemapper.insertTheme39Detail2(contentsDTO);
 	}
 
 	@Override
@@ -206,11 +202,6 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public void copyTableContent2(ContentsDTO contentsDTO) {
-		placemapper.copyTableContent2(contentsDTO);
-	}
-
-	@Override
 	public List<ContentsDTO> selectAllContents() {
 		return placemapper.selectAllContents();
 	}
@@ -220,5 +211,31 @@ public class PlaceServiceImpl implements PlaceService {
 		placemapper.updatePlace2(placeDTO);
 	}
 
-	
+	@Override
+	public void CopyTheme12Detail(ContentsDTO contentsDTO) {
+		placemapper.CopyTheme12Detail(contentsDTO);
+	}
+
+	@Override
+	public void CopyTheme39Detail(ContentsDTO contentsDTO) {
+		placemapper.CopyTheme39Detail(contentsDTO);
+	}
+
+	@Override
+	public void CopyTheme14Detail(ContentsDTO contentsDTO) {
+		placemapper.CopyTheme14Detail(contentsDTO);
+	}
+
+	@Override
+	public void CopyTheme28Detail(ContentsDTO contentsDTO) {
+		placemapper.CopyTheme28Detail(contentsDTO);
+	}
+
+	@Override
+	public int getContentTypeId(int contentId) {
+		return placemapper.getContentTypeId(contentId);
+	}
+
+
+
 }

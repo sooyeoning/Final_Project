@@ -62,27 +62,8 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 </c:forEach>
  
 </div>
-  <%-- 이전 페이징
-   <%
-   int areaCode = (Integer)request.getAttribute("areaCode");
-   int totalCnt = (Integer)request.getAttribute("totalCnt");
-   int totalPage = 0;
-   if(totalCnt%9==0){
-	   totalPage = totalCnt/9;
-   }else {
-	   totalPage = (totalCnt/9) +1;
-   }%>
-   <div class="pages">
-   		<p style="font-size: 20px; display: inline-block"> ◀ </p>
-   <% for(int i=1; i<=totalPage; i++){  %>
-	   <a href="list?areaCode=<%= areaCode %>&page=<%=i %>"><font size="3px"><%=i %></font> &nbsp;&nbsp;</a>	   
-  <% } %>
-  		<p style="font-size: 20px; display: inline-block;"> ▶</p>
-  
-  </div>
-   --%>
    
- <% //참고 https://zepinos.tistory.com/28
+ <% //참고 https://zepinos.tistory.com/28, https://lionpower.tistory.com/220
  int areaCode = (Integer)request.getAttribute("areaCode");
    int totalCnt = (Integer)request.getAttribute("totalCnt"); //총게시물수
    int currentPage = (Integer)request.getAttribute("page");  //현재 페이지 번호

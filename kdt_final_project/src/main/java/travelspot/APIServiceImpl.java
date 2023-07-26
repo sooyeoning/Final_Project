@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -34,18 +35,19 @@ public class APIServiceImpl {
 	@Autowired
 	PlaceMapper placemapper;
 
-	@Scheduled(cron = "0 30 23 * * *")
+	@Scheduled(cron = "0 54 17 * * *")
+	@Transactional
 	public void ScheduledTasksMethod() throws Exception {
 		
 		//System.out.println("확인");
 		
 		//기본 관광지
-		/*
+		
 		int[] areaCodes = {32,6,2,5,7,31};
 		for(int i=0; i<areaCodes.length; i++) {
 			getBasicInfo(areaCodes[i]);
 		}
-		*/
+		
 		//테마별관광지
 		getThemeBasicInfo();
 		
@@ -58,7 +60,17 @@ public class APIServiceImpl {
 		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
 		List<ContentsDTO> contentlist = placemapper.selectAllContents();
 		for(ContentsDTO one :contentlist) {
-			placemapper.copyTableContent2(one);
+		   int contentTypeId = placemapper.getContentTypeId(one.contentId);
+		   if(contentTypeId==12) {
+			   placemapper.CopyTheme12Detail(one);
+		   }if(contentTypeId==39) {
+			   placemapper.CopyTheme39Detail(one);
+		   }if(contentTypeId==14) {
+			   placemapper.CopyTheme14Detail(one);
+		   }if(contentTypeId==28) {
+			   placemapper.CopyTheme28Detail(one);
+		   }
+		
 		}
 		
 	}

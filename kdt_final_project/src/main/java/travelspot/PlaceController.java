@@ -53,6 +53,7 @@ public class PlaceController {
 		mv.addObject("placelist", placeservice.listPlaces(param));
 		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
 		mv.addObject("areaCode", areaCode);
+		mv.addObject("page", page);
 		mv.setViewName("/travelspot/travelspot_list");
 		return mv;
 	}
@@ -86,6 +87,7 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
+			mv.addObject("page", page);
 			mv.setViewName("/travelspot/travelspot_searchlist");
 			return mv;
 		}
@@ -187,7 +189,7 @@ public class PlaceController {
 		mv.addObject("placelist", placeservice.listThemePlaces(param)); //PlaceContentsDTO
 		mv.addObject("totalCnt", placeservice.getTotalThemeCnt(theme));
 		mv.addObject("userdto", userdto);
-
+		mv.addObject("page", page);
 		mv.addObject("theme", theme);
 		mv.setViewName("/travelspot/travelspot_list_theme");
 		return mv;
@@ -222,6 +224,7 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
+			mv.addObject("page", page);
 			mv.setViewName("/travelspot/travelspot_searchlist_theme");
 			return mv;
 		}

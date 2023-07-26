@@ -38,7 +38,7 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 <!-- 검색창 -->
 	<form action="/travelspot/search" method="get" class="search-form">
 	<select name="item" class="search-item">
-		<option selected="selected">검색카테고리</option>
+		<option value="" disabled selected>검색카테고리</option>
       	<option>장소명</option>
       	<option>주소</option>
     </select>
@@ -62,7 +62,7 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 </c:forEach>
  
 </div>
-  
+  <%-- 이전 페이징
    <%
    int areaCode = (Integer)request.getAttribute("areaCode");
    int totalCnt = (Integer)request.getAttribute("totalCnt");
@@ -80,6 +80,41 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
   		<p style="font-size: 20px; display: inline-block;"> ▶</p>
   
   </div>
+   --%>
+   
+ <% //참고 https://zepinos.tistory.com/28
+ int areaCode = (Integer)request.getAttribute("areaCode");
+   int totalCnt = (Integer)request.getAttribute("totalCnt"); //총게시물수
+   int currentPage = (Integer)request.getAttribute("page");  //현재 페이지 번호
+   int countPage = 10; //한 화면에 출력될 페이지 수
+   int countList = 9; //한 화면에 출력될 게시물 수
+   
+   int totalPage = totalCnt/countList; //총 페이지수
+   if(totalCnt % countList > 0){//게시물수가 한 화면에 출력될 게시물수로 나누어 떨어지지 않으면 페이지 수 추가
+	   totalPage++;
+   }
+   
+   int totalBlock = (int)(Math.ceil((double)totalPage/countPage));//총블럭 갯수: 2
+   int currentBlock = (int)(Math.ceil((double)currentPage/countPage)); 	  //현블럭: 1 2
+   
+   int startPage = (currentBlock-1)*countPage+1; //시작페이지 무조건 1,11...
+   int endPage = currentBlock*countPage; //마지막페이지 무조건 10,20...
+   if(endPage>totalPage){ //마지막페이지 보정
+	   endPage=totalPage;
+   }%>
+  	
+   	  <div class="paging">
+   	  <% if((currentBlock - 1)*countPage !=0){%>
+	  <a href="list?areaCode=<%= areaCode %>&page=<%=(currentBlock - 1)*countPage %>" >
+	  <font size="3px">이전</font></a>
+	<% } for(int i=startPage; i<=endPage; i++){  %> 
+	    <a href="list?areaCode=<%= areaCode %>&page=<%=i %>"><font size="3px" ><%=i %></font> &nbsp;&nbsp;</a>	   
+	<% } if(endPage!=totalPage){%>
+		<a href="list?areaCode=<%= areaCode %>&page=<%=currentBlock*countPage + 1 %>">
+		<font size="3px">다음</font></a>
+		</div>  
+		<%} %> 
+
   
 <!-- 스크롤: 위치 수정 필요 -->
 <div style="position:fixed; bottom:1%; right:1%;">

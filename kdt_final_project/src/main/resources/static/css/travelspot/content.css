@@ -75,6 +75,10 @@
   margin: 0 0 50px 0; /*행간 간격: 100px 조정*/
 }
 
+.paging{
+	display:block;
+	text-align: center;
+}
 /* 관광명소 상세페이지 */
 .postmenu{
 display: flex;

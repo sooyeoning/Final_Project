@@ -4,12 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.tools.DocumentationTool.Location;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -26,15 +31,6 @@ public class CommentsController {
 
 	@Autowired
 	CommentsServiceImpl commentsservice;
-/*
-	@GetMapping("/travelspot/post/comments")
-	@ResponseBody
-	public List<CommentsDTO> getComments(@RequestParam int contentId){
-		
-		List<CommentsDTO> commentsList = commentsservice.getComments(contentId);
-		return commentsList;
-	}
-	*/
 	
 	@GetMapping("/travelspot/post/comments")
 	@ResponseBody
@@ -102,6 +98,48 @@ public class CommentsController {
 	 public void modify_CancelComments(int contentId) {
 		
 	 }
+	 
+	@GetMapping(value="/travelspot/post/comments/report")
+	public ModelAndView reportComments(int id, int contentId, HttpSession session) {
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+	
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("contentid", contentId);
+		mv.addObject("commentid", id);//신고당할 댓글 번호
+		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
+		mv.addObject("userid", userdto.getUserid());//신고자아이디
+		
+		mv.setViewName("travelspot/travelspot_reportcomments");
+		return mv;
+	} 
+	
+	@PostMapping(value="/travelspot/post/comments/reportcheck")
+	@ResponseBody
+	public String checkReport(int id, int contentId, HttpSession session) {
+		UserDTO userdto = (UserDTO)session.getAttribute("user"); //로그인사용자
+		List<String> useridlist = commentsservice.selectUserId(id); //신고한 사람들 아이디
+		System.out.println("댓글번호: "+id);
+		System.out.println("로그인 아이디: "+userdto.getUserid());
+		
+		String response = "false";
+		for(int i=0; i<useridlist.size(); i++) {
+			System.out.println("신고자 아이디: "+useridlist.get(i));
+			if((useridlist.get(i)).equals(userdto.getUserid())) {//중복
+				response = "true";
+				break;
+			}
+			System.out.println("response:"+response);
+		}
+		
+		return response;
+	}
+	
+	@PostMapping(value="/travelspot/post/comments/report")
+	public String reportComments(ReportDTO ReportDTO) {
+		//신고내용 저장 -> 댓글창으로 리턴?
+		commentsservice.insertReport(ReportDTO);
+		return "redirect:/travelspot/post?contentId="+ReportDTO.getContentId();
+	}
 	 
 
 }// controller

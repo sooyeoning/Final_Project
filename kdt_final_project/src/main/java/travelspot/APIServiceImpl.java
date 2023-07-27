@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 @Service("apiservice")
+@Transactional
 public class APIServiceImpl {
 
 	// (장훈님) String serviceKey ="gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
@@ -35,30 +38,59 @@ public class APIServiceImpl {
 	@Autowired
 	PlaceMapper placemapper;
 
-	@Scheduled(cron = "0 54 17 * * *")
-	@Transactional
+	 private final JdbcTemplate jdbcTemplate;
+	 
+	 public APIServiceImpl(JdbcTemplate jdbcTemplate) {
+	        this.jdbcTemplate = jdbcTemplate;
+	 }
+	 
+	@Scheduled(cron = "0 54 22 * * *")
 	public void ScheduledTasksMethod() throws Exception {
 		
 		//System.out.println("확인");
 		
 		//기본 관광지
-		
+		/*
 		int[] areaCodes = {32,6,2,5,7,31};
 		for(int i=0; i<areaCodes.length; i++) {
 			getBasicInfo(areaCodes[i]);
 		}
-		
+		*/
 		//테마별관광지
 		getThemeBasicInfo();
 		
 		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
+		/*
 		List<PlaceDTO> placelist = placemapper.selectAllPlace();
 		for(PlaceDTO one :placelist) {
 			placemapper.copyTablePlace2(one);
 		}
+		*/
 		
 		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
-		List<ContentsDTO> contentlist = placemapper.selectAllContents();
+		List<ContentsDTO> contentlist = jdbcTemplate.query("SELECT * FROM CONTENTS", new BeanPropertyRowMapper<>(ContentsDTO.class));
+		for(ContentsDTO one :contentlist) {
+		    int contentTypeId = jdbcTemplate.queryForObject("select contenttypeid from place where contentId = ?", Integer.class, one.getContentId());
+		    if(contentTypeId==12) {
+		    	jdbcTemplate.update("INSERT INTO CONTENTS (contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE infocenter=?, chkbabycarriage=?, chkcreditcard=?, chkpet=?, restdate=?, usetime=?", 
+		    		    one.getContentId(), one.getInfocenter(), one.getChkbabycarriage(), one.getChkcreditcard(), one.getChkpet(), one.getRestdate(), one.getUsetime(),
+		    		    one.getInfocenter(), one.getChkbabycarriage(), one.getChkcreditcard(), one.getChkpet(), one.getRestdate(), one.getUsetime());	    
+		    }if(contentTypeId==39) {
+		    	jdbcTemplate.update("INSERT INTO CONTENTS (contentId, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE infocenter=?, kidsfacility=?, chkcreditcard=?, restdate=?, usetime=?, discountinfo=?, firstmenu=?, reservationinfo=?, takeout=?, parking=?", 
+		    			one.getContentId(), one.getInfocenterfood(), one.getKidsfacility(), one.getChkcreditcardfood(), one.getRestdatefood(), one.getOpentimefood(), one.getDiscountinfofood(), one.getFirstmenu(), one.getReservationfood(), one.getPacking(), one.getParkingfood(),
+		    			one.getInfocenterfood(), one.getKidsfacility(), one.getChkcreditcardfood(), one.getRestdatefood(), one.getOpentimefood(), one.getDiscountinfofood(), one.getFirstmenu(), one.getReservationfood(), one.getPacking(), one.getParkingfood());
+		    }if(contentTypeId==14) {
+		    	jdbcTemplate.update("INSERT INTO CONTENTS (contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?) ON DUPLICATE KEY UPDATE infocenter=?, chkbabycarriage=?, chkcreditcard=?, chkpet=?, restdate=?, usetime=?, accomcount=?, parking=?, parkingfee=?, usefee=?, discountinfo=?", 
+		    			one.getContentId(), one.getInfocenterculture(), one.getChkbabycarriageculture(), one.getChkcreditcardculture(), one.getChkpetculture(), one.getRestdateculture(), one.getUsetimeculture(), one.getAccomcountculture(), one.getParkingculture(), one.getParkingfee(), one.getUsefee(), one.getDiscountinfo(),
+		    			one.getInfocenterculture(), one.getChkbabycarriageculture(), one.getChkcreditcardculture(), one.getChkpetculture(), one.getRestdateculture(), one.getUsetimeculture(), one.getAccomcountculture(), one.getParkingculture(), one.getParkingfee(), one.getUsefee(), one.getDiscountinfo());
+		    }if(contentTypeId==28) {
+		    	jdbcTemplate.update("INSERT INTO CONTENTS (contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, usefee, parking, parkingfee, reservationinfo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?) ON DUPLICATE KEY UPDATE infocenter=?, chkbabycarriage=?, chkcreditcard=?, chkpet=?, restdate=?, usetime=?, accomcount=?, usefee=?, parking=?, parkingfee=?, reservationinfo=?", 
+		    		    one.getContentId(), one.getInfocenterleports(), one.getChkbabycarriageleports(), one.getChkcreditcardleports(), one.getChkpetleports(), one.getRestdateleports(), one.getUsetimeleports(), one.getAccomcountleports(), one.getUsefeeleports(), one.getParkingleports(), one.getParkingfeeleports(), one.getReservation(),
+		    		    one.getInfocenterleports(), one.getChkbabycarriageleports(), one.getChkcreditcardleports(), one.getChkpetleports(), one.getRestdateleports(), one.getUsetimeleports(),
+		    		    one.getAccomcountleports(), one.getUsefeeleports(), one.getParkingleports(), one.getParkingfeeleports(), one.getReservation());
+		    }
+		}
+		/*List<ContentsDTO> contentlist = placemapper.selectAllContents();
 		for(ContentsDTO one :contentlist) {
 		   int contentTypeId = placemapper.getContentTypeId(one.contentId);
 		   if(contentTypeId==12) {
@@ -71,7 +103,7 @@ public class APIServiceImpl {
 			   placemapper.CopyTheme28Detail(one);
 		   }
 		
-		}
+		}*/
 		
 	}
 	
@@ -146,10 +178,10 @@ public class APIServiceImpl {
 		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0113&cat3=C01130001";
 		// (36)String familyUrl =
 		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0112&cat3=C01120001";
-
+		String serviceKey ="gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
-		String[] numOfRowsList = new String[] { "5", "0", "0", "0" };
+		String[] numOfRowsList = new String[] { "5", "5", "5", "5" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
 		String[] cat3List = new String[] { "C01160001", "C01140001", "C01130001", "C01120001" };
 

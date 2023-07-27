@@ -34,6 +34,15 @@
 	insert into comments(contents,place_id, writer, comment_group) values(#{contents},#{place_id},#{writer}, #{comment_group});
 </insert>
 
+<insert id="insertReport" parameterType="ReportDTO">
+	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate)
+	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now()); 
+</insert>
+
+<select id="selectUserId" parameterType="int" resultType="String">
+	select userId from report where commentId=#{commentId};
+</select>
+
 <!-- resultMap 사용시 새로운 DTO 필요 -->
 <resultMap type="CommentsUserDTO" id="commentMap">
  <id property="id" column="id"/>

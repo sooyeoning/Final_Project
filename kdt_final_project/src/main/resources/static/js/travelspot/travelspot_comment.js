@@ -44,6 +44,8 @@ $(document).ready(function() {
                		};//else end
            		 });//savebutton end
            		 
+           		 //신고버튼 클릭
+           		 
 			},
 			error: function() { }
 		});
@@ -78,7 +80,8 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 					<img src="${map.commentsList[i].userDTO.photo}" class="comments-profile">
 					<p style="font-weight: bold; display: inline;">&nbsp;${map.commentsList[i].writer}&nbsp;</p><p style="display: inline;"> ${map.commentsList[i].writingtime}</p> `+
 					(map.userdto == map.commentsList[i].writer ? 
-					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}"></div>` : '</div>')
+					`<input class="deletebutton" type="button" value="삭제" id="${map.commentsList[i].id}"><input class="modifybutton" type="button" value="수정" id="${map.commentsList[i].id}">` : '')
+					+((map.userdto == map.commentsList[i].writer)? `</div>`:`<input class="reportbutton" type="button" value="신고" id="${map.commentsList[i].id}"></div>`)
 					+`<p id="contents">${map.commentsList[i].contents}</p>`);
 				/* 프로필 아래 이름, 날짜 버전
 				$('div[class="comments"]').append( 
@@ -93,6 +96,7 @@ function getCommentList(){ //저장한 댓글 가져오기: https://chlee21.tist
 			
 			deleteComment();
 			modifyComment();
+			reportComment(map);
 		}//success
 	}); //ajax end
 }//getCommentList end
@@ -110,6 +114,27 @@ function deleteComment(){ //댓글 삭제 기능
 	}
 	});//deletebtn end
 }//deleteComment end
+
+function reportComment(map){ //댓글 신고 기능
+	$('.reportbutton').click(function(){
+		id = $(this).attr('id');
+		if(map.userdto=="null"){ //로그인 사용자
+		 	 alert("댓글 신고기능은 로그인 후 사용가능합니다.");
+		} else {
+		$.ajax({
+			url: "/travelspot/post/comments/reportcheck?id="+id+"&contentId="+contentId,			
+			type: 'post',
+			success: function(response){
+				if(response=="false"){
+				location.href="/travelspot/post/comments/report?id="+id+"&contentId="+contentId;			
+				} else {
+				alert("이미 신고한 댓글입니다.");
+				}
+			}
+			});
+		}	
+	});//reportbutton end
+}//reportComment end
 
 function modifyComment(){ //댓글 수정 기능
 	$('.modifybutton').click(function(){

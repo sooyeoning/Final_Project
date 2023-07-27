@@ -212,6 +212,17 @@ width: 66%;
 }
 
 
+.reportbutton{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+}
+
+
 .modify_savebtn{
 	color: black; /*글씨색상*/
 	font-family: 'LeferiBaseType-RegularA';
@@ -339,4 +350,23 @@ select::-ms-expand {
 	float: left;
 	border: 0.5px solid gray;
 	margin-right: 0.5vw;
+}
+
+/*댓글 신고 페이지*/
+#reportComment{
+	width: 66vw;
+	margin: 10vh auto;
+}
+
+.reporttitle{
+	margin-bottom: 2vh;
+	margin-top: 2vh;
+}
+
+.readonly{
+	border-bottom: 1px solid #2463D3;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	font-size: 20px;
 }

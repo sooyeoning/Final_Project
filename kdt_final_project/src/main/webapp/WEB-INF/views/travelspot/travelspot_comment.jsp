@@ -50,6 +50,7 @@
 </div></div>
 </c:forEach>
 
+
 <div style="position:fixed; bottom:3%; right:-10%;">
 <a href="#"><img src="../img/top.png" width="5%" height="5%"></a></div>
 

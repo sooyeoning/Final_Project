@@ -11,4 +11,7 @@ public interface CommentsService {
 	public void updateComments(CommentsDTO CommentsDTO);
 	public void insertReply(CommentsDTO CommentsDTO);
 	public List<CommentsUserDTO> getCommentsProfile(int place_id);
+	 public void insertReport(ReportDTO ReportDTO);
+	 public List<String> selectUserId(int commentId);
+
 }

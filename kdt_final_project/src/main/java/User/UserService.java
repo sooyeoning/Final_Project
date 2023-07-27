@@ -31,5 +31,13 @@ public interface UserService {
 	List<CommentsDTO> getCommentListByWriter(String writer);
 
 	List<LikesDTO> getLikesByUserId(int user_id);
+	
+	List<UserDTO> getAllUsers(int currentPage, int usersPerPage);
+	
+	int getTotalUserCount();
+
+	public UserDTO getUserdetail(String userid);
+	
+	void deleteUser(String userid) throws Exception;
 
 }

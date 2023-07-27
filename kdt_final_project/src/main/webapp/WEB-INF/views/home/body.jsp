@@ -21,7 +21,7 @@
 		<a href="/travelspot/list_theme?theme=friends"><img class="rmenu" src=../img/테마_친구.png></a>
 		<a href="/travelspot/list_theme?theme=family"><img class="rmenu" src=../img/테마_가족.png></a>
 	</div>
-
+	
 	<div id="top5">
 		<br>
 		<br>
@@ -29,17 +29,8 @@
 		<br>
 		<hr>
 		<br>
-		<div class="recommendtop">
-			<img class="tmenu" src=../img/notebook.png>
-			<div style="display:inline-block; position: absolute;top:50%;left:30%;"></div>
-			<img class="tmenu"src=../img/notebook.png>
-		</div>
+		<%@ include file="../home/top5(record).jsp"%>
 		
-		<div class="recommendbottom">
-			<img src=../img/notebook.png width="30%">
-			<img src=../img/notebook.png width="30%">
-			<img src=../img/notebook.png width="30%">
-		</div>
 		
 	</div>
 	<div id="top5">
@@ -49,22 +40,8 @@
 		<br>
 		<hr>
 		<br>
-		<div class="recommendtop">
-			<img class="tmenu" src=../img/notebook.png>
-			<img class="tmenu" src=../img/notebook.png>
-		</div>
-		<div class="recommendbottom">
-			<img  src=../img/notebook.png width="30%">
-			<img  src=../img/notebook.png width="30%">
-			<img  src=../img/notebook.png width="30%">
-		</div>
-		<!-- <div >
-<img style="display: inline-box" src=../img/notebook.png width="18%">
-<img style="display: inline-box" src=../img/notebook.png width="18%">
-<img style="display: inline-box" src=../img/notebook.png width="18%">
-<img style="display: inline-box" src=../img/notebook.png width="18%">
-<img style="display: inline-box" src=../img/notebook.png width="18%"> 
-</div> -->
+		<%@ include file="../home/top5(recommend).jsp"%>
+		
 	</div>
 	<br>
 	<br>

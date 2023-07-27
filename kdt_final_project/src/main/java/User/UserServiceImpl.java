@@ -110,4 +110,28 @@ public class UserServiceImpl implements UserService {
         }
         return likesList;
     }
+
+	@Override
+	public List<UserDTO> getAllUsers(int currentPage, int usersPerPage) {
+		int startIdx = (currentPage - 1) * usersPerPage;
+        return dao.getAllUsers(startIdx, usersPerPage);
+	}
+
+	@Override
+	public int getTotalUserCount() {
+		return dao.getTotalUserCount();
+	}
+
+	@Override
+	public UserDTO getUserdetail(String userid) {
+		return dao.getUserdetail(userid);
+	}
+
+	@Override
+	public void deleteUser(String userid) throws Exception {
+		dao.deleteUser(userid);		
+	}
+
+    
+    
 }

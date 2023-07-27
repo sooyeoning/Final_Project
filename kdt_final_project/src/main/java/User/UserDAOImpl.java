@@ -98,5 +98,30 @@ public class UserDAOImpl implements UserDAO {
 	    return likesList;
 	}
 
+	@Override
+	public List<UserDTO> getAllUsers(int startIdx, int usersPerPage) {
+	    Map<String, Integer> parameterMap = new HashMap<>();
+	    parameterMap.put("startIdx", startIdx);
+	    parameterMap.put("usersPerPage", usersPerPage);
+		return sqlSession.selectList("getAllUsers", parameterMap);
+	}
+
+	@Override
+	public int getTotalUserCount() {
+		return sqlSession.selectOne("getTotalUserCount");
+	}
+
+	@Override
+	public UserDTO getUserdetail(String userid) {
+		return sqlSession.selectOne("getUserdetail",userid);
+	}
+
+	@Override
+	public void deleteUser(String userid) throws Exception {
+		sqlSession.delete("deleteUser",userid);
+		
+	}
+
+	
 	
 }

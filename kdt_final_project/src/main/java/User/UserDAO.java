@@ -28,5 +28,12 @@ public interface UserDAO {
 	List<CommentsDTO> getCommentListByWriter(String writer);
 
 	List<LikesDTO> getLikesByUserId(int user_id);
+	
+    List<UserDTO> getAllUsers(int startIdx, int usersPerPage);
+    
+    int getTotalUserCount();
+    
+    public UserDTO getUserdetail(String userid);
 
+    void deleteUser(String userid) throws Exception;
 }

@@ -11,41 +11,39 @@
 <link rel="stylesheet" href="/css/home/header.css">
 </head>
 <body>
-<!-- header(main).jsp ->홈화면에만 쓰는 헤더
-header.jsp -> 홈을 제외한 모든 헤더 -->
+<header>
+<div id="body" >
 <% 
 String login=null;
 if((String)session.getAttribute("login")!=null){
 	login=(String)session.getAttribute("login");
 }
 String username=(String)session.getAttribute("username");
+int bool=0;
+if(username=="admin"){
+	bool=1;
+}
 
-%>
-
-<header>
-<div id="shadow">
-<div id="body" >
-<%
 if (login==null){%>
 <div class="name">
 <a href="/login" id="headerLoginBtn">로그인</a>
 <a href="/signin" id="headerSignupBtn">회원가입</a>
 <a href="/index(Eng)">English</a>
 </div>
-<%}else if (login!=null && username!="admin"){%>
+<%}else if (login!=null && bool==0){%>
 <div class="name">
+<%if(username.equals("관리자")){ %>
+<a href="/adminpage"><%=username %>님</a>
+<%}; %>
+<%if(!username.equals("관리자")){ %>
 <a href="/mypage"><%=username %>님</a>
+<%}; %>
 <a href="/logout" id="headerLoginBtn">로그아웃</a>
 <!-- <a href="/signin" id="headerSignupBtn">회원가입</a> -->
 <a href="/index(Eng)">English</a>
 </div>
-<%}else if(login!=null && username=="admin") {%>
-<div class="name">
-<a href="/adminpage"><%=username %>님</a>
-<a href="/logout" id="headerLoginBtn">로그아웃</a>
-<!-- <a href="/signin" id="headerSignupBtn">회원가입</a> -->
-<a href="/index(Eng)">English</a>
 <%};%>
+
 
 
 
@@ -53,14 +51,15 @@ if (login==null){%>
 <a href="/"><img src=../img/logo.png class="logo"></a>
 <a href="/travelspot/list"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>
+<%if(username=="admin"){ %>
+<a href="/adminpage"><div class="menu" >관리자페이지</div></a>
+<%}; %>
 <a href="/mypage"><div class="menu" >마이페이지</div></a>
 <a href="/FAQ"><div class="menu" >고객센터</div></a>
 <a href="/FAQ"><div class="menu" >착한가게</div></a>
 <br><br>
 </div>
-</div> 
 </header>
-
 </body>
 
 </html>

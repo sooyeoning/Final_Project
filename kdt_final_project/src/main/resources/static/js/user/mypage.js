@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const sideMenuNav = document.querySelector('.side-menu-nav');
   const sideMenuForms = document.querySelectorAll('.side-menu-form');
-  const recentVisitedPagesList = document.getElementById('recent-visited-pages-list'); // 최근 방문한 페이지 목록 요소
   const tableBody = document.getElementById('boardTableBody');
   const tableBody2 = document.getElementById('commentsTableBody');
   const tableBody3 = document.getElementById('likesTableBody');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // showSection 함수에서 '#section7' 섹션만 보여주도록 수정
   function showSection(targetSectionId) {
     sideMenuForms.forEach(function(form) {
       if ('#' + form.id === targetSectionId) {
@@ -90,18 +88,23 @@ function getWrittenPosts() {
           const boardTitleCell = document.createElement('td');
           boardTitleCell.classList.add('board-board_title');
           boardTitleCell.textContent = item.board_title;
+          
           const placeCell = document.createElement('td');
           placeCell.classList.add('board-place');
           placeCell.textContent = item.place;
+          
           const writerCell = document.createElement('td');
           writerCell.classList.add('board-writer');
           writerCell.textContent = item.writer;
+          
           const viewsCell = document.createElement('td');
           viewsCell.classList.add('board-views');
           viewsCell.textContent = item.views;
+          
           const likecountCell = document.createElement('td');
           likecountCell.classList.add('board-likecount');
           likecountCell.textContent = item.likecount;
+          
           const writingtimeCell = document.createElement('td');
           writingtimeCell.classList.add('board-writingtime');
           writingtimeCell.textContent = item.writingtime;
@@ -165,8 +168,10 @@ function getCommentListByWriter() {
           
           const writerCell = document.createElement('td');
           writerCell.textContent = item.writer;
+          
           const writingtimeCell = document.createElement('td');
           writingtimeCell.textContent = item.writingtime;
+          
           const placeCell = document.createElement('td');
           placeCell.textContent = item.place_id;
 
@@ -227,8 +232,10 @@ function getLikesByUserId() {
           
           const addressCell = document.createElement('td');
           addressCell.textContent = item.address;
+          
           const viewcntCell = document.createElement('td');
           viewcntCell.textContent = item.viewcnt;
+          
           const likecntCell = document.createElement('td');
           likecntCell.textContent = item.likecnt;
 
@@ -261,6 +268,3 @@ likesLink.addEventListener('click', function(event) {
   getLikesByUserId(); // 찜한 여행지 내역 가져오는 함수 호출
 });
 });
-
-
-

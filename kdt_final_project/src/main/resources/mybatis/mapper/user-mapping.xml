@@ -130,4 +130,26 @@
     <result property="likecnt" column="likecnt" />
 </resultMap>
 
+<!-- 관리자 페이지 전체 회원리스트 조회 -->
+    <select id="getAllUsers" resultMap="userResultMap">
+        SELECT * FROM users LIMIT #{startIdx}, #{usersPerPage}
+    </select>
+    <resultMap id="userResultMap" type="User.UserDTO">
+        <id property="userid" column="userid" />
+        <result property="username" column="username" />
+        <result property="email" column="email" />
+    </resultMap>
+        <select id="getTotalUserCount" resultType="int">
+        SELECT COUNT(*) FROM users
+    </select>
+        <select id="getUserdetail" resultType="User.UserDTO">
+        SELECT * FROM users WHERE userid = #{userid}
+    </select>
+    
+    	<!-- 회원 강제 탈퇴 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM users
+		WHERE
+		userid = #{userid}
+	</delete>
 </mapper>

@@ -13,8 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -265,4 +267,50 @@ public class UserController {
 	        return ResponseEntity.ok(resultMap);
 	    }
 	}
+	
+    @GetMapping("/adminpage")
+    public String getAllUsers(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
+        int usersPerPage = 10;
+        int totalUserCount = service.getTotalUserCount();
+        int totalPages = (int) Math.ceil((double) totalUserCount / usersPerPage);
+
+        List<UserDTO> userList = service.getAllUsers(currentPage, usersPerPage);
+        model.addAttribute("userList", userList);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        return "/user/adminpage";
+    }
+    
+    @GetMapping("adminpage/{userid}")
+    public ResponseEntity<UserDTO> getUserDetail(@PathVariable("userid") String userid) {
+        UserDTO user = service.getUserdetail(userid);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/deleteUser/{userid}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userid) {
+        try {
+            service.deleteUser(userid);
+            return ResponseEntity.status(HttpStatus.OK).body("회원을 탈퇴시켰습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 탈퇴에 실패했습니다.");
+        }
+    }
+    
+    @GetMapping("/adminpage2")
+    public String getreportList(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
+        int reportPerPage = 10;
+        int totalReportCount = service.getTotalUserCount();
+        int totalPages = (int) Math.ceil((double) totalReportCount / reportPerPage);
+
+        List<UserDTO> userList = service.getAllUsers(currentPage, reportPerPage);
+        model.addAttribute("userList", userList);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        return "/user/adminpage2";
+    }
+
 }

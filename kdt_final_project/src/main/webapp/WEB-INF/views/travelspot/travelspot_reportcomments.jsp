@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>위트</title>
 <script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
-<!-- <script src="http://localhost:8099/js/travelspot/travelspot_post.js"></script> -->
-
 <link href="/css/travelspot/import.css" rel="stylesheet" type="text/css"/>
 
 <script>
@@ -18,33 +16,33 @@ $(document).ready(function() {
 	let urlParams = new URL(location.href).searchParams;
 	let commentid = urlParams.get('id');
 	let contentid = urlParams.get('contentId');
-
+});
 </script>
 
 </head>
 <body>
-<%@ include file="../home/header.jsp"%>
-
+<%@ include file="../home/header.jsp" %>
+<hr style="width: 66vw; margin: 0 auto;">
 <form id="reportCommentForm" action="/travelspot/post/comments/report" method="post">
 <div id="reportComment">
 <div class="font_title">댓글 신고창<hr><br>
-<div class="reporttitle">댓글번호</div> <input type="text" name="commentId" class="readonly" value="${commentid }" readonly ><br>
-<div class="reporttitle">신고자닉네임 </div><input type="text" name="userNickname" class="readonly" value="${nickname }" readonly="readonly"><br>
+<div class="readonly">댓글 번호</div><input type="text" name="commentId" class="readonlyinput" value="${commentid }" readonly ><br>
+<div class="readonly">신고자 닉네임</div><input type="text" name="userNickname" class="readonlyinput" value="${nickname }" readonly="readonly"><br>
 <input type="text" name="userId" value="${userid }" hidden="hidden">
 <input type="text" name="contentId" value="${contentid }" hidden="hidden">
-<div class="reporttitle" >신고카테고리</div>
-<select name="reportCategory">
+<div class="readonly">신고카테고리</div>
+<select name="reportCategory" id="reportCategory">
  <option value="1">음란물</option>
  <option value="2" selected>과도한 욕설</option>
  <option value="3">광고</option>
  <option value="4">사회분위기 저해</option>
 </select><br>
-<div class="reporttitle">신고내용 </div>
+<div class="readonly">신고내용 </div>
 <textarea id="reportcontents" name="reportContents">
 관리자가 해당 내용을 참고하여 댓글 블라인드 여부를 결정할 예정입니다.
 어떠한 점이 불편했는지 작성해주시면 감사하겠습니다.
 </textarea><br>
-<button type="submit" id="report_savebtn">저장</button>
+<button type="submit" class="savebutton">저장</button>
 </div>
 </div>
 </form>

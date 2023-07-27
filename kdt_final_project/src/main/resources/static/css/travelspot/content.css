@@ -355,18 +355,52 @@ select::-ms-expand {
 /*댓글 신고 페이지*/
 #reportComment{
 	width: 66vw;
-	margin: 10vh auto;
+	margin: 5vh auto 10vh;
 }
 
 .reporttitle{
 	margin-bottom: 2vh;
-	margin-top: 2vh;
+	margin-top: 2vh;	
 }
 
 .readonly{
+	margin-bottom: 2.5vh;
+	margin-top: 1vh;
+	display: inline-block;
+	width: 10vw;
+}
+
+.readonlyinput{
+	font-size: 17px;
 	border-bottom: 1px solid #2463D3;
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	font-size: 20px;
+	margin-bottom: 2.5vh;
+	margin-top: 1vh;
+	padding: 0 0 0.5vh 0.5vw;
+	width: 55vw;
+	font-family: 'LeferiBaseType-RegularA';
+	
 }
+
+#reportCategory{
+	border: 1px solid #2463D3;
+	border-radius: 3px;
+	color: #2463D3;
+	padding: 0.1vh 0.3vw;
+	width: 14vw;
+	height: 6vh;
+}
+
+#reportcontents{
+	height: 20vh;
+	width: 63.5vw;
+	padding: 3vh 1vw;
+	border: solid 1px #2463D3;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: none;
+	font-family: 'LeferiBaseType-RegularA';
+}
+

@@ -32,12 +32,8 @@ if (login==null){%>
 </div>
 <%}else if (login!=null && bool==0){%>
 <div class="name">
-<%if(username.equals("관리자")){ %>
-<a href="/adminpage"><%=username %>님</a>
-<%}; %>
-<%if(!username.equals("관리자")){ %>
+
 <a href="/mypage"><%=username %>님</a>
-<%}; %>
 <a href="/logout" id="headerLoginBtn">로그아웃</a>
 <!-- <a href="/signin" id="headerSignupBtn">회원가입</a> -->
 <a href="/index(Eng)">English</a>
@@ -51,10 +47,12 @@ if (login==null){%>
 <a href="/"><img src=../img/logo.png class="logo"></a>
 <a href="/travelspot/list"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>
-<%if(username=="admin"){ %>
-<a href="/adminpage"><div class="menu" >관리자페이지</div></a>
+<%if(username.equals("관리자")){ %>
+<a href="/adminpage"><div class="menu" >관리자메뉴</div></a>
 <%}; %>
+<%if(!username.equals("관리자")){ %>
 <a href="/mypage"><div class="menu" >마이페이지</div></a>
+<%}; %>
 <a href="/FAQ"><div class="menu" >고객센터</div></a>
 <a href="/FAQ"><div class="menu" >착한가게</div></a>
 <br><br>

@@ -47,12 +47,18 @@ if (login==null){%>
 <a href="/"><img src=../img/logo.png class="logo"></a>
 <a href="/travelspot/list"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>
+<%if(login==null) {%>
+<a href="/login"><div class="menu" >마이페이지</div></a>
+<%}; %>
+<%if(login!=null){ %>
 <%if(username.equals("관리자")){ %>
 <a href="/adminpage"><div class="menu" >관리자페이지</div></a>
 <%}; %>
 <%if(!username.equals("관리자")){ %>
 <a href="/mypage"><div class="menu" >마이페이지</div></a>
 <%}; %>
+<%}; %>
+
 <a href="/FAQ"><div class="menu" >고객센터</div></a>
 <a href="/FAQ"><div class="menu" >착한가게</div></a>
 <br><br>

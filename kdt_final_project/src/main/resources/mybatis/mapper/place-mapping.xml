@@ -24,13 +24,11 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 
 <!-- 테마별 여행지 저장:  아이디, 장소명, 테마(기초 정보)-->
 <insert id="insertThemeBasicInfo" parameterType="placeDTO">
-	<!-- 중복저장 확인 > 수정 -->
 	insert into place(contentId, title, theme) values(#{contentId},#{title},#{theme});
 </insert>
 
 <!-- 2 테마별 여행지 저장:  아이디, 장소명, 테마(기초 정보)-->
 <insert id="insertThemeBasicInfo2" parameterType="placeDTO">
-	<!-- 중복저장 확인 > 수정 -->
 	insert into place2(contentId, title, theme) values(#{contentId},#{title},#{theme});
 </insert>
 

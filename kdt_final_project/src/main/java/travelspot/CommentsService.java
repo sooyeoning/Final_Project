@@ -13,5 +13,6 @@ public interface CommentsService {
 	public List<CommentsUserDTO> getCommentsProfile(int place_id);
 	 public void insertReport(ReportDTO ReportDTO);
 	 public List<String> selectUserId(int commentId);
+	 public String selectReportedId(int id);
 
 }

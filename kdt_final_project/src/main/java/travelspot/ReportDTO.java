@@ -4,33 +4,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReportDTO {
-	int id; //신고번호
-	int commentId; //신고당하는 댓글 번호
-	String userNickname; //신고자 닉네임
-	String userId; //신고자 아이디
-	String reportCategory; //신고 카테고리 - String
-	String reportContents; //신고 내용
-	String regDate; //신고날짜
-	int contentId; //신고당하는 댓글이 있는 게시글 번호
-	
-	public int getId() {
-		return id;
-	}
+	private int id; //신고번호
+	private int commentId; //신고당하는 댓글 번호
+	private String reportedId;//신고당한 사람 아이디
+	private String userNickname; //신고자 닉네임
+	private String userId; //신고자 아이디
+	private String reportCategory; //신고 카테고리 - String
+	private String reportContents; //신고 내용
+	private String regDate; //신고날짜
+	private int contentId; //신고당하는 댓글이 있는 게시글 번호
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getContentId() {
-		return contentId;
-	}
-
-	public void setContentId(int contentId) {
-		this.contentId = contentId;
-	}
+	public ReportDTO() {}
 
 	public ReportDTO(int id, int commentId, String userNickname, String userId, String reportCategory,
-			String reportContents, String regDate, int contentId) {
+			String reportContents, String regDate, int contentId, String reportedId) {
 		super();
 		this.id = id;
 		this.commentId = commentId;
@@ -40,10 +27,15 @@ public class ReportDTO {
 		this.reportContents = reportContents;
 		this.regDate = regDate;
 		this.contentId = contentId;
+		this.reportedId = reportedId;
 	}
 
-	public ReportDTO() {
-		super();
+	public int getContentId() {
+		return contentId;
+	}
+
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
 	}
 
 	public int getCommentId() {
@@ -84,4 +76,20 @@ public class ReportDTO {
 		this.regDate = regDate;
 	}
 	
+
+	public String getReportedId() {
+		return reportedId;
+	}
+
+	public void setReportedId(String reportedId) {
+		this.reportedId = reportedId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

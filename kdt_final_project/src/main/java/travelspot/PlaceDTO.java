@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 public class PlaceDTO {
 	int contentId;
-	int contentTypeId; //관광타입 id
+	Integer contentTypeId; //관광타입 id
 	String title;
 	int areaCode;
 	String image1;
@@ -229,11 +229,11 @@ public class PlaceDTO {
 		this.mapy = mapy;
 	}
 
-	public int getContentTypeId() {
+	public Integer getContentTypeId() {
 		return contentTypeId;
 	}
 
-	public void setContentTypeId(int contentTypeId) {
+	public void setContentTypeId(Integer contentTypeId) {
 		this.contentTypeId = contentTypeId;
 	}
 

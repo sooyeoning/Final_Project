@@ -102,10 +102,11 @@ public class CommentsController {
 	@GetMapping(value="/travelspot/post/comments/report")
 	public ModelAndView reportComments(int id, int contentId, HttpSession session) {
 		UserDTO userdto = (UserDTO)session.getAttribute("user");
-	
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("contentid", contentId);
 		mv.addObject("commentid", id);//신고당할 댓글 번호
+		mv.addObject("reportedId", commentsservice.selectReportedId(id));//신고당한 댓글 작성자 아이디
 		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
 		mv.addObject("userid", userdto.getUserid());//신고자아이디
 		

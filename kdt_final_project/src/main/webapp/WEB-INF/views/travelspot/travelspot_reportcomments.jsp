@@ -26,7 +26,8 @@ $(document).ready(function() {
 <form id="reportCommentForm" action="/travelspot/post/comments/report" method="post">
 <div id="reportComment">
 <div class="font_title">댓글 신고창<hr><br>
-<div class="readonly">댓글 번호</div><input type="text" name="commentId" class="readonlyinput" value="${commentid }" readonly ><br>
+<div class="readonly">작성된 댓글 번호</div><input type="text" name="commentId" class="readonlyinput" value="${commentid }" readonly ><br>
+<div class="readonly">댓글 작성자 닉네임</div><input type="text" name="reportedId" class="readonlyinput" value="${reportedId }" readonly ><br>
 <div class="readonly">신고자 닉네임</div><input type="text" name="userNickname" class="readonlyinput" value="${nickname }" readonly="readonly"><br>
 <input type="text" name="userId" value="${userid }" hidden="hidden">
 <input type="text" name="contentId" value="${contentid }" hidden="hidden">

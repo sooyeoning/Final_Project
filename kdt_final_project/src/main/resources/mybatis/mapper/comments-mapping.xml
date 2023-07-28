@@ -35,12 +35,16 @@
 </insert>
 
 <insert id="insertReport" parameterType="ReportDTO">
-	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate)
-	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now()); 
+	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate, reportedId)
+	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId}); 
 </insert>
 
 <select id="selectUserId" parameterType="int" resultType="String">
 	select userId from report where commentId=#{commentId};
+</select>
+
+<select id="selectReportedId" parameterType="int" resultType="String">
+	select userid from users where nickname=(select writer from comments where id=#{id});
 </select>
 
 <!-- resultMap 사용시 새로운 DTO 필요 -->

@@ -55,6 +55,11 @@ public class CommentsServiceImpl implements CommentsService {
 	 public List<String> selectUserId(int commentId){
 		return commentsmapper.selectUserId(commentId);
 	}
+
+	@Override
+	public String selectReportedId(int id) {
+		return commentsmapper.selectReportedId(id);
+	}
 	
 
 	

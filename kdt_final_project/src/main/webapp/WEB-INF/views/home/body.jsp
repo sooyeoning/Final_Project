@@ -17,8 +17,8 @@
 
 	<div id="recommend">
 		<a href="/travelspot/list_theme?theme=alone"><img class="rmenu" src=../img/테마_혼자.png> </a>
-		<a href="/travelspot/list_theme?theme=couple"><img class="rmenu" src=../img/테마_연인.png>  </a>
-		<a href="/travelspot/list_theme?theme=friends"><img class="rmenu" src=../img/테마_친구.png></a>
+		<a href="/travelspot/list_theme?theme=couple"><img class="rmenu" src=../img/테마_힐링.png>  </a>
+		<a href="/travelspot/list_theme?theme=friends"><img class="rmenu" src=../img/테마_캠핑.png></a>
 		<a href="/travelspot/list_theme?theme=family"><img class="rmenu" src=../img/테마_가족.png></a>
 	</div>
 	

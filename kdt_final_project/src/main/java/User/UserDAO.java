@@ -4,6 +4,7 @@ import java.util.List;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
+import travelspot.ReportDTO;
 
 public interface UserDAO {
 
@@ -36,4 +37,6 @@ public interface UserDAO {
     public UserDTO getUserdetail(String userid);
 
     void deleteUser(String userid) throws Exception;
+    
+    List<ReportDTO> getAllReports();
 }

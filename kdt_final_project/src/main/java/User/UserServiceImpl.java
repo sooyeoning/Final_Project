@@ -9,7 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;;
+import travelspot.PlaceDTO;
+import travelspot.ReportDTO;;
 
 @Service
 
@@ -132,6 +133,11 @@ public class UserServiceImpl implements UserService {
 		dao.deleteUser(userid);		
 	}
 
-    
-    
+	@Override
+	public List<ReportDTO> getAllReportList() {
+		return dao.getAllReports();
+	}
+
+	
+
 }

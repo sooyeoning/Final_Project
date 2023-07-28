@@ -44,31 +44,31 @@ public class APIServiceImpl {
 	        this.jdbcTemplate = jdbcTemplate;
 	 }
 	 
-	@Scheduled(cron = "0 54 22 * * *")
+	//@Scheduled(cron = "0 54 22 * * *")
 	public void ScheduledTasksMethod() throws Exception {
 		
 		//System.out.println("확인");
 		
 		//기본 관광지
-		/*
+		
 		int[] areaCodes = {32,6,2,5,7,31};
 		for(int i=0; i<areaCodes.length; i++) {
 			getBasicInfo(areaCodes[i]);
 		}
-		*/
+		
 		//테마별관광지
 		getThemeBasicInfo();
 		
 		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
-		/*
+		
 		List<PlaceDTO> placelist = placemapper.selectAllPlace();
 		for(PlaceDTO one :placelist) {
 			placemapper.copyTablePlace2(one);
 		}
-		*/
+		
 		
 		//place2 테이블의 모든 데이터 -> 리스트로 가져오기 -> for문 돌면서 place 테이블 정보 변경
-		List<ContentsDTO> contentlist = jdbcTemplate.query("SELECT * FROM CONTENTS", new BeanPropertyRowMapper<>(ContentsDTO.class));
+		/*List<ContentsDTO> contentlist = jdbcTemplate.query("SELECT * FROM CONTENTS", new BeanPropertyRowMapper<>(ContentsDTO.class));
 		for(ContentsDTO one :contentlist) {
 		    int contentTypeId = jdbcTemplate.queryForObject("select contenttypeid from place where contentId = ?", Integer.class, one.getContentId());
 		    if(contentTypeId==12) {
@@ -90,6 +90,7 @@ public class APIServiceImpl {
 		    		    one.getAccomcountleports(), one.getUsefeeleports(), one.getParkingleports(), one.getParkingfeeleports(), one.getReservation());
 		    }
 		}
+		*/
 		/*List<ContentsDTO> contentlist = placemapper.selectAllContents();
 		for(ContentsDTO one :contentlist) {
 		   int contentTypeId = placemapper.getContentTypeId(one.contentId);

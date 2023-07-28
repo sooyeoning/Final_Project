@@ -6,7 +6,6 @@
 <%@ page import="User.UserDAO"%>
 <%@ page import="User.UserDAOImpl"%>
 <%@ page import="User.UserDTO"%>
-<%@ page import="User.VisitedDTO"%>
 <%@ page import="community.BoardDTO"%>
 
 <!DOCTYPE html>

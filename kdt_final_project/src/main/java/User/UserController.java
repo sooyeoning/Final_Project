@@ -30,6 +30,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import travelspot.CommentsDTO;
 import travelspot.PlaceDTO;
+import travelspot.ReportDTO;
 
 @Controller
 public class UserController {
@@ -300,17 +301,9 @@ public class UserController {
         }
     }
     
-    @GetMapping("/adminpage2")
-    public String getreportList(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
-        int reportPerPage = 10;
-        int totalReportCount = service.getTotalUserCount();
-        int totalPages = (int) Math.ceil((double) totalReportCount / reportPerPage);
-
-        List<UserDTO> userList = service.getAllUsers(currentPage, reportPerPage);
-        model.addAttribute("userList", userList);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-        return "/user/adminpage2";
-    }
-
+    @GetMapping("/getReportList")
+    public ResponseEntity<List<ReportDTO>> getReportList() {
+        List<ReportDTO> reportList = service.getAllReportList();
+        return new ResponseEntity<>(reportList, HttpStatus.OK);
+}
 }

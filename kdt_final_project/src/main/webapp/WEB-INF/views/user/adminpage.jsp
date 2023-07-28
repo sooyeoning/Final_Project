@@ -118,30 +118,63 @@
 				<button id="deleteUserButton">회원 탈퇴</button>
 				<button id="backUserList">되돌아가기</button>
 			</div>
+			<div class="side-menu-form" id="section3">
+				<h1>댓글 신고리스트</h1>
+				<table class="reportList-table" border="1">
+					<thead>
+						<tr>
+							<th>신고번호</th>
+							<th>댓글번호</th>
+							<th>신고받은 닉네임</th>
+							<th>신고자 닉네임</th>
+							<th>신고자 아이디</th>
+							<th>신고 카테고리</th>
+							<th>신고 내용</th>
+							<th>신고 날짜</th>
+							<th>신고받은 게시글</th>
+						</tr>
+					</thead>
+					<tbody id="reportTableBody">
+						<c:forEach var="report" items="${reportList}">
+							<tr>
+								<td>${report.id}</td>
+								<td>${report.reportedNickname}</td>
+								<td>${report.commentId}</td>
+								<td>${report.userNickname}</td>
+								<td>${report.userId}</td>
+								<td>${report.reportCategory}</td>
+								<td>${report.reportContents}</td>
+								<td>${report.regDate}</td>
+								<td>${report.contentId}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
+		</div>
 
-	<%@ include file="../home/footer.jsp"%>
+		<%@ include file="../home/footer.jsp"%>
 
-	<script>
-		function previewProfileImage(event) {
-			const file = event.target.files[0];
-			const previewImage = document.getElementById('previewImage');
+		<script>
+			function previewProfileImage(event) {
+				const file = event.target.files[0];
+				const previewImage = document.getElementById('previewImage');
 
-			if (file) {
-				const reader = new FileReader();
-				reader.onload = function(e) {
-					previewImage.src = e.target.result;
-				};
-				reader.readAsDataURL(file);
+				if (file) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						previewImage.src = e.target.result;
+					};
+					reader.readAsDataURL(file);
+				}
 			}
-		}
-		
-		// 되돌아가기 버튼 클릭 이벤트 처리
-		document.getElementById('backUserList').addEventListener('click', function() {
-			window.location.reload(true); // 현재 페이지 새로고침
-		});
-	</script>
 
+			// 되돌아가기 버튼 클릭 이벤트 처리
+			document.getElementById('backUserList').addEventListener('click',
+					function() {
+						window.location.reload(true); // 현재 페이지 새로고침
+					});
+		</script>
 </body>
 </html>

@@ -31,13 +31,34 @@
 					<li><a href="commentReportList.jsp">댓글 신고리스트</a></li>
 				</ul>
 			</nav>
-			<div class="side-menu-form" id="section1">
-
-				<h1>전체 회원 리스트</h1>
-				
+			<div class="side-menu-form" id="section3">
+				<h1>댓글 신고리스트</h1>
+				<table class="reportList-table" border="1">
+					<thead>
+						<tr>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>닉네임</th>
+							<th>전화번호</th>
+							<th>이메일</th>
+						</tr>
+					</thead>
+					<tbody id="boardTableBody">
+						<c:forEach var="report" items="${reportList}">
+							<tr>
+								<td>${report.commentId}</td>
+								<td>${report.userNickname}</td>
+								<td>${report.userId}</td>
+								<td>${report.reportContents}</td>
+								<td>${report.contentId}</td>
+								<td>${report.regDate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 				<!-- 페이징 버튼 -->
 				<c:if test="${totalPages > 1}">
-					<div class="paging-container">
+					<div class="paging-container2">
 						<c:if test="${currentPage > 1}">
 							<a href="?page=1">&lt;&lt;</a>
 							<a href="?page=${currentPage - 1}">&lt;</a>

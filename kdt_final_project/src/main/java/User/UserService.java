@@ -5,6 +5,7 @@ import java.util.List;
 import community.BoardDTO;
 import travelspot.CommentsDTO;
 import travelspot.PlaceDTO;
+import travelspot.ReportDTO;
 
 public interface UserService {
 
@@ -39,5 +40,7 @@ public interface UserService {
 	public UserDTO getUserdetail(String userid);
 	
 	void deleteUser(String userid) throws Exception;
+	
+	List<ReportDTO> getAllReportList();
 
 }

@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;;
+import travelspot.PlaceDTO;
+import travelspot.ReportDTO;;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -121,6 +122,13 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.delete("deleteUser",userid);
 		
 	}
+
+	@Override
+	public List<ReportDTO> getAllReports() {
+		return sqlSession.selectList("getAllReports");
+	}
+
+	
 
 	
 	

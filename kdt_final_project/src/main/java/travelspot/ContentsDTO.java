@@ -2,7 +2,6 @@ package travelspot;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class ContentsDTO {
 	int contentId;
 	

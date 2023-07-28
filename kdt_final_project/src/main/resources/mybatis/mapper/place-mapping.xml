@@ -43,7 +43,7 @@ INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`;
 
 <!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
 <update id="updateThemePlace2" parameterType="placeDTO">
-	update place2 set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
+	update place3 set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
 	contenttypeid=#{contentTypeId}, address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
 	where contentId=#{contentId};
 </update>

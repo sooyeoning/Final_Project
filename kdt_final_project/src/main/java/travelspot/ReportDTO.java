@@ -8,7 +8,7 @@ public class ReportDTO {
 	int commentId; //신고당하는 댓글 번호
 	String userNickname; //신고자 닉네임
 	String userId; //신고자 아이디
-	int reportCategory; //신고 카테고리
+	String reportCategory; //신고 카테고리 - String
 	String reportContents; //신고 내용
 	String regDate; //신고날짜
 	int contentId; //신고당하는 댓글이 있는 게시글 번호
@@ -29,7 +29,7 @@ public class ReportDTO {
 		this.contentId = contentId;
 	}
 
-	public ReportDTO(int id, int commentId, String userNickname, String userId, int reportCategory,
+	public ReportDTO(int id, int commentId, String userNickname, String userId, String reportCategory,
 			String reportContents, String regDate, int contentId) {
 		super();
 		this.id = id;
@@ -64,11 +64,11 @@ public class ReportDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getReportCategory() {
+	public String getReportCategory() {
 		return reportCategory;
 	}
 
-	public void setReportCategory(int reportCategory) {
+	public void setReportCategory(String reportCategory) {
 		this.reportCategory = reportCategory;
 	}
 	public String getReportContents() {

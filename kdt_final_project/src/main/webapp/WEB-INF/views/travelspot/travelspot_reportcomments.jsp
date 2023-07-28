@@ -32,10 +32,11 @@ $(document).ready(function() {
 <input type="text" name="contentId" value="${contentid }" hidden="hidden">
 <div class="readonly">신고카테고리</div>
 <select name="reportCategory" id="reportCategory">
- <option value="1">음란물</option>
- <option value="2" selected>과도한 욕설</option>
- <option value="3">광고</option>
- <option value="4">사회분위기 저해</option>
+ <option value="음란물">음란물</option>
+ <option value="과도한 욕설" selected>과도한 욕설</option>
+ <option value="광고">광고</option>
+ <option value="스팸">스팸</option>
+ <option value="사회분위기 저해">사회분위기 저해</option>
 </select><br>
 <div class="readonly">신고내용 </div>
 <textarea id="reportcontents" name="reportContents">

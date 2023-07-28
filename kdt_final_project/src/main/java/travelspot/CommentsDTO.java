@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import User.UserDTO;
 
-@Component
 public class CommentsDTO {
 	int id; 			//댓글 고유 번호
 	String contents; 	//댓글 내용

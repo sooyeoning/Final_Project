@@ -10,7 +10,7 @@
 		<typeAlias type="User.LikesDTO" alias="LikesDTO" />
 		<typeAlias type="travelspot.PlaceDTO" alias="placedto" />
 		<typeAlias type="travelspot.CommentsDTO" alias="CommentsDTO" />
-		<typeAlias type="travelspot.ContentsDTO" alias="ContentsDTO" />
+		<typeAlias type="travelspot.ContentsDTO" alias="ContentsDTO" />		
 		<typeAlias type="travelspot.PlaceContentsDTO" alias="PlaceContentsDTO" />
 		<typeAlias type="travelspot.CommentsUserDTO" alias="CommentsUserDTO" />
 		<typeAlias type="travelspot.ReportDTO" alias="ReportDTO" />

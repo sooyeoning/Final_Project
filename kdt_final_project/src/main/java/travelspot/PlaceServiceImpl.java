@@ -48,28 +48,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public void insertTheme12Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme12Detail(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme14Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme14Detail(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme39Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme39Detail(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme28Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme28Detail(contentsDTO);
-
-	}
-
-	@Override
-	public int selectPlaceId(int contentId) {
+	public String selectPlaceId(int contentId) {
 		return placemapper.selectPlaceId(contentId);
 	}
 
@@ -113,14 +92,6 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.searchPlaceCnt(map);
 	}
 
-	/*
-	 * @Override public List<PlaceContentsDTO> searchThemePlace(HashMap<String,
-	 * Object> map) { return placemapper.searchThemePlace(map); }
-	 * 
-	 * @Override public int searchThemePlaceCnt(HashMap<String, Object> map) {
-	 * return placemapper.searchThemePlaceCnt(map); }
-	 */
-
 	@Override
 	public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map) {
 		return placemapper.searchThemePlaces(map);
@@ -162,26 +133,6 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public void insertTheme12Detail2(ContentsDTO contentsDTO) {
-		placemapper.insertTheme12Detail2(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme39Detail2(ContentsDTO contentsDTO) {
-		placemapper.insertTheme39Detail2(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme14Detail2(ContentsDTO contentsDTO) {
-		placemapper.insertTheme14Detail2(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme28Detail2(ContentsDTO contentsDTO) {
-		placemapper.insertTheme28Detail2(contentsDTO);
-	}
-
-	@Override
 	public String selectPlaceId2(int contentId) {
 		return placemapper.selectPlaceId2(contentId);
 	}
@@ -212,30 +163,28 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public void CopyTheme12Detail(ContentsDTO contentsDTO) {
-		placemapper.CopyTheme12Detail(contentsDTO);
-	}
-
-	@Override
-	public void CopyTheme39Detail(ContentsDTO contentsDTO) {
-		placemapper.CopyTheme39Detail(contentsDTO);
-	}
-
-	@Override
-	public void CopyTheme14Detail(ContentsDTO contentsDTO) {
-		placemapper.CopyTheme14Detail(contentsDTO);
-	}
-
-	@Override
-	public void CopyTheme28Detail(ContentsDTO contentsDTO) {
-		placemapper.CopyTheme28Detail(contentsDTO);
-	}
-
-	@Override
 	public int getContentTypeId(int contentId) {
 		return placemapper.getContentTypeId(contentId);
 	}
 
+	@Override
+	public int updateThemeDetail(ContentsDTO contentsDTO2) {
+		return placemapper.updateThemeDetail(contentsDTO2);
+	}
 
+	@Override
+	public int insertThemeDetail(ContentsDTO contentDTO2) {
+		return placemapper.insertThemeDetail(contentDTO2);
+	}
+
+	@Override
+	public int copyThemeDetail(ContentsDTO contentDTO2) {
+		return placemapper.copyThemeDetail(contentDTO2);
+	}
+
+	@Override
+	public void insertPlaces(PlaceDTO placeDTO) {
+		placemapper.insertPlaces(placeDTO);
+	}
 
 }

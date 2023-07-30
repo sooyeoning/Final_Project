@@ -40,10 +40,10 @@
 
 	<!-- 검색창 -->
 	<form action="/travelspot/themesearch" method="get" class="search-form">
-		<select name="item" class="search-item">
-			<option value="" disabled selected>검색카테고리</option>
-			<option>장소명</option>
-			<option>주소</option>
+		<select name="item" id="selectItem" class="search-item">
+			<option value="none" disabled>검색카테고리</option>
+			<option value="title">장소명</option>
+			<option value="address">주소</option>
 		</select> <br> <input type="text" id="search-input" name="searchword"
 			class="search-input" placeholder="검색어를 입력하세요"> <input
 			type="submit" value="검색" class="search-button">
@@ -121,8 +121,7 @@
 		<c:url var="url" value="/travelspot/themesearch">
 			<c:param name="item" value="<%=searchitem%>" />
 			<c:param name="searchword" value="<%=searchword%>" />
-			<c:param name="page"
-				value="<%=String.valueOf(currentBlock * countPage + 1)%>" />
+			<c:param name="page" value="<%=String.valueOf(currentBlock * countPage + 1)%>" />
 		</c:url>
 		<a href="<c:out value= "${url}" />"><font size="3px">다음</font></a>
 

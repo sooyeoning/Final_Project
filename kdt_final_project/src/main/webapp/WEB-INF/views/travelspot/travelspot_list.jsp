@@ -38,9 +38,9 @@ String[] engtitles = new String[]{"gangwon", "busan", "incheon","gwangju", "ulsa
 <!-- 검색창 -->
 	<form action="/travelspot/search" method="get" class="search-form">
 	<select name="item" class="search-item">
-		<option value="" disabled selected>검색카테고리</option>
-      	<option>장소명</option>
-      	<option>주소</option>
+			<option value="none" disabled>검색카테고리</option>
+			<option value="title">장소명</option>
+			<option value="address">주소</option>
     </select>
     <input type="text" id="search-input" name="searchword" class="search-input" placeholder="검색어를 입력하세요">
     <input type="submit" value="검색" class="search-button">

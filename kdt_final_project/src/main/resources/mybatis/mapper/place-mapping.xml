@@ -1,353 +1,358 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="travelspot.PlaceMapper">
 
-<!-- 여행지 저장 -->
-<insert id="insertPlaces" parameterType="placeDTO">
-	insert into place(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcnt, writingtime) 
-	values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address}, #{mapx}, #{mapy},"null",0,now());
-</insert>
+	<!-- 여행지 저장 -->
+	<insert id="insertPlaces" parameterType="placeDTO">
+		insert into
+		place(contentId, title, areaCode, image1,image2, address, mapx,
+		mapy,
+		contents, viewcnt, writingtime)
+		values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address},
+		#{mapx}, #{mapy},null,0,now());
+	</insert>
 
-<!-- 테이블2 여행지 저장 -->
-<insert id="insertPlaces2" parameterType="placeDTO">
-	insert into place2(contentId, title, areaCode, image1,image2, address, mapx, mapy, contents, viewcnt, writingtime) 
-	values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address}, #{mapx}, #{mapy},"null",0,now());
-</insert>
+	<!-- 테이블2 여행지 저장 -->
+	<insert id="insertPlaces2" parameterType="placeDTO">
+		insert into
+		place2(contentId, title, areaCode, image1,image2, address, mapx,
+		mapy,
+		contents, viewcnt, writingtime)
+		values(#{contentId},#{title},#{areaCode}, #{image1},0,#{address},
+		#{mapx}, #{mapy},null,0,now());
+	</insert>
 
-<!-- 
-테이블2 내용 -> 테이블1
-테이블 데이터 복사
-INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`; 
--->
+	<!-- 테이블2 내용 -> 테이블1 테이블 데이터 복사 INSERT INTO `복사 테이블` SELECT * FROM `원본 테이블`; -->
 
-<!-- 테마별 여행지 저장:  아이디, 장소명, 테마(기초 정보)-->
-<insert id="insertThemeBasicInfo" parameterType="placeDTO">
-	insert into place(contentId, title, theme) values(#{contentId},#{title},#{theme});
-</insert>
+	<!-- 테마별 여행지 저장: 아이디, 장소명, 테마(기초 정보) -->
+	<insert id="insertThemeBasicInfo" parameterType="placeDTO">
+		insert into
+		place(contentId, title, theme)
+		values(#{contentId},#{title},#{theme});
+	</insert>
 
-<!-- 2 테마별 여행지 저장:  아이디, 장소명, 테마(기초 정보)-->
-<insert id="insertThemeBasicInfo2" parameterType="placeDTO">
-	insert into place2(contentId, title, theme) values(#{contentId},#{title},#{theme});
-</insert>
+	<!-- 2 테마별 여행지 저장 : 아이디, 장소명, 테마(기초 정보) -->
+	<insert id="insertThemeBasicInfo2" parameterType="placeDTO">
+		insert into
+		place2(contentId, title, theme)
+		values(#{contentId},#{title},#{theme});
+	</insert>
 
-<!-- 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
-<update id="updateThemePlace" parameterType="placeDTO">
-	update place set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
-	contenttypeid=#{contentTypeId}, address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
-	where contentId=#{contentId};
-</update>
+	<!-- 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
+	<update id="updateThemePlace" parameterType="placeDTO">
+		update place set
+		contentId=#{contentId}, title=#{title},
+		areaCode=#{areaCode},
+		image1=#{image1}, image2=0,
+		contenttypeid=#{contentTypeId},
+		address=#{address}, mapx=#{mapx},
+		mapy=#{mapy}, contents=#{contents},
+		homepage=#{homepage}
+		where contentId=#{contentId};
+	</update>
 
-<!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
-<update id="updateThemePlace2" parameterType="placeDTO">
-	update place3 set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode}, image1=#{image1}, image2=0,
-	contenttypeid=#{contentTypeId}, address=#{address}, mapx=#{mapx}, mapy=#{mapy}, contents=#{contents}, homepage=#{homepage}
-	where contentId=#{contentId};
-</update>
+	<!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
+	<update id="updateThemePlace2" parameterType="placeDTO">
+		update place2 set
+		contentId=#{contentId}, title=#{title},
+		areaCode=#{areaCode},
+		image1=#{image1}, image2=0,
+		contenttypeid=#{contentTypeId},
+		address=#{address}, mapx=#{mapx},
+		mapy=#{mapy}, contents=#{contents},
+		homepage=#{homepage}
+		where contentId=#{contentId};
+	</update>
 
-<!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
-<update id="updatePlace2" parameterType="placeDTO">
-	update place2 set contentId=#{contentId}, title=#{title}, areaCode=#{areaCode1}, image1=#{image1}, image2=0,
-	address=#{address}, mapx=#{mapx}, mapy=#{mapy}
-	where contentId=#{contentId};
-</update>
+	<!-- 2 테마별 여행지 저장: 주소,이미지 (기본 정보) -->
+	<update id="updatePlace2" parameterType="placeDTO">
+		update place2 set
+		contentId=#{contentId}, title=#{title},
+		areaCode=#{areaCode1},
+		image1=#{image1}, image2=0,
+		address=#{address}, mapx=#{mapx},
+		mapy=#{mapy}
+		where contentId=#{contentId};
+	</update>
 
-<!-- 여행지 게시글 전체 조회(페이징0)-->
-<select id="listPlaces" parameterType="hashmap" resultType="placeDTO">
-	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, 
-	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid from place where areaCode=#{areaCode} and image1 != "null" limit #{page},9 ; 
-</select>
+	<!-- 여행지 게시글 전체 조회(페이징0) -->
+	<select id="listPlaces" parameterType="hashmap"
+		resultType="placeDTO">
+		select replace(address,"null", '') as address, contentId,
+		title, areaCode,
+		image1, mapx, mapy, contents, theme, writingtime,
+		likecnt, viewcnt,
+		ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+		from place where
+		areaCode=#{areaCode} and image1 != "null" limit
+		#{page},9 ;
+	</select>
 
-<!-- 게시글 수 조회 -->
-<select id="getTotalCnt" parameterType="int" resultType="int">
-	select count(*) from place where areaCode=#{areaCode} and image1 != "null" ;
-</select>
+	<!-- 게시글 수 조회 -->
+	<select id="getTotalCnt" parameterType="int" resultType="int">
+		select
+		count(*) from place where areaCode=#{areaCode} and image1 != "null" ;
+	</select>
 
-<!-- 여행지 게시글 한개 조회-->
-<select id="selectPlace" parameterType="int" resultType="placeDTO">
-	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, replace(contents, "null", "없음"), theme, writingtime, likecnt, viewcnt, ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
-	from place where contentId=#{contentId}; 
-</select>
+	<!-- 여행지 게시글 한개 조회 -->
+	<select id="selectPlace" parameterType="int"
+		resultType="placeDTO">
+		select replace(address,"null", '') as address, contentId,
+		title, areaCode,
+		image1, mapx, mapy, replace(contents, "null", "없음"),
+		theme,
+		writingtime, likecnt, viewcnt, ifnull(homepage,"제공정보 없음") as
+		homepage,
+		contenttypeid
+		from place where contentId=#{contentId};
+	</select>
 
-<!-- 여행지 게시글 아이디 있는지 조희-->
-<select id="selectPlaceId" parameterType="int" resultType="int">
-	select ifnull(max(contentId),0) contentId from place where contentId=#{contentId};
-</select>
+	<!-- 여행지 게시글 아이디 있는지 조희 -->
+	<select id="selectPlaceId" parameterType="int" resultType="String">
+		select '1' from place where contentId=#{contentId};
+	</select>
 
-<!-- 2 여행지 게시글 아이디 있는지 조희-->
-<select id="selectPlaceId2" parameterType="int" resultType="String">
-	select ifnull(contentId,"null") from place2 where contentId=#{contentId};
-</select>
+	<!-- 2 여행지 게시글 아이디 있는지 조희 -->
+	<select id="selectPlaceId2" parameterType="int"
+		resultType="String">
+		select '1' from place2 where contentId=#{contentId};
+	</select>
 
-<!-- 여행지 게시글 아이디 있는지 조희-->
-<select id="selectContentId" parameterType="int" resultType="int">
-	select ifnull(max(contentId),0) contentId from contents where contentId=#{contentId};
-</select>
+	<!-- 여행지 게시글 아이디 있는지 조희 -->
+	<select id="selectContentId" parameterType="int"
+		resultType="int">
+		select ifnull(max(contentId),0) contentId from contents
+		where
+		contentId=#{contentId};
+	</select>
 
-<!-- 2 여행지 게시글 아이디 있는지 조희-->
-<select id="selectContentId2" parameterType="int" resultType="String">
-	select ifnull(contentId,"null") from contents2 where contentId=#{contentId};
-</select>
+	<!-- 2 여행지 게시글 아이디 있는지 조희 -->
+	<select id="selectContentId2" parameterType="int"
+		resultType="String">
+		select '1' from contents2 where contentId=#{contentId};
+	</select>
 
-<!-- 게시글 찜 -->
-<update id="likePlace" parameterType="int">
-	update place set likecnt=likecnt+1 where contentId=#{contentId};
-</update>
+	<!-- 게시글 찜 -->
+	<update id="likePlace" parameterType="int">
+		update place set
+		likecnt=likecnt+1 where contentId=#{contentId};
+	</update>
 
-<!-- 게시글 찜취소 -->
-<update id="cancelPlaceLike" parameterType="int">
-	update place set likecnt=likecnt-1 where contentId=#{contentId};
-</update>
+	<!-- 게시글 찜취소 -->
+	<update id="cancelPlaceLike" parameterType="int">
+		update place set likecnt=likecnt-1 where contentId=#{contentId};
+	</update>
 
-<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
-<insert id="insertLikes" parameterType="hashmap">
-	insert into likes(like_check, user_id, place_id) values(1, #{user_id}, #{place_id});
-</insert>
+	<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 
+		update likes set like_check='0', user_id=#{user_id} where place_id=#{place_id};
+	-->
+	<delete id="cancelLikes" parameterType="hashmap">
+		delete from likes where place_id=#{place_id} and user_id=#{user_id};
+	</delete>
 
-<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
-<update id="cancelLikes" parameterType="hashmap">
-	update likes set like_check='0', user_id=#{user_id} where place_id=#{place_id};
-</update>
+	<!-- 좋아요 테이블 정보 저장: 찜했으면 1, 찜안하면 0 -->
+	<insert id="insertLikes" parameterType="hashmap">
+		insert into
+		likes(like_check, user_id, place_id) values(1, #{user_id},
+		#{place_id});
+	</insert>
 
-<!-- 해당 유저가 해당 게시물 찜 여부 확인 -->
-<select id="CheckPlaceLikes" parameterType="hashmap" resultType="integer">
-	select like_check from likes where place_id=#{place_id} and user_id=#{user_id};
-</select>
+	<!-- 해당 유저가 해당 게시물 찜 여부 확인 -->
+	<select id="CheckPlaceLikes" parameterType="hashmap" resultType="integer">
+		select like_check from likes where place_id=#{place_id} and
+		user_id=#{user_id};
+	</select>
 
-<!-- 테마별 여행지 정보 저장(관광지) -->
-<insert id="insertTheme12Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) ;
-</insert>
+	<!-- 테마별 여행지 정보 저장 -->
+	<insert id="insertThemeDetail" parameterType="ContentsDTO">
+		insert into
+		contents2(contentId,infocenter, chkbabycarriage, chkcreditcard,
+		chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu,
+		reservationinfo, takeout, parking, parkingfee, accomcount, usefee,
+		checkintime, checkouttime, chkcooking, pickup)
+		values(#{contentId}, #{infocenter},#{chkbabycarriage},#{chkcreditcard}, #{chkpet},
+		#{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo},
+		#{firstmenu}, #{reservationinfo}, #{takeout}, #{parking},
+		#{parkingfee}, #{accomcount}, #{usefee}, #{checkintime},
+		#{checkouttime}, #{chkcooking}, #{pickup});
+	</insert>
 
-<!-- 테마별 여행지 정보 저장(식당) -->
-<insert id="insertTheme39Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) 
-	values(#{contentId}, #{infocenterfood}, #{kidsfacility}, #{chkcreditcardfood}, #{restdatefood}, #{opentimefood}, #{discountinfofood}, #{firstmenu}, #{reservationfood}, #{packing}, #{parkingfood}) ;
-</insert>
+	<!-- 2 테마별 여행지 정보 저장(관광지) -->
+	<update id="updateThemeDetail" parameterType="ContentsDTO">
+		update contents2
+		set contentId=#{contentId},
+		infocenter=#{infocenter},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},
+		chkpet=#{chkpet}, kidsfacility=#{kidsfacility}, restdate=#{restdate},
+		usetime=#{usetime}, discountinfo=#{discountinfo},
+		firstmenu=#{firstmenu}, reservationinfo=#{reservationinfo},
+		takeout=#{takeout}, parking=#{parking}, parkingfee=#{parkingfee},
+		accomcount=#{accomcount}, usefee=#{usefee},
+		checkintime=#{checkintime}, checkouttime=#{checkouttime},
+		chkcooking=#{chkcooking}, pickup=#{pickup}
+		where contentId=#{contentId};
+	</update>
 
-<!-- 테마별 여행지 정보 저장(문화시설) -->
-<insert id="insertTheme14Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) 
-	values(#{contentId}, #{infocenterculture}, #{chkbabycarriageculture}, #{chkcreditcardculture}, #{chkpetculture}, #{restdateculture}, #{usetimeculture}, #{accomcountculture}, #{parkingculture}, #{parkingfee}, #{usefee}, #{discountinfo}) ;
-</insert>
 
-<!-- 테마별 여행지 정보 저장(레포츠) -->
-<insert id="insertTheme28Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, usefee, parking, parkingfee, reservationinfo) 
-	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) ;
-</insert>
+	<!-- 게시글 상세 정보 조회(PlaceDTO) -->
+	<select id="getPlaceThemeDetail" parameterType="int"
+		resultType="PlaceDTO">
+		select replace(address,"null", '') as address, contentId,
+		title, areaCode,
+		image1, mapx, mapy,
+		replace(contents,"null","제공정보 없음")
+		as contents, theme, writingtime, likecnt, viewcnt,
+		ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+		from place where
+		contentId=#{contentId};
+	</select>
 
-<!-- 2 테마별 여행지 정보 저장(관광지) -->
-<insert id="insertTheme12Detail2" parameterType="ContentsDTO">
-	insert into contents2(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) ;
-</insert>
+	<!-- 게시글 조회수 증가 -->
+	<update id="plusViewCount" parameterType="int">
+		update place set
+		viewcnt=viewcnt+1 where contentId=#{contentId};
+	</update>
 
-<!-- 2 테마별 여행지 정보 저장(식당) -->
-<insert id="insertTheme39Detail2" parameterType="ContentsDTO">
-	insert into contents2(contentId, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) 
-	values(#{contentId}, #{infocenterfood}, #{kidsfacility}, #{chkcreditcardfood}, #{restdatefood}, #{opentimefood}, #{discountinfofood}, #{firstmenu}, #{reservationfood}, #{packing}, #{parkingfood}) ;
-</insert>
+	<!-- 게시글 검색 -->
+	<select id="searchPlace" parameterType="hashmap"
+		resultType="PlaceDTO">
+		select replace(address,"null", '') as address, contentId,
+		title, areaCode,
+		image1, mapx, mapy, contents, theme, writingtime,
+		likecnt, viewcnt,
+		ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
+		from place where ${colname} like #{colvalue} and image1 != "null"
+		limit #{limitindex},#{limitcount}
+	</select>
 
-<!-- 2 테마별 여행지 정보 저장(문화시설) -->
-<insert id="insertTheme14Detail2" parameterType="ContentsDTO">
-	insert into contents2(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) 
-	values(#{contentId}, #{infocenterculture}, #{chkbabycarriageculture}, #{chkcreditcardculture}, #{chkpetculture}, #{restdateculture}, #{usetimeculture}, #{accomcountculture}, #{parkingculture}, #{parkingfee}, #{usefee}, #{discountinfo}) ;
-</insert>
+	<!-- 검색된 게시글 수 -->
+	<select id="searchPlaceCnt" parameterType="hashmap"
+		resultType="int">
+		select count(*) from place where ${colname} like
+		#{colvalue} and image1 !=
+		"null"
+	</select>
 
-<!-- 2 테마별 여행지 정보 저장(레포츠) -->
-<insert id="insertTheme28Detail2" parameterType="ContentsDTO">
-	insert into contents2(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, usefee, parking, parkingfee, reservationinfo) 
-	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) ;
-</insert>
+	<insert id="copyTablePlace2" parameterType="PlaceDTO">
+		INSERT INTO place
+		(address, contentId, title, areaCode, image1, mapx, mapy,
+		contents,
+		theme, writingtime, likecnt, viewcnt, homepage,
+		contenttypeid)
+		VALUES
+		(#{address},#{contentId},#{title},#{areaCode},#{image1},#{mapx},#{mapy},#{contents},#{theme},#{writingtime},#{likecnt},#{viewcnt},#{homepage},#{contentTypeId})
+		ON DUPLICATE KEY UPDATE address = #{address}, title =
+		#{title},areaCode = #{areaCode}, image1 = #{image1},homepage =
+		#{homepage}, mapx = #{mapx}, mapy = #{mapy}, contents = #{contents},
+		writingtime=now();
+	</insert>
 
-<!-- 게시글 상세 정보 조회(PlaceDTO)  -->
-<select id="getPlaceThemeDetail" parameterType="int" resultType="PlaceDTO">
-	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, 
-	replace(contents,"null","제공정보 없음") as contents, theme, writingtime, likecnt, viewcnt, 
-	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
-	from place where contentId=#{contentId};
-</select>
+	<select id="getContentTypeId" parameterType="int"
+		resultType="int">
+		select contenttypeid from place where contentId=#{contentId};
+	</select>
 
-<!-- 게시글 조회수 증가 -->
-<update id="plusViewCount" parameterType="int">
-	update place set viewcnt=viewcnt+1 where contentId=#{contentId};
-</update>
+	<insert id="copyThemeDetail" parameterType="ContentsDTO">
+		insert into contents(contentId,infocenter, chkbabycarriage, chkcreditcard, chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking, parkingfee, accomcount, usefee) 
+		values(#{contentId}, #{infocenter},#{chkbabycarriage},#{chkcreditcard}, #{chkpet}, #{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo},#{firstmenu}, #{reservationinfo}, #{takeout}, #{parking},#{parkingfee}, #{accomcount}, #{usefee}) 
+		ON DUPLICATE KEY UPDATE contentId=#{contentId},infocenter=#{infocenter},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},chkpet=#{chkpet}, kidsfacility=#{kidsfacility}, restdate=#{restdate},usetime=#{usetime}, discountinfo=#{discountinfo},firstmenu=#{firstmenu}, reservationinfo=#{reservationinfo},
+		takeout=#{takeout}, parking=#{parking}, parkingfee=#{parkingfee},
+		accomcount=#{accomcount}, usefee=#{usefee};
+	</insert>
 
-<!-- 게시글 검색 -->
-<select id="searchPlace" parameterType="hashmap" resultType="PlaceDTO">
-	select replace(address,"null", '') as address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, 
-	ifnull(homepage,"제공정보 없음") as homepage, contenttypeid
-	from place where ${colname} like #{colvalue} and image1 != "null"
-	limit #{limitindex},#{limitcount}
-</select>
+	<!-- 여행지 게시글 전체 조회(페이징0) -->
+	<select id="selectAllPlace" resultType="placeDTO">
+		select * from place2;
+	</select>
 
-<!-- 검색된 게시글 수 -->
-<select id="searchPlaceCnt" parameterType="hashmap" resultType="int">
-	select count(*) from place where ${colname} like #{colvalue} and image1 != "null"
-</select>
+	<select id="selectAllContents" resultType="ContentsDTO">
+		select * from contents2;
+	</select>
 
-<insert id="copyTablePlace2" parameterType="PlaceDTO">
-INSERT INTO place (address, contentId, title, areaCode, image1, mapx, mapy, contents, theme, writingtime, likecnt, viewcnt, homepage, contenttypeid) 
-VALUES (#{address},#{contentId},#{title},#{areaCode},#{image1},#{mapx},#{mapy},#{contents},#{theme},#{writingtime},#{likecnt},#{viewcnt},#{homepage},#{contentTypeId}) 
-ON DUPLICATE KEY UPDATE address = #{address}, title = #{title},areaCode = #{areaCode}, image1 = #{image1},homepage = #{homepage}, mapx = #{mapx}, mapy = #{mapy}, contents = #{contents}, writingtime=now();
-</insert>
+	<!-- place테이블 + contents 테이블 -->
+	<resultMap type="PlaceContentsDTO" id="placecontentsmap">
+		<id property="contentId" column="contentId" />
+		<result property="contentTypeId" column="contenttypeid" />
+		<result property="title" column="title" />
+		<result property="areaCode" column="areaCode" />
+		<result property="image1" column="image1" />
+		<result property="image2" column="image2" />
+		<result property="address" column="address" />
+		<result property="mapx" column="mapx" />
+		<result property="mapy" column="mapy" />
+		<result property="contents" column="contents" />
+		<result property="theme" column="theme" />
+		<result property="writingtime" column="writingtime" />
+		<result property="likecnt" column="likecnt" />
+		<result property="viewcnt" column="viewcnt" />
+		<result property="homepage" column="homepage" />
+		<association property="contentsdto" resultMap="contentsMap" />
+		<!-- 일대일 관계: PlaceContentsDTO 멤버변수 contentsdto <- contentsMap 매핑 -->
+		<!-- 하나의글-다수작성자 일대다 관계 <collection property="member" resultMap="memberMap"/> -->
+	</resultMap>
 
-<select id="getContentTypeId" parameterType="int" resultType="int">
-select contenttypeid from place where contentId=#{contentId};
-</select>
-<!-- 2 테마별 여행지 정보 저장(관광지) -->
-<insert id="CopyTheme12Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime) 
-	values(#{contentId},#{infocenter}, #{chkbabycarriage}, #{chkcreditcard}, #{chkpet}, #{restdate}, #{usetime}) 
-	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenter}, chkbabycarriage=#{chkbabycarriage}, 
-	chkcreditcard=#{chkcreditcard},chkpet=#{chkpet}, restdate=#{restdate}, usetime=#{usetime} ;
-</insert>
+	<resultMap type="ContentsDTO" id="contentsMap">
+		<id property="contentId" column="contentId" /><!-- 이름 일치 -->
+		<result property="infocenter" column="infocenter" />
+		<result property="chkbabycarriage" column="chkbabycarriage" />
+		<result property="chkcreditcard" column="chkcreditcard" />
+		<result property="chkpet" column="chkpet" />
+		<result property="kidsfacility" column="kidsfacility" />
+		<result property="restdate" column="restdate" />
+		<result property="usetime" column="usetime" />		
+		<result property="discountinfo" column="discountinfo" />
+		<result property="firstmenu" column="firstmenu" />
+		<result property="reservationinfo" column="reservationinfo" />
+		<result property="takeout" column="takeout" />
+		<result property="parking" column="parking" />
+		<result property="parkingfee" column="parkingfee" />
+		<result property="accomcount" column="accomcount" />
+		<result property="usefee" column="usefee" />
+	</resultMap>
 
-<!-- 2 테마별 여행지 정보 저장(식당) -->
-<insert id="CopyTheme39Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, kidsfacility, chkcreditcard, restdate, usetime, discountinfo, firstmenu, reservationinfo, takeout, parking) 
-	values(#{contentId}, #{infocenterfood}, #{kidsfacility}, #{chkcreditcardfood}, #{restdatefood}, #{opentimefood}, #{discountinfofood}, #{firstmenu}, #{reservationfood}, #{packing}, #{parkingfood})
-	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterfood}, kidsfacility=#{kidsfacility}, chkcreditcard=#{chkcreditcardfood},restdate=#{restdatefood}, usetime=#{opentimefood}, discountinfo=#{discountinfofood},
-	firstmenu=#{firstmenu}, reservationinfo=#{reservationfood}, takeout=#{packing}, parking=#{parkingfood};
-</insert>
+	<!-- 테마 게시글 수 조회 (변경함) -->
+	<select id="getTotalThemeCnt" parameterType="String"
+		resultType="int">
+		select count(*)
+		from place p join contents c
+		on p.contentId =
+		c.contentId
+		where theme=#{theme} and image1 != "null" ;
+	</select>
 
-<!-- 2 테마별 여행지 정보 저장(문화시설) -->
-<insert id="CopyTheme14Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, parking, parkingfee, usefee, discountinfo) 
-	values(#{contentId}, #{infocenterculture}, #{chkbabycarriageculture}, #{chkcreditcardculture}, #{chkpetculture}, #{restdateculture}, #{usetimeculture}, #{accomcountculture}, #{parkingculture}, #{parkingfee}, #{usefee}, #{discountinfo}) 
-	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterculture}, chkbabycarriage=#{chkbabycarriageculture}, chkcreditcard=#{chkcreditcardculture},chkpet=#{chkpetculture}, restdate=#{restdateculture}, usetime=#{usetimeculture},
-	accomcount=#{accomcountculture}, parking=#{parkingculture}, parkingfee=#{parkingfee}, usefee=#{usefee},discountinfo=#{discountinfo} ;
-</insert>
+	<select id="listThemePlaces" parameterType="hashmap"
+		resultMap="placecontentsmap">
+		select c.contentId, replace(address,"null", '') as address,
+		title, image1,likecnt, viewcnt
+		from place p join contents c
+		on p.contentId = c.contentId
+		where theme=#{theme} and image1 != "null"
+		limit #{page},9 ;
+	</select>
 
-<!-- 2 테마별 여행지 정보 저장(레포츠) -->
-<insert id="CopyTheme28Detail" parameterType="ContentsDTO">
-	insert into contents(contentId, infocenter, chkbabycarriage, chkcreditcard, chkpet, restdate, usetime, accomcount, usefee, parking, parkingfee, reservationinfo) 
-	values(#{contentId}, #{infocenterleports}, #{chkbabycarriageleports}, #{chkcreditcardleports}, #{chkpetleports}, #{restdateleports}, #{usetimeleports}, #{accomcountleports}, #{usefeeleports}, #{parkingleports}, #{parkingfeeleports}, #{reservation}) 
-	ON DUPLICATE KEY UPDATE contentId=#{contentId}, infocenter=#{infocenterleports}, chkbabycarriage=#{chkbabycarriageleports}, chkcreditcard=#{chkcreditcardleports},chkpet=#{chkpetleports}, restdate=#{restdateleports}, usetime=#{usetimeleports},
-	accomcount=#{accomcountleports}, parking=#{parkingleports}, parkingfee=#{parkingfeeleports}, usefee=#{usefeeleports},reservationinfo=#{reservation} ;
-</insert>
+	<select id="getPlaceContentThemeDetail" parameterType="int"
+		resultMap="placecontentsmap">
+		select c.contentId, mapx, mapy, contents, title, contenttypeid,
+		infocenter, homepage, chkbabycarriage,chkcreditcard,chkpet,kidsfacility,restdate,usetime,
+		discountinfo,firstmenu,reservationinfo,takeout,parking,parkingfee,accomcount,usefee
+		from place p join contents c
+		on p.contentId= c.contentId
+		where p.contentId=#{c_contentId};
+	</select>
 
-<!-- 여행지 게시글 전체 조회(페이징0)-->
-<select id="selectAllPlace" resultType="placeDTO">
-	select*from place2; 
-</select>
+	<select id="searchThemePlaces" parameterType="hashmap"
+		resultMap="placecontentsmap">
+		select c.contentId, replace(address,"null", '') as address,title, image1 
+		from place p join contents c on p.contentId = c.contentId
+		where ${colname} like #{colvalue} and image1 is not null limit
+		#{limitindex},#{limitcount}
+	</select>
 
-<select id="selectAllContents" resultType="ContentsDTO">
-	select*from contents2; 
-</select>
-
-<!-- place테이블 + contents 테이블 -->
-<resultMap type="PlaceContentsDTO" id="placecontentsmap">
- <id property="contentId" column="contentId"/>
- <result property="contentTypeId" column="contenttypeid"/>
- <result property="title" column="title"/>
- <result property="areaCode" column="areaCode"/>
- <result property="image1" column="image1"/> 
- <result property="image2" column="image2"/>
- <result property="address" column="address"/>
- <result property="mapx" column="mapx"/>
- <result property="mapy" column="mapy"/> 
- <result property="contents" column="contents"/>
-  <result property="theme" column="theme"/>
- <result property="writingtime" column="writingtime"/>
- <result property="likecnt" column="likecnt"/>
- <result property="viewcnt" column="viewcnt"/> 
- <result property="homepage" column="homepage"/>
- <association property="contentsdto" resultMap="contentsMap"/>
- <!-- 일대일 관계: PlaceContentsDTO 멤버변수 contentsdto <- contentsMap 매핑 -->
- <!-- 하나의글-다수작성자 일대다 관계  <collection property="member" resultMap="memberMap"/> -->
-</resultMap>
-
-<resultMap type="ContentsDTO" id="contentsMap">
- <id property="contentId" column="contentId"/><!-- 이름 일치 -->
- <result property="infocenter" column="infocenter"/>
- <result property="chkbabycarriage" column="chkbabycarriage"/>
- <result property="chkcreditcard" column="chkcreditcard"/>
- <result property="chkpet" column="chkpet"/> 
- <result property="restdate" column="restdate"/>
- <result property="usetime" column="usetime"/>
- <result property="infocenterfood" column="infocenter"/>
- <result property="kidsfacility" column="kidsfacility"/> 
- <result property="chkcreditcardfood" column="chkcreditcard"/>
- <result property="restdatefood" column="restdate"/>
- <result property="opentimefood" column="usetime"/>
- <result property="discountinfofood" column="discountinfo"/>
- <result property="firstmenu" column="firstmenu"/> 
- <result property="reservationfood" column="reservationinfo"/>
- <result property="packing" column="takeout"/>
- <result property="parkingfood" column="parking"/> 
- <result property="infocenterculture" column="infocenter"/>
- <result property="chkbabycarriageculture" column="chkbabycarriage"/>
- <result property="chkcreditcardculture" column="chkcreditcard"/>
- <result property="chkpetculture" column="chkpet"/> 
- <result property="accomcountculture" column="accomcount"/>
- <result property="parkingculture" column="parking"/>
- <result property="parkingfee" column="parkingfee"/>
- <result property="restdateculture" column="restdate"/> 
- <result property="usefee" column="usefee"/>
- <result property="discountinfo" column="discountinfo"/>
- <result property="usetimeculture" column="usetime"/>
- <result property="infocenterleports" column="infocenter"/>
- <result property="chkbabycarriageleports" column="chkbabycarriage"/> 
- <result property="chkcreditcardleports" column="chkcreditcard"/>
- <result property="chkpetleports" column="chkpet"/>
- <result property="restdateleports" column="restdate"/>
- <result property="usetimeleports" column="usetime"/>
- <result property="accomcountleports" column="accomcount"/>
- <result property="usefeeleports" column="usefee"/>
- <result property="parkingleports" column="parking"/>
- <result property="parkingfeeleports" column="parkingfee"/>
- <result property="reservation" column="reservationinfo"/>
-</resultMap>
-
-<!-- 테마 게시글 수 조회 (변경함)-->
-<select id="getTotalThemeCnt" parameterType="String" resultType="int">
-	select count(*) 
-	from place p join contents c
-	on p.contentId = c.contentId
-	where theme=#{theme} and image1 != "null" ;
-</select>
-
-<select id="listThemePlaces" parameterType="hashmap" resultMap="placecontentsmap">
-select c.contentId, replace(address,"null", '') as address, title, image1, likecnt, viewcnt
-from place p join contents c
-on p.contentId = c.contentId
-where theme=#{theme} and image1 != "null" limit #{page},9 ;
-</select>
-
-<select id="getPlaceContentThemeDetail" parameterType="int" resultMap="placecontentsmap">
-select c.contentId, mapx, mapy, contents, title, contenttypeid,
-replace(infocenter, "null", "제공정보 없음") as infocenter, 
-ifnull(homepage,"제공정보 없음") as homepage,
-replace(contents, "null", "제공정보 없음") as contents,
-replace(chkbabycarriage,"null","제공정보 없음") as chkbabycarriage,
-replace(chkcreditcard,"null","제공정보 없음") as chkcreditcard,
-replace(chkpet,"null","제공정보 없음") as chkpet,
-replace(kidsfacility,"null","제공정보 없음") as kidsfacility,
-replace(restdate, "null", "제공정보 없음") as restdate,
-replace(usetime, "null", "제공정보 없음") as usetime,
-replace(discountinfo,"null","제공정보 없음") as discountinfo,
-replace(firstmenu,"null","제공정보 없음") as firstmenu,
-replace(reservationinfo, "null", "제공정보 없음") as reservationinfo,
-replace(takeout, "null", "제공정보 없음") as takeout,
-replace(parking,"null","제공정보 없음") as parking,
-replace(parkingfee,"null","제공정보 없음") as parkingfee,
-replace(accomcount, "null", "제공정보 없음") as accomcount,
-replace(usefee, "null", "제공정보 없음") as usefee
-from place p join contents c
-on p.contentId = c.contentId 
-where p.contentId=#{c_contentId};
-</select>
-
-<select id="searchThemePlaces" parameterType="hashmap" resultMap="placecontentsmap">
-select c.contentId, replace(address,"null", '') as address, title, image1 from place p join contents c on p.contentId = c.contentId
-where ${colname} like #{colvalue} and image1 != "null" limit #{limitindex},#{limitcount}
-</select>
-
-<select id="searchThemePlacesCnt" parameterType="hashmap" resultType="int">
-select count(*) from place p join contents c on p.contentId = c.contentId
-where ${colname} like #{colvalue} and image1 != "null"
-</select>
+	<select id="searchThemePlacesCnt" parameterType="hashmap"
+		resultType="int">
+		select count(*) from place p join contents c on p.contentId	= c.contentId
+		where ${colname} like #{colvalue} and image1 != "null"
+	</select>
 
 </mapper>

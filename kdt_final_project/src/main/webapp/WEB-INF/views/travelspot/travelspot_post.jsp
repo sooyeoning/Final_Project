@@ -34,6 +34,7 @@
 </div>
 <hr class="hrmargin">
 
+<div class="weather" style="float:right;"></div><!-- 날씨 들어갈 자리 -->
 <div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
 
 <div style="position:fixed; bottom:3%; right:-10%;">

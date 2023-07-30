@@ -110,7 +110,7 @@ public class CommentsController {
 		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
 		mv.addObject("userid", userdto.getUserid());//신고자아이디
 		
-		mv.setViewName("travelspot/travelspot_reportcomments");
+		mv.setViewName("/travelspot/travelspot_reportcomments");
 		return mv;
 	} 
 	

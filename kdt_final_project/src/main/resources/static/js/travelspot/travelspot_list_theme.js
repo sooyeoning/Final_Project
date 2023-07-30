@@ -20,5 +20,13 @@ $(document).ready(function(){
 		
 	})
 	
-
+	if($("#selectItem").val()=="title"){		
+		$("#selectItem").val("title").prop("selected", true);
+	}
+	if($("#selectItem").val()=="address"){		
+		$("#selectItem").val("address").prop("selected", true);
+	} 
+	if($("#selectItem").val()=="none"){		
+		$("#selectItem").val("none").prop("selected", true);
+	} 
 })//ready end

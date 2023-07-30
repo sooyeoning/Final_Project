@@ -21,7 +21,9 @@ $(document).ready(function() {
 
 </head>
 <body>
+<header>
 <%@ include file="../home/header.jsp" %>
+</header>
 <hr style="width: 66vw; margin: 0 auto;">
 <form id="reportCommentForm" action="/travelspot/post/comments/report" method="post">
 <div id="reportComment">

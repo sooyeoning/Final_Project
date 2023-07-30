@@ -68,13 +68,7 @@ public class PlaceController {
 			// 검색 조건으로 검색한 게시글 리스트, 게시글수
 			HashMap<String, Object> map = new HashMap<>();
 
-			if (item.equals("장소명")) {
-				map.put("colname", "title");
-			}
-			if (item.equals("주소")) {
-				map.put("colname", "address");
-			}
-			
+			map.put("colname", item);
 			map.put("searchitem", item);
 			map.put("colvalue", "%"+searchword+"%");
 			map.put("limitindex",(page-1)*9 );
@@ -198,20 +192,14 @@ public class PlaceController {
 	// 검색한 게시글 조회
 	@RequestMapping("/travelspot/themesearch")
 	public ModelAndView searchThemePlace(
-		@RequestParam(value="item", required=false, defaultValue="주소")String item, 
+		@RequestParam(value="item", required=false, defaultValue="title")String item, 
 		@RequestParam(value="searchword", required=false, defaultValue="강원")String searchword, 
 		@RequestParam(value="page", required=false, defaultValue="1")int page) {
 
 			// 검색 조건으로 검색한 게시글 리스트, 게시글수
 			HashMap<String, Object> map = new HashMap<>();
-
-			if (item.equals("장소명")) {
-				map.put("colname", "title");
-			}
-			if (item.equals("주소")) {
-				map.put("colname", "address");
-			}
-				
+		
+			map.put("colname", item);
 			map.put("searchitem", item);
 			map.put("colvalue", "%"+searchword+"%");
 			map.put("limitindex",(page-1)*9 );

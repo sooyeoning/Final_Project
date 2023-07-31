@@ -2,6 +2,8 @@ package community;
 
 import java.util.List;
 
+import User.LikesDTO;
+
 public interface BoardService {
 	void createBoard(BoardDTO board);
 	List<BoardDTO> getAllBoards(); // 모든 Board 목록을 가져오는 메서드
@@ -13,7 +15,7 @@ public interface BoardService {
 	// 게시글 조회수 증가 메서드 추가
     void increaseViewCount(int boardId);
     
- // 최신순으로 게시글 가져오기
+    // 최신순으로 게시글 가져오기
     List<BoardDTO> getNewestBoards();
     
     int insertComment(CommentsDTO commentsdto);
@@ -24,4 +26,9 @@ public interface BoardService {
 	int insertReport(travelspot.ReportDTO reportdto);
 	List<String> selectUserId(int commentId);
 	String selectReportedId(int id);
+
+    LikesDTO getLikeByUserAndBoard(int userId, int boardId);
+    void insertLikes(LikesDTO like);
+    void cancelLikes(LikesDTO like);
+
 }

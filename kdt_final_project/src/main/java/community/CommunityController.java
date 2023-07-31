@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import User.LikesDTO;
 import User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,6 +29,9 @@ public class CommunityController {
 	
 	@Autowired
     private BoardService boardService;
+	
+	@Autowired
+    private LikeService likeService;
 	
 	// 커뮤니티 페이지 매핑
 	@RequestMapping("/community")
@@ -151,6 +155,7 @@ public class CommunityController {
 	    return "board/delete";
 	}
 
+
 	@GetMapping("/comments/save")
 	@ResponseBody
 	public void saveComment(int boardId, String contents, HttpServletRequest request){
@@ -256,4 +261,51 @@ public class CommunityController {
 			boardService.insertReport(ReportDTO);
 			return "redirect:/detail?boardId="+ReportDTO.getContentId();
 		}
+  
+  // 좋아요 상태를 확인하는 API
+    @GetMapping("/api/getLikeStatus")
+    @ResponseBody
+    public Map<String, String> getLikeStatus(@RequestParam("boardId") int boardId, HttpServletRequest request) {
+        Map<String, String> response = new HashMap<>();
+        UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+        if (user == null) {
+            response.put("likeStatus", "unliked");
+        } else {
+            LikesDTO like = likeService.getLikeByUserAndBoard(user.getId(), boardId); 
+            if (like == null || like.getLike_check() == 0) {
+                response.put("likeStatus", "unliked");
+            } else {
+                response.put("likeStatus", "liked");
+            }
+        }
+        return response;
+    }
+
+    // 좋아요 버튼 클릭 시 처리
+    @RequestMapping("/toggleLike")
+    @ResponseBody
+    public Map<String, Object> toggleLike(HttpServletRequest request) {
+        Map<String, Object> response = new HashMap<>();
+        UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+        if (user == null) {
+            // 로그인되어 있지 않은 경우
+            response.put("isLoggedIn", false);
+        } else {
+            // 로그인되어 있는 경우
+            int userId = user.getId();
+            int boardId = Integer.parseInt(request.getParameter("boardId"));
+            LikesDTO like = likeService.getLikeByUserAndBoard(userId, boardId);
+            if (like == null) {
+                // 해당 게시글에 좋아요를 누른 적이 없는 경우
+                likeService.createLike(userId, boardId);
+                response.put("likeStatus", "liked");
+            } else {
+                // 이미 해당 게시글에 좋아요를 누른 경우
+                likeService.deleteLike(like);
+                response.put("likeStatus", "unliked");
+            }
+        }
+        return response;
+    }
+
 }

@@ -28,7 +28,7 @@ public class APIControllerTest {
 			apiServiceImpl.getBasicInfo(areaCodes[i]);
 		}
 		
-		//apiServiceImpl.getThemeBasicInfo();
+		apiServiceImpl.getThemeBasicInfo();
 
 		/*List<PlaceDTO> placelist = placemapper.selectAllPlace();
 		

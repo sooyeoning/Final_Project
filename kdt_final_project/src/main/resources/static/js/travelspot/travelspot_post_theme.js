@@ -110,10 +110,10 @@ $(document).ready(function() {
 				infowindow.open(map, marker);
 
 				// 기본상세정보
-				if (placeContentsDTO.contents != 'null') {
+				if (placeContentsDTO.contents != 'null' && placeContentsDTO.contents != null) {
 					$('div[class="result"]').append('<p class="pstyle">관광지 설명<br><hr class="hrdetail"><br>' + placeContentsDTO.contents + '<br><br>');
 				}
-				if (placeContentsDTO.homepage != 'null') {
+				if (placeContentsDTO.homepage != 'null' && placeContentsDTO.homepage != null) {
 					$('div[class="result"]').append('<p class="pstyle">관광지 대표 홈페이지<br><hr class="hrdetail"><br>' + placeContentsDTO.homepage + '<br><br>');
 				}
 

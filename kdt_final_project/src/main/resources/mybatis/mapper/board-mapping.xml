@@ -72,4 +72,21 @@
 	update comments set contents=#{contents}, writingtime=now() where id=#{id};
 </update>
 
+<!-- 댓글 신고 -->
+
+<insert id="insertReport" parameterType="ReportDTO">
+	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate, reportedId)
+	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId}); 
+</insert>
+
+<select id="selectUserId" parameterType="int" resultType="String">
+	select userId from report where commentId=#{commentId};
+</select>
+
+<select id="selectReportedId" parameterType="int" resultType="String">
+	select userid from users where nickname=(select writer from comments where id=#{id});
+</select>
+
+
+
 </mapper>

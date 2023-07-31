@@ -78,5 +78,20 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.update("board.spring.mybatis.BoardDAO.updateComments", commentsdto);
 	}
 
+	@Override
+	public int insertReport(travelspot.ReportDTO reportdto) {
+		return sqlSession.insert("board.spring.mybatis.BoardDAO.insertReport", reportdto);
+	}
+
+	@Override
+	public List<String> selectUserId(int commentId) {
+		return sqlSession.selectList("board.spring.mybatis.BoardDAO.selectUserId", commentId);
+	}
+
+	@Override
+	public String selectReportedId(int id) {
+		return sqlSession.selectOne("board.spring.mybatis.BoardDAO.selectReportedId", id);
+	}
+
 
 }

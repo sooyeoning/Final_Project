@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import travelspot.ReportDTO;
 import community.CommentsDTO;
 
 @Controller
@@ -211,5 +212,48 @@ public class CommunityController {
 		 
 	 }
 
-
+	@GetMapping(value="/comments/report")
+	public ModelAndView reportComments(int id, int boardId, HttpSession session) {
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+			
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("boardId", boardId);
+		mv.addObject("commentid", id);//신고당할 댓글 번호
+		mv.addObject("reportedId", boardService.selectReportedId(id));//신고당한 댓글 작성자 아이디
+		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
+		mv.addObject("userid", userdto.getUserid());//신고자아이디
+			
+		mv.setViewName("/board/reportcomments");
+		return mv;
+	} 
+		
+		@PostMapping(value="/comments/reportcheck")
+		@ResponseBody
+		public String checkReport(int id, int boardId, HttpSession session) {
+			UserDTO userdto = (UserDTO)session.getAttribute("user"); //로그인사용자
+			List<String> useridlist = boardService.selectUserId(id); //신고한 사람들 아이디
+			System.out.println("댓글번호: "+id);
+			System.out.println("로그인 아이디: "+userdto.getUserid());
+			
+			String response = "false";
+			
+			for(int i=0; i<useridlist.size(); i++) {
+				System.out.println("신고자 아이디: "+useridlist.get(i));
+				if((useridlist.get(i)).equals(userdto.getUserid())) {//중복
+					response = "true";
+					break;
+				}
+				System.out.println("response:"+response);
+			}
+			
+			
+			return response;
+		}
+		
+		@PostMapping(value="/comments/report")
+		public String reportComments(travelspot.ReportDTO ReportDTO) {
+			//신고내용 저장 -> 댓글창으로 리턴?
+			boardService.insertReport(ReportDTO);
+			return "redirect:/detail?boardId="+ReportDTO.getContentId();
+		}
 }

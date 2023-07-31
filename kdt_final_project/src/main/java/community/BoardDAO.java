@@ -17,4 +17,7 @@ public interface BoardDAO {
 	int deleteComments(int id);
 	CommentsDTO getOneComment(int id);
 	int updateComments(CommentsDTO commentsdto);
+	int insertReport(travelspot.ReportDTO reportdto);
+	List<String> selectUserId(int commentId);
+	String selectReportedId(int id);
 }

@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 				deleteComment();
 				modifyComment();
-				//reportComment(map);
+				reportComment(map);
 			}//success
 		}); //ajax end
 	}//getCommentList end
@@ -130,7 +130,7 @@ $(document).ready(function() {
 		});//modifybutton end
 	} //modifyComment end
 
-/*
+
 function reportComment(map){ //댓글 신고 기능
 	$('.reportbutton').click(function(){
 		let id = $(this).attr('id');
@@ -138,11 +138,11 @@ function reportComment(map){ //댓글 신고 기능
 		 	alert("댓글 신고기능은 로그인 후 사용가능합니다.");
 		} else {
 			$.ajax({
-				url: "/travelspot/post/comments/reportcheck?id="+id+"&contentId="+contentId,			
+				url: "/comments/reportcheck?id="+id+"&boardId="+boardId,			
 				type: 'post',
 				success: function(response){
 					if(response=="false"){
-						location.href="/travelspot/post/comments/report?id="+id+"&contentId="+contentId;			
+						location.href="/comments/report?id="+id+"&boardId="+boardId;			
 					} else {
 						alert("이미 신고한 댓글입니다.");
 					}
@@ -151,5 +151,5 @@ function reportComment(map){ //댓글 신고 기능
 		}	
 	});//reportbutton end
 }//reportComment end
-*/
+
 });//ready end

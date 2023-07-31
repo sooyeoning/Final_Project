@@ -78,4 +78,19 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.updateComments(commentsdto);
 	}
 
+	@Override
+	public int insertReport(travelspot.ReportDTO reportdto) {
+		return boardDAO.insertReport(reportdto);
+	}
+
+	@Override
+	public List<String> selectUserId(int commentId) {
+		return boardDAO.selectUserId(commentId);
+	}
+
+	@Override
+	public String selectReportedId(int id) {
+		return boardDAO.selectReportedId(id);
+	}
+
 }

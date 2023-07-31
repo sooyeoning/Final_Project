@@ -113,7 +113,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public int selectContentId(int contentId) {
+	public String selectContentId(int contentId) {
 		return placemapper.selectContentId(contentId);
 	}
 
@@ -185,6 +185,16 @@ public class PlaceServiceImpl implements PlaceService {
 	@Override
 	public void insertPlaces(PlaceDTO placeDTO) {
 		placemapper.insertPlaces(placeDTO);
+	}
+
+	@Override
+	public int updateThemeDetail2(ContentsDTO contentsDTO2) {
+		return placemapper.updateThemeDetail2(contentsDTO2);
+	}
+
+	@Override
+	public int insertThemeDetail2(ContentsDTO contentDTO2) {
+		return placemapper.insertThemeDetail2(contentDTO2);
 	}
 
 }

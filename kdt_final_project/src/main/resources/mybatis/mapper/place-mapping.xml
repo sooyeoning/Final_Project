@@ -121,11 +121,9 @@
 	</select>
 
 	<!-- 여행지 게시글 아이디 있는지 조희 -->
-	<select id="selectContentId" parameterType="int"
-		resultType="int">
-		select ifnull(max(contentId),0) contentId from contents
-		where
-		contentId=#{contentId};
+		<select id="selectContentId" parameterType="int"
+		resultType="String">
+		select '1' from contents where contentId=#{contentId};
 	</select>
 
 	<!-- 2 여행지 게시글 아이디 있는지 조희 -->
@@ -166,21 +164,19 @@
 	</select>
 
 	<!-- 테마별 여행지 정보 저장 -->
-	<insert id="insertThemeDetail" parameterType="ContentsDTO">
+	<insert id="insertThemeDetail2" parameterType="ContentsDTO">
 		insert into
 		contents2(contentId,infocenter, chkbabycarriage, chkcreditcard,
 		chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu,
-		reservationinfo, takeout, parking, parkingfee, accomcount, usefee,
-		checkintime, checkouttime, chkcooking, pickup)
+		reservationinfo, takeout, parking, parkingfee, accomcount, usefee)
 		values(#{contentId}, #{infocenter},#{chkbabycarriage},#{chkcreditcard}, #{chkpet},
 		#{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo},
 		#{firstmenu}, #{reservationinfo}, #{takeout}, #{parking},
-		#{parkingfee}, #{accomcount}, #{usefee}, #{checkintime},
-		#{checkouttime}, #{chkcooking}, #{pickup});
+		#{parkingfee}, #{accomcount}, #{usefee});
 	</insert>
 
 	<!-- 2 테마별 여행지 정보 저장(관광지) -->
-	<update id="updateThemeDetail" parameterType="ContentsDTO">
+	<update id="updateThemeDetail2" parameterType="ContentsDTO">
 		update contents2
 		set contentId=#{contentId},
 		infocenter=#{infocenter},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},
@@ -188,12 +184,36 @@
 		usetime=#{usetime}, discountinfo=#{discountinfo},
 		firstmenu=#{firstmenu}, reservationinfo=#{reservationinfo},
 		takeout=#{takeout}, parking=#{parking}, parkingfee=#{parkingfee},
-		accomcount=#{accomcount}, usefee=#{usefee},
-		checkintime=#{checkintime}, checkouttime=#{checkouttime},
-		chkcooking=#{chkcooking}, pickup=#{pickup}
+		accomcount=#{accomcount}, usefee=#{usefee}
 		where contentId=#{contentId};
 	</update>
 
+<!-- 테마별 여행지 정보 저장 -->
+	<insert id="insertThemeDetail" parameterType="ContentsDTO">
+		insert into
+		contents(contentId,infocenter, chkbabycarriage, chkcreditcard,
+		chkpet, kidsfacility, restdate, usetime, discountinfo, firstmenu,
+		reservationinfo, takeout, parking, parkingfee, accomcount, usefee
+		)
+		values(#{contentId}, #{infocenter},#{chkbabycarriage},#{chkcreditcard}, #{chkpet},
+		#{kidsfacility}, #{restdate}, #{usetime}, #{discountinfo},
+		#{firstmenu}, #{reservationinfo}, #{takeout}, #{parking},
+		#{parkingfee}, #{accomcount}, #{usefee}
+		);
+	</insert>
+
+	<!-- 2 테마별 여행지 정보 저장(관광지) -->
+	<update id="updateThemeDetail" parameterType="ContentsDTO">
+		update contents
+		set contentId=#{contentId},
+		infocenter=#{infocenter},chkbabycarriage=#{chkbabycarriage},chkcreditcard=#{chkcreditcard},
+		chkpet=#{chkpet}, kidsfacility=#{kidsfacility}, restdate=#{restdate},
+		usetime=#{usetime}, discountinfo=#{discountinfo},
+		firstmenu=#{firstmenu}, reservationinfo=#{reservationinfo},
+		takeout=#{takeout}, parking=#{parking}, parkingfee=#{parkingfee},
+		accomcount=#{accomcount}, usefee=#{usefee},
+		where contentId=#{contentId};
+	</update>
 
 	<!-- 게시글 상세 정보 조회(PlaceDTO) -->
 	<select id="getPlaceThemeDetail" parameterType="int"

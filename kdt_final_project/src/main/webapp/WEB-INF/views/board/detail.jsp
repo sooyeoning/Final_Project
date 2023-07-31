@@ -9,6 +9,7 @@
 <link rel="icon" href="img/favicon.png">
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%@ include file="../../views/home/header.jsp"%>
@@ -37,12 +38,54 @@
     </div>
     </div>
     <div id="contents">${board.contents}</div>
-    <a class="likebtn">like button</a>
+    <a class="likebtn" onclick="checkLoginAndHandleLike(${board.id})">like button</a>
+    <span id="likeCount">${board.likecount}</span>
     <script>
-    	const likebtn = document.querySelector(".likebtn");
+    	/* const likebtn = document.querySelector(".likebtn");
     	likebtn.addEventListener('click',function(){
     		this.classList.toggle("likeon");
-    	});
+    	}); */
+    	
+    	// 좋아요 상태를 확인하고 로그인 상태를 체크하는 함수
+        function checkLoginAndHandleLike(boardId) {
+            $.ajax({
+                url: "/api/getLikeStatus?boardId=" + boardId,
+                method: "GET",
+                success: function(response) {
+                    if (response.isLoggedIn) {
+                        // 로그인 상태인 경우 좋아요 처리 수행
+                        toggleLike(boardId);
+                    } else {
+                        // 로그인 상태가 아닌 경우 로그인 페이지로 이동
+                        window.location.href = "/login";
+                    }
+                },
+                error: function() {
+                    alert("서버와 통신 중 오류가 발생했습니다.");
+                }
+            });
+        }
+
+        // 좋아요 처리 함수
+        function toggleLike(boardId) {
+            $.ajax({
+                url: "/toggleLike?boardId=" + boardId,
+                method: "POST",
+                success: function(response) {
+                    // 성공적으로 처리되었을 때의 로직
+                    // 예: 버튼 색 변경, 좋아요 수 갱신 등
+                    if (response.likeStatus === "liked") {
+                        $("#likeButton").text("좋아요 취소");
+                    } else {
+                        $("#likeButton").text("좋아요");
+                    }
+                    $("#likeCount").text("좋아요 수: " + response.likeCount);
+                },
+                error: function() {
+                    alert("서버와 통신 중 오류가 발생했습니다.");
+                }
+            });
+        }
     </script>
 </section>
 <%@ include file="../../views/home/footer.jsp"%>

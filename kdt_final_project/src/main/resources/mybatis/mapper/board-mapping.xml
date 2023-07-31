@@ -50,4 +50,21 @@
 	WHERE id = #{boardId}
 </update>
 
+<!-- 좋아요 테이블 정보 저장: 좋아요 상태 1, 아닌 상태 0 -->
+<insert id="insertLikes" parameterType="User.LikesDTO">
+    INSERT INTO likes (user_id, board_id, like_check) 
+    VALUES (#{user_id}, #{board_id}, 1)
+</insert>
+
+<update id="cancelLikes" parameterType="User.LikesDTO">
+    UPDATE likes 
+    SET like_check = 0 
+    WHERE user_id = #{user_id} AND board_id = #{board_id}
+</update>
+
+<select id="getLikeByUserAndBoard" parameterType="map" resultType="User.LikesDTO">
+    SELECT * 
+    FROM likes 
+    WHERE user_id = #{userId} AND board_id = #{boardId}
+</select>
 </mapper>

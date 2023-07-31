@@ -53,5 +53,30 @@ public class BoardDAOImpl implements BoardDAO {
         return sqlSession.selectList("getNewestBoards");
     }
 
+	@Override
+	public int insertComment(CommentsDTO commentsdto) {
+		return sqlSession.insert("insertComment", commentsdto);
+	}
+
+	@Override
+	public List<CommentsDTO> getComments(int content_id) {
+		return sqlSession.selectList("board.spring.mybatis.BoardDAO.getComments", content_id);
+	}
+
+	@Override
+	public int deleteComments(int id) {
+		return sqlSession.delete("board.spring.mybatis.BoardDAO.deleteComments", id);
+	}
+
+	@Override
+	public CommentsDTO getOneComment(int id) {
+		return sqlSession.selectOne("board.spring.mybatis.BoardDAO.getOneComment",id);
+	}
+
+	@Override
+	public int updateComments(CommentsDTO commentsdto) {
+		return sqlSession.update("board.spring.mybatis.BoardDAO.updateComments", commentsdto);
+	}
+
 
 }

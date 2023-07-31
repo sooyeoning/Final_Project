@@ -53,4 +53,29 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.getNewestBoards();
     }
 
+	@Override
+	public int insertComment(CommentsDTO commentsdto) {
+		return boardDAO.insertComment(commentsdto);
+	}
+
+	@Override
+	public List<CommentsDTO> getComments(int content_id) {
+		return boardDAO.getComments(content_id);
+	}
+
+	@Override
+	public int deleteComments(int id) {
+		return boardDAO.deleteComments(id);
+	}
+
+	@Override
+	public CommentsDTO getOneComment(int id) {
+		return boardDAO.getOneComment(id);
+	}
+
+	@Override
+	public int updateComments(CommentsDTO commentsdto) {
+		return boardDAO.updateComments(commentsdto);
+	}
+
 }

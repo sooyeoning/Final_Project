@@ -50,4 +50,26 @@
 	WHERE id = #{boardId}
 </update>
 
+<insert id="insertComment" parameterType="CommentsDTO" >
+	insert into comments(contents,content_id, writer, writingtime) 
+	values(#{contents},#{content_id},#{writer},now());
+</insert>
+
+<select id="getComments" parameterType="int" resultType="CommentsDTO">
+	select*from comments where content_id=#{boardId} order by writingtime desc ; 
+</select>
+
+<delete id="deleteComments" parameterType="int">
+	delete from comments where id=#{id};
+</delete>
+
+<!-- 댓글 내용 조회 -->
+<select id="getOneComment" parameterType="int" resultType="CommuCommentsDTO">
+	select*from comments where id=#{id} ; 
+</select>
+
+<update id="updateComments" parameterType="CommentsDTO">
+	update comments set contents=#{contents}, writingtime=now() where id=#{id};
+</update>
+
 </mapper>

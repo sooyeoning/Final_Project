@@ -2,18 +2,25 @@ package community;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import community.CommentsDTO;
 
 @Controller
 public class CommunityController {
@@ -143,7 +150,66 @@ public class CommunityController {
 	    return "board/delete";
 	}
 
+	@GetMapping("/comments/save")
+	@ResponseBody
+	public void saveComment(int boardId, String contents, HttpServletRequest request){
+		 UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+			if(ObjectUtils.isEmpty(user) ) {
+			} else {
+			 CommentsDTO commentsDTO = new CommentsDTO();
+			 commentsDTO.setContents(contents);
+			 commentsDTO.setContent_id(boardId);
+			 commentsDTO.setWriter(user.getNickname());
+			 boardService.insertComment(commentsDTO);
+			}
+	}
+
+	@GetMapping("/comments/list")
+	@ResponseBody
+	public Map<String, Object> getComments(@RequestParam int boardId, HttpSession session){
+		Map<String, Object> map = new HashMap<>();
+		
+		List<CommentsDTO> commentsList = boardService.getComments(boardId);
+		map.put("commentsList", commentsList);
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		if(ObjectUtils.isEmpty(userdto)) {
+			map.put("userdto", "null");
+		}else {
+			map.put("userdto", userdto.getNickname());
+		}
+		
+		return map;
+	}
 	
+	 @RequestMapping(value="/comments/delete", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void deleteComments(int id) {
+		 boardService.deleteComments(id);
+	 }
+	
+
+	 @RequestMapping(value="/comments/modify", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public CommentsDTO modifyComments(int id) {
+		 return boardService.getOneComment(id);
+	 }
+	 
+	 @GetMapping(value="/comments/modify_save", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void modify_SaveComments(int id, String contents) {
+		 CommentsDTO dto = new CommentsDTO();
+		 dto.id = id;
+		 dto.contents = contents;
+		 
+		 boardService.updateComments(dto);
+	 }
+	 
+	 @GetMapping(value="/comments/modify_cancel", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void modify_CancelComments(int id) {
+		 
+	 }
 
 
 }

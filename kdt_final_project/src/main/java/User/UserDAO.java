@@ -4,7 +4,7 @@ import java.util.List;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
+import travelspot.ReportDTO;
 
 public interface UserDAO {
 
@@ -24,16 +24,19 @@ public interface UserDAO {
 
 	void updatePassword(UserDTO dto);
 
-	void addVisitedPage(VisitedDTO dto);
-
-	List<VisitedDTO> getRecentVisitedPages(String user_id, int limit);
-
 	List<BoardDTO> getBoardListByWriter(String writer);
 
 	List<CommentsDTO> getCommentListByWriter(String writer);
 
 	List<LikesDTO> getLikesByUserId(int user_id);
+	
+    List<UserDTO> getAllUsers(int startIdx, int usersPerPage);
+    
+    int getTotalUserCount();
+    
+    public UserDTO getUserdetail(String userid);
 
-	List<PlaceDTO> getPlacesByContentIds(List<Integer> content_id);
-
+    void deleteUser(String userid) throws Exception;
+    
+    List<ReportDTO> getAllReports();
 }

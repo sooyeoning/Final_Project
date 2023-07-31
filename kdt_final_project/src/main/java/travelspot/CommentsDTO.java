@@ -1,5 +1,11 @@
 package travelspot;
 
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import User.UserDTO;
+
 public class CommentsDTO {
 	int id; 			//댓글 고유 번호
 	String contents; 	//댓글 내용

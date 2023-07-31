@@ -75,6 +75,10 @@
   margin: 0 0 50px 0; /*행간 간격: 100px 조정*/
 }
 
+.paging{
+	display:block;
+	text-align: center;
+}
 /* 관광명소 상세페이지 */
 .postmenu{
 display: flex;
@@ -88,9 +92,15 @@ display: flex;
 
 .hrmargin{ /*상세페이지 메뉴바 구분선*/
   margin: 1% 17% 1% 17%; 
-  /*hr 색상 변경*/
-  background: #2463d3;
-  height: 0.5px;
+  border-top: 0.5px solid #2463d3;
+}
+
+.hrdetail{ /*여행지 상세정보 구분선*/
+  border-top: 0.3px solid #2463d3;
+}
+
+.pstyle{
+	font-weight: bold;
 }
 
 .result{ /*결과물 출력의 부모 요소*/
@@ -98,9 +108,13 @@ margin: 5px 17% 5px 17%;
 width: 66%;
 }
 
-
 .comments{ /*결과물 출력의 부모 요소*/ 
 width: 100%;
+}
+
+.myresult{ /*결과물 출력의 부모 요소*/
+margin: 5px 17% 5px 17%;  
+width: 66%;
 }
 
 .images{ /*결과물 출력의 자식 요소*/
@@ -120,6 +134,7 @@ width: 100%;
 	padding: 1vw;
 	border: solid 1px #2463d3;
 	outline-color: #FE6B8B; /*텍스트창 클릭했을때(focus) 색상 변경*/
+	margin-top: 0.2vh;
 }
 
 .comment-textarea-innerbox{ /*댓글 작성하는 textarea*/
@@ -136,7 +151,7 @@ width: 100%;
 }
 
 #contents{
-	margin-top: 2vh;
+	margin-top: 3vh; /*다른 버전: 5vh;*/
 }
 .comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
 	width: 64vw;
@@ -156,6 +171,13 @@ width: 100%;
 	border-bottom: solid 1px #2463d3;
 }
 
+.comments-userinfo{
+	height: 40px;
+	display: flex;
+	align-items: center;
+	/*margin-bottom: 1.5vh; 프로필 아래 작성자 이름 버전*/
+}
+
 .savebutton{
 	width: 8vw;
 	text-align: center;
@@ -164,12 +186,46 @@ width: 100%;
 	border: none;
 	color: white; /*글씨색상*/
 	padding: 1%;
-	margin: 2vh 0 0 0;
+	margin: 2vh 0.7vw 0 0;
 	float: right;/*오른쪽 끝 정렬*/
 }
 
-.deletebutton, .modifybutton, .modify_savebtn, .modify_cancelbtn{
+.deletebutton{
 	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+	margin-left: auto;
+}
+
+.modifybutton{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+}
+
+
+.reportbutton{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+}
+
+
+.modify_savebtn{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
 	background-color: white;
     border: none;
 	width: 3vw;
@@ -177,6 +233,22 @@ width: 100%;
 	padding: 0 0.5vw 0 0.5vw;
 	float: right;
 	/*오른쪽 끝 정렬*/
+}
+
+.modify_cancelbtn{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	margin: 0 1vw 0 0;
+	float: right;
+	/*오른쪽 끝 정렬*/
+}
+
+.clicked{
+	color:  #2463d3;
 }
 
 /* 테마별 장소리스트(list_theme) 페이지*/
@@ -202,7 +274,7 @@ width: 100%;
 .search-form {
   display: flex;
   float: right;
-  max-width: 30em;
+  max-width: 30vw;
   width:68%;
   margin: 1% 17% 2% 0;
 }
@@ -214,7 +286,7 @@ width: 100%;
   font-size: 16px;
   flex: 1;
   box-sizing: border-box;
-  width: 15em;
+  width: 15vw;
   height: 35px;
   top: 158px;
   background: #FFFFFF;
@@ -226,10 +298,10 @@ width: 100%;
   color: white;
   border: none;
   border-radius: 4px;
-  width: 5em;
+  width: 5vw;
   height: 35px;
   top: 158px;
-  background: #9FC4FF;
+  background: #2463D3;
   font-size: 16px;
   margin-left: 8px;
   cursor: pointer;
@@ -242,19 +314,17 @@ width: 100%;
 }
 
 .search-item {
-  width: 15em;
+  width: 10vw;
   height: 35px;
   margin-right: 10px;
   padding-left: 10px;
-  border-radius: 4px;
+  border-radius: 4px; 
   font-size: 16px;  
   border: 1px solid #2463D3;
-  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+  background: url(/img/arrow.png) no-repeat 95% 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid #999;
-  border-radius: 0px;
 }
 
 select::-ms-expand {
@@ -270,3 +340,67 @@ select::-ms-expand {
 	color: #2463D3;
 	border-bottom: 1px solid #2463D3;
 }
+
+.comments-profile { /*6개 이미지 틀*/
+    border-radius: 70%;
+    height: 100%; /*동그라미*/
+	overflow: hidden; /*넘치는 부분은 감춘다*/
+	width:40px;
+	height:40px;
+	float: left;
+	border: 0.5px solid gray;
+	margin-right: 0.5vw;
+}
+
+/*댓글 신고 페이지*/
+#reportComment{
+	width: 66vw;
+	margin: 5vh auto 10vh;
+}
+
+.reporttitle{
+	margin-bottom: 2vh;
+	margin-top: 2vh;	
+}
+
+.readonly{
+	margin-bottom: 2.5vh;
+	margin-top: 1vh;
+	display: inline-block;
+	width: 10vw;
+}
+
+.readonlyinput{
+	font-size: 17px;
+	border-bottom: 1px solid #2463D3;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	margin-bottom: 2.5vh;
+	margin-top: 1vh;
+	padding: 0 0 0.5vh 0.5vw;
+	width: 55vw;
+	font-family: 'LeferiBaseType-RegularA';
+	
+}
+
+#reportCategory{
+	border: 1px solid #2463D3;
+	border-radius: 3px;
+	color: #2463D3;
+	padding: 0.1vh 0.3vw;
+	width: 14vw;
+	height: 6vh;
+}
+
+#reportcontents{
+	height: 20vh;
+	width: 63.5vw;
+	padding: 3vh 1vw;
+	border: solid 1px #2463D3;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: none;
+	font-family: 'LeferiBaseType-RegularA';
+}
+

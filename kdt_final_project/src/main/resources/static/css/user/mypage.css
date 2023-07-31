@@ -84,6 +84,8 @@ input[type="submit"]:hover {
 	padding: 40px;
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	max-height: 800px;
+    overflow-y: auto; /* 세로 스크롤바 추가 */
 }
 
 .side-menu {
@@ -187,17 +189,33 @@ input[type="submit"]:hover {
 }
 .board-table th{
 	font-weight: bold;
-    font-size: 1.2vw;
+	white-space: nowrap;
+    font-size: 1vw;
 }
 .board-table td{
-	font-size: 0.9vw;
+    max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 10px;
 }
 
 .board-table th,
 .board-table td {
   padding: 5px;
   text-align: center;
+  border: 1px solid #ddd;
 }
+  
+/* 짝수 행과 홀수 행의 배경색을 번갈아가면서 지정 */
+.board-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.board-table tr:hover {
+  background-color: #e6e6e6; /* 마우스 오버 시 배경색 변경 */
+}
+
 
 /* 댓글쓴 내역 */
 .comments-table {
@@ -206,19 +224,65 @@ input[type="submit"]:hover {
 }
 .comments-table th{
 	font-weight: bold;
-	font-size: 1.3vw;
+	font-size: 1vw;
 }
 .comments-table td{
-	font-size: 0.9vw;
+	max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 10px;
 }
 
 .comments-table th,
 .comments-table td {
   padding: 5px;
   text-align: center;
+  border: 1px solid #ddd;
 }
 .comments-table th{
 	font-weight: bold;
 }
+/* 짝수 행과 홀수 행의 배경색을 번갈아가면서 지정 */
+.comments-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
+.comments-table tr:hover {
+  background-color: #e6e6e6; /* 마우스 오버 시 배경색 변경 */
+}
 
+/* 찜한 여행지 */
+.likes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.likes-table th{
+	font-weight: bold;
+	font-size: 1vw;
+}
+.likes-table td{
+	max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 10px;
+}
+
+.likes-table th,
+.likes-table td {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.likes-table th{
+	font-weight: bold;
+}
+/* 짝수 행과 홀수 행의 배경색을 번갈아가면서 지정 */
+.likes-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.likes-table tr:hover {
+  background-color: #e6e6e6; /* 마우스 오버 시 배경색 변경 */
+}

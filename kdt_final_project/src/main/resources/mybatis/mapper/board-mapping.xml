@@ -50,6 +50,44 @@
 	WHERE id = #{boardId}
 </update>
 
+<insert id="insertComment" parameterType="CommentsDTO" >
+	insert into comments(contents,content_id, writer, writingtime) 
+	values(#{contents},#{content_id},#{writer},now());
+</insert>
+
+<select id="getComments" parameterType="int" resultType="CommentsDTO">
+	select*from comments where content_id=#{boardId} order by writingtime desc ; 
+</select>
+
+<delete id="deleteComments" parameterType="int">
+	delete from comments where id=#{id};
+</delete>
+
+<!-- 댓글 내용 조회 -->
+<select id="getOneComment" parameterType="int" resultType="CommuCommentsDTO">
+	select*from comments where id=#{id} ; 
+</select>
+
+<update id="updateComments" parameterType="CommentsDTO">
+	update comments set contents=#{contents}, writingtime=now() where id=#{id};
+</update>
+
+<!-- 댓글 신고 -->
+
+<insert id="insertReport" parameterType="ReportDTO">
+	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate, reportedId)
+	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId}); 
+</insert>
+
+<select id="selectUserId" parameterType="int" resultType="String">
+	select userId from report where commentId=#{commentId};
+</select>
+
+<select id="selectReportedId" parameterType="int" resultType="String">
+	select userid from users where nickname=(select writer from comments where id=#{id});
+</select>
+
+
 <!-- 좋아요 테이블 정보 저장: 좋아요 상태 1, 아닌 상태 0 -->
 <insert id="insertLikes" parameterType="User.LikesDTO">
     INSERT INTO likes (user_id, board_id, like_check) 

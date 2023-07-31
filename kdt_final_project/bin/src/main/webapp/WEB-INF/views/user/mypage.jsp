@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List"%>
 <%@ page import="User.UserDAO"%>
 <%@ page import="User.UserDAOImpl"%>
 <%@ page import="User.UserDTO"%>
-<%@ page import="User.VisitedDTO"%>
 <%@ page import="community.BoardDTO"%>
 
 <!DOCTYPE html>
@@ -30,7 +29,6 @@
 					<li><a href="#section1">회원 정보 수정</a></li>
 					<li><a href="#section2">글쓴 내역</a></li>
 					<li><a href="#section3">댓글 쓴 내역</a></li>
-					<li><a href="#section4">최근 방문한 페이지</a></li>
 					<li><a href="#section5">찜한 여행지</a></li>
 					<li><a href="#section6">좋아요 누른 게시글</a></li>
 					<li><a href="#section7">회원 탈퇴</a></li>
@@ -93,17 +91,18 @@
 						value="회원 정보 수정">
 				</form>
 			</div>
-
+			<!-- 글쓴 내역 -->
 			<div class="side-menu-form" id="section2" style="display: none;">
 				<h1>글쓴 내역</h1>
 				<table class="board-table" border="1">
 					<thead>
 						<tr>
 							<th>제목</th>
-							<th>내용</th>
 							<th>게시판</th>
 							<th>장소</th>
 							<th>작성자</th>
+							<th>조회수</th>
+							<th>좋아요</th>
 							<th>작성 시간</th>
 						</tr>
 					</thead>
@@ -111,17 +110,17 @@
 						<c:forEach var="board" items="${boardList}">
 							<tr>
 								<td>${board.title}</td>
-								<td>${board.contents}</td>
-								<td>${board.board_title}</td>
+								<td>${board.board_title},${board.categories}</td>
 								<td>${board.place}</td>
 								<td>${board.writer}</td>
+								<td>${board.views}</td>
+								<td>${board.likecount}</td>
 								<td>${board.writingtime}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-
+</div>
 
 			<!-- 댓글쓴 내역 -->
 			<div class="side-menu-form" id="section3" style="display: none;">
@@ -148,52 +147,31 @@
 				</table>
 			</div>
 
-
-			<!-- 최근 방문한 페이지 -->
-			<div class="side-menu-form" id="section4" style="display: none;">
-				<div id="recent-visited-pages">
-					<h1>최근 방문한 페이지</h1>
-					<ul id="recent-visited-pages-list">
-						<%
-						List<VisitedDTO> recentVisitedPages = (List<VisitedDTO>) request.getAttribute("recentVisitedPages");
-						if (recentVisitedPages != null) {
-							for (VisitedDTO page1 : recentVisitedPages) {
-						%>
-						<li><%=page1.getPageurl()%></li>
-						<%
-						}
-						}
-						%>
-					</ul>
-				</div>
-			</div>
-
-
 			<!-- 찜한 여행지 -->
 			<div class="side-menu-form" id="section5" style="display: none;">
 				<h1>찜한 여행지</h1>
-<%-- 				<table class="likes-table" border="1">
+				<table class="likes-table" border="1">
 					<thead>
 						<tr>
 							<th>제목</th>
-							<th>내용</th>
-							<th>장소</th>
+							<th>주소</th>
+							<th>조회수</th>
+							<th>총 찜</th>
 						</tr>
 					</thead>
 					<tbody id="likesTableBody">
-						<c:forEach var="likes" items="${}">
+						<c:forEach var="likes" items="${likesList}">
 							<tr>
-								<td>${board.title}</td>
-								<td>${board.contents}</td>
-								<td>${board.board_title}</td>
-								<td>${board.place}</td>
-								<td>${board.writer}</td>
-								<td>${board.writingtime}</td>
+								<td><a href=''>${likes.placeDTO.title}</a></td>
+								<td>${likes.placeDTO.address}</td>
+								<td>${likes.placeDTO.viewcnt}</td>
+								<td>${likes.placeDTO.likecnt}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-				</table> --%>
+				</table>
 			</div>
+
 
 			<!-- 좋아요 누른 게시물 -->
 			<div class="side-menu-form" id="section6" style="display: none;">
@@ -275,6 +253,7 @@
 					}).open();
 		}
 	</script>
+	
 	<script>
 		function previewProfileImage(event) {
 			const file = event.target.files[0];
@@ -289,5 +268,6 @@
 			}
 		}
 	</script>
+	
 </body>
 </html>

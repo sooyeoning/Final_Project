@@ -18,7 +18,17 @@ public interface BoardService {
     // 최신순으로 게시글 가져오기
     List<BoardDTO> getNewestBoards();
     
+    int insertComment(CommentsDTO commentsdto);
+    List<CommentsDTO> getComments(int content_id);
+	int deleteComments(int id);
+	CommentsDTO getOneComment(int id);
+	int updateComments(CommentsDTO commentsdto);
+	int insertReport(travelspot.ReportDTO reportdto);
+	List<String> selectUserId(int commentId);
+	String selectReportedId(int id);
+
     LikesDTO getLikeByUserAndBoard(int userId, int boardId);
     void insertLikes(LikesDTO like);
     void cancelLikes(LikesDTO like);
+
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import User.LikesDTO;
 import User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import travelspot.ReportDTO;
+import community.CommentsDTO;
 
 @Controller
 public class CommunityController {
@@ -150,8 +154,115 @@ public class CommunityController {
 	public String showDeletePage(HttpServletRequest request) {
 	    return "board/delete";
 	}
+
+
+	@GetMapping("/comments/save")
+	@ResponseBody
+	public void saveComment(int boardId, String contents, HttpServletRequest request){
+		 UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+			if(ObjectUtils.isEmpty(user) ) {
+			} else {
+			 CommentsDTO commentsDTO = new CommentsDTO();
+			 commentsDTO.setContents(contents);
+			 commentsDTO.setContent_id(boardId);
+			 commentsDTO.setWriter(user.getNickname());
+			 boardService.insertComment(commentsDTO);
+			}
+	}
+
+	@GetMapping("/comments/list")
+	@ResponseBody
+	public Map<String, Object> getComments(@RequestParam int boardId, HttpSession session){
+		Map<String, Object> map = new HashMap<>();
+		
+		List<CommentsDTO> commentsList = boardService.getComments(boardId);
+		map.put("commentsList", commentsList);
+		
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		if(ObjectUtils.isEmpty(userdto)) {
+			map.put("userdto", "null");
+		}else {
+			map.put("userdto", userdto.getNickname());
+		}
+		
+		return map;
+	}
 	
-	// 좋아요 상태를 확인하는 API
+	 @RequestMapping(value="/comments/delete", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void deleteComments(int id) {
+		 boardService.deleteComments(id);
+	 }
+	
+
+	 @RequestMapping(value="/comments/modify", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public CommentsDTO modifyComments(int id) {
+		 return boardService.getOneComment(id);
+	 }
+	 
+	 @GetMapping(value="/comments/modify_save", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void modify_SaveComments(int id, String contents) {
+		 CommentsDTO dto = new CommentsDTO();
+		 dto.id = id;
+		 dto.contents = contents;
+		 
+		 boardService.updateComments(dto);
+	 }
+	 
+	 @GetMapping(value="/comments/modify_cancel", produces = {"application/json; charset=utf-8"} )
+	 @ResponseBody 
+	 public void modify_CancelComments(int id) {
+		 
+	 }
+
+	@GetMapping(value="/comments/report")
+	public ModelAndView reportComments(int id, int boardId, HttpSession session) {
+		UserDTO userdto = (UserDTO)session.getAttribute("user");
+			
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("boardId", boardId);
+		mv.addObject("commentid", id);//신고당할 댓글 번호
+		mv.addObject("reportedId", boardService.selectReportedId(id));//신고당한 댓글 작성자 아이디
+		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
+		mv.addObject("userid", userdto.getUserid());//신고자아이디
+			
+		mv.setViewName("/board/reportcomments");
+		return mv;
+	} 
+		
+		@PostMapping(value="/comments/reportcheck")
+		@ResponseBody
+		public String checkReport(int id, int boardId, HttpSession session) {
+			UserDTO userdto = (UserDTO)session.getAttribute("user"); //로그인사용자
+			List<String> useridlist = boardService.selectUserId(id); //신고한 사람들 아이디
+			System.out.println("댓글번호: "+id);
+			System.out.println("로그인 아이디: "+userdto.getUserid());
+			
+			String response = "false";
+			
+			for(int i=0; i<useridlist.size(); i++) {
+				System.out.println("신고자 아이디: "+useridlist.get(i));
+				if((useridlist.get(i)).equals(userdto.getUserid())) {//중복
+					response = "true";
+					break;
+				}
+				System.out.println("response:"+response);
+			}
+			
+			
+			return response;
+		}
+		
+		@PostMapping(value="/comments/report")
+		public String reportComments(travelspot.ReportDTO ReportDTO) {
+			//신고내용 저장 -> 댓글창으로 리턴?
+			boardService.insertReport(ReportDTO);
+			return "redirect:/detail?boardId="+ReportDTO.getContentId();
+		}
+  
+  // 좋아요 상태를 확인하는 API
     @GetMapping("/api/getLikeStatus")
     @ResponseBody
     public Map<String, String> getLikeStatus(@RequestParam("boardId") int boardId, HttpServletRequest request) {
@@ -196,7 +307,5 @@ public class CommunityController {
         }
         return response;
     }
-
-
 
 }

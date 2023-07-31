@@ -5,6 +5,7 @@ import java.util.List;
 import community.BoardDTO;
 import travelspot.CommentsDTO;
 import travelspot.PlaceDTO;
+import travelspot.ReportDTO;
 
 public interface UserService {
 
@@ -26,12 +27,20 @@ public interface UserService {
 
 	String generateTemporaryPassword();
 
-	List<VisitedDTO> getRecentVisitedPages(String user_id, int limit);
-
-	void addVisitedPage(String user_id, String pageurl);
-
 	List<BoardDTO> getBoardListByWriter(String writer);
 
 	List<CommentsDTO> getCommentListByWriter(String writer);
+
+	List<LikesDTO> getLikesByUserId(int user_id);
+	
+	List<UserDTO> getAllUsers(int currentPage, int usersPerPage);
+	
+	int getTotalUserCount();
+
+	public UserDTO getUserdetail(String userid);
+	
+	void deleteUser(String userid) throws Exception;
+	
+	List<ReportDTO> getAllReportList();
 
 }

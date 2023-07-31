@@ -2,6 +2,7 @@ package User;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +29,8 @@ import community.BoardService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import travelspot.CommentsDTO;
+import travelspot.PlaceDTO;
+import travelspot.ReportDTO;
 
 @Controller
 public class UserController {
@@ -34,6 +39,8 @@ public class UserController {
 	UserService service;
 	@Autowired
 	BoardService boardservice;
+	@Autowired
+	PlaceDAO placedao;
 
 	@GetMapping("signin")
 	public String signup() {
@@ -147,7 +154,7 @@ public class UserController {
 	    if (boardList.isEmpty()) {
 	        return ResponseEntity.noContent().build();
 	    }
-
+	    
 	    return ResponseEntity.ok(boardList);
 	}
 	
@@ -170,31 +177,35 @@ public class UserController {
 	    return ResponseEntity.ok(commentsList);
 	}
 	
+	// 사용자가 찜한 여행지 목록 조회
+	@GetMapping(value = "/getLikesByUserId", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getUserLikes(HttpSession session) {
+	    try {
+	        UserDTO dto = (UserDTO) session.getAttribute("user");
+	        if (dto == null) {         
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+	        }
+	        int user_id = dto.getId();
 
-	@GetMapping("/visitedPage")
-	public ResponseEntity<String> visitedPage(@RequestParam("pageUrl") String pageurl, HttpSession session) {
-	    UserDTO user = (UserDTO) session.getAttribute("user");
-	    if (user != null) {
-	        String user_id = user.getUserid();
-	        service.addVisitedPage(user_id, pageurl);
-	        return ResponseEntity.ok("Visited page added successfully");
+	        List<LikesDTO> likesList = service.getLikesByUserId(user_id);
+	        if(likesList.isEmpty()) {
+	            return ResponseEntity.noContent().build();
+	        }
+
+	        // LikesDTO 목록을 PlaceDTO 목록으로 변환
+	        List<PlaceDTO> placeList = new ArrayList<>();
+	        for (LikesDTO likes : likesList) {
+	            PlaceDTO place = placedao.getPlaceById(likes.getPlace_id()); // PlaceDTO의 정보를 가져오는 메소드 호출
+	            placeList.add(place);
+	        }
+	          
+	        return ResponseEntity.ok(placeList);
+	    } catch (Exception e) {
+	        // 예외 발생 시 서버 측 로그를 출력
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
 	    }
-	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
 	}
-
-
-	@GetMapping("/getRecentVisitedPages")
-	public String getRecentVisitedPages(Model model, HttpSession session) {
-	    UserDTO user = (UserDTO) session.getAttribute("user");
-	    if (user != null) {
-	        List<VisitedDTO> recentVisitedPages = service.getRecentVisitedPages(user.getUserid(), 10);
-	        model.addAttribute("recentVisitedPages", recentVisitedPages);
-	    }
-	    return "user/mypage";
-	}
-
-
-
 
 	@PostMapping("/withdrawUser")
 	public ResponseEntity<String> withdrawUser(HttpSession session) {
@@ -257,4 +268,42 @@ public class UserController {
 	        return ResponseEntity.ok(resultMap);
 	    }
 	}
+	
+    @GetMapping("/adminpage")
+    public String getAllUsers(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
+        int usersPerPage = 10;
+        int totalUserCount = service.getTotalUserCount();
+        int totalPages = (int) Math.ceil((double) totalUserCount / usersPerPage);
+
+        List<UserDTO> userList = service.getAllUsers(currentPage, usersPerPage);
+        model.addAttribute("userList", userList);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        return "/user/adminpage";
+    }
+    
+    @GetMapping("adminpage/{userid}")
+    public ResponseEntity<UserDTO> getUserDetail(@PathVariable("userid") String userid) {
+        UserDTO user = service.getUserdetail(userid);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/deleteUser/{userid}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userid) {
+        try {
+            service.deleteUser(userid);
+            return ResponseEntity.status(HttpStatus.OK).body("회원을 탈퇴시켰습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 탈퇴에 실패했습니다.");
+        }
+    }
+    
+    @GetMapping("/getReportList")
+    public ResponseEntity<List<ReportDTO>> getReportList() {
+        List<ReportDTO> reportList = service.getAllReportList();
+        return new ResponseEntity<>(reportList, HttpStatus.OK);
+}
 }

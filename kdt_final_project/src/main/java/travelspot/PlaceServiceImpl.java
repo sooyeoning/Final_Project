@@ -28,12 +28,12 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	 public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param){
+	public List<PlaceContentsDTO> listThemePlaces(HashMap<String, Object> param) {
 		return placemapper.listThemePlaces(param);
 	}
 
 	@Override
-	 public int getTotalThemeCnt(String theme) {
+	public int getTotalThemeCnt(String theme) {
 		return placemapper.getTotalThemeCnt(theme);
 	}
 
@@ -44,32 +44,11 @@ public class PlaceServiceImpl implements PlaceService {
 
 	@Override
 	public void updateThemePlace(PlaceDTO placeDTO) {
-		placemapper.updateThemePlace(placeDTO);		
+		placemapper.updateThemePlace(placeDTO);
 	}
 
 	@Override
-	public void insertTheme12Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme12Detail(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme14Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme14Detail(contentsDTO);
-	}
-	
-	@Override
-	public void insertTheme39Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme39Detail(contentsDTO);
-	}
-
-	@Override
-	public void insertTheme28Detail(ContentsDTO contentsDTO) {
-		placemapper.insertTheme28Detail(contentsDTO);
-		
-	}
-
-	@Override
-	public int selectPlaceId(int contentId) {
+	public String selectPlaceId(int contentId) {
 		return placemapper.selectPlaceId(contentId);
 	}
 
@@ -79,7 +58,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	 public PlaceDTO getPlaceThemeDetail(int id) {
+	public PlaceDTO getPlaceThemeDetail(int id) {
 		return placemapper.getPlaceThemeDetail(id);
 	}
 
@@ -113,18 +92,6 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.searchPlaceCnt(map);
 	}
 
-	/*
-	@Override
-	public List<PlaceContentsDTO> searchThemePlace(HashMap<String, Object> map) {
-		return placemapper.searchThemePlace(map);
-	}
-
-	@Override
-	public int searchThemePlaceCnt(HashMap<String, Object> map) {
-		return placemapper.searchThemePlaceCnt(map);
-	}
-*/
-
 	@Override
 	public List<PlaceContentsDTO> searchThemePlaces(HashMap<String, Object> map) {
 		return placemapper.searchThemePlaces(map);
@@ -145,5 +112,89 @@ public class PlaceServiceImpl implements PlaceService {
 		return placemapper.cancelPlaceLike(contentId);
 	}
 
-	
+	@Override
+	public String selectContentId(int contentId) {
+		return placemapper.selectContentId(contentId);
+	}
+
+	@Override
+	public void insertPlaces2(PlaceDTO placeDTO) {
+		placemapper.insertPlaces2(placeDTO);
+	}
+
+	@Override
+	public void insertThemeBasicInfo2(PlaceDTO placeDTO) {
+		placemapper.insertThemeBasicInfo2(placeDTO);
+	}
+
+	@Override
+	public void updateThemePlace2(PlaceDTO placeDTO) {
+		placemapper.updateThemePlace2(placeDTO);
+	}
+
+	@Override
+	public String selectPlaceId2(int contentId) {
+		return placemapper.selectPlaceId2(contentId);
+	}
+
+	@Override
+	public String selectContentId2(int contentId) {
+		return placemapper.selectContentId2(contentId);
+	}
+
+	@Override
+	public void copyTablePlace2(PlaceDTO placeDTO) {
+		placemapper.copyTablePlace2(placeDTO);
+	}
+
+	@Override
+	public List<PlaceDTO> selectAllPlace() {
+		return placemapper.selectAllPlace();
+	}
+
+	@Override
+	public List<ContentsDTO> selectAllContents() {
+		return placemapper.selectAllContents();
+	}
+
+	@Override
+	public void updatePlace2(PlaceDTO placeDTO) {
+		placemapper.updatePlace2(placeDTO);
+	}
+
+	@Override
+	public int getContentTypeId(int contentId) {
+		return placemapper.getContentTypeId(contentId);
+	}
+
+	@Override
+	public int updateThemeDetail(ContentsDTO contentsDTO2) {
+		return placemapper.updateThemeDetail(contentsDTO2);
+	}
+
+	@Override
+	public int insertThemeDetail(ContentsDTO contentDTO2) {
+		return placemapper.insertThemeDetail(contentDTO2);
+	}
+
+	@Override
+	public int copyThemeDetail(ContentsDTO contentDTO2) {
+		return placemapper.copyThemeDetail(contentDTO2);
+	}
+
+	@Override
+	public void insertPlaces(PlaceDTO placeDTO) {
+		placemapper.insertPlaces(placeDTO);
+	}
+
+	@Override
+	public int updateThemeDetail2(ContentsDTO contentsDTO2) {
+		return placemapper.updateThemeDetail2(contentsDTO2);
+	}
+
+	@Override
+	public int insertThemeDetail2(ContentsDTO contentDTO2) {
+		return placemapper.insertThemeDetail2(contentDTO2);
+	}
+
 }

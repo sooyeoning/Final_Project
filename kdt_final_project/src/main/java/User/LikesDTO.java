@@ -2,6 +2,8 @@ package User;
 
 import org.springframework.stereotype.Component;
 
+import travelspot.PlaceDTO;
+
 @Component
 public class LikesDTO {
 	public int id;
@@ -10,6 +12,7 @@ public class LikesDTO {
 	public int place_id;
 	public int board_id;
 
+	public PlaceDTO placeDTO;
 	public LikesDTO() {
 
 	}
@@ -20,6 +23,16 @@ public class LikesDTO {
 		this.like_check = like_check;
 		this.place_id = place_id;
 		this.board_id = board_id;
+	}
+	
+	
+
+	public PlaceDTO getPlaceDTO() {
+		return placeDTO;
+	}
+
+	public void setPlaceDTO(PlaceDTO placeDTO) {
+		this.placeDTO = placeDTO;
 	}
 
 	public int getId() {

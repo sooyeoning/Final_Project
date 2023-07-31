@@ -10,13 +10,17 @@ import org.springframework.stereotype.Repository;
 
 import community.BoardDTO;
 import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;;
+import travelspot.PlaceDTO;
+import travelspot.ReportDTO;;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	public SqlSession sqlSession;
+	
+	@Autowired
+	public PlaceDAO placeDAO;
 
 	@Override
 	public void signup(UserDTO dto) {
@@ -72,20 +76,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void addVisitedPage(VisitedDTO dto) {
-		sqlSession.insert("addVisitedPage", dto);
-
-	}
-
-	@Override
-	public List<VisitedDTO> getRecentVisitedPages(String user_id, int limit) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("user_id", user_id);
-		params.put("limit", limit);
-		return sqlSession.selectList("getRecentVisitedPages", params);
-	}
-
-	@Override
 	public List<BoardDTO> getBoardListByWriter(String writer) {
 		return sqlSession.selectList("getBoardListByWriter", writer);
 	}
@@ -97,13 +87,49 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<LikesDTO> getLikesByUserId(int user_id) {
-		return sqlSession.selectList("getLikesByUserId",user_id);
+	    List<LikesDTO> likesList = sqlSession.selectList("getLikesByUserId", user_id);
+	    
+	    // 각 LikesDTO에 해당하는 PlaceDTO를 가져와서 설정
+	    for (LikesDTO likes : likesList) {
+	        int place_id = likes.getPlace_id();
+	        PlaceDTO place = placeDAO.getPlaceById(place_id);
+	        likes.setPlaceDTO(place);
+	    }
+	    
+	    return likesList;
 	}
 
 	@Override
-	public List<PlaceDTO> getPlacesByContentIds(List<Integer> content_id) {
-		return sqlSession.selectList("getPlaceByContentIds",content_id);
+	public List<UserDTO> getAllUsers(int startIdx, int usersPerPage) {
+	    Map<String, Integer> parameterMap = new HashMap<>();
+	    parameterMap.put("startIdx", startIdx);
+	    parameterMap.put("usersPerPage", usersPerPage);
+		return sqlSession.selectList("getAllUsers", parameterMap);
 	}
 
+	@Override
+	public int getTotalUserCount() {
+		return sqlSession.selectOne("getTotalUserCount");
+	}
+
+	@Override
+	public UserDTO getUserdetail(String userid) {
+		return sqlSession.selectOne("getUserdetail",userid);
+	}
+
+	@Override
+	public void deleteUser(String userid) throws Exception {
+		sqlSession.delete("deleteUser",userid);
+		
+	}
+
+	@Override
+	public List<ReportDTO> getAllReports() {
+		return sqlSession.selectList("getAllReports");
+	}
+
+	
+
+	
 	
 }

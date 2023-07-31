@@ -2,10 +2,9 @@ package travelspot;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class PlaceDTO {
 	int contentId;
-	int contentTypeId; //관광타입 id
+	Integer contentTypeId; //관광타입 id
 	String title;
 	int areaCode;
 	String image1;
@@ -120,6 +119,14 @@ public class PlaceDTO {
 		this.theme = theme;
 	}
 
+	@Override
+	public String toString() {
+		return "PlaceDTO [contentId=" + contentId + ", contentTypeId=" + contentTypeId + ", title=" + title
+				+ ", areaCode=" + areaCode + ", image1=" + image1 + ", image2=" + image2 + ", address=" + address
+				+ ", mapx=" + mapx + ", mapy=" + mapy + ", contents=" + contents + ", theme=" + theme + ", writingtime="
+				+ writingtime + ", likecnt=" + likecnt + ", viewcnt=" + viewcnt + ", homepage=" + homepage + "]";
+	}
+
 	public PlaceDTO(int contentId, String title, int areaCode, String image1, String image2, String address,
 			double mapx, double mapy, String contents, String writingtime, int likecnt, int viewcnt) { // 테마x																												// x
 		this.contentId = contentId;
@@ -228,6 +235,14 @@ public class PlaceDTO {
 
 	public void setMapy(double mapy) {
 		this.mapy = mapy;
+	}
+
+	public Integer getContentTypeId() {
+		return contentTypeId;
+	}
+
+	public void setContentTypeId(Integer contentTypeId) {
+		this.contentTypeId = contentTypeId;
 	}
 
 }

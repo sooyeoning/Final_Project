@@ -44,3 +44,23 @@ section #contents{
 .likeon{
 	background-image: url("../img/like_on.png");
 }
+
+/*댓글상자*/ 
+
+.comments-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
+	width: 64vw;
+	height: fit-content;
+	padding: 1vw;
+	border-bottom: solid 1px #2463d3;
+}
+
+.comments-innerbox{ /*작성된 댓글 보여주는 안 상자*/
+	height: fit-content;
+}
+
+.comments-modify-outerbox{ /*작성된 댓글 보여주는 바깥 상자*/
+	width: 64vw;
+	height: fit-content;
+	padding: 1vw;
+	border-bottom: solid 1px #2463d3;
+}

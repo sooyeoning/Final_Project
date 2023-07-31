@@ -9,6 +9,10 @@
 <link rel="icon" href="img/favicon.png">
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
+
+<script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
+<script src="http://localhost:8099/js/community/comment.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -87,6 +91,14 @@
             });
         }
     </script>
+    
+    <!-- 댓글창 추가: 하트 위치 변경 -->
+	<p class="main_color">댓글창</p><br>
+	<textarea id="content" style="width:100%; resize: none;" rows="4">댓글을 남겨주세요 </textarea><!-- 여백 조정없이 padding 필요 -->
+	<input type="text" class="login" value="${nickname }" hidden="hidden">
+	<input type="button" class="savebutton" value="저장"><!-- 오른쪽 정렬 -->
+	
+	<div class="comments"></div>
 </section>
 <%@ include file="../../views/home/footer.jsp"%>
 <div style="position:fixed; bottom:1%; right:1%;">

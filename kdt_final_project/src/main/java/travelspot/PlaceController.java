@@ -53,7 +53,8 @@ public class PlaceController {
 		mv.addObject("placelist", placeservice.listPlaces(param));
 		mv.addObject("totalCnt", placeservice.getTotalCnt(areaCode));
 		mv.addObject("areaCode", areaCode);
-		mv.setViewName("travelspot_list");
+		mv.addObject("page", page);
+		mv.setViewName("/travelspot/travelspot_list");
 		return mv;
 	}
 	
@@ -67,13 +68,7 @@ public class PlaceController {
 			// 검색 조건으로 검색한 게시글 리스트, 게시글수
 			HashMap<String, Object> map = new HashMap<>();
 
-			if (item.equals("장소명")) {
-				map.put("colname", "title");
-			}
-			if (item.equals("주소")) {
-				map.put("colname", "address");
-			}
-			
+			map.put("colname", item);
 			map.put("searchitem", item);
 			map.put("colvalue", "%"+searchword+"%");
 			map.put("limitindex",(page-1)*9 );
@@ -86,7 +81,8 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
-			mv.setViewName("travelspot_searchlist");
+			mv.addObject("page", page);
+			mv.setViewName("/travelspot/travelspot_searchlist");
 			return mv;
 		}
 
@@ -105,7 +101,7 @@ public class PlaceController {
 			mv.addObject("userdto", userdto);
 		}
 
-		mv.setViewName("travelspot_post");
+		mv.setViewName("/travelspot/travelspot_post");
 		mv.addObject("placedto", placedto);
 		
 		return mv;		
@@ -162,6 +158,7 @@ public class PlaceController {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
 		return placedto;
 	}
+	
 	@GetMapping("/travelspot/post/info")
 	@ResponseBody
 	public PlaceDTO showPostInfo(@RequestParam int contentId) {
@@ -173,7 +170,7 @@ public class PlaceController {
 	@RequestMapping("/travelspot/list_theme")
 	public ModelAndView showThemeMain(@RequestParam String theme,
 			@RequestParam(required = true, defaultValue = "1") int page, HttpSession session) throws Exception{
-		//정보 저장: apiservice.getThemeBasicInfo(); 
+		//apiservice.getThemeBasicInfo(); 
 		ModelAndView mv = new ModelAndView();
 		
 		HashMap<String, Object> param = new HashMap<>();
@@ -182,32 +179,27 @@ public class PlaceController {
 		param.put("page", pageindex);
 
 		UserDTO userdto = (UserDTO)session.getAttribute("user");
+		mv.addObject("currentPage", pageindex);
 		mv.addObject("placelist", placeservice.listThemePlaces(param)); //PlaceContentsDTO
 		mv.addObject("totalCnt", placeservice.getTotalThemeCnt(theme));
 		mv.addObject("userdto", userdto);
-
+		mv.addObject("page", page);
 		mv.addObject("theme", theme);
-		mv.setViewName("travelspot_list_theme");
+		mv.setViewName("/travelspot/travelspot_list_theme");
 		return mv;
 	}
 		
 	// 검색한 게시글 조회
 	@RequestMapping("/travelspot/themesearch")
 	public ModelAndView searchThemePlace(
-		@RequestParam(value="item", required=false, defaultValue="주소")String item, 
+		@RequestParam(value="item", required=false, defaultValue="title")String item, 
 		@RequestParam(value="searchword", required=false, defaultValue="강원")String searchword, 
 		@RequestParam(value="page", required=false, defaultValue="1")int page) {
 
 			// 검색 조건으로 검색한 게시글 리스트, 게시글수
 			HashMap<String, Object> map = new HashMap<>();
-
-			if (item.equals("장소명")) {
-				map.put("colname", "title");
-			}
-			if (item.equals("주소")) {
-				map.put("colname", "address");
-			}
-				
+		
+			map.put("colname", item);
 			map.put("searchitem", item);
 			map.put("colvalue", "%"+searchword+"%");
 			map.put("limitindex",(page-1)*9 );
@@ -220,7 +212,8 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
-			mv.setViewName("travelspot_searchlist_theme");
+			mv.addObject("page", page);
+			mv.setViewName("/travelspot/travelspot_searchlist_theme");
 			return mv;
 		}
 		
@@ -238,7 +231,7 @@ public class PlaceController {
 		}
 		
 		mv.addObject("placedto", placedto);
-		mv.setViewName("travelspot_post_theme");
+		mv.setViewName("/travelspot/travelspot_post_theme");
 		return mv;		
 	}
 	

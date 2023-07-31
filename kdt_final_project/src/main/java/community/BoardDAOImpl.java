@@ -58,6 +58,46 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
 	@Override
+	public int insertComment(CommentsDTO commentsdto) {
+		return sqlSession.insert("insertComment", commentsdto);
+	}
+
+	@Override
+	public List<CommentsDTO> getComments(int content_id) {
+		return sqlSession.selectList("board.spring.mybatis.BoardDAO.getComments", content_id);
+	}
+
+	@Override
+	public int deleteComments(int id) {
+		return sqlSession.delete("board.spring.mybatis.BoardDAO.deleteComments", id);
+	}
+
+	@Override
+	public CommentsDTO getOneComment(int id) {
+		return sqlSession.selectOne("board.spring.mybatis.BoardDAO.getOneComment",id);
+	}
+
+	@Override
+	public int updateComments(CommentsDTO commentsdto) {
+		return sqlSession.update("board.spring.mybatis.BoardDAO.updateComments", commentsdto);
+	}
+
+	@Override
+	public int insertReport(travelspot.ReportDTO reportdto) {
+		return sqlSession.insert("board.spring.mybatis.BoardDAO.insertReport", reportdto);
+	}
+
+	@Override
+	public List<String> selectUserId(int commentId) {
+		return sqlSession.selectList("board.spring.mybatis.BoardDAO.selectUserId", commentId);
+	}
+
+	@Override
+	public String selectReportedId(int id) {
+		return sqlSession.selectOne("board.spring.mybatis.BoardDAO.selectReportedId", id);
+	}
+
+
     public LikesDTO getLikeByUserAndBoard(int userId, int boardId) {
         return sqlSession.selectOne("getLikeByUserAndBoard", new LikesDTO(userId, 0, 0, 0, boardId));
     }
@@ -71,5 +111,6 @@ public class BoardDAOImpl implements BoardDAO {
     public void cancelLikes(LikesDTO like) {
         sqlSession.update("cancelLikes", like);
     }
+
 
 }

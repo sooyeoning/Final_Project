@@ -29,10 +29,39 @@
 	select*from comments where id=#{id} ; 
 </select>
 
-<!-- 대댓글 저장 -->
-<insert id="insertReply" parameterType="CommentsDTO">
-	insert into comments(contents,place_id, writer, comment_group) values(#{contents},#{place_id},#{writer}, #{comment_group});
+<insert id="insertReport" parameterType="ReportDTO">
+	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate, reportedId)
+	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId}); 
 </insert>
+
+<select id="selectUserId" parameterType="int" resultType="String">
+	select userId from report where commentId=#{commentId};
+</select>
+
+<select id="selectReportedId" parameterType="int" resultType="String">
+	select userid from users where nickname=(select writer from comments where id=#{id});
+</select>
+
+<!-- resultMap 사용시 새로운 DTO 필요 -->
+<resultMap type="CommentsUserDTO" id="commentMap">
+ <id property="id" column="id"/>
+ <result property="place_id" column="place_id"/>
+ <result property="contents" column="contents"/>
+ <result property="writingtime" column="writingtime"/>
+ <result property="writer" column="writer"/>
+ <collection property="UserDTO" resultMap="userMap"/>
+</resultMap>
+<resultMap type="UserDTO" id="userMap">
+ <id property="id" column="id"/>
+ <result property="photo" column="photo"/>
+</resultMap>
+
+<select id="getCommentsProfile" resultMap="commentMap" parameterType="int">
+select c.id as id, contents, writingtime, writer , u.photo
+from comments c join users u
+on c.writer=u.nickname
+where place_id=${place_id};
+</select>
 
 </mapper>
 

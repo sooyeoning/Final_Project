@@ -46,21 +46,6 @@
 		id = #{id}
 	</update>
 
-	<!-- 최근 방문한 페이지 추가 -->
-	<insert id="addVisitedPage" parameterType="VisitedDTO">
-		INSERT INTO visited
-		(user_id, pageurl)
-		VALUES (#{user_id}, #{pageurl})
-	</insert>
-
-	<!-- 최근 방문한 페이지 조회 -->
-	<select id="getRecentVisitedPages" parameterType="map"
-		resultType="VisitedDTO">
-		SELECT * FROM visited WHERE user_id = #{user_id} ORDER BY
-		visited DESC LIMIT
-		#{limit}
-	</select>
-
 	<!-- 회원 탈퇴 -->
 	<delete id="withdrawUser" parameterType="String">
 		DELETE FROM users
@@ -107,9 +92,69 @@
 		WHERE writer = #{writer}
 	</select>
 
-	<!-- 찜한 여행지 -->
-	<select id="getLikedTravelSpotsByUserId" parameterType="int"
+	<!-- 사용자가 찜한 여행지 목록 조회 -->
+	<select id="getLikesByUserId" parameterType="int"
 		resultType="LikesDTO">
-		SELECT * FROM likes WHERE user_id = #{user_id}
+		SELECT likes.*, place.contentId AS place_id, place.title, place.address,
+		place.viewcnt, place.likecnt
+		FROM likes
+		JOIN place ON likes.place_id = place.contentId
+		WHERE likes.user_id = #{user_id}
 	</select>
+
+	<resultMap id="LikesPlaceResult" type="LikesDTO">
+		<id property="id" column="id" />
+		<result property="user_id" column="user_id" />
+		<result property="like_check" column="like_check" />
+		<association property="placeDTO"
+			resultMap="PlaceDTOResult" />
+	</resultMap>
+
+	<resultMap id="PlaceDTOResult" type="travelspot.PlaceDTO">
+		<id property="id" column="place_id" />
+		<result property="title" column="title" />
+		<result property="address" column="address" />
+		<result property="viewcnt" column="viewcnt" />
+		<result property="likecnt" column="likecnt" />
+	</resultMap>
+
+	<!-- 관리자 페이지 전체 회원리스트 조회 -->
+	<select id="getAllUsers" resultMap="userResultMap">
+		SELECT * FROM users LIMIT #{startIdx}, #{usersPerPage}
+	</select>
+	<resultMap id="userResultMap" type="User.UserDTO">
+		<id property="userid" column="userid" />
+		<result property="username" column="username" />
+		<result property="email" column="email" />
+	</resultMap>
+	<select id="getTotalUserCount" resultType="int">
+		SELECT COUNT(*) FROM users
+	</select>
+	<select id="getUserdetail" resultType="User.UserDTO">
+		SELECT * FROM users WHERE userid = #{userid}
+	</select>
+
+	<!-- 회원 강제 탈퇴 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM users
+		WHERE
+		userid = #{userid}
+	</delete>
+
+	<!-- 댓글 신고리스트 조회 -->
+	<select id="getAllReports" resultMap="reportResultMap">
+		SELECT * FROM report
+	</select>
+
+	<resultMap id="reportResultMap" type="travelspot.ReportDTO">
+		<id property="id" column="id" />
+		<result property="commentId" column="commentId" />
+		<result property="userNickname" column="userNickname" />
+		<result property="userId" column="userId" />
+		<result property="reportCategory" column="reportCategory" />
+		<result property="reportContents" column="reportContents" />
+		<result property="regDate" column="regDate" />
+		<result property="contentId" column="contentId" />
+	</resultMap>
+
 </mapper>

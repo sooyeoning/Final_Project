@@ -41,6 +41,27 @@ public class CommentsServiceImpl implements CommentsService {
 		commentsmapper.insertReply(CommentsDTO);
 	}
 
+	@Override
+	public List<CommentsUserDTO> getCommentsProfile(int place_id){
+		return commentsmapper.getCommentsProfile(place_id) ;
+	}
+
+	@Override
+	public void insertReport(ReportDTO ReportDTO) {
+		commentsmapper.insertReport(ReportDTO);
+	}
+
+	@Override
+	 public List<String> selectUserId(int commentId){
+		return commentsmapper.selectUserId(commentId);
+	}
+
+	@Override
+	public String selectReportedId(int id) {
+		return commentsmapper.selectReportedId(id);
+	}
+	
+
 	
 
 

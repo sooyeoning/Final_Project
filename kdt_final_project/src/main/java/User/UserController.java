@@ -42,23 +42,23 @@ public class UserController {
 	@Autowired
 	PlaceDAO placedao;
 
-	@GetMapping("signin")
+	@GetMapping("/signin")
 	public String signup() {
 		return "/user/signin";
 	}
 
-	@PostMapping("signin")
+	@PostMapping("/signin")
 	public String signup(UserDTO dto) {
 		service.signup(dto);
 		return "/user/signin";
 	}
 
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String login() {
 		return "/user/login";
 	}
 
-	@PostMapping("login")
+	@PostMapping("/login")
 	public ModelAndView login(@RequestParam String userid, @RequestParam String userpw, HttpSession session) {
 		UserDTO dto = service.login(userid, userpw);
 		if (dto != null) {
@@ -74,7 +74,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";

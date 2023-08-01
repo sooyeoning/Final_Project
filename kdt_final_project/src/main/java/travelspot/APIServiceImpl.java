@@ -28,7 +28,7 @@ import org.w3c.dom.NodeList;
 public class APIServiceImpl {
 
 	
-	String serviceKey = "";
+	String serviceKey = "A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
 
 	StringBuilder urlBuilder;
 
@@ -269,7 +269,7 @@ public class APIServiceImpl {
 		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0113&cat3=C01130001";
 		// (36)String familyUrl =
 		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0112&cat3=C01120001";
-		String serviceKey = "";
+		String serviceKey = "gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
 		String[] numOfRowsList = new String[] { "20", "15", "15", "15" };

@@ -99,7 +99,7 @@
 	<input type="text" class="login" value="${nickname }" hidden="hidden">
 	<input type="button" class="savebutton" value="저장"><!-- 오른쪽 정렬 -->
 	</div>
-	<div class="comments"></div>
+	<div class="comments"></div> 
 </section>
 <%@ include file="../../views/home/footer.jsp"%>
 <div style="position:fixed; bottom:1%; right:1%;">

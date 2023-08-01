@@ -4,105 +4,158 @@
 
 <mapper namespace="board.spring.mybatis.BoardDAO">
 
-<!-- 글작성 -->
-<insert id="insertBoard" parameterType="boarddto" >
- insert into board(id, title, contents, writingtime, views, likecount, board_title, writer, place) 
- values(null, #{title}, #{contents}, now(), 0, 0, #{board_title}, #{writer}, #{place})
-</insert>
+	<!-- 글작성 -->
+	<insert id="insertBoard" parameterType="boarddto">
+		insert into board(id, title, contents, writingtime, views, likecount,
+		board_title, writer, place)
+		values(null, #{title}, #{contents}, now(), 0, 0, #{board_title}, #{writer},
+		#{place})
+	</insert>
 
-<!-- 모든 Board 목록 가져오기 -->
-<select id="getAllBoards" resultType="boarddto">
-	SELECT * FROM board
-</select>
+	<!-- 모든 Board 목록 가져오기 -->
+	<select id="getAllBoards" resultType="boarddto">
+		SELECT * FROM board
+	</select>
 
-<!-- Top 10 Board 목록 가져오기 -->
-<select id="getTop10Boards" resultType="boarddto">
-    SELECT * FROM board
-    ORDER BY likecount DESC
-    LIMIT 10
-</select>
+	<!-- Top 10 Board 목록 가져오기 -->
+	<select id="getTop10Boards" resultType="boarddto">
+		SELECT * FROM board
+		ORDER BY likecount DESC
+		LIMIT 10
+	</select>
 
-<!-- 최신순으로 게시글 가져오기 -->
-<select id="getNewestBoards" resultType="boarddto">
-    SELECT * FROM board
-    ORDER BY writingtime DESC
-</select>
+	<!-- 최신순으로 게시글 가져오기 -->
+	<select id="getNewestBoards" resultType="boarddto">
+		SELECT * FROM board
+		ORDER BY writingtime DESC
+	</select>
 
-<!-- getBoardById 쿼리 매핑 -->
-<select id="getBoardById" parameterType="int" resultType="community.BoardDTO">
-	SELECT * FROM board WHERE id = #{boardId}
-</select>
-  
-<update id="updateBoard" parameterType="boarddto">
-	UPDATE board 
-	SET board_title = #{board_title}, place = #{place}, title = #{title}, contents = #{contents} 
-	WHERE id = #{id}
-</update>
+	<!-- getBoardById 쿼리 매핑 -->
+	<select id="getBoardById" parameterType="int"
+		resultType="community.BoardDTO">
+		SELECT * FROM board WHERE id = #{boardId}
+	</select>
 
-<delete id="deleteBoard" parameterType="boarddto">
-	DELETE FROM board WHERE id = #{id};
-</delete>
+	<update id="updateBoard" parameterType="boarddto">
+		UPDATE board
+		SET board_title = #{board_title}, place = #{place}, title = #{title},
+		contents = #{contents}
+		WHERE id = #{id}
+	</update>
 
-<!-- 조회수 증가 -->
-<update id="increaseViewCount" parameterType="int">
-	UPDATE board
-	SET views = views + 1
-	WHERE id = #{boardId}
-</update>
+	<delete id="deleteBoard" parameterType="boarddto">
+		DELETE FROM board WHERE id = #{id};
+	</delete>
 
-<insert id="insertComment" parameterType="CommentsDTO" >
-	insert into comments(contents,content_id, writer, writingtime) 
-	values(#{contents},#{content_id},#{writer},now());
-</insert>
+	<!-- 조회수 증가 -->
+	<update id="increaseViewCount" parameterType="int">
+		UPDATE board
+		SET views = views + 1
+		WHERE id = #{boardId}
+	</update>
 
-<select id="getComments" parameterType="int" resultType="CommentsDTO">
-	select*from comments where content_id=#{boardId} order by writingtime desc ; 
-</select>
+	<insert id="insertComment" parameterType="CommentsDTO">
+		insert into comments(contents,content_id, writer, writingtime)
+		values(#{contents},#{content_id},#{writer},now());
+	</insert>
 
-<delete id="deleteComments" parameterType="int">
-	delete from comments where id=#{id};
-</delete>
+	<select id="getComments" parameterType="int"
+		resultType="CommentsDTO">
+		select*from comments where content_id=#{boardId} order by writingtime desc ;
+	</select>
 
-<!-- 댓글 내용 조회 -->
-<select id="getOneComment" parameterType="int" resultType="CommuCommentsDTO">
-	select*from comments where id=#{id} ; 
-</select>
+	<delete id="deleteComments" parameterType="int">
+		delete from comments where id=#{id};
+	</delete>
 
-<update id="updateComments" parameterType="CommentsDTO">
-	update comments set contents=#{contents}, writingtime=now() where id=#{id};
-</update>
+	<!-- 댓글 내용 조회 -->
+	<select id="getOneComment" parameterType="int"
+		resultType="CommuCommentsDTO">
+		select*from comments where id=#{id} ;
+	</select>
 
-<!-- 댓글 신고 -->
+	<update id="updateComments" parameterType="CommentsDTO">
+		update comments set contents=#{contents}, writingtime=now() where id=#{id};
+	</update>
 
-<insert id="insertReport" parameterType="ReportDTO">
-	insert into report(contentId, commentId, userNickname, userId, reportCategory, reportContents, regDate, reportedId)
-	values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId}); 
-</insert>
+	<!-- 댓글 신고 -->
 
-<select id="selectUserId" parameterType="int" resultType="String">
-	select userId from report where commentId=#{commentId};
-</select>
+	<insert id="insertReport" parameterType="ReportDTO">
+		insert into report(contentId, commentId, userNickname, userId,
+		reportCategory, reportContents, regDate, reportedId)
+		values(#{contentId},#{commentId},#{userNickname},#{userId},#{reportCategory},#{reportContents},now(),#{reportedId});
+	</insert>
 
-<select id="selectReportedId" parameterType="int" resultType="String">
-	select userid from users where nickname=(select writer from comments where id=#{id});
-</select>
+	<select id="selectUserId" parameterType="int"
+		resultType="String">
+		select userId from report where commentId=#{commentId};
+	</select>
+
+	<select id="selectReportedId" parameterType="int"
+		resultType="String">
+		select userid from users where nickname=(select writer from comments where
+		id=#{id});
+	</select>
 
 
-<!-- 좋아요 테이블 정보 저장: 좋아요 상태 1, 아닌 상태 0 -->
-<insert id="insertLikes" parameterType="User.LikesDTO">
-    INSERT INTO likes (user_id, board_id, like_check) 
-    VALUES (#{user_id}, #{board_id}, 1)
-</insert>
+	<!-- 좋아요 테이블 정보 저장: 좋아요 상태 1, 아닌 상태 0 -->
+	<insert id="insertLikes" parameterType="User.LikesDTO">
+		INSERT INTO likes (user_id, board_id, like_check)
+		VALUES (#{user_id}, #{board_id}, 1)
+	</insert>
 
-<update id="cancelLikes" parameterType="User.LikesDTO">
-    UPDATE likes 
-    SET like_check = 0 
-    WHERE user_id = #{user_id} AND board_id = #{board_id}
-</update>
+	<update id="cancelLikes" parameterType="User.LikesDTO">
+		UPDATE likes
+		SET like_check = 0
+		WHERE user_id = #{user_id} AND board_id = #{board_id}
+	</update>
 
-<select id="getLikeByUserAndBoard" parameterType="map" resultType="User.LikesDTO">
-    SELECT * 
-    FROM likes 
-    WHERE user_id = #{userId} AND board_id = #{boardId}
-</select>
+	<select id="getLikeByUserAndBoard" parameterType="map"
+		resultType="User.LikesDTO">
+		SELECT *
+		FROM likes
+		WHERE user_id = #{userId} AND board_id = #{boardId}
+	</select>
+
+
+	<select id="selectByUserId" parameterType="int">
+		SELECT userId
+		FROM
+		report
+		WHERE boardId = #{boardId}
+	</select>
+
+	<insert id="insertReport2" parameterType="ReportDTO">
+		INSERT INTO report
+		(commentId, userNickname, userId, reportCategory,
+		reportContents,
+		regDate, contentId,reportedId, boardId)
+		VALUES (#{commentId},
+		#{userNickname},
+		#{userId}, #{reportCategory},
+		#{reportContents},now(),
+		#{contentId},#{reportedId},#{boardId})
+	</insert>
+
+	<select id="selectReportedId2" parameterType="int"
+		resultType="String">
+		select userid from users where nickname=(select writer from
+		board where
+		id=#{id});
+	</select>
+
+	<!-- 게시글 검색 -->
+	<select id="searchBoard" parameterType="hashmap"
+		resultType="boarddto">
+		select id, place, title, writer, views, likecount, writingtime, board_title
+		from board where ${colname} like #{colvalue}
+		and place is not null
+		limit #{limitindex},#{limitcount}
+	</select>
+
+	<!-- 검색된 게시글 수 -->
+	<select id="searchBoardCnt" parameterType="hashmap"
+		resultType="int">
+		select count(*) from board where ${colname} like #{colvalue}
+	</select>
 </mapper>

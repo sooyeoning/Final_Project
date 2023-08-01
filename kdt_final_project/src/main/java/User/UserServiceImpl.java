@@ -134,9 +134,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<ReportDTO> getAllReportList() {
-		return dao.getAllReports();
+	public List<ReportDTO> getAllReportBoardList() {
+		return dao.getAllReportBoardList();
 	}
+
+	@Override
+	public List<ReportDTO> getAllReportCommentList() {
+		return dao.getAllReportCommentList();
+	}
+
 
 	
 

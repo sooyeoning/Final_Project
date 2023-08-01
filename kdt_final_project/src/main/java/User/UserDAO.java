@@ -38,5 +38,6 @@ public interface UserDAO {
 
     void deleteUser(String userid) throws Exception;
     
-    List<ReportDTO> getAllReports();
+    List<ReportDTO> getAllReportBoardList();
+    List<ReportDTO> getAllReportCommentList();
 }

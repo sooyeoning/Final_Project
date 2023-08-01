@@ -22,10 +22,15 @@
 		<li id="recommendTap" class="font_title"><a href="">추천해주세요</a></li>
 	</ul>
 	
-	<form action="/search" method="get" class="search-form">
-    	<input type="text" id="search-input" name="q" class="search-input" placeholder="검색어를 입력하세요...">
-    	<input type="submit" value="검색" class="search-button">
-    </form>
+		<form action="/community/search" method="get" class="search-form">
+			<select name="category" class="select-category" style="border-radius:4px; border: 2px solid #2463D3; margin: 4px; width: 5em; height:62px;  font-size: 16px; text-align:center;">
+			    <option>지역</option>
+				<option>제목</option>
+				<option>작성자</option>
+			</select> <input type="text" id="search-input" name="searchword" class="search-input"
+				placeholder="검색어를 입력하세요"> <input type="submit" value="검색"
+				class="search-button">
+		</form>
     
     <form action="">
     	<select id="printtype" name="printtype">

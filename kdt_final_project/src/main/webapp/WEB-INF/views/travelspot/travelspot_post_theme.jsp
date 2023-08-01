@@ -28,9 +28,9 @@
 <!-- 관광명소 메뉴바 -->
 <hr class="hrmargin">
 <div class="postmenu">
-<p class="font_content" id="images">여행지 사진 모아보기</p>
-<p class="font_content" id="info">여행지 상세정보</p>
-<p class="font_content" id="comments">여행지 한줄평 남기기</p>
+<p class="font_content" id="images" style="cursor: pointer">여행지 사진 모아보기</p>
+<p class="font_content" id="info" style="cursor: pointer">여행지 상세정보</p>
+<p class="font_content" id="comments" style="cursor: pointer">여행지 한줄평 남기기</p>
 </div>
 <hr class="hrmargin">
 
@@ -38,7 +38,11 @@
 <div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
 
 <div style="position:fixed; bottom:3%; right:-10%;">
-<a href="#"><img src="../img/top.png" width="5%" height="5%"></a></div>
+<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>
+</div>
+<div style="position: fixed; bottom: 10%; right:-18%;">
+<a href="/travelspot/list_theme?theme=alone"><img src="../img/prev.png" width="5%" height="5%"></a>
+</div>
 <!-- 개선사항 -->
 <!-- 여행지 사진 모아보기 아래 구분선만 색 변경x -->
 <!-- 댓글 작성하는 textarea 글씨(not bod)로 변경-->

@@ -1,5 +1,6 @@
 package community;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,35 +8,36 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import User.LikesDTO;
+import travelspot.ReportDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Autowired
-    private LikeService likeService;
-	
+	private LikeService likeService;
+
 	@Override
 	public void createBoard(BoardDTO board) {
 		boardDAO.insertBoard(board);
 	}
-	
+
 	@Override
 	public List<BoardDTO> getAllBoards() {
-	    return boardDAO.getAllBoards(); // BoardDAO의 getAllBoards() 메서드를 호출하여 결과 반환
+		return boardDAO.getAllBoards(); // BoardDAO의 getAllBoards() 메서드를 호출하여 결과 반환
 	}
-	
+
 	@Override
 	public List<BoardDTO> getTop10Boards() {
-	    return boardDAO.getTop10Boards(); // BoardDAO의 getTop10Boards() 메서드를 호출하여 결과 반환
+		return boardDAO.getTop10Boards(); // BoardDAO의 getTop10Boards() 메서드를 호출하여 결과 반환
 	}
-	
+
 	@Override
-    public BoardDTO getBoardById(int boardId) {
-        return boardDAO.getBoardById(boardId);
-    }
+	public BoardDTO getBoardById(int boardId) {
+		return boardDAO.getBoardById(boardId);
+	}
 
 	@Override
 	public void updateBoard(BoardDTO board) {
@@ -48,30 +50,30 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Transactional
-    @Override
-    public void increaseViewCount(int boardId) {
-        boardDAO.increaseViewCount(boardId);
-    }
-	
 	@Override
-    public List<BoardDTO> getNewestBoards() {
-        return boardDAO.getNewestBoards();
-    }
-	
+	public void increaseViewCount(int boardId) {
+		boardDAO.increaseViewCount(boardId);
+	}
+
 	@Override
-    public LikesDTO getLikeByUserAndBoard(int userId, int boardId) {
-        return boardDAO.getLikeByUserAndBoard(userId, boardId);
-    }
+	public List<BoardDTO> getNewestBoards() {
+		return boardDAO.getNewestBoards();
+	}
 
-    @Override
-    public void insertLikes(LikesDTO like) {
-        boardDAO.insertLikes(like);
-    }
+	@Override
+	public LikesDTO getLikeByUserAndBoard(int userId, int boardId) {
+		return boardDAO.getLikeByUserAndBoard(userId, boardId);
+	}
 
-    @Override
-    public void cancelLikes(LikesDTO like) {
-        boardDAO.cancelLikes(like);
-    }
+	@Override
+	public void insertLikes(LikesDTO like) {
+		boardDAO.insertLikes(like);
+	}
+
+	@Override
+	public void cancelLikes(LikesDTO like) {
+		boardDAO.cancelLikes(like);
+	}
 
 	@Override
 	public int insertComment(CommentsDTO commentsdto) {
@@ -111,6 +113,26 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public String selectReportedId(int id) {
 		return boardDAO.selectReportedId(id);
+	}
+
+	@Override
+	public void insertReport2(ReportDTO reportDTO) {
+		boardDAO.insertReport2(reportDTO);
+	}
+
+	@Override
+	public String selectReportedId2(int id) {
+		return boardDAO.selectReportedId2(id);
+	}
+	
+	@Override
+	public List<BoardDTO> searchBoard(HashMap<String, Object> map) {
+		return boardDAO.searchBoard(map);
+	}
+	
+	@Override
+	public int searchBoardCnt(HashMap<String, Object> map) {
+		return boardDAO.searchBoardCnt(map);
 	}
 
 }

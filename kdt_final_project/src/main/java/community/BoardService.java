@@ -1,8 +1,10 @@
 package community;
 
+import java.util.HashMap;
 import java.util.List;
 
 import User.LikesDTO;
+import travelspot.ReportDTO;
 
 public interface BoardService {
 	void createBoard(BoardDTO board);
@@ -30,5 +32,13 @@ public interface BoardService {
     LikesDTO getLikeByUserAndBoard(int userId, int boardId);
     void insertLikes(LikesDTO like);
     void cancelLikes(LikesDTO like);
+
+    public void insertReport2(ReportDTO reportDTO);
+    
+    public String selectReportedId2(int id);
+    
+	public List<BoardDTO> searchBoard(HashMap<String, Object> map);
+	
+	public int searchBoardCnt(HashMap<String, Object> map);
 
 }

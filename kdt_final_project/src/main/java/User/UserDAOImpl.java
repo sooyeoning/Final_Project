@@ -124,9 +124,16 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<ReportDTO> getAllReports() {
-		return sqlSession.selectList("getAllReports");
+	public List<ReportDTO> getAllReportBoardList() {
+		return sqlSession.selectList("getAllReportBoardList");
 	}
+
+	@Override
+	public List<ReportDTO> getAllReportCommentList() {
+		return sqlSession.selectList("getAllReportCommentList");
+	}
+
+	
 
 	
 

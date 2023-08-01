@@ -18,10 +18,9 @@
 	<div class="section-container">
 		<div class="left-section">
 			<!-- 왼쪽 섹션 -->
-			<div class="categories_left">
-				<h2>문의 분류</h2>
-			</div>
+			<h2>문의 분류</h2>
 			<br>
+
 			<div style="display: flex;">
 				<h2 id="showbtn" class="showbtn">FAQ</h2>
 				<img id="showbtn_img" class="dropdown-2"
@@ -33,15 +32,17 @@
 				<li><a href="/FAQ03">신고/이용제한</a></li>
 				<li><a href="/FAQ04">프로필 관련</a></li>
 			</ul>
-			<ul id="ask" class="category-list">
-				<li id="ask"><a href="/selectFAQs">이용 문의</a></li>
+			<ul class="category-list">
+				<li><a href="/selectFAQs">이용 문의</a></li>
 			</ul>
-			<div style="display: none" id="adminDiv">
-				<ul class="category-list">
-					<li><a href="/selectFAQs">이용 문의(관리자)</a></li>
-				</ul>
+			<div id="adminDiv" style="display: none">
+				<h2>
+					<a href="selectFAQs">이용 문의(관리자) </a>
+				</h2>
 			</div>
 		</div>
+
+		<!-- 오른쪽 섹션 -->
 		<div class="right-section">
 			<div class="right-section-title">
 				<h2>이용 문의</h2>
@@ -50,40 +51,50 @@
 				<table id="dataTable">
 
 					<tr class="tr_1st">
-						<th id="title" style="width: 90px;">제목</th>
-						<th style="width:290px;">내용</th>
+						<th id="title"style="width:90px;">제목</th>
+						<th style="width:220px;">내용</th>
 						<th style="width:100px">작성시간</th>
 						<th style="width:40px;">작성자</th>
-						<th>분류</th>
+						<th style="width:100px;">분류</th>
 						<th>답변</th>
 					</tr>
 
-					<c:forEach items="${boardList}" var="dto">
+					<c:forEach items="${boardListForAdmin}" var="dto">
 						<tr>
 							<td class="td_title"><a href="/detailForm?id=${dto.id }">${dto.title}</a></td>
-							<td class="td_contents"><a href="/detailForm?id=${dto.id }">${dto.contents}</a></td>
+							<td class="td_contents" style="max-width:220px;"><a
+								href="/detailForm?id=${dto.id }">${dto.contents}</a></td>
 							<td class="td_writingtime">${dto.writingtime}</td>
 							<td class="td_writer">${dto.writer}</td>
 							<td>${dto.board_title}</td>
-							<td class="answer" id="answer" style="display:none;">${dto.answer}</td>
+							<td class="td_answer" id="td_answer" style="display: none;">${dto.answer}</td>
 							<td class="answerStatus" id="answerStatus">X</td>
-							<%-- 							<td><a href="/updateForm?id=${dto.id }">수정</a></td>
-							<td onclick="deleteArticle(${dto.id})">삭제</td> --%>
-
+							<td><a href="/updateForm?id=${dto.id }">수정</a></td>
+							<td onclick="deleteArticle(${dto.id})"
+								style="font-size: 10px; font-weight: bold">삭제</td>
 							<%-- <td><c:out value="${dto.imageFileName}"/></td> --%>
 
 						</tr>
 					</c:forEach>
+
+
 				</table>
 			</div>
 
+<%-- 			<!-- 이전 페이지 버튼 -->
+			<button onclick="loadPage(${currentPage - 1})"
+				${currentPage == 1 ? 'disabled' : ''}>이전 페이지</button>
 
-			<div class="faqbtn">
+			<!-- 페이지 번호 버튼 -->
+			<c:forEach var="pageNum" begin="1" end="${totalPages}">
+				<button onclick="loadPage(${pageNum})"
+					${pageNum == currentPage ? 'disabled' : ''}>${pageNum}</button>
+			</c:forEach>
 
-				<a href="/FAQ"><h2>문의 작성</h2></a>
-
-			</div>
-
+			<!-- 다음 페이지 버튼 -->
+			<button onclick="loadPage(${currentPage + 1})"
+				${currentPage == totalPages ? 'disabled' : ''}>다음 페이지</button>
+ --%>
 
 		</div>
 
@@ -100,6 +111,7 @@
 <!-- JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- 토글로 FAQ의 하위메뉴를 보여주는 함수 -->
 <script>
 	function toggleContents() {
 		// 해당 행의 "내용" 부분을 가져옴
@@ -112,6 +124,8 @@
 		}
 	}
 </script>
+
+<!-- 게시글 삭제 함수 -->
 <script>
 	// JavaScript 함수를 통해 게시물 삭제 요청 전송
 	function deleteArticle(id) {
@@ -140,12 +154,85 @@
 	}
 </script>
 <script>
-const contents = document.getElementById("answer").innerText;
+function updateAnswerStatus() {
+	// Get the table element by its ID
+  const table = document.getElementById('dataTable');
+  
+  // Get all the rows of the table, excluding the header row (index 0)
+  const rows = table.getElementsByTagName('tr');
 
-if (contents !== "") {
-  document.getElementById("answerStatus").innerText = "O";
+  // Loop through each row starting from index 1 (to exclude header row)
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    const answerCell = row.cells[5]; // Index of the cell containing the answer value
+	const answerValueCell = row.cells[6]
+    
+    // Get the value of the answer from the cell
+    const answerValue = answerCell.innerText.trim();
+
+    // Check if the answer is not an empty string
+    if (answerValue !== "") {
+      // Update the content of the cell with 'O'
+      answerValueCell.innerText = "O";
+    }
+  }
 }
+
+// Call the function after the page has loaded
+window.onload = function() {
+  updateAnswerStatus();
+};
 </script>
+
+
+
+
+
+<!-- 관리자로 로그인하면 숨겨진 메뉴 나타나기 -->
+<script>
+// 서버에서 데이터를 가져오는 함수
+function fetchFAQListForAdmin() {
+    // AJAX를 사용하여 서버에서 데이터를 가져옵니다.
+    $.ajax({
+        url: '/selectAllFAQsForAdmin',
+        method: 'GET',
+        success: function(response) {
+            // 서버에서 받아온 데이터를 변수에 저장합니다.
+            var faqListForAdmin = response;
+            // 이후 원하는 작업을 수행합니다.
+            processFAQListForAdmin(faqListForAdmin);
+        },
+        error: function(error) {
+            console.error('데이터를 불러오는 데 실패했습니다.');
+        }
+    });
+}
+
+// 반복 처리를 위한 함수를 정의합니다.
+function processFAQListForAdmin(faqListForAdmin) {
+    for (var i = 0; i < faqListForAdmin.length; i++) {
+/*     	var nickname = ${nickname}; */
+        var dto = faqListForAdmin[i];
+
+        // dto.writer 값을 사용하여 숨겨진 div 보이기/숨기기 작업을 수행합니다.
+        var adminDiv = document.getElementById("adminDiv");
+        if (${nickname} = "admin") {
+            adminDiv.style.display = "block";
+        } else {
+            adminDiv.style.display = "none";
+        }
+        
+
+    }
+}
+
+// 페이지 로딩이 완료되면 데이터를 불러옵니다.
+$(document).ready(function() {
+    fetchFAQListForAdmin();
+});
+
+</script>
+
 <!--클릭하면 숨겨진 div를 보여주기 -->
 <script>
 	// 버튼 요소를 선택합니다.
@@ -173,89 +260,35 @@ if (contents !== "") {
 	});
 </script>
 
-<!-- writer가 admin이면 관리자 메뉴를 표시 -->
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		// ${dto.writer} 값이 'admin'인 경우
-	            // id가 "ask"인 li 요소의 글자 변경
-	            var askLi = document.getElementById("ask");
-		if ("${dto.writer}" == 'admin') {
-			// div를 표시합니다.
-	            askLi.innerText = "이용문의(관리자)";
-		}
-	});
-</script>
-<!-- 관리자로 로그인하면 숨겨진 메뉴 나타나기 -->
-<script>
-// 서버에서 데이터를 가져오는 함수
-function fetchFAQListForAdmin() {
-    // AJAX를 사용하여 서버에서 데이터를 가져옵니다.
-    $.ajax({
-        url: '/selectAllFAQsForAdmin',
-        method: 'GET',
-        success: function(response) {
-            // 서버에서 받아온 데이터를 변수에 저장합니다.
-            var faqListForAdmin = response;
-            // 이후 원하는 작업을 수행합니다.
-            processFAQListForAdmin(faqListForAdmin);
-        },
-        error: function(error) {
-        	console.log("일반 계정으로 로그인했습니다.")
-        }
-    });
-}
+<!-- <script>
+    var currentPage = 1;
+    var totalPages = ${totalPages};
 
-// 반복 처리를 위한 함수를 정의합니다.
-function processFAQListForAdmin(faqListForAdmin) {
-    for (var i = 0; i < faqListForAdmin.length; i++) {
-/*     	var nickname = ${nickname}; */
-        var dto = faqListForAdmin[i];
-        // dto 객체를 이용하여 필요한 작업을 수행합니다.
-        // dto.writer 값을 사용하여 숨겨진 div 보이기/숨기기 작업을 수행합니다.
-        var adminDiv = document.getElementById("adminDiv");
-        if (${nickname} = "admin") {
-            adminDiv.style.display = "block";
-        } else {
-            adminDiv.style.display = "none";
+    function loadPage(pageNum) {
+        // 페이지 번호가 유효한 범위인지 확인
+        if (pageNum >= 1 && pageNum <= totalPages) {
+            // AJAX를 사용하여 해당 페이지의 게시물을 가져옴
+            $.ajax({
+                url: '/selectFAQsForAdmin',
+                method: 'GET',
+                data: {
+                    pageNum: pageNum
+                },
+                success: function(response) {
+                    // 받아온 데이터를 화면에 출력하거나 필요한 작업 수행
+                    // 여기서는 예시로 콘솔에 출력하는 것으로 대체
+                    console.log(response);
+                    currentPage = pageNum;
+                },
+                error: function(error) {
+                    console.error('데이터를 불러오는 데 실패했습니다.');
+                }
+            });
         }
     }
-}
 
-// 페이지 로딩이 완료되면 데이터를 불러옵니다.
-$(document).ready(function() {
-    fetchFAQListForAdmin();
-});
+    // 페이지 로딩 시 초기 데이터를 불러옵니다.
+    loadPage(currentPage);
+</script> -->
 
-</script>
-
-<script>
-function updateAnswerStatus() {
-	// Get the table element by its ID
-  const table = document.getElementById('dataTable');
-  
-  // Get all the rows of the table, excluding the header row (index 0)
-  const rows = table.getElementsByTagName('tr');
-
-  // Loop through each row starting from index 1 (to exclude header row)
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    const answerCell = row.cells[5]; // Index of the cell containing the answer value
-	const answerValueCell = row.cells[6]
- 
-    // Get the value of the answer from the cell
-    const answerValue = answerCell.innerText.trim();
-
-    // Check if the answer is not an empty string
-    if (answerValue !== "") {
-      // Update the content of the cell with 'O'
-      answerValueCell.innerText = "O";
-    }
-  }
-}
-
-// Call the function after the page has loaded
-window.onload = function() {
-  updateAnswerStatus();
-};
-</script>
 </html>

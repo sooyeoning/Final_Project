@@ -36,7 +36,7 @@
             	<a href="/delete?boardId=${board.id }">삭제</a>
             </c:when>
             <c:otherwise>
-                <button>신고</button>
+                <a href="/board/report?id=${board.id}" class="reportbutton" onclick="checkDuplicateReport(${board.id})">신고</a>
             </c:otherwise>
     	</c:choose>
     </div>
@@ -90,6 +90,7 @@
                 }
             });
         }
+
     </script>
     
     <!-- 댓글창 추가: 하트 위치 변경 -->

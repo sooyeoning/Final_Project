@@ -301,9 +301,17 @@ public class UserController {
         }
     }
     
-    @GetMapping("/getReportList")
-    public ResponseEntity<List<ReportDTO>> getReportList() {
-        List<ReportDTO> reportList = service.getAllReportList();
-        return new ResponseEntity<>(reportList, HttpStatus.OK);
-}
+    @GetMapping("/getReportBoardList")
+    public ResponseEntity<List<ReportDTO>> getReportBoardList() {
+        List<ReportDTO> reportBoardList = service.getAllReportBoardList();
+        return new ResponseEntity<>(reportBoardList, HttpStatus.OK);
+    }
+
+    @GetMapping("/getReportCommentList")
+    public ResponseEntity<List<ReportDTO>> getReportCommentList() {
+        List<ReportDTO> reportCommentList = service.getAllReportCommentList();
+        return new ResponseEntity<>(reportCommentList, HttpStatus.OK);
+    }
+
+
 }

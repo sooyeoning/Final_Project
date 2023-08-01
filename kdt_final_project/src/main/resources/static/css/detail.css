@@ -82,3 +82,14 @@ section #contents{
 	padding: 1vw;
 	border-bottom: solid 1px #2463d3;
 }
+
+.reportbutton{
+	color: black; /*글씨색상*/
+	font-family: 'LeferiBaseType-RegularA';
+	background-color: white;
+    border: none;
+	width: 3vw;
+	text-align: center;
+	padding: 0 0.5vw 0 0.5vw;
+	font-size: 1.2vw;
+}

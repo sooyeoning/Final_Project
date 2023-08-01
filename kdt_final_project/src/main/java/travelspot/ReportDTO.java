@@ -13,12 +13,12 @@ public class ReportDTO {
 	private String reportContents; //신고 내용
 	private String regDate; //신고날짜
 	private int contentId; //신고당하는 댓글이 있는 게시글 번호
+	private int boardId;
 
 	public ReportDTO() {}
 
 	public ReportDTO(int id, int commentId, String userNickname, String userId, String reportCategory,
-			String reportContents, String regDate, int contentId, String reportedId) {
-		super();
+			String reportContents, String regDate, int contentId, String reportedId,int boardId) {
 		this.id = id;
 		this.commentId = commentId;
 		this.userNickname = userNickname;
@@ -28,6 +28,7 @@ public class ReportDTO {
 		this.regDate = regDate;
 		this.contentId = contentId;
 		this.reportedId = reportedId;
+		this.boardId = boardId;
 	}
 
 	public int getContentId() {
@@ -92,4 +93,14 @@ public class ReportDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
+	
+	
 }

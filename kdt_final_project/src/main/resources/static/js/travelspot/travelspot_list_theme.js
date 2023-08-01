@@ -29,4 +29,6 @@ $(document).ready(function(){
 	if($("#selectItem").val()=="none"){		
 		$("#selectItem").val("none").prop("selected", true);
 	} 
+	
+	
 })//ready end

@@ -206,3 +206,74 @@ h1 {
 #backUserList:hover {
   background-color: #1976d2;
 }
+
+/* 글 신고리스트 */
+.reportBoardList-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.reportBoardList-table th {
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 1vw;
+}
+
+.reportBoardList-table td {
+	max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 10px;
+}
+
+.reportBoardList-table th, .reportBoardList-table td {
+	padding: 5px;
+	text-align: center;
+	border: 1px solid #ddd;
+}
+
+/* 짝수 행과 홀수 행의 배경색을 번갈아가면서 지정 */
+.reportBoardList-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.reportBoardList-table tr:hover {
+	background-color: #e6e6e6; /* 마우스 오버 시 배경색 변경 */
+}
+
+
+/* 댓글 신고리스트 */
+.reportList-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.reportList-table th {
+	font-weight: bold;
+	white-space: nowrap;
+	font-size: 1vw;
+}
+
+.reportList-table td {
+	max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 10px;
+}
+
+.reportList-table th, .reportList-table td {
+	padding: 5px;
+	text-align: center;
+	border: 1px solid #ddd;
+}
+
+/* 짝수 행과 홀수 행의 배경색을 번갈아가면서 지정 */
+.reportList-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.reportList-table tr:hover {
+	background-color: #e6e6e6; /* 마우스 오버 시 배경색 변경 */
+}

@@ -118,6 +118,36 @@
 				<button id="deleteUserButton">회원 탈퇴</button>
 				<button id="backUserList">되돌아가기</button>
 			</div>
+			
+						<div class="side-menu-form" id="section2">
+				<h1>글 신고리스트</h1>
+				<table class="reportBoardList-table" border="1">
+					<thead>
+						<tr>
+							<th>신고번호</th>
+							<th>게시글번호</th>
+							<th>신고받은 아이디</th>
+							<th>신고자 아이디</th>
+							<th>카테고리</th>
+							<th>내용</th>
+						</tr>
+					</thead>
+					<tbody id="reportBoardTableBody">
+						<c:forEach var="report" items="${reportBoardList}">
+							<tr>
+								<td>${report.id}</td>
+								<td><a href="#" class="reported-Id-link">${report.reportedId}</a></td>
+								<td>${report.boardId}</td>
+								<td><a href="#" class="userId-Id-link">${report.userId}</a></td>
+								<td>${report.reportCategory}</td>
+								<td>${report.reportContents}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			
+			
 			<div class="side-menu-form" id="section3">
 				<h1>댓글 신고리스트</h1>
 				<table class="reportList-table" border="1">
@@ -125,27 +155,21 @@
 						<tr>
 							<th>신고번호</th>
 							<th>댓글번호</th>
-							<th>신고받은 닉네임</th>
-							<th>신고자 닉네임</th>
+							<th>신고받은 아이디</th>
 							<th>신고자 아이디</th>
-							<th>신고 카테고리</th>
-							<th>신고 내용</th>
-							<th>신고 날짜</th>
-							<th>신고받은 게시글</th>
+							<th>카테고리</th>
+							<th>내용</th>
 						</tr>
 					</thead>
 					<tbody id="reportTableBody">
-						<c:forEach var="report" items="${reportList}">
+						<c:forEach var="report" items="${reportCommentList}">
 							<tr>
 								<td>${report.id}</td>
-								<td>${report.reportedNickname}</td>
+								<td><a href="#" class="reported-Id-link">${report.reportedId}</a></td>
 								<td>${report.commentId}</td>
-								<td>${report.userNickname}</td>
-								<td>${report.userId}</td>
+								<td><a href="#" class="userId-Id-link">${report.userId}</a></td>
 								<td>${report.reportCategory}</td>
 								<td>${report.reportContents}</td>
-								<td>${report.regDate}</td>
-								<td>${report.contentId}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

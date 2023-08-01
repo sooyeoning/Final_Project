@@ -41,6 +41,7 @@ public interface UserService {
 	
 	void deleteUser(String userid) throws Exception;
 	
-	List<ReportDTO> getAllReportList();
+    List<ReportDTO> getAllReportBoardList();
+    List<ReportDTO> getAllReportCommentList();
 
 }

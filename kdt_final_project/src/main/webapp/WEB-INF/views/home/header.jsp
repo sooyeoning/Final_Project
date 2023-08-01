@@ -12,6 +12,17 @@
 </head>
 <body>
 <header>
+<script>
+	function googleTranslateElementInit() {
+		new google.translate.TranslateElement({
+			pageLanguage: 'ko',
+			includedLanguages: 'ko,en',
+			//layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+			autoDisplay: false
+		}, 'google_translate_element');
+	}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <div id="body" >
 <% 
 String login=null;
@@ -44,7 +55,11 @@ if (login==null){%>
 
 
 
-<a href="/"><img src="/img/logo.png" class="logo" ></a>
+
+
+
+
+<a href="/"><img src=../img/logo.png class="logo" ></a>
 <a href="/travelspot/list"><div class="menu" >여행지 추천</div></a>
 <a href="/community"><div class="menu" >커뮤니티</div></a>
 <%if(login==null) {%>
@@ -60,7 +75,9 @@ if (login==null){%>
 <%}; %>
 
 <a href="/FAQ"><div class="menu" >고객센터</div></a>
-<a href="/FAQ"><div class="menu" >착한가게</div></a>
+<!-- <a href="/FAQ"><div class="menu" >착한가게</div></a> -->
+<div id="google_translate_element" class="hd_lang" style="float: right;position: relative;top: -4px;margin-left: 10px;"></div>
+</div>
 <br><br>
 </div>
 </header>

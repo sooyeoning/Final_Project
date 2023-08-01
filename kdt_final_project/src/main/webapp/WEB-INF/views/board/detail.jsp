@@ -43,7 +43,7 @@
     </div>
     <div id="contents">${board.contents}</div>
     <a class="likebtn" onclick="checkLoginAndHandleLike(${board.id})">like button</a>
-    <span id="likeCount">${board.likecount}</span>
+    <span id="likeCount">${board.likecount}</span><br/>
     <script>
     	/* const likebtn = document.querySelector(".likebtn");
     	likebtn.addEventListener('click',function(){
@@ -94,11 +94,12 @@
     </script>
     
     <!-- 댓글창 추가: 하트 위치 변경 -->
-	<p class="main_color">댓글창</p><br>
-	<textarea id="content" style="width:100%; resize: none;" rows="4">댓글을 남겨주세요 </textarea><!-- 여백 조정없이 padding 필요 -->
+	<!-- <p class="main_color">댓글창</p><br> -->
+	<div id="comment-box">
+	<textarea id="content" style="resize: none;" rows="4">댓글을 남겨주세요 </textarea><!-- 여백 조정없이 padding 필요 -->
 	<input type="text" class="login" value="${nickname }" hidden="hidden">
 	<input type="button" class="savebutton" value="저장"><!-- 오른쪽 정렬 -->
-	
+	</div>
 	<div class="comments"></div>
 </section>
 <%@ include file="../../views/home/footer.jsp"%>

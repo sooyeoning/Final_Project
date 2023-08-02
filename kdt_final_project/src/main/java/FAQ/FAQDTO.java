@@ -2,10 +2,17 @@ package FAQ;
 
 public class FAQDTO {
 	
-	String title, contents, categories, writer, writingtime;
+	String title, contents, board_title, writer, writingtime, answer;
 	int id;
 	
+	public String getAnswer() {
+		return answer;
+	}
 
+	
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 	public int getId() {
 		return id;
 	}
@@ -47,12 +54,12 @@ public class FAQDTO {
 		this.contents = contents;
 	}
 
-	public String getCategories() {
-		return categories;
+	public String getBoard_title() {
+		return board_title;
 	}
 
-	public void setCategories(String categories) {
-		this.categories = categories;
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
 	
 	
@@ -72,7 +79,7 @@ public class FAQDTO {
 	
 	/*
 	 * private int articleNO; private String title; private String content; private
-	 * String categories; private String email; private String phone; private String
+	 * String board_title; private String email; private String phone; private String
 	 * agree_yn; private String imageFileName; private MultipartFile imageFile;
 	 * 
 	 * // Getter와 Setter 메서드 추가
@@ -93,9 +100,9 @@ public class FAQDTO {
 	 * 
 	 * public void setContent(String content) { this.content = content; }
 	 * 
-	 * public String getCategories() { return categories; }
+	 * public String getboard_title() { return board_title; }
 	 * 
-	 * public void setCategories(String categories) { this.categories = categories;
+	 * public void setboard_title(String board_title) { this.board_title = board_title;
 	 * }
 	 * 
 	 * public String getEmail() { return email; }
@@ -117,7 +124,7 @@ public class FAQDTO {
 	 * imageFile; }
 	 * 
 	 * @Override public String toString() { return "FAQDTO [articleNO=" + articleNO
-	 * + ", title=" + title + ", content=" + content + ", categories=" + categories
+	 * + ", title=" + title + ", content=" + content + ", board_title=" + board_title
 	 * + ", email=" + email + ", phone=" + phone + ", imageFileName=" +
 	 * imageFileName +
 	 * ",imageFile=\" + imageFile + \", agree_yn=\" + agree_yn + \"]"; }

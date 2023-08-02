@@ -10,7 +10,7 @@
 <script src="/js/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0&autoload=false"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0&libraries=services,clusterer,drawing&autoload=false">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0&libraries=services,clusterer,drawing&autoload=false"></script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a02700d6a520b1b4d23a9886f1160e0&libraries=services,clusterer,drawing"></script>

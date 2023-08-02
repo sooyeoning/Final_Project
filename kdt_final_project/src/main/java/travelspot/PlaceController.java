@@ -81,6 +81,7 @@ public class PlaceController {
 			mv.addObject("placelist", placelist);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
+			mv.addObject("searchword",searchword);
 			mv.addObject("page", page);
 			mv.setViewName("/travelspot/travelspot_searchlist");
 			return mv;
@@ -210,6 +211,7 @@ public class PlaceController {
 			
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("placelist", placelist);
+			mv.addObject("searchword",searchword);
 			mv.addObject("searchmap", map);
 			mv.addObject("totalCnt", totalCnt);
 			mv.addObject("page", page);
@@ -221,6 +223,8 @@ public class PlaceController {
 	public ModelAndView showThemePost(@RequestParam int contentId, HttpSession session) {
 		PlaceDTO placedto = placeservice.selectPlace(contentId);
 		
+		placeservice.plusViewCount(contentId);//조회수 증가
+
 		ModelAndView mv = new ModelAndView();
 		
 		UserDTO userdto = (UserDTO)session.getAttribute("user");

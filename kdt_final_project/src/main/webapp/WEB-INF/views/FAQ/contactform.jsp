@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" type="text/css" href="css/FAQ/main.css">
+<link rel="stylesheet" type="text/css" href="css/FAQ/main2.css">
 <!--   <link rel="stylesheet" type = "text/css" href="css/FAQ/reset.css"> -->
 </head>
+
 <body>
 	<!-- header -->
 	<%@ include file="../home/header.jsp"%>
@@ -20,13 +22,25 @@
 				<!-- 왼쪽 섹션 -->
 				<h2>문의 분류</h2>
 				<br>
-				<ul class="category-list">
+				<div style="display: flex;">
+					<h2 id="showbtn" class="showbtn">FAQ</h2>
+					<img id="showbtn_img" class="dropdown-2"
+						src="css/FAQ/dropdown-2.png">
+				</div>
+				<ul id="categories" class="category-list" style="display: none;">
 					<li><a href="/FAQ01">일반</a></li>
 					<li><a href="/FAQ02">가입 변경/탈퇴</a></li>
 					<li><a href="/FAQ03">신고/이용제한</a></li>
 					<li><a href="/FAQ04">프로필 관련</a></li>
+				</ul>
+				<ul class="category-list">
 					<li><a href="/selectFAQs">이용 문의</a></li>
 				</ul>
+				<div id="adminDiv" style="display: none">
+					<h2>
+						<a href="selectFAQs">이용 문의(관리자) </a>
+					</h2>
+				</div>
 			</div>
 
 			<div class="right-section">
@@ -58,77 +72,47 @@
       </div> -->
 
 					<div class="form-group">
-						<label for="categories">문의 분류</label> <select id="categories"
-							class="form-control-category" name="categories">
-							<option value="일반">일반</option>
-							<option value="가입 변경/탈퇴">가입 변경/탈퇴</option>
-							<option value="신고/이용제한">신고/이용제한</option>
-							<option value="프로필 관련">프로필 관련</option>
-							<option value="기타">기타</option>
-						</select>
+						<label for="board_title">문의 분류</label><br>
+						<div>
+							<select id="board_title" class="form-control-category"
+								name="board_title">
+								<option value="일반">일반</option>
+								<option value="가입 변경/탈퇴">가입 변경/탈퇴</option>
+								<option value="신고/이용제한">신고/이용제한</option>
+								<option value="프로필 관련">프로필 관련</option>
+								<option value="기타">기타</option>
+							</select>
+						</div>
 					</div>
 
 					<input type="hidden" id="writer" name="writer" value="${nickname }"
-						readonly><br>
+						readonly>
 
 					<div class="form-group">
 						<label for="title">제목</label>
-						<textarea class="form-control" id="title" name="title"
-							placeholder="제목을 입력하세요" required></textarea>
+						<textarea maxlength="100" class="form-control" id="title"
+							name="title" placeholder="제목을 입력하세요(100자 이내)" required></textarea>
 					</div>
 
 					<div class="form-group">
-						<label for="title">문의 내용</label>
-						<textarea class="form-control-textarea" id="contents-textarea"
-							name="contents" required></textarea>
+						<label for="contents">문의 내용</label>
+						<textarea maxlength="4000" class="form-control-textarea"
+							id="contents-textarea" name="contents"
+							placeholder="내용을 입력하세요(4000자 이내)" required></textarea>
 					</div>
 
-					<div>파일 첨부</div>
+			<!-- 		<div>파일 첨부</div>
 					<label for="attachment-input" class="custom-file-button"
 						id="file-name-display">첨부할 파일을 선택하세요 <input type="file"
 						class="form-control-attachment" id="attachment-input"
 						name="imageFileName" accept='image/*'>
-					</label>
+					</label> -->
 					<!-- <span id="file-cancel-button" class="file-cancel-button" style="display: none;">파일 선택 취소</span>
  -->
 
 
-					<div class="privacy-policy">
-						<p class="bold-text">개인정보 수집·이용에 대한 안내</p>
-						<br>
-						<h5>(필수) 개인정보 수집·이용에 대한 안내</h5>
-						<br>
-						<h5>(주)위트는 이용자 문의를 처리하기 위해 다음과 같이 개인정보를 수집 및 이용하며, 이용자의 개인정보를
-							안전하게 취급하는데 최선을 다하고 있습니다.</h5>
-						<br>
-						<table class="table-control">
-							<tr>
-								<th>수집항목</th>
-								<th>수집목적</th>
-								<th>보유기간</th>
-							</tr>
-							<tr>
-								<td>이메일 주소, 휴대폰 번호</td>
-								<td>문의・요청・불편사항 확인 및 <br>처리결과 회신
-								</td>
-								<td>3년간 보관 후 지체없이 파기</td>
-							</tr>
-						</table>
-
-						<br>
-						<h5>위 동의를 거부할 권리가 있으며, 동의를 거부하실 경우 문의 처리 및 결과 회신이 제한됩니다.</h5>
-						<br>
-
-						<h5>더 자세한 내용에 대해서는 위트 개인정보처리방침을 참고하시기 바랍니다.</h5>
-						<br>
-						<div class="checkbox-container">
-							<input type="checkbox" id="agree-checkbox" name="agree_yn"
-								required> <label for="agree-checkbox">위 내용에
-								동의합니다.</label>
-						</div>
-					</div>
 					<br>
-					<button type="submit">문의접수</button>
+					<button class="submitbtn" type="submit">문의접수</button>
 				</form>
 
 			</div>
@@ -159,7 +143,28 @@
 
 			}
 		</script>
+		<script>
+			const textarea = document.getElementById("title");
+			const maxLength = parseInt(textarea.getAttribute("maxlength"));
 
+			textarea.addEventListener("input", function() {
+				const text = this.value;
+				if (text.length > maxLength) {
+					alert("글자수는 100자 이내로 제한됩니다.")
+				}
+			});
+		</script>
+		<script>
+			const textarea = document.getElementById("contents-textarea");
+			const maxLength = parseInt(textarea.getAttribute("maxlength"));
+
+			textarea.addEventListener("input", function() {
+				const text = this.value;
+				if (text.length > maxLength) {
+					alert("글자수는 4000자 이내로 제한됩니다.");
+				}
+			});
+		</script>
 
 
 
@@ -174,4 +179,77 @@
 
 
 </body>
+
+<!--클릭하면 숨겨진 div를 보여주기 -->
+<script>
+	// 버튼 요소를 선택합니다.
+	var showbtn = document.getElementById("showbtn");
+
+	// 숨겨진 div 요소를 선택합니다.
+	var categories = document.getElementById("categories");
+	var showbtn_img = document.getElementById("showbtn_img");
+
+	// 버튼을 클릭하면 숨겨진 div를 보여줍니다.
+	showbtn.addEventListener("click", function() {
+		if (categories.style.display === "none") {
+			categories.style.display = "block";
+			showbtn_img.style.transform = "scaleY(-1)";
+		} else {
+			categories.style.display = "none";
+			showbtn_img.style.transform = "scaleY(1)";
+		}
+	});
+
+	// div를 클릭하면 다시 숨깁니다.
+	categories.addEventListener("click", function() {
+		categories.style.display = "none";
+		showbtn_img.style.transform = "scaleY(1)";
+	});
+</script>
+
+<!-- 관리자로 로그인하면 숨겨진 메뉴 나타나기 -->
+<script>
+// 서버에서 데이터를 가져오는 함수
+function fetchFAQListForAdmin() {
+    // AJAX를 사용하여 서버에서 데이터를 가져옵니다.
+    $.ajax({
+        url: '/selectAllFAQsForAdmin',
+        method: 'GET',
+        success: function(response) {
+            // 서버에서 받아온 데이터를 변수에 저장합니다.
+            var faqListForAdmin = response;
+            // 이후 원하는 작업을 수행합니다.
+            processFAQListForAdmin(faqListForAdmin);
+        },
+        error: function(error) {
+            console.error('데이터를 불러오는 데 실패했습니다.');
+        }
+    });
+}
+
+// 반복 처리를 위한 함수를 정의합니다.
+function processFAQListForAdmin(faqListForAdmin) {
+    for (var i = 0; i < faqListForAdmin.length; i++) {
+/*     	var nickname = ${nickname}; */
+        var dto = faqListForAdmin[i];
+        // dto 객체를 이용하여 필요한 작업을 수행합니다.
+        console.log(dto.id);
+        console.log(dto.writer);
+        console.log(dto.title);
+        // dto.writer 값을 사용하여 숨겨진 div 보이기/숨기기 작업을 수행합니다.
+        var adminDiv = document.getElementById("adminDiv");
+        if (${nickname} = "admin") {
+            adminDiv.style.display = "block";
+        } else {
+            adminDiv.style.display = "none";
+        }
+    }
+}
+
+// 페이지 로딩이 완료되면 데이터를 불러옵니다.
+$(document).ready(function() {
+    fetchFAQListForAdmin();
+});
+
+</script>
 </html>

@@ -12,17 +12,17 @@ $(document).ready(function(){
 	$(".placeprofile").click(function(){
 		//선택된 지역명 전달
 		let contentId = $(this).attr('id');
-		location.href="http://localhost:8099/travelspot/post?contentId="+contentId
+		location.href="/travelspot/post?contentId="+contentId
 	});
 	
 	$(".placeName").click(function(){ 
 		let contentId = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/post?contentId="+contentId
+		location.href="/travelspot/post?contentId="+contentId
 	});
 	
 	$(".placeLocation").click(function(){
 		let contentId = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/post?contentId="+contentId//이동		
+		location.href="/travelspot/post?contentId="+contentId//이동		
 	});
 	
 	//마우스 올리면 색변경

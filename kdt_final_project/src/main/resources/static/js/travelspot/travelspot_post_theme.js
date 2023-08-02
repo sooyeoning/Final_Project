@@ -14,6 +14,11 @@ $(document).ready(function() {
 		infoAjax();
 	});//image onclick end
 
+	//공유 기능
+	$("#share").click(function() {
+		clip();
+	})
+	
 	//좋아요 클릭
 	$("#like").click(function() {
 		if (document.getElementById('like_id').value == "null") {
@@ -138,9 +143,9 @@ $(document).ready(function() {
 				} if (dto.firstmenu != null && dto.firstmenu != "null") {
 					$('div[class="result"]').append('<p class="pstyle">대표메뉴<br><hr class="hrdetail"><br>' + dto.firstmenu + '<br><br>');
 				} if (dto.reservationinfo != null && dto.reservationinfo != "null") {
-					$('div[class="result"]').append('<p class="pstyle">예약 안내<br><hr class="hrdetail"><br>'  + dto.reservationinfo + '<br><br>');
+					$('div[class="result"]').append('<p class="pstyle">예약 안내<br><hr class="hrdetail"><br>' + dto.reservationinfo + '<br><br>');
 				} if (dto.takeout != null && dto.takeout != "null") {
-					$('div[class="result"]').append('<p class="pstyle">포장 가능여부<br><hr class="hrdetail"><br>'  + dto.takeout + '<br><br>');
+					$('div[class="result"]').append('<p class="pstyle">포장 가능여부<br><hr class="hrdetail"><br>' + dto.takeout + '<br><br>');
 				} if (dto.parking != "null" && dto.parking != null) {
 					$('div[class="result"]').append('<p class="pstyle">주차 가능여부<br><hr class="hrdetail"><br>' + dto.parking + '<br><br>');
 				} if (dto.parkingfee != "null" && dto.parkingfee != null) {
@@ -184,6 +189,19 @@ $(document).ready(function() {
 		for (var i = 0; i < font_content.length; i++) {
 			font_content[i].addEventListener("click", handleClick);
 		}
+	}
+
+	function clip() {
+
+		var url = '';
+		var textarea = document.createElement("textarea");
+		document.body.appendChild(textarea);
+		url = window.document.location.href;
+		textarea.value = url;
+		textarea.select();
+		document.execCommand("copy");
+		document.body.removeChild(textarea);
+		alert("URL이 복사되었습니다.")
 	}
 
 	init();

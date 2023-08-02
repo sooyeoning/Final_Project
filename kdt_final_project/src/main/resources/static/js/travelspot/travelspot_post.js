@@ -14,6 +14,11 @@ $(document).ready(function() {
 	});
 	//image onclick end
 
+	//공유 기능
+	$("#share").click(function() {
+		clip();
+	})
+
 	//좋아요 클릭
 	$("#like").click(function() {
 		if (document.getElementById('like_id').value == "null") {
@@ -23,23 +28,23 @@ $(document).ready(function() {
 				url: "/travelspot/post/likes?contentId=" + contentId,
 				type: 'get',
 				success: function(response) {
-					if ($.trim(response) == "success") {	
+					if ($.trim(response) == "success") {
 						alert("해당 관광지에 좋아요를 누르셨습니다.");
-					} else if($.trim(response) == "alreadyliked"){
+					} else if ($.trim(response) == "alreadyliked") {
 						//취소
-						if(confirm("좋아요를 취소하시겠습니까?")){
+						if (confirm("좋아요를 취소하시겠습니까?")) {
 							$.ajax({
-								url: "/travelspot/post/cancelLikes?contentId="+contentId,
+								url: "/travelspot/post/cancelLikes?contentId=" + contentId,
 								type: 'get',
-								success: function(response){
-									if($.trim(response) == "success"){
+								success: function(response) {
+									if ($.trim(response) == "success") {
 										alert("정상적으로 취소되었습니다.");
 									}
 								}
 							})
 						}
-					} 		
-					
+					}
+
 				},//success
 				error: function() { }
 
@@ -66,11 +71,11 @@ $(document).ready(function() {
 			success: function(placeDTO) {
 				//지도 
 				$('div[class="result"]').html('<div id="map" style="width:100%; height:400px;"></div><br>');
-				
+
 				var mapx = placeDTO.mapx; //위도
 				var mapy = placeDTO.mapy; //경도
 				var title = placeDTO.title;
-				
+
 				//위도, 경도 이용해서 날씨 아이콘 띄우기
 				$('div[class="weather"]').html(mapx);
 
@@ -102,11 +107,11 @@ $(document).ready(function() {
 					position: iwPosition,
 					content: iwContent
 				});
-				
+
 				// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 				infowindow.open(map, marker);
 
-				
+
 				// 기본상세정보
 				if (placeDTO.contents != null) {
 					$('div[class="result"]').append('<p class="pstyle">관광지 설명<br><hr class="hrdetail"><br>' + placeDTO.contents + '<br><br>');
@@ -114,7 +119,7 @@ $(document).ready(function() {
 				if (placeDTO.homepage != 'null') {
 					$('div[class="result"]').append('<p class="pstyle">관광지 대표 홈페이지<br><hr class="hrdetail"><br>' + placeDTO.homepage + '<br><br>');
 				}
-			
+
 				//스크롤
 				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
 				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
@@ -122,33 +127,48 @@ $(document).ready(function() {
 			error: function() { }
 		});
 	};
-	
+
 	//메뉴 클릭시 색상 변경
- 	var font_content = document.getElementsByClassName("font_content");
+	var font_content = document.getElementsByClassName("font_content");
 
-    function handleClick(event) {
-        console.log(event.target);
-        // console.log(this);
-        // 콘솔창을 보면 둘다 동일한 값이 나온다
+	function handleClick(event) {
+		console.log(event.target);
+		// console.log(this);
+		// 콘솔창을 보면 둘다 동일한 값이 나온다
 
-        console.log(event.target.classList);
+		console.log(event.target.classList);
 
-        if (event.target.classList[1] === "clicked") {
-          event.target.classList.remove("clicked");
-        } else {
-          for (var i = 0; i < font_content.length; i++) {
-            font_content[i].classList.remove("clicked");
-          }
+		if (event.target.classList[1] === "clicked") {
+			event.target.classList.remove("clicked");
+		} else {
+			for (var i = 0; i < font_content.length; i++) {
+				font_content[i].classList.remove("clicked");
+			}
 
-          event.target.classList.add("clicked");
-        }
-      }
+			event.target.classList.add("clicked");
+		}
+	}
 
-      function init() {
-        for (var i = 0; i < font_content.length; i++) {
-          font_content[i].addEventListener("click", handleClick);
-        }
-      }
+	function init() {
+		for (var i = 0; i < font_content.length; i++) {
+			font_content[i].addEventListener("click", handleClick);
+		}
+	}
 
-      init();
+	init();
+
+
+	function clip() {
+
+		var url = '';
+		var textarea = document.createElement("textarea");
+		document.body.appendChild(textarea);
+		url = window.document.location.href;
+		textarea.value = url;
+		textarea.select();
+		document.execCommand("copy");
+		document.body.removeChild(textarea);
+		alert("URL이 복사되었습니다.")
+	}
+
 });//ready end

@@ -122,11 +122,11 @@ function reportComment(map){ //댓글 신고 기능
 		 	alert("댓글 신고기능은 로그인 후 사용가능합니다.");
 		} else {
 			$.ajax({
-				url: "/travelspot/post/comments/reportcheck?id="+id+"&contentId="+contentId,			
+				url: "/travelspot/comments_reportcheck?id="+id+"&contentId="+contentId,			
 				type: 'post',
 				success: function(response){
 					if(response=="false"){
-						location.href="/travelspot/post/comments/report?id="+id+"&contentId="+contentId;			
+						location.href="/travelspot/comments_report?id="+id+"&contentId="+contentId;			
 					} else {
 						alert("이미 신고한 댓글입니다.");
 					}

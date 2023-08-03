@@ -83,13 +83,11 @@
 
 <div class="result"> </div><!-- ajax 이용 결과물 출력하는 곳 -->
 
-<div style="position:fixed; bottom:3%; right:-10%;">
-<a href="#"><img src="../img/top.png" width="5%" height="5%"></a></div>
-<div style="position: fixed; bottom: 10%; right:-18%;">
+<div class="parent">
+<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>
 <a href="#" onclick="location.href = document.referrer;"><img src="../img/prev.png" width="5%" height="5%"></a>
-<!-- location.href = document.referrer; 뒤로가기 후 새로고침이 필요할때 사용 -->
 </div>
-
+<!-- location.href = document.referrer; 뒤로가기 후 새로고침이 필요할때 사용 -->
 
 <%@ include file="../home/footer.jsp"%>
 

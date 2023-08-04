@@ -5,18 +5,18 @@ $(document).ready(function(){
 		$(this).css("color","#2463d3"); 
 		//선택된 지역명 전달
 		let contentId = $(this).attr('id');
-		location.href="http://localhost:8099/travelspot/themepost?contentId="+contentId//이동
+		location.href="/travelspot/themepost?contentId="+contentId//이동
 	})
 	$(".placeName").click(function(){
 		$(this).css("color","#2463d3"); 
 		let contentId = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/themepost?contentId="+contentId//이동
+		location.href="/travelspot/themepost?contentId="+contentId//이동
 	})//click end
 	
 	$(".placeLocation").click(function(){
 		//$(this).css("color","#2463d3"); 
 		let contentId = $(this).attr("id");
-		location.href="http://localhost:8099/travelspot/themepost?contentId="+contentId//이동
+		location.href="/travelspot/themepost?contentId="+contentId//이동
 		
 	})
 	

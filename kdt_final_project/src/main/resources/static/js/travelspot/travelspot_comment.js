@@ -17,9 +17,7 @@ $(document).ready(function() {
 				$('div[class="result"]').append('<div class="comments"></div>');
 				
 				getCommentList(); //저장된 댓글 불러오기
-				
-				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
-				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
+			
 				
 				$('.savebutton').click(function() {
                 	var content = $('#content').val();
@@ -59,8 +57,7 @@ function imageAjax(){
 			type: 'get',
 			success: function(placedto) {
 				$('div[class="result"]').html('<img class="images" src='+placedto.image1+'>');	
-				$('div[class="result"]').append(`<div style="position:fixed; bottom:3%; right:-10%;">
-				<a href="#"><img src="../img/top.png" width="5%" height="5%"></a>`);
+				
 			},
 			error: function() { }
 		});
@@ -122,11 +119,11 @@ function reportComment(map){ //댓글 신고 기능
 		 	alert("댓글 신고기능은 로그인 후 사용가능합니다.");
 		} else {
 			$.ajax({
-				url: "/travelspot/post/comments/reportcheck?id="+id+"&contentId="+contentId,			
+				url: "/travelspot/comments_reportcheck?id="+id+"&contentId="+contentId,			
 				type: 'post',
 				success: function(response){
 					if(response=="false"){
-						location.href="/travelspot/post/comments/report?id="+id+"&contentId="+contentId;			
+						location.href="/travelspot/comments_report?id="+id+"&contentId="+contentId;			
 					} else {
 						alert("이미 신고한 댓글입니다.");
 					}
@@ -193,9 +190,9 @@ function modifyComment(){ //댓글 수정 기능
 	//마이페이지 댓글창 이동
 	var referrer = document.referrer;
 	console.log("이전 페이지 URL: "+referrer);
-	if(referrer == "http://localhost:8099/travelspot/list" || referrer == "http://localhost:8099/travelspot/list_theme"){//기본페이지: 사진모아보기로 설정
+	if(referrer == "/travelspot/list" || referrer == "/travelspot/list_theme"){//기본페이지: 사진모아보기로 설정
 		imageAjax(); 
-	} else if(referrer == "http://localhost:8099/mypage") {	//이전페이지가 마이페이지이면 댓글버튼 클릭이벤트 강제 실행
+	} else if(referrer == "/mypage") {	//이전페이지가 마이페이지이면 댓글버튼 클릭이벤트 강제 실행
 		$("#comments").trigger("click");
 	}
 

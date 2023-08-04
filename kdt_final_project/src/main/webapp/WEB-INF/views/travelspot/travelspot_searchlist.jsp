@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>위트</title>
-<script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
+<script src="/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/travelspot/import.css" rel="stylesheet" type="text/css" />
-<script src="http://localhost:8099/js/travelspot/travelspot_list.js"></script>
+<script src="/js/travelspot/travelspot_list.js"></script>
 
 </head>
 <body>
@@ -42,16 +42,21 @@
 	<br>
 	<hr class="hrmargin">
 
+	<% 
+	String searchword2 = String.valueOf(request.getAttribute("searchword")); 
+	searchword2 = searchword2.replaceAll("%", "");
+	%>
+	
 	<form action="/travelspot/search" method="get" class="search-form">
 		<select name="item" class="search-item">
 			<option value="none" disabled>검색카테고리</option>
 			<option value="title">장소명</option>
 			<option value="address">주소</option>
 		</select> <input type="text" id="search-input" name="searchword"
-			class="search-input" placeholder="검색어를 입력하세요"> <input
+			class="search-input" placeholder=<%=searchword2 %>> <input
 			type="submit" value="검색" class="search-button">
 	</form>
-
+ 	
 	<div class="container">
 
 		<c:forEach items="${placelist }" var="placeDTO">

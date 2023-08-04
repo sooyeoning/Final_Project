@@ -414,3 +414,18 @@ select::-ms-expand {
 	font-family: 'LeferiBaseType-RegularA';
 }
 
+#share{
+	border: none;
+	background-color: white;
+	
+}
+
+
+  .parent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: fixed;
+      bottom: 5%;
+      right: -25vw; /*조정필요*/
+    }

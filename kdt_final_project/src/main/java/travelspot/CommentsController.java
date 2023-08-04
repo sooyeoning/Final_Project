@@ -99,7 +99,7 @@ public class CommentsController {
 		
 	 }
 	 
-	@GetMapping(value="/travelspot/post/comments/report")
+	@GetMapping(value="travelspot/comments_report")
 	public ModelAndView reportComments(int id, int contentId, HttpSession session) {
 		UserDTO userdto = (UserDTO)session.getAttribute("user");
 		
@@ -110,11 +110,11 @@ public class CommentsController {
 		mv.addObject("nickname", userdto.getNickname());//신고자닉네임
 		mv.addObject("userid", userdto.getUserid());//신고자아이디
 		
-		mv.setViewName("/travelspot/travelspot_reportcomments");
+		mv.setViewName("travelspot/travelspot_reportcomments");
 		return mv;
 	} 
 	
-	@PostMapping(value="/travelspot/post/comments/reportcheck")
+	@PostMapping(value="travelspot/comments_reportcheck")
 	@ResponseBody
 	public String checkReport(int id, int contentId, HttpSession session) {
 		UserDTO userdto = (UserDTO)session.getAttribute("user"); //로그인사용자
@@ -135,7 +135,7 @@ public class CommentsController {
 		return response;
 	}
 	
-	@PostMapping(value="/travelspot/post/comments/report")
+	@PostMapping(value="/travelspot/comments_report")
 	public String reportComments(ReportDTO ReportDTO) {
 		//신고내용 저장 -> 댓글창으로 리턴?
 		commentsservice.insertReport(ReportDTO);

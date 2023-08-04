@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"travelspot", "user", "controller","community","FAQ"})
+@ComponentScan(basePackages = {"travelspot", "User", "controller","community","FAQ"})
 @ComponentScan(basePackages = "errors")
 @MapperScan(basePackages = {"travelspot"})
 @EnableScheduling //스케줄링 활성화

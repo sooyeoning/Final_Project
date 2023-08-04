@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>위트</title>
-<script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
+<script src="/js/jquery-3.6.4.min.js"></script>
 
 <link href="/css/travelspot/import.css" rel="stylesheet" type="text/css"/>
-<script src="http://localhost:8099/js/travelspot/travelspot_list.js"></script>
+<script src="/js/travelspot/travelspot_list.js"></script>
 
 </head>
 <body>

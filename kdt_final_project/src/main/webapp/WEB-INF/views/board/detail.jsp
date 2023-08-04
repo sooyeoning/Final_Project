@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 
-<script src="http://localhost:8099/js/jquery-3.6.4.min.js"></script>
-<script src="http://localhost:8099/js/community/comment.js"></script>
+<script src="/js/jquery-3.6.4.min.js"></script>
+<script src="/js/community/comment.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

@@ -27,13 +27,7 @@ import org.w3c.dom.NodeList;
 @Transactional
 public class APIServiceImpl {
 
-	// (장훈님) String serviceKey
-	// ="gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
-	// (연균님) String serviceKey
-	// ="oMd9ys9uR2xk4AhaEw3PdU3zeKbjOIsk2Bz3OemXqEvLvkWYKrTrlHBgO9KXoLCRGHdi6VbCLaOkL4NB6AJIBA%3D%3D";
-	// (경민님) String serviceKey
-	// ="A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
-	// 상세정보 가져오기
+	
 	String serviceKey = "A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
 
 	StringBuilder urlBuilder;

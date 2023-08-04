@@ -16,11 +16,13 @@
 <div id="top5_record" >
 <c:forEach items="${getTop5Record}" var="board">
   <div id="to">
+  <a href="/detail?boardId=${board.id}">
     <h4>${board.title }</h4>
-    <p>${board.contents }
+    <p>${board.contents }</p>
     <span>
       ${board.writer }
     </span>
+    </a>
   </div>
 
 </c:forEach>

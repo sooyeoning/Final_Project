@@ -96,7 +96,7 @@
                         $("#likeButton").text("좋아요");
                         likebtn.classList.toggle("likeon");
                     }
-                    $("#likeCount").text("좋아요 수: " + response.likeCount);
+                    $("#likeCount").text(/* "좋아요 수: " +  */response.likeCount);
                     
                 },
                 error: function() {

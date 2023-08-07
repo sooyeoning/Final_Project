@@ -33,4 +33,10 @@ public class LikeServiceImpl implements LikeService {
 	public int getLikesCount(int board_id) {
 		return likeDAO.getLikesCount(board_id);
 	}
+	
+	@Override
+	public void increaseLikeCount(int board_id) {
+		likeDAO.increaseLikeCount(board_id);
+	}
+
 }

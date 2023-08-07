@@ -15,6 +15,7 @@
 	<!-- 모든 Board 목록 가져오기 -->
 	<select id="getAllBoards" resultType="boarddto">
 		SELECT * FROM board
+		<!-- ORDER BY likecount DESC -->
 	</select>
 
 	<!-- Top 10 Board 목록 가져오기 -->
@@ -118,8 +119,20 @@
 	</select>
 
 	<select id="getLikesCount" parameterType="int" resultType="int" >
-		select count(like_check) from likes where board_id=#{board_id};
+		select count(likecount) from board where id=#{board_id}
 	</select>
+
+	
+	<update id="addBoardLikes" parameterType="int">
+		update board set likecount = likecount+1 where id
+	</update>
+	
+	<update id="increaseLikeCount" parameterType="int">
+		UPDATE board
+		SET likecount = likecount + 1
+		WHERE id = #{boardId}
+	</update>
+	
 	
 	<select id="selectByUserId" parameterType="int">
 		SELECT userId

@@ -9,5 +9,6 @@ public interface LikeDAO {
     void createLikes(LikesDTO like);
     void cancelLikes(LikesDTO like);
     int getLikesCount(int board_id);
+    void increaseLikeCount(int board_id);
 }
 

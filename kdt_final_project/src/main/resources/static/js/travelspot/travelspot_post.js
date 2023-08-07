@@ -3,7 +3,6 @@ $(document).ready(function() {
 	//js url parameter 가져오기
 	let urlParams = new URL(location.href).searchParams;
 	let contentId = urlParams.get('contentId');
-	imageAjax(); //기본페이지: 사진모아보기로 설정
 
 	$('#images').click(function() {
 		imageAjax();

@@ -30,7 +30,6 @@
 					<li><a href="#section2">글쓴 내역</a></li>
 					<li><a href="#section3">댓글 쓴 내역</a></li>
 					<li><a href="#section5">찜한 여행지</a></li>
-					<li><a href="#section6">좋아요 누른 게시글</a></li>
 					<li><a href="#section7">회원 탈퇴</a></li>
 				</ul>
 			</nav>
@@ -172,12 +171,6 @@
 				</table>
 			</div>
 
-
-			<!-- 좋아요 누른 게시물 -->
-			<div class="side-menu-form" id="section6" style="display: none;">
-				<h1>좋아요 누른 게시물</h1>
-			</div>
-
 			<!-- 회원 탈퇴 -->
 			<div class="side-menu-form withdraw-section" id="section7"
 				style="display: none;">
@@ -196,7 +189,7 @@
 		</div>
 	</div>
 
-	<%@ include file="../home/footer.jsp"%>
+	
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>

@@ -47,10 +47,10 @@
     <a class="likebtn" onclick="checkLoginAndHandleLike(${board.id})">like button</a>
     <span id="likeCount">${board.likecount}</span><br/>
     <script>
-    	/* const likebtn = document.querySelector(".likebtn");
+    	const likebtn = document.querySelector(".likebtn");
     	likebtn.addEventListener('click',function(){
     		this.classList.toggle("likeon");
-    	}); */
+    	}); 
     	
     	const boardId = ${board.id};
     	//console.log(boardId);
@@ -65,6 +65,7 @@
                     if (response.isLoggedIn) {
                         // 로그인 상태인 경우 좋아요 처리 수행
                         toggleLike(boardId);
+                        location.reload();
                     } else {
                         // 로그인 상태가 아닌 경우 로그인 페이지로 이동
                         window.location.href = "/login";

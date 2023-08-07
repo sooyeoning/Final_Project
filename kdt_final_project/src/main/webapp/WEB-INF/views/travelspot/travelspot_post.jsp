@@ -49,7 +49,7 @@
 <div style="font-size : 0.6vw; display: inline-box;" class="current_temp" ></div>
 </div>
 </button>
-<div id="modal" class="modal-overlay" style="z-index: 1;">
+<div id="modal" class="modal-overlay" style="z-index: 9999;">
 
         <div class="modal-window">
             <div class="title">

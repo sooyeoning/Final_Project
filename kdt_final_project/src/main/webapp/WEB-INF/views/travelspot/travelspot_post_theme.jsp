@@ -73,7 +73,7 @@
         <div class="current_temp" style="font-size : 50pt"></div>
         <div class="weather_description" style="font-size : 20pt"></div>
     </div>
-                
+                 
             </div>
         </div>
     </div>

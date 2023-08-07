@@ -89,7 +89,7 @@
 </div>
 <!-- location.href = document.referrer; 뒤로가기 후 새로고침이 필요할때 사용 -->
 
-<%@ include file="../home/footer.jsp"%>
+
 
 </body>
 </html>

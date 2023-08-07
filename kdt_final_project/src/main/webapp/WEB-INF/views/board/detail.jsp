@@ -102,7 +102,7 @@
 	</div>
 	<div class="comments"></div>
 </section>
-<%@ include file="../../views/home/footer.jsp"%>
+
 <div style="position:fixed; bottom:1%; right:1%;">
 <a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
 </body>

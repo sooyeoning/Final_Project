@@ -33,5 +33,11 @@ public class LikeDAOImpl implements LikeDAO {
 	public int getLikesCount(int board_id) {
 		return sqlSession.selectOne("getLikesCount", board_id);
 	}
+	
+	@Override
+	public void increaseLikeCount(int board_id) {
+		sqlSession.update("increaseLikeCount", board_id);
+	}
+
 }
 

@@ -10,6 +10,8 @@ public interface LikeService {
     void createLike(int userId, int boardId);
     void deleteLike(LikesDTO like);
     int getLikesCount(int board_id);
+    void increaseLikeCount(int board_id);
+
 
 }
 

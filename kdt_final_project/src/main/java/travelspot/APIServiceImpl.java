@@ -45,7 +45,7 @@ public class APIServiceImpl {
 		return "ok";
 	}
 	
-	@Scheduled(cron = "0 28 16 * * *")
+	//@Scheduled(cron = "0 28 16 * * *")
 	public void ScheduledTasksMethod() throws Exception { // place2, contents2 테이블에 데이터 저장 -> place, contents 테이블에 붙여넣기
 
 		// System.out.println("확인");

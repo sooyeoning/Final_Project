@@ -43,7 +43,7 @@
     	</c:choose>
     </div>
     </div>
-    <div id="contents">${board.contents} :${like }:${like.like_check }</div>
+    <div id="contents">${board.contents}</div>
     <a id="likebtn" class="likebtn" onclick="checkLoginAndHandleLike(${board.id})">like button</a>
     <!-- <c:choose>
     	<c:when test="${like == null || like.like_check == 0}">

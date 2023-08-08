@@ -16,7 +16,7 @@
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
 			pageLanguage: 'ko',
-			includedLanguages: 'ko,en,ja,fr,es,it,zh-CN,zh-TW,pt',
+			includedLanguages: 'ko,en,ja,fr,es,it,zh-CN,zh-TW,pt,de',
 			//layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
 			autoDisplay: false
 		}, 'google_translate_element');

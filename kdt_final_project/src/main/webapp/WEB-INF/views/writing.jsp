@@ -28,6 +28,7 @@
     	<option value="울산">울산</option>
     	<option value="강원">강원</option>
     	<option value="경기도">경기도</option>
+	<option value="기타">기타</option>
     </select>
     <input type=text id="hashtag" name="hashtag" placeholder="#해시태그">
     <input type="hidden" id="writer" name="writer" value="${nickname }" readonly><br>

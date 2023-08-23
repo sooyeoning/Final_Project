@@ -20,5 +20,13 @@
 	</div><br>
 	</div>
 	</footer>
+<!-- CLOUDTURING -->
+<script>
+    window.dyc = {
+        chatbotUid: "539be6bc007c4b4a"
+    };
+</script>
+<script async src="https://cloudturing.chat/v1.0/chat.js"></script>
+<!-- End CLOUDTURING -->
 </body>
 </html>

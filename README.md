@@ -16,7 +16,7 @@
    
 ### 🧑‍🤝‍🧑 멤버 구성
 #
-팀장 : [신장훈](https://github.com/gamepro6390) -  
+팀장 : [신장훈](https://github.com/gamepro6390) -  홈페이지, 서버 배포
 팀원 : [신연균](https://github.com/SHIN-YEONGYUN) - 회원가입,로그인,ID 찾기,PW,찾기,마이페이지,관리자페이지  
 팀원 : [김수연](https://github.com/sooyeoning) -   
 팀원 : [김도현](https://github.com/DoHyunDaniel) -   

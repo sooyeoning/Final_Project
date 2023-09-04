@@ -22,7 +22,7 @@
 팀원 : [김도현](https://github.com/DoHyunDaniel) -   
 팀원 : [안경민](https://github.com/DoHyunDaniel) -   커뮤니티(CRUD),커뮤니티 댓글
 
--front
+-Front
 https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0
  
 ### 🕰️ 개발기간

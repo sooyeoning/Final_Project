@@ -1,5 +1,7 @@
-# Final_Project
-KDT Final_Project
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=withtavel&fontSize=90)
+
+### 🖥️ 프로젝트 소개
+#### 주제: 여행 커뮤니티 
    
 조장: 신장훈 조원:김도현 김수연 신연균 안경민
  
@@ -22,5 +24,5 @@ https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&
  
 
 
-
+![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
 

@@ -57,9 +57,9 @@ Communication Tools :
 - 전체 페이지 링크 연결
 - 커뮤니티 미리보기 기능
   
-#### 회원가입 & 로그인 & 마이페이지 & 관리자페이지  
+#### 회원가입 & 로그인 & 마이페이지 
   
-![안녕하세요 (2)](https://github.com/gamepro6390/Foodie-Green/assets/125335424/8e0700f5-7ae2-4e0a-9fb6-9754c34e5a0c)
+![1](https://github.com/gamepro6390/Final_Project/assets/125335424/ceebedbf-2679-43e4-ae63-d2cac741d2fb)
 - **회원가입**  
   - 아이디(형식: 4자리), 비밀번호(형식: 4자리), 휴대폰 번호(형식: 010-xxxx-xxxx)    
 - **로그인**  
@@ -72,6 +72,8 @@ Communication Tools :
   - 이메일, 휴대폰 번호 일치 시 임시 비밀번호 제공  
 - **회원 탈퇴**  
   - 회원 탈퇴  
+#### 관리자페이지  
+![2](https://github.com/gamepro6390/Final_Project/assets/125335424/0184714f-4acf-4202-bf51-e5d7c987a4aa)  
 
 ![안녕하세요](https://github.com/gamepro6390/Foodie-Green/assets/125335424/9e565e97-944b-4110-ace0-3f04770418fe)  
   

@@ -102,7 +102,7 @@ Communication Tools :
   - PORTONE(구 IAMPORT)API를 사용하여 결제 페이지 구현
 
 ### 최종 시연 영상
-[![Video Label](http://img.youtube.com/vi/'유튜브주소의id'/0.jpg)](https://youtu.be/'s074A_Lpl1Q')
+[![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/s074A_Lpl1Q/0.jpg)](https://youtu.be/s074A_Lpl1Q?t=0s)
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
 

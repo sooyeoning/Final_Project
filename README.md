@@ -16,11 +16,11 @@
    
 ### 🧑‍🤝‍🧑 멤버 구성
 #
-팀장 : [신장훈](https://github.com/gamepro6390) - (제품 리스트,제품 상세) 페이지,결제 서비스  
-팀원 : [신연균](https://github.com/SHIN-YEONGYUN) - 레시피 게시판(CRUD),식단일기 게시판(CRUD),북마크  
-팀원 : [김수연](https://github.com/sooyeoning) - 로그인,회원가입,ID 찾기,PW 찾기,마이페이지  
-팀원 : [김도현](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
-팀원 : [안경민](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
+팀장 : [신장훈](https://github.com/gamepro6390) -  
+팀원 : [신연균](https://github.com/SHIN-YEONGYUN) - 회원가입,로그인,ID 찾기,PW,찾기,마이페이지,관리자페이지  
+팀원 : [김수연](https://github.com/sooyeoning) -   
+팀원 : [김도현](https://github.com/DoHyunDaniel) -   
+팀원 : [안경민](https://github.com/DoHyunDaniel) -   커뮤니티(CRUD),커뮤니티 댓글
 
 -front
 https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0
@@ -56,26 +56,19 @@ Communication Tools :
 - 패럴랙스, 슬라이더 등의 css 기능들과 포토샵 등을 활용하여 광고 내용과 페이지 정보에 쉽게 접근할 수 있도록 함
 - 화면 하단에 챗봇 표시, 푸터는 자주 묻는 질문(FAQ페이지)와 직접 질문(챗봇으로 연결)이 가능하도록 함
   
-#### 회원가입 & 로그인 & 마이페이지  
+#### 회원가입 & 로그인 & 마이페이지 & 관리자페이지  
   
 ![안녕하세요 (2)](https://github.com/gamepro6390/Foodie-Green/assets/125335424/8e0700f5-7ae2-4e0a-9fb6-9754c34e5a0c)
 - **회원가입**  
-  - 정규식 검사: 이메일(형식: xxx@xxx.xxx), 비밀번호(형식: 숫자+영문자+특수문자 포함 6~15자리), 휴대폰 번호(형식: 010-xxxx-xxxx)  
-  - 중복 검사: 닉네임, 이메일  
-- **카카오톡 로그인**  
-  - OAuth2.0 프로토콜을 사용한 Kakao 로그인  
-  - 소셜로그인 정보 + 임시 비밀번호 생성 후 DB 저장  
-  - 카카오 로그인시 회원 정보 수정 페이지로 연결  
+  - 아이디(형식: 4자리), 비밀번호(형식: 4자리), 휴대폰 번호(형식: 010-xxxx-xxxx)    
 - **로그인**  
-  - 이메일, 비밀번호 일치 시 로그인 성공  
-  - 비밀번호 숨김 기능: 기본 숨김으로 설정 -> 아이콘 이용해 비밀번호 노출, 숨김 가능  
+  - 이메일, 비밀번호 일치 시 로그인 성공    
 - **회원정보 수정**  
-  - 닉네임, 비밀번호, 휴대폰 번호 수정가능  
-  - 중복 검사: 닉네임  
-- **이메일(아이디) 찾기**  
+  - 닉네임, 비밀번호, 휴대폰 번호 수정가능    
+- **아이디 찾기**  
   - 이름, 휴대폰 번호 일치 시 아이디 조회 가능  
 - **비밀번호 찾기**  
-  - 이메일, 휴대폰 번호 일치 시 입력한 이메일로 비밀번호 전송  
+  - 이메일, 휴대폰 번호 일치 시 임시 비밀번호 제공  
 - **회원 탈퇴**  
   - 회원 탈퇴  
 

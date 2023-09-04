@@ -101,6 +101,8 @@ Communication Tools :
 - **결제 화면**
   - PORTONE(구 IAMPORT)API를 사용하여 결제 페이지 구현
 
+### 최종 시연 영상
+{% include video id="s074A_Lpl1Q" provider="youtube" %}
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
 

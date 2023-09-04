@@ -23,7 +23,8 @@
 팀원 : [안경민](https://github.com/DoHyunDaniel) -   커뮤니티(CRUD),커뮤니티 댓글
 
 -Front
-https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0
+[피그마]([http://www.naver.com/](https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0))
+
  
 ### 🕰️ 개발기간
 #

@@ -1,12 +1,8 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=withtavel&fontSize=90)
 
 ### 🖥️ 프로젝트 소개
-#### 주제: 여행 커뮤니티 
-   
-조장: 신장훈 조원:김도현 김수연 신연균 안경민
- 
-위트(with Travel) 여행지 추천 및 여행기 공유 커뮤니티
- 
+#### 주제: 위트(with Travel) 여행지 추천 및 여행기 공유 커뮤니티
+
 -기획의도 
 여러 여행사 사이트와 추천 사이트가 존재하지만 정보양이 너무 많아 오히려 더 계획 세우기가 힘들어  
 “좀더 쉽게 여행 정보를 알 수 있고 계획을 세울 수 있는 방법이 없을까?” 라는 생각으로부터 출발하게 되었습니다. 
@@ -17,6 +13,14 @@
 -기대 효과
 1. 여행자들의 여행 만족도와 품질을 높일 수 있음. 자신의 취향과 성향에 맞는 여행지를 찾고, 다른 여행자들의 감성적인 경험을 참고할 수 있기 때문.
 2. 여행자들의 여행 참여도와 활동성을 증진시킬 수 있음. 자신의 여행 경험을 글이나 사진으로 기록하고, 다른 여행자들과 소통하고 공감할 수 있기 때문.
+   
+### 🧑‍🤝‍🧑 멤버 구성
+#
+팀장 : [신장훈](https://github.com/gamepro6390) - (제품 리스트,제품 상세) 페이지,결제 서비스  
+팀원 : [신연균](https://github.com/SHIN-YEONGYUN) - 레시피 게시판(CRUD),식단일기 게시판(CRUD),북마크  
+팀원 : [김수연](https://github.com/sooyeoning) - 로그인,회원가입,ID 찾기,PW 찾기,마이페이지  
+팀원 : [김도현](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
+팀원 : [안경민](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
 
  
 -front

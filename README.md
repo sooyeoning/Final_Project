@@ -22,13 +22,12 @@
 팀원 : [김도현](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
 팀원 : [안경민](https://github.com/DoHyunDaniel) - 메인홈페이지,브랜드 소개,고객센터  
 
- 
 -front
 https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0-1&mode=design&t=e1LxuFTMsxfhRibQ-0
  
 ### 🕰️ 개발기간
 #
-23.08.10 ~ ing
+23.06.19 ~ 23.08.09
 
 ### ⚙️ 개발환경 
 #
@@ -106,7 +105,6 @@ Communication Tools :
   - 결제 버튼
 - **결제 화면**
   - PORTONE(구 IAMPORT)API를 사용하여 결제 페이지 구현
-![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
 
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)

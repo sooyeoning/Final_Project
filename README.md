@@ -22,7 +22,6 @@
 팀원 : [김도현](https://github.com/DoHyunDaniel) -   
 팀원 : [안경민](https://github.com/DoHyunDaniel) -   커뮤니티(CRUD),커뮤니티 댓글
 
--Front [Figma 바로가기](https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0%3A1&mode=design&t=u3mTqC4hzJj00vtT-1/)
 
  
 ### 🕰️ 개발기간
@@ -46,7 +45,7 @@ Communication Tools :
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/ERDCLOUD-16A5F3?style=for-the-badge&logo=logoColor=white">  
-  
+-Front [Figma 바로가기](https://www.figma.com/file/SdxiuzovwfklsQgU4iDFBJ/KDT-Final-Project?type=design&node-id=0%3A1&mode=design&t=u3mTqC4hzJj00vtT-1/)  
 <img width="1128" alt="스크린샷 2023-08-23 오전 10 01 10" src="https://github.com/gamepro6390/Foodie-Green/assets/125335424/445e883d-5cdd-4ee7-b5c4-047d686a47b3">
 
 ### 📌 주요 기능

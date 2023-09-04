@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=withtavel&fontSize=90)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=withtravel&fontSize=90)
 
 ### 🖥️ 프로젝트 소개
 #### 주제: 위트(with Travel) 여행지 추천 및 여행기 공유 커뮤니티

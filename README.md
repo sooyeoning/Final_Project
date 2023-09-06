@@ -56,7 +56,17 @@ Communication Tools :
 - 슬라이더 등의 css 기능
 - 전체 페이지 링크 연결
 - 커뮤니티 미리보기 기능
-  
+#### 서버배포
+- **NCP(Naver Cloud Platform)**
+  - Server, IP 등 서버 정보 생성
+- **Putty**
+  - 실제 필요한 서버 설정
+- **SSL 인증**
+  - 웹 브라우저(chrome, edge, etc)가 http로 구성시 권한 막음 //날씨-위치권한 필요
+  - SSL 인증서 발급 ->https로 바꿔 권한 활성화
+- **Jenkins**
+  - Github 소스코드 지속적통합 및 배포(CI/CD)
+    
 #### 회원가입 & 로그인 & 마이페이지 
   
 ![1](https://github.com/gamepro6390/Final_Project/assets/125335424/ceebedbf-2679-43e4-ae63-d2cac741d2fb)
@@ -101,6 +111,7 @@ Communication Tools :
   - 결제 버튼
 - **결제 화면**
   - PORTONE(구 IAMPORT)API를 사용하여 결제 페이지 구현
+
 
 ### 최종 시연 영상
 [![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/s074A_Lpl1Q/0.jpg)](https://youtu.be/s074A_Lpl1Q?t=0s)

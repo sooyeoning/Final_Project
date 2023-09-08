@@ -124,8 +124,10 @@ Communication Tools :
     - 좋아요 취소 가능
 
 
-![안녕하세요 (1)](https://github.com/gamepro6390/Foodie-Green/assets/125335424/df6fb9e9-ebcd-4a4f-a0d3-fe0dc1d4b284)
+
 #### 고객센터
+![안녕하세요](https://github.com/gamepro6390/Final_Project/assets/132706505/05c55730-864c-4fa3-b04a-00a6d39e8fc6)
+
 (일반 사용자 로그인 시)
 - FAQ 페이지: 토글 기능을 활용하여 항목별로, 글 제목별로 누르면 해당 내용이 표시되도록 함
 

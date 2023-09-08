@@ -19,7 +19,7 @@
 팀장 : [신장훈](https://github.com/gamepro6390) -  메인 페이지, 서버 배포     
 팀원 : [신연균](https://github.com/SHIN-YEONGYUN) - 회원가입,로그인,ID 찾기,PW,찾기,마이페이지,관리자페이지  
 팀원 : [김수연](https://github.com/sooyeoning) -   여행지 DB 구축, 여행지 추천 기능   
-팀원 : [김도현](https://github.com/DoHyunDaniel) -   고객센터(CRUD)   
+팀원 : [김도현](https://github.com/DoHyunDaniel) -   고객센터(CRUD), 관리자 전체 조회 및 답글
 팀원 : [안경민](https://github.com/DoHyunDaniel) -   커뮤니티(CRUD),커뮤니티 댓글
 
 

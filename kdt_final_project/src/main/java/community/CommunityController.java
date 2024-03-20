@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import User.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import travelspot.ReportDTO;
+import travelspot.DTO.ReportDTO;
 
 @Controller
 public class CommunityController {
@@ -252,7 +252,7 @@ public class CommunityController {
 	}
 
 	@PostMapping(value = "/comments/report")
-	public String reportComments(travelspot.ReportDTO ReportDTO) {
+	public String reportComments(travelspot.DTO.ReportDTO ReportDTO) {
 		// 신고내용 저장 -> 댓글창으로 리턴?
 		boardService.insertReport(ReportDTO);
 		return "redirect:/detail?boardId=" + ReportDTO.getContentId();

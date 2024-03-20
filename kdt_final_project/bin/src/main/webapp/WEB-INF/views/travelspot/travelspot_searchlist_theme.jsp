@@ -15,10 +15,10 @@
 
 </head>
 <body>
-	<%@ include file="../views/home/header.jsp"%>
+	<%@ include file="../home/header.jsp"%>
 
 	<%
-	String[] themes = new String[] { "alone", "couple", "friends", "family" };
+		String[] themes = new String[] { "alone", "couple", "friends", "family" };
 	%>
 
 	<!-- 6개씩 배치-->
@@ -41,7 +41,7 @@
 	<br>
 	<hr class="hrmargin">
 
-<!-- 검색창 -->
+	<!-- 검색창 -->
 	<form action="/travelspot/themesearch" method="get" class="search-form">
 		<select name="item" class="search-item">
 			<option>장소명</option>
@@ -56,9 +56,9 @@
 		<c:forEach items="${placelist }" var="placeDTO">
 			<div class="item">
 				<!-- style="border: 0.3px solid #2463d3" -->
-				<img class="placeprofile" src=${placeDTO.image1} id=${placeDTO.contentId}>
-				<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
-				<h1 class="placeLocation font_content" id=${placeDTO.contentId}></h1>
+				<img class="placeprofile" src="${placeDTO.image1}" id="${placeDTO.contentId}"/>
+				<p class="placeName font_title" id="${placeDTO.contentId}">${placeDTO.title}</p>
+				<h1 class="placeLocation font_content" id="${placeDTO.contentId}"></h1>
 				<p>${placeDTO.address}</p>
 				<br>
 				<p style="display: inline; float: left;">조회수 ${placeDTO.viewcnt }</p>
@@ -68,37 +68,40 @@
 		</c:forEach>
 	</div>
 
-  <%
-   HashMap<String, Object> searchmap = (HashMap)request.getAttribute("searchmap");
-   String searchitem = (String)searchmap.get("searchitem");
-   String searchword = (String)searchmap.get("colvalue");
-   int totalBoardCnt = (Integer)request.getAttribute("totalCnt");
-   int totalPage = 0;
-   if(totalBoardCnt%9==0){
-	   totalPage = totalBoardCnt/9;
-   }else {
-	   totalPage = (totalBoardCnt/9) +1;
-   }
-   
+   <%
+	   HashMap<String, Object> searchmap = (HashMap)request.getAttribute("searchmap");
+	   String searchitem = (String)searchmap.get("searchitem");
+	   String searchword = (String)searchmap.get("colvalue");
+	   int totalBoardCnt = (Integer)request.getAttribute("totalCnt");
+	   int totalPage = 0;
+	   if(totalBoardCnt%9==0){
+		   totalPage = totalBoardCnt/9;
+	   }else {
+		   totalPage = (totalBoardCnt/9) +1;
+	   } 
    %>
+   
    <div class="pages">
-   		<p style="font-size: 20px; display: inline-block"> ◀ </p>
-   <%  for(int i=1; i<=totalPage; i++){ 
-	   String stringi = String.valueOf(i); %>
-	 <c:url var="url" value="/travelspot/themesearch"> 
- 		<c:param name="item" value="<%=searchitem %>" /> 
- 		<c:param name="searchword" value="<%=searchword %>" /> 
-		<c:param name="page" value="<%=stringi %>" /> 
-	</c:url> 
-	<a style="font-size: 20px;" href="<c:out value= "${url}" />"><%=stringi %></a>	   
-  <% } %>
+		<p style="font-size: 20px; display: inline-block"> ◀ </p>
+  	 	<%  
+  	 		for(int i=1; i<=totalPage; i++){ 
+	   			String stringi = String.valueOf(i); 
+	   	%>
+	 			<c:url var="url" value="/travelspot/themesearch"> 
+			 		<c:param name="item" value="<%=searchitem %>" /> 
+			 		<c:param name="searchword" value="<%=searchword %>" /> 
+					<c:param name="page" value="<%=stringi %>" /> 
+				</c:url> 
+				<a style="font-size: 20px;" href="<c:out value= "${url}" />"><%=stringi %></a>	   
+  		<% } %>
   		<p style="font-size: 20px; display: inline-block;"> ▶</p>
-  
   </div>
 
 	<!-- 스크롤: 위치 수정 필요 -->
 	<div style="position: fixed; bottom: 1%; right: 1%;">
-		<a href="#"><img src="../img/top.png" width="20px" height="20px"></a>
+		<a href="#">
+			<img src="../img/top.png" width="20px" height="20px"/>
+		</a>
 	</div>
 </body>
 </html>

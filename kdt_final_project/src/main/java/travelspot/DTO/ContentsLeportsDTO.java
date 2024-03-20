@@ -1,4 +1,4 @@
-package travelspot;
+package travelspot.DTO;
 
 public class ContentsLeportsDTO extends ContentsDTO{
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import User.LikesDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.ReportDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -101,7 +101,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int insertReport(travelspot.ReportDTO reportdto) {
+	public int insertReport(travelspot.DTO.ReportDTO reportdto) {
 		return boardDAO.insertReport(reportdto);
 	}
 

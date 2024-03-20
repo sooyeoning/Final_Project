@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import community.BoardDTO;
-import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
-import travelspot.ReportDTO;;
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.DTO.ReportDTO;;
 
 @Repository
 public class UserDAOImpl implements UserDAO {

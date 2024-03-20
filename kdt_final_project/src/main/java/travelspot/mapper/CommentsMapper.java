@@ -1,9 +1,13 @@
-package travelspot;
+package travelspot.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.CommentsUserDTO;
+import travelspot.DTO.ReportDTO;
 
 @Mapper 	//매퍼 파일이야, @MapperScan 필요 
 @Repository //객체 생성, @ComponentScan 필요

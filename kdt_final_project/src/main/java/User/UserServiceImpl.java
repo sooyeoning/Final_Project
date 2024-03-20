@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import community.BoardDTO;
-import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
-import travelspot.ReportDTO;;
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.DTO.ReportDTO;;
 
 @Service
 

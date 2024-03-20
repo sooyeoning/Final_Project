@@ -3,8 +3,8 @@ package User;
 import java.util.List;
 
 import community.BoardDTO;
-import travelspot.CommentsDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.ReportDTO;
 
 public interface UserDAO {
 

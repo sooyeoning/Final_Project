@@ -2,7 +2,7 @@ package User;
 
 import org.springframework.stereotype.Component;
 
-import travelspot.PlaceDTO;
+import travelspot.DTO.PlaceDTO;
 
 @Component
 public class LikesDTO {

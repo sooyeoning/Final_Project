@@ -16,7 +16,7 @@ SELECT * FROM place WHERE contentId = #{place_id}
     <association property="placeDTO" resultMap="PlaceDTOResult" />
 </resultMap>
 
-<resultMap id="PlaceDTOResult" type="travelspot.PlaceDTO">
+<resultMap id="PlaceDTOResult" type="travelspot.DTO.PlaceDTO">
     <id property="id" column="place_id" />
     <result property="title" column="title"/>
     <result property="address" column="address" />

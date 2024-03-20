@@ -28,9 +28,9 @@ import community.BoardDTO;
 import community.BoardService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.DTO.ReportDTO;
 
 @Controller
 public class UserController {

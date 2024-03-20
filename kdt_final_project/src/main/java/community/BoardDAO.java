@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import User.LikesDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.ReportDTO;
 
 public interface BoardDAO {
 	void insertBoard(BoardDTO board);
@@ -34,7 +34,7 @@ public interface BoardDAO {
 
 	int updateComments(CommentsDTO commentsdto);
 
-	int insertReport(travelspot.ReportDTO reportdto);
+	int insertReport(travelspot.DTO.ReportDTO reportdto);
 
 	List<String> selectUserId(int commentId);
 

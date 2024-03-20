@@ -1,4 +1,4 @@
-package travelspot;
+package travelspot.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,14 +14,23 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import lombok.extern.slf4j.Slf4j;
+import travelspot.DTO.ContentsCultureDTO;
+import travelspot.DTO.ContentsDTO;
+import travelspot.DTO.ContentsFoodDTO;
+import travelspot.DTO.ContentsLeportsDTO;
+import travelspot.DTO.ContentsTourDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.mapper.PlaceMapper;
+
 @Service("apiservice")
+@Slf4j
 public class APIServiceImpl {
 
 	String serviceKey = "A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
@@ -111,10 +120,10 @@ public class APIServiceImpl {
 
 				if (!StringUtils.hasText(placemapper.selectPlaceId(contentId))) {
 					placemapper.insertPlaces(placeDTO);
-					System.out.println("place테이블에 insert 완료:"+placeDTO.toString());
+					log.info("place테이블에 insert 완료, {}",placeDTO.toString());
 				} else {
 					placemapper.updateThemePlace(placeDTO);
-					System.out.println("place테이블에 update 완료"+placeDTO.toString());
+					log.info("place테이블에 update 완료, {}",placeDTO.toString());
 				}
 			} // if
 		} // for
@@ -168,21 +177,11 @@ public class APIServiceImpl {
 		} // for
 	}// test method
 
-	// 캠핑(친구)
-	// http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=인증키&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0116&cat3=C01160001
-	// 힐링(연인)
-	// http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=인증키&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0114&cat3=C01140001
-	// 혼자
-	// http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=인증키&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0113&cat3=C01130001
-	// 가족
-	// http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey=인증키&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0112&cat3=C01120001
-
 	// 테마별 게시글 contentId 불러오기2
 	public void getThemeBasicInfo2() throws Exception {
 
 		String serviceKey = "gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
-		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
 		String[] numOfRowsList = new String[] { "20", "20", "20", "20" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
 		String[] cat3List = new String[] { "C01160001", "C01140001", "C01130001", "C01120001" };
@@ -314,7 +313,7 @@ public class APIServiceImpl {
 					PlaceDTO placeDTO = new PlaceDTO(contentId, title, theme);
 
 					// DB 해당 content 존재하는지 확인(문제)
-					if (!StringUtils.hasText(placemapper.selectPlaceId(placeDTO.contentId))) { // 기존 데이터 없는경우
+					if (!StringUtils.hasText(placemapper.selectPlaceId(placeDTO.getContentId()))) { // 기존 데이터 없는경우
 						placemapper.insertThemeBasicInfo(placeDTO); // 아이디, 제목, 테마 저장
 						getThemePlaceDetail(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
@@ -363,11 +362,11 @@ public class APIServiceImpl {
 					PlaceDTO placeDTO = new PlaceDTO(contentId, title, theme);
 
 					// DB 해당 content 존재하는지 확인(문제)
-					if (!StringUtils.hasText(placemapper.selectPlaceId2(placeDTO.contentId))) { // 기존 데이터 없는경우
+					if (!StringUtils.hasText(placemapper.selectPlaceId2(placeDTO.getContentId()))) { // 기존 데이터 없는경우
 						placemapper.insertThemeBasicInfo2(placeDTO); // 아이디, 제목, 테마 저장
 						getThemePlaceDetail2(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
-					System.out.println("기존 place 데이터o");
+					log.info("기존 place 데이터 존재");
 					if (!StringUtils.hasText(placemapper.selectContentId2(contentId))) { // contents테이블 정보 없는 경우
 						getThemePlaceDetail2(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
@@ -380,7 +379,7 @@ public class APIServiceImpl {
 
 	// 장소별 기본정보 불러오기
 	public void getThemePlaceDetail(int placeContentId) throws Exception {
-		System.out.println(placeContentId);
+		log.info("placeContentId 파라미터 확인",placeContentId);
 
 		urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/detailCommon1");
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + serviceKey);
@@ -425,31 +424,31 @@ public class APIServiceImpl {
 				String homepage = getValue("homepage", e);
 
 				PlaceDTO placedto = new PlaceDTO();
-				placedto.contentId = contentId;
-				placedto.contentTypeId = contenttypeid;
-				placedto.title = title;
-				placedto.areaCode = areaCode;
-				placedto.image1 = image1;
+				placedto.setContentId(contentId);
+				placedto.setContentTypeId(contenttypeid);
+				placedto.setTitle(title);
+				placedto.setAreaCode(areaCode);
+				placedto.setImage1(image1);
 				if (addr2 != null) {
-					placedto.address = addr1.concat(addr2);
+					placedto.setAddress(addr1.concat(addr2));
 				} else {
-					placedto.address = addr1;
+					placedto.setAddress(addr1);
 				}
-				placedto.mapx = mapx;
-				placedto.mapy = mapy;
-				placedto.contents = contents;
-				placedto.homepage = homepage;
+				placedto.setMapx(mapx);
+				placedto.setMapy(mapy);
+				placedto.setContents(contents);
+				placedto.setHomepage(homepage);
 
 				placemapper.updateThemePlace(placedto);
 
-				getThemePlaceDetailIntro(placedto.contentId, placedto.contentTypeId);
+				getThemePlaceDetailIntro(placedto.getContentId(), placedto.getContentTypeId());
 			} // if
 		}
 	}// method
 
 	// 장소별 기본정보 불러오기2
 	public void getThemePlaceDetail2(int placeContentId) throws Exception {
-		System.out.println(placeContentId);
+		log.info("placeContentId 파라미터 확인",placeContentId);
 
 		urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/detailCommon1");
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + serviceKey);
@@ -494,24 +493,24 @@ public class APIServiceImpl {
 				String homepage = getValue("homepage", e);
 
 				PlaceDTO placedto = new PlaceDTO();
-				placedto.contentId = contentId;
-				placedto.contentTypeId = contenttypeid;
-				placedto.title = title;
-				placedto.areaCode = areaCode;
-				placedto.image1 = image1;
+				placedto.setContentId(contentId);
+				placedto.setContentTypeId(contenttypeid);
+				placedto.setTitle(title);
+				placedto.setAreaCode(areaCode);
+				placedto.setImage1(image1);
 				if (addr2 != null) {
-					placedto.address = addr1.concat(addr2);
+					placedto.setAddress(addr1.concat(addr2));
 				} else {
-					placedto.address = addr1;
+					placedto.setAddress(addr1);
 				}
-				placedto.mapx = mapx;
-				placedto.mapy = mapy;
-				placedto.contents = contents;
-				placedto.homepage = homepage;
+				placedto.setMapx(mapx);
+				placedto.setMapy(mapy);
+				placedto.setContents(contents);
+				placedto.setHomepage(homepage);
 
 				placemapper.updateThemePlace2(placedto);
 
-				getThemePlaceDetailIntro2(placedto.contentId, placedto.contentTypeId);
+				getThemePlaceDetailIntro2(placedto.getContentId(), placedto.getContentTypeId());
 			} // if
 		}
 	}// method
@@ -582,8 +581,7 @@ public class APIServiceImpl {
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		url(urlBuilder);
-
-		System.out.println(urlBuilder); // 확인용
+		log.info("url 확인: {}", urlBuilder);
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -644,7 +642,8 @@ public class APIServiceImpl {
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Content-type", "application/json");
 
-		System.out.println("Response code: " + conn.getResponseCode());
+		log.info("URL Response code: {}" , conn.getResponseCode());
+		
 		BufferedReader rd;
 		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));

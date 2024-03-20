@@ -1,9 +1,18 @@
-package travelspot;
+package travelspot.mapper;
 
 import java.util.HashMap;
 import java.util.List;
 
-public interface PlaceService {
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+import travelspot.DTO.ContentsDTO;
+import travelspot.DTO.PlaceContentsDTO;
+import travelspot.DTO.PlaceDTO;
+
+@Mapper // 매퍼 파일이야, @MapperScan 필요
+@Repository // 객체 생성, @ComponentScan 필요
+public interface PlaceMapper {
 	 public void insertPlaces(PlaceDTO placeDTO);
 	 public List<PlaceDTO> listPlaces(HashMap<String, Object> param);
 	 public PlaceDTO selectPlace(int contentId);
@@ -43,7 +52,9 @@ public interface PlaceService {
 	 //
 	 public int updateThemeDetail(ContentsDTO contentsDTO2); 
 	 public int insertThemeDetail(ContentsDTO contentDTO2);
-	 public int copyThemeDetail(ContentsDTO contentDTO2);
 	 public int updateThemeDetail2(ContentsDTO contentsDTO2); 
 	 public int insertThemeDetail2(ContentsDTO contentDTO2);
+	 public int copyThemeDetail(ContentsDTO contentDTO2);
+
 }
+	

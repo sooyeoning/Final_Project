@@ -3,9 +3,9 @@ package User;
 import java.util.List;
 
 import community.BoardDTO;
-import travelspot.CommentsDTO;
-import travelspot.PlaceDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.CommentsDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.DTO.ReportDTO;
 
 public interface UserService {
 

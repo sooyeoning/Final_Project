@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import User.LikesDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.ReportDTO;
 
 public interface BoardService {
 	void createBoard(BoardDTO board);
@@ -25,7 +25,7 @@ public interface BoardService {
 	int deleteComments(int id);
 	CommentsDTO getOneComment(int id);
 	int updateComments(CommentsDTO commentsdto);
-	int insertReport(travelspot.ReportDTO reportdto);
+	int insertReport(travelspot.DTO.ReportDTO reportdto);
 	List<String> selectUserId(int commentId);
 	String selectReportedId(int id);
 

@@ -1,6 +1,6 @@
 package User;
 
-import travelspot.PlaceDTO;
+import travelspot.DTO.PlaceDTO;
 
 public interface PlaceDAO {
 	public PlaceDTO getPlaceById(int place_id);

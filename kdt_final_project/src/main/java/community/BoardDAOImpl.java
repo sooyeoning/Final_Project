@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import User.LikesDTO;
-import travelspot.ReportDTO;
+import travelspot.DTO.ReportDTO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -83,7 +83,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int insertReport(travelspot.ReportDTO reportdto) {
+	public int insertReport(travelspot.DTO.ReportDTO reportdto) {
 		return sqlSession.insert("board.spring.mybatis.BoardDAO.insertReport", reportdto);
 	}
 

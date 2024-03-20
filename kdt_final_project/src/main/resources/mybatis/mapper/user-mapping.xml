@@ -112,7 +112,7 @@
 			resultMap="PlaceDTOResult" />
 	</resultMap>
 
-	<resultMap id="PlaceDTOResult" type="travelspot.PlaceDTO">
+	<resultMap id="PlaceDTOResult" type="travelspot.DTO.PlaceDTO">
 		<id property="id" column="place_id" />
 		<result property="title" column="title" />
 		<result property="address" column="address" />
@@ -164,7 +164,7 @@
 
 	<!-- 댓글 신고리스트 조회 -->
 
-	<resultMap id="reportResultMap" type="travelspot.ReportDTO">
+	<resultMap id="reportResultMap" type="travelspot.DTO.ReportDTO">
 		<id property="id" column="id" />
 		<result property="commentId" column="commentId" />
 		<result property="userNickname" column="userNickname" />

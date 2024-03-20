@@ -3,10 +3,14 @@ package travelspot;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import travelspot.DTO.ContentsDTO;
+import travelspot.DTO.PlaceDTO;
+import travelspot.mapper.PlaceMapper;
+import travelspot.service.APIServiceImpl;
 
 @RestController
 public class APIControllerTest {
@@ -49,6 +53,7 @@ public class APIControllerTest {
 
 		for (ContentsDTO one : contentlist) {
 			System.out.println(one.toString());
+			
 			int result = placemapper.copyThemeDetail(one);
 			System.out.println("변화된 행의 갯수: " + result);
 		}

@@ -14,16 +14,16 @@
 
 </head>
 <body>
-	<%@ include file="../views/home/header.jsp"%>
+	<%@ include file="../home/header.jsp"%>
 
 	<%
-	String[] themes = new String[] { "alone", "couple", "friends", "family" };
+		String[] themes = new String[] { "alone", "couple", "friends", "family" };
 	%>
 
 	<!-- 6개씩 배치-->
 	<div class="themeContainer">
 		<%
-		for (int i = 0; i < themes.length; i++) {
+			for (int i = 0; i < themes.length; i++) {
 		%>
 		<div class="themeItem-list">
 			<p class="font_content regionName" id=<%=themes[i]%>><%=themes[i]%></p>
@@ -51,13 +51,12 @@
 	</form>
 	
 	<div class="container">
-		<c:forEach items="${placelist }" var="placeDTO">
+		<c:forEach items="${placelist}" var="placeDTO">
 			<div class="item">
 				<!-- style="border: 0.3px solid #2463d3" -->
-				<img class="placeprofile" src=${placeDTO.image1
-} id=${placeDTO.contentId}>
-				<p class="placeName font_title" id=${placeDTO.contentId}>${placeDTO.title}</p>
-				<h1 class="placeLocation font_content" id=${placeDTO.contentId}></h1>
+				<img class="placeprofile" src="${placeDTO.image1}" id="${placeDTO.contentId}" />
+				<p class="placeName font_title" id="${placeDTO.contentId}">${placeDTO.title}</p>
+				<h1 class="placeLocation font_content" id="${placeDTO.contentId}"></h1>
 				<p>${placeDTO.address}</p>
 				<br>
 				<p style="display: inline; float: left;">조회수 ${placeDTO.viewcnt }</p>
@@ -68,26 +67,26 @@
 	</div>
 	
 	<%
-	int totalCnt = (Integer) request.getAttribute("totalCnt");
-	String theme = String.valueOf(request.getAttribute("theme"));
-
-	int totalPage = 0;
-	if (totalCnt % 9 == 0) {
-		totalPage = totalCnt / 9;
-	} else {
-		totalPage = (totalCnt / 9) + 1;
-	}
+		int totalCnt = (Integer) request.getAttribute("totalCnt");
+		String theme = String.valueOf(request.getAttribute("theme"));
+	
+		int totalPage = 0;
+		if (totalCnt % 9 == 0) {
+			totalPage = totalCnt / 9;
+		} else {
+			totalPage = (totalCnt / 9) + 1;
+		}
 	%>
 	<div class="pages">
 		<p style="font-size: 20px; display: inline-block">🔙</p>
 		<%
-		for (int i = 1; i <= totalPage; i++) {
-			//10페이지 처리
+			for (int i = 1; i <= totalPage; i++) {//10페이지 처리
 		%>
-		<a href="list_theme?theme=<%=theme %>&page=<%=i%>"><p style="font-size: 20px; display: inline-block;"><%=i%></p>
-			&nbsp;&nbsp;</a>
+		<a href="list_theme?theme=<%=theme %>&page=<%=i%>">
+			<p style="font-size: 20px; display: inline-block;"><%=i%></p>&nbsp;&nbsp;
+		</a>
 		<%
-		}
+			}
 		%>
 		<p style="font-size: 20px; display: inline-block;">🔜</p>
 

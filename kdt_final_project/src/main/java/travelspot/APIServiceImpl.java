@@ -22,10 +22,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 @Service("apiservice")
-@Transactional
 public class APIServiceImpl {
 
-	
 	String serviceKey = "A7Izc9O8PXKHKY%2FsWnQUYwt5u6dujTuf3unurHLSOEIfHLv%2F7waxlcZgPnRqpsKUO60J64lzoZ%2FYO3wW5sH1rw%3D%3D";
 
 	StringBuilder urlBuilder;
@@ -45,10 +43,8 @@ public class APIServiceImpl {
 		return "ok";
 	}
 	
-	//@Scheduled(cron = "0 28 16 * * *")
+	@Scheduled(cron = "0 28 16 * * *")
 	public void ScheduledTasksMethod() throws Exception { // place2, contents2 테이블에 데이터 저장 -> place, contents 테이블에 붙여넣기
-
-		// System.out.println("확인");
 
 		// 기본 관광지
 		int[] areaCodes = { 32, 6, 2, 5, 7, 31 };
@@ -70,9 +66,7 @@ public class APIServiceImpl {
 		List<ContentsDTO> contentlist = placemapper.selectAllContents();
 
 		for (ContentsDTO one : contentlist) {
-			System.out.println(one.toString());
 			int result = placemapper.copyThemeDetail(one);
-			System.out.println("변화된 행의 갯수: " + result);
 		}
 
 	}
@@ -106,8 +100,6 @@ public class APIServiceImpl {
 				Element eElement = (Element) nNode;
 
 				Integer contentId = Integer.valueOf(getValue("contentid", eElement));
-				System.out.println("contentId: " + contentId);
-
 				String title = getValue("title", eElement);
 				int areaCode1 = Integer.valueOf(getValue("areacode", eElement));
 				String image1 = getValue("firstimage", eElement);
@@ -116,7 +108,6 @@ public class APIServiceImpl {
 				double mapy = Double.valueOf(getValue("mapy", eElement));
 
 				PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode1, image1, address, mapx, mapy);
-				System.out.println("place테이블 contentId" + placemapper.selectPlaceId(contentId));
 
 				if (!StringUtils.hasText(placemapper.selectPlaceId(contentId))) {
 					placemapper.insertPlaces(placeDTO);
@@ -125,7 +116,6 @@ public class APIServiceImpl {
 					placemapper.updateThemePlace(placeDTO);
 					System.out.println("place테이블에 update 완료"+placeDTO.toString());
 				}
-				// 원본테이블: placemapper.insertPlaces(placeDTO);
 			} // if
 		} // for
 	}// test method
@@ -159,8 +149,6 @@ public class APIServiceImpl {
 				Element eElement = (Element) nNode;
 
 				Integer contentId = Integer.valueOf(getValue("contentid", eElement));
-				System.out.println("contentId: " + contentId);
-
 				String title = getValue("title", eElement);
 				int areaCode1 = Integer.valueOf(getValue("areacode", eElement));
 				String image1 = getValue("firstimage", eElement);
@@ -169,15 +157,11 @@ public class APIServiceImpl {
 				double mapy = Double.valueOf(getValue("mapy", eElement));
 
 				PlaceDTO placeDTO = new PlaceDTO(contentId, title, areaCode1, image1, address, mapx, mapy);
-				System.out.println(placeDTO.toString());
-				System.out.println("place2테이블 contentId" + placemapper.selectPlaceId2(contentId));
-
+	
 				if (!StringUtils.hasText(placemapper.selectPlaceId2(contentId))) {
 					placemapper.insertPlaces2(placeDTO);
-					System.out.println("place2테이블에 insert 완료");
 				} else {
 					placemapper.updateThemePlace2(placeDTO);
-					System.out.println("place2테이블에 update 완료");
 				}
 				// 원본테이블: placemapper.insertPlaces(placeDTO);
 			} // if
@@ -195,14 +179,7 @@ public class APIServiceImpl {
 
 	// 테마별 게시글 contentId 불러오기2
 	public void getThemeBasicInfo2() throws Exception {
-		// (36)String friendUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0116&cat3=C01160001";
-		// (147) String coupleUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0114&cat3=C01140001";
-		// (54)String aloneUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0113&cat3=C01130001";
-		// (36)String familyUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0112&cat3=C01120001";
+
 		String serviceKey = "gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		// String[] urlList = new String[] {friendUrl, coupleUrl, aloneUrl, familyUrl };
@@ -248,10 +225,7 @@ public class APIServiceImpl {
 					contentIdList.add(contentId);
 
 				} // if
-					// System.out.println(contentIdList.get(i));
 			} // for
-				// arraylist 잘 들어갔는지 확인용: System.out.println(contentIdList.size());
-			System.out.println("게시글 id 저장 성공");
 			getThemeInfo2(contentIdList, contentTypeIdList, themeList[i]); // 기본 정보 DB 등록 - 장소명, 테마, id
 
 		} // url for
@@ -259,14 +233,7 @@ public class APIServiceImpl {
 
 	// 테마별 게시글 contentId 불러오기
 	public void getThemeBasicInfo() throws Exception {
-		// (36)String friendUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0116&cat3=C01160001";
-		// (147) String coupleUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0114&cat3=C01140001";
-		// (54)String aloneUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0113&cat3=C01130001";
-		// (36)String familyUrl =
-		// "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=12&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey="+serviceKey+"&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=C01&cat2=C0112&cat3=C01120001";
+		
 		String serviceKey = "gyesYtRw%2BO5TYGJgK%2FiI%2FFD6htVqBdnM8lz7Qp2noL4lQCWtcnA%2BWzJ9dWkBu0dMagfS1sVHzJi3Vn8CQaqM%2Fw%3D%3D";
 		String[] themeList = new String[] { "friends", "couple", "alone", "family" };
 		String[] cat2List = new String[] { "C0116", "C0114", "C0113", "C0112" };
@@ -307,12 +274,8 @@ public class APIServiceImpl {
 					contentIdList.add(contentId);
 
 				} // if
-					// System.out.println(contentIdList.get(i));
 			} // for
-				// arraylist 잘 들어갔는지 확인용: System.out.println(contentIdList.size());
-			System.out.println("테마게시글 id 저장 성공");
 			getThemeInfo(contentIdList, contentTypeIdList, themeList[i]); // 기본 정보 DB 등록 - 장소명, 테마, id
-
 		} // url for
 	}// test method
 
@@ -349,15 +312,12 @@ public class APIServiceImpl {
 					String title = getValue("subname", eElement);
 
 					PlaceDTO placeDTO = new PlaceDTO(contentId, title, theme);
-					// DB 저장 확인용: System.out.println(placeDTO.contentId +" , "+contentTypeId);
 
 					// DB 해당 content 존재하는지 확인(문제)
 					if (!StringUtils.hasText(placemapper.selectPlaceId(placeDTO.contentId))) { // 기존 데이터 없는경우
-						System.out.println("기존데이터x");
 						placemapper.insertThemeBasicInfo(placeDTO); // 아이디, 제목, 테마 저장
 						getThemePlaceDetail(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
-					System.out.println("기존 place 데이터o");
 					if (!StringUtils.hasText(placemapper.selectContentId(contentId))) { // contents테이블 정보 없는 경우
 						getThemePlaceDetail(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
@@ -401,11 +361,9 @@ public class APIServiceImpl {
 					String title = getValue("subname", eElement);
 
 					PlaceDTO placeDTO = new PlaceDTO(contentId, title, theme);
-					// DB 저장 확인용: System.out.println(placeDTO.contentId +" , "+contentTypeId);
 
 					// DB 해당 content 존재하는지 확인(문제)
 					if (!StringUtils.hasText(placemapper.selectPlaceId2(placeDTO.contentId))) { // 기존 데이터 없는경우
-						System.out.println("기존데이터x");
 						placemapper.insertThemeBasicInfo2(placeDTO); // 아이디, 제목, 테마 저장
 						getThemePlaceDetail2(contentId); // 기본정보 불러오기: 상세정보 불러오기 포함되어 있음
 					}
@@ -453,8 +411,6 @@ public class APIServiceImpl {
 			if (node.getNodeType() == Node.ELEMENT_NODE) { // 자식 노드가 요소일 경우에만 실행한다
 				Element e = (Element) node;
 
-				System.out.println("테마장소별 기본정보 불러오기");
-
 				// null체크
 				Integer contentId = Integer.parseInt(getValue("contentid", e)); // 게시물 id
 				Integer contenttypeid = Integer.parseInt(getValue("contenttypeid", e)); // 게시물 타입 id
@@ -485,7 +441,6 @@ public class APIServiceImpl {
 				placedto.homepage = homepage;
 
 				placemapper.updateThemePlace(placedto);
-				System.out.println("테마장소별 기본정보 수정");
 
 				getThemePlaceDetailIntro(placedto.contentId, placedto.contentTypeId);
 			} // if
@@ -525,8 +480,6 @@ public class APIServiceImpl {
 			if (node.getNodeType() == Node.ELEMENT_NODE) { // 자식 노드가 요소일 경우에만 실행한다
 				Element e = (Element) node;
 
-				System.out.println("테마장소별 기본정보 불러오기");
-
 				// null체크
 				Integer contentId = Integer.parseInt(getValue("contentid", e)); // 게시물 id
 				Integer contenttypeid = Integer.parseInt(getValue("contenttypeid", e)); // 게시물 타입 id
@@ -557,7 +510,6 @@ public class APIServiceImpl {
 				placedto.homepage = homepage;
 
 				placemapper.updateThemePlace2(placedto);
-				System.out.println("테마장소별 기본정보 수정");
 
 				getThemePlaceDetailIntro2(placedto.contentId, placedto.contentTypeId);
 			} // if
@@ -579,8 +531,6 @@ public class APIServiceImpl {
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		url(urlBuilder);
 
-		System.out.println(urlBuilder); // 확인용
-
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(String.valueOf(urlBuilder));
@@ -598,7 +548,6 @@ public class APIServiceImpl {
 				if (placeContentTypeId == 12) {
 					contentsdto = getContentType_12(e);
 					ThemeDetail(placeContentId, contentsdto);
-					System.out.println("");
 				}
 				if (placeContentTypeId == 39) {
 					contentsdto = getContentType_39(e);
@@ -676,10 +625,8 @@ public class APIServiceImpl {
 	public void ThemeDetail(int placeContentId, ContentsDTO contentsdto) {
 		if (StringUtils.hasText(placemapper.selectContentId(placeContentId))) {// 기존데이터 존재
 			placemapper.updateThemeDetail(contentsdto);
-			System.out.println("contents테이블 update");
 		} else {
 			placemapper.insertThemeDetail(contentsdto); // contents 테이블에 기존 데이터 없을 경우
-			System.out.println("contents테이블 insert");
 		}
 	}
 
@@ -714,7 +661,6 @@ public class APIServiceImpl {
 		conn.disconnect();
 
 		String result = sb.toString();
-		System.out.println(result);
 	}
 
 	public ContentsDTO getContentType_14(Element e) { // 문화시설
